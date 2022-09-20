@@ -25,3 +25,5 @@ System.show(one);
 - [ ] Type Bool
 - [ ] File system
 - [x] Base of error handler
+- [ ] CLI
+- [ ] Can enter a file in option 

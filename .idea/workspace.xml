@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="Make base syntax, comments, base print and variable declaration">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/IncorrectTypeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/IncorrectValueTypeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/NotDeclaredVariableException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/RyukoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/antlr4/fr/aiko/Ryoko.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr4/fr/aiko/Ryoko.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.ry" afterDir="false" />
+    <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="Update README.md">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +112,7 @@
       <workItem from="1663616348038" duration="591000" />
       <workItem from="1663617011089" duration="642000" />
       <workItem from="1663618037906" duration="2720000" />
-      <workItem from="1663676297996" duration="17931000" />
+      <workItem from="1663676297996" duration="18311000" />
     </task>
     <task id="LOCAL-00001" summary="Make base syntax, comments, base print and variable declaration">
       <created>1663690849938</created>
@@ -128,7 +121,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663690849938</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Make base of error handler, fix bugs and upgrade the language">
+      <created>1663703325111</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663703325111</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update README.md">
+      <created>1663703444870</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1663703444870</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +155,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Make base syntax, comments, base print and variable declaration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make base syntax, comments, base print and variable declaration" />
+    <MESSAGE value="Make base of error handler, fix bugs and upgrade the language" />
+    <MESSAGE value="Update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
   </component>
 </project>
