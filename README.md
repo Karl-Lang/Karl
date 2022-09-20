@@ -17,3 +17,11 @@ System.show(one);
 -> Hello World!
 -> 2
 ```
+
+## TODO
+
+- [ ] Functions
+- [ ] Class
+- [ ] Type Bool
+- [ ] File system
+- [x] Base of error handler
