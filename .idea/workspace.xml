@@ -5,27 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/antlr-4.11.1-complete.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Ryoko.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoBaseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoLexer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Ryoko.g4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Ryoko.interp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Ryoko.tokens" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/RyokoLexer.interp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/RyokoLexer.tokens" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test.ry" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/antlr4/fr/aiko/Ryoko.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Ryoko.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoBaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Ryoko.g4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Ryoko.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Ryoko.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/RyokoLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/RyokoLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/test.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +60,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.editor"
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -74,13 +68,27 @@
       <recent name="$PROJECT_DIR$/libs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/antlr4/fr/aiko" />
+      <recent name="$PROJECT_DIR$/src/main/antlr4/fr/aiko/antlr4/xml" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko" />
       <recent name="$PROJECT_DIR$/src/main/java/fr/aiko" />
-      <recent name="$PROJECT_DIR$/src/main/antlr4/fr/aiko" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.fr.aiko.ryoko.Ryoko">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="fr.aiko.ryoko.Main" />
+      <module name="Ryoko" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.aiko.ryoko.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Ryoko" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fr.aiko.Ryoko" />
       <module name="Ryoko" />
@@ -94,22 +102,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="fr.aiko.ryoko.Ryoko" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="fr.aiko.ryoko.Ryoko" />
-      <module name="Ryoko" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="fr.aiko.ryoko.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.fr.aiko.ryoko.Ryoko" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Ryoko" />
       </list>
     </recent_temporary>
@@ -130,7 +125,8 @@
       <workItem from="1663615272567" duration="1030000" />
       <workItem from="1663616348038" duration="591000" />
       <workItem from="1663617011089" duration="642000" />
-      <workItem from="1663618037906" duration="2401000" />
+      <workItem from="1663618037906" duration="2720000" />
+      <workItem from="1663676297996" duration="10033000" />
     </task>
     <servers />
   </component>
