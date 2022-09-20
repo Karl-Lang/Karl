@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/antlr4/fr/aiko/Ryoko.g4" afterDir="false" />
+    <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="Make base syntax, comments, base print and variable declaration">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/IncorrectTypeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/IncorrectValueTypeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/NotDeclaredVariableException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/RyukoException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Ryoko.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoBaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/antlr4/fr/aiko/Ryoko.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr4/fr/aiko/Ryoko.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Ryoko.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Ryoko.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Ryoko.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/RyokoLexer.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/RyokoLexer.tokens" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/test.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,8 +119,16 @@
       <workItem from="1663616348038" duration="591000" />
       <workItem from="1663617011089" duration="642000" />
       <workItem from="1663618037906" duration="2720000" />
-      <workItem from="1663676297996" duration="10033000" />
+      <workItem from="1663676297996" duration="17931000" />
     </task>
+    <task id="LOCAL-00001" summary="Make base syntax, comments, base print and variable declaration">
+      <created>1663690849938</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663690849938</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,5 +147,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Make base syntax, comments, base print and variable declaration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make base syntax, comments, base print and variable declaration" />
   </component>
 </project>

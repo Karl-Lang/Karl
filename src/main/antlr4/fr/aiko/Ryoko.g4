@@ -17,7 +17,7 @@ varDeclaration
     ;
 
 systemLib
-    : SHOW '(' expr ')'
+    : SHOW '(' (expr) ')'
     ;
 
 expr

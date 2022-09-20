@@ -2,41 +2,60 @@ package fr.aiko.ryoko;
 
 import fr.aiko.RyokoBaseListener;
 import fr.aiko.RyokoParser;
-import org.antlr.v4.runtime.misc.Pair;
+import fr.aiko.ryoko.exceptions.IncorrectTypeException;
+import fr.aiko.ryoko.exceptions.IncorrectValueTypeException;
+import fr.aiko.ryoko.exceptions.NotDeclaredVariableException;
+import fr.aiko.ryoko.exceptions.RyukoException;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class RyokoCustomListener extends RyokoBaseListener {
-    HashMap<String, Pair<Object, Pair<String, Boolean>>> variableMap = new HashMap<>();
-
+    Map<String, Object> variableMap = new HashMap<>();
 
     @Override
     public void exitVarDeclaration(RyokoParser.VarDeclarationContext ctx) {
-        // this.variableMap.put(ctx.VAR().getText(), Integer.parseInt(ctx.INT().getText()));
         String type = ctx.TYPE().getText();
         if (!type.equals("string") && !type.equals("int") && !type.equals("bool")) {
-            System.out.println("Incorrect type declaration");
+            throw new RyukoException("Incorrect variable type : Variable type must be 'string', 'bool' or 'int'.");
         }
 
         String varName = ctx.IDENTIFIER().getText();
-        String value = ctx.expr().getText();
 
-        variableMap.put(varName, new Pair<>(value, new Pair(type, false)));
-    }
+        switch (type) {
+            case "int" -> {
+                if (ctx.expr().INTEGER() == null) {
+                    throw new IncorrectValueTypeException(varName, ctx.expr().getText(), "integer");
+                }
 
-    /*@Override
-    public void exitPrint(RyokoParser.PrintContext ctx) {
-        if (ctx.IDENTIFIER() != null) {
-            System.out.println(ctx.IDENTIFIER());
-        } else if (ctx.STRING() != null) {
-            System.out.println(ctx.STRING().getText().substring(1, ctx.STRING().getText().length() - 1));
+                variableMap.put(varName, ctx.expr().INTEGER());
+            }
+            case "string" -> {
+                if (ctx.expr().STRING() == null) {
+                    throw new IncorrectValueTypeException(varName, ctx.expr().getText(), "string");
+                }
+
+                variableMap.put(varName, ctx.expr().STRING().getText().substring( 1, ctx.expr().STRING().getText().length() - 1 ));
+            }
+            default -> {
+                throw new IncorrectTypeException(type);
+            }
         }
-    }*/
+    }
 
     @Override
     public void exitSystemLib(RyokoParser.SystemLibContext ctx) {
-        if (ctx.SHOW() != null) {
-            System.out.println(ctx.expr().getText().substring(1, ctx.expr().getText().length() - 1));
+        if (ctx.SHOW() != null) { // Si c'est un print
+            if (ctx.expr().IDENTIFIER() != null) {
+                Object variable = variableMap.get(ctx.expr().IDENTIFIER().getText());
+                if (variableMap.isEmpty() || variable == null) {
+                    throw new NotDeclaredVariableException(ctx.expr().IDENTIFIER().getText());
+                }
+                System.out.println(variable);
+            } else {
+                String str = ctx.expr().getText();
+                System.out.println(str.substring( 1, str.length() - 1 ));
+            }
         }
     }
 }

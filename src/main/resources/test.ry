@@ -1,2 +1,7 @@
+// this is a comment
 System.show("Hi");
-int: un = "Deux";
+string: deux = "Hiiii";
+System.show(deux);
+
+string: b = "Trois";
+System.show(b);
