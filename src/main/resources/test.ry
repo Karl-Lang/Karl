@@ -1,7 +1,6 @@
 // this is a comment
-System.show("Hi");
-string: deux = "Hiiii";
-System.show(deux);
+func main::(string: name) => void {
+	System.show("Hello, "); // Problème : Est exécuté alors qu'on a pas appelé la fonction
+}
 
-string: b = "Trois";
-System.show(b);
+System.show("Hi");

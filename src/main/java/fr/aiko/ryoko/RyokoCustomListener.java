@@ -11,7 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RyokoCustomListener extends RyokoBaseListener {
-    Map<String, Object> variableMap = new HashMap<>();
+    private final Map<String, Object> variableMap = new HashMap<>();
+    private final Map<String, RyokoParser.FuncDeclarationContext> functions = new HashMap<>();
 
     @Override
     public void exitVarDeclaration(RyokoParser.VarDeclarationContext ctx) {
@@ -45,17 +46,12 @@ public class RyokoCustomListener extends RyokoBaseListener {
 
     @Override
     public void exitSystemLib(RyokoParser.SystemLibContext ctx) {
-        if (ctx.SHOW() != null) { // Si c'est un print
-            if (ctx.expr().IDENTIFIER() != null) {
-                Object variable = variableMap.get(ctx.expr().IDENTIFIER().getText());
-                if (variableMap.isEmpty() || variable == null) {
-                    throw new NotDeclaredVariableException(ctx.expr().IDENTIFIER().getText());
-                }
-                System.out.println(variable);
-            } else {
-                String str = ctx.expr().getText();
-                System.out.println(str.substring( 1, str.length() - 1 ));
-            }
-        }
+        return;
+    }
+
+    @Override
+    public void exitFuncDeclaration(RyokoParser.FuncDeclarationContext ctx) {
+        String funcName = ctx.IDENTIFIER().getText();
+        functions.put(funcName, ctx);
     }
 }

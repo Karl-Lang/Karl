@@ -5,11 +5,25 @@ program
 
 line
     : statement
+    | funcDeclaration
     ;
 
 statement
     : varDeclaration';'
     | systemLib';'
+    | functionCall';'
+    ;
+
+funcDeclaration
+    : 'func' IDENTIFIER '::' '(' parameter? ')' '=>' (TYPE | 'void') funcBody
+    ;
+
+funcBody
+    : '{' statement* '}'
+    ;
+
+functionCall
+    : IDENTIFIER '(' expr? ')'
     ;
 
 varDeclaration
@@ -17,8 +31,10 @@ varDeclaration
     ;
 
 systemLib
-    : SHOW '(' (expr) ')'
+    : SHOW '(' (expr) ')' // TODO: Multi call
     ;
+
+parameter : TYPE ':' IDENTIFIER (',' TYPE ':' IDENTIFIER)*;
 
 expr
     : IDENTIFIER

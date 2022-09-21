@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="Update README.md">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/antlr4/fr/aiko/Ryoko.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/antlr4/fr/aiko/Ryoko.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/test.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,13 +45,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/aikoo/Bureau/Developpement/Projets/Ryoko",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "/home/aikoo/Bureau/Developpement/Projets/Ryoko/src/main/resources/test.ry",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "settings.editor.selected.configurable": "configurable.group.tools"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -113,6 +119,7 @@
       <workItem from="1663617011089" duration="642000" />
       <workItem from="1663618037906" duration="2720000" />
       <workItem from="1663676297996" duration="18311000" />
+      <workItem from="1663752968573" duration="5193000" />
     </task>
     <task id="LOCAL-00001" summary="Make base syntax, comments, base print and variable declaration">
       <created>1663690849938</created>
