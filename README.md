@@ -19,6 +19,7 @@ func main::(string: name) => void {
 main("Riley");
 
 -> Hello Riley!
+-> 4
 ```
 
 ## How to run
