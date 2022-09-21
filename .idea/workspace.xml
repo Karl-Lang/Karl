@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="Make function body work">
-      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/picocli/RyokoClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="Edit README.md">
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +131,7 @@
       <workItem from="1663618037906" duration="2720000" />
       <workItem from="1663676297996" duration="18311000" />
       <workItem from="1663752968573" duration="11820000" />
-      <workItem from="1663768380677" duration="7944000" />
+      <workItem from="1663768380677" duration="8123000" />
     </task>
     <task id="LOCAL-00001" summary="Make base syntax, comments, base print and variable declaration">
       <created>1663690849938</created>
@@ -176,7 +168,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663766648727</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Edit version and README.md">
+      <created>1663778743520</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1663778743520</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Edit README.md">
+      <created>1663778835385</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1663778835385</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +206,8 @@
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Make function (need tests)" />
     <MESSAGE value="Make function body work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make function body work" />
+    <MESSAGE value="Edit version and README.md" />
+    <MESSAGE value="Edit README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit README.md" />
   </component>
 </project>

@@ -6,7 +6,7 @@
 
     <groupId>fr.aiko</groupId>
     <artifactId>Ryoko</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-ALPHA</version>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
