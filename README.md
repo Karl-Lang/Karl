@@ -9,20 +9,23 @@
 
 ```
 // this is a comment
-int: one = 2;
 
-System.show("Hello World!");
-System.show(one);
+func main::(string: name) => void {
+	System.show("Hello, " + name + "!");
+	int:b = 4;
+	System.show(b);
+}
 
--> Hello World!
--> 2
+main("Riley");
+
+-> Hello Riley!
 ```
 
 ## How to run
 
 - Compile the project with `mvn compile && maven package`
 - Copy the generated JAR file in target folder anywhere you want
-- Run the JAR file with `java -jar Ryoko.jar -f <file>` *work with -file too*
+- Run the JAR file with `java -jar Ryoko-x.x.x-y-jar-with-dependencies.jar -f <file>` *work with -file too*
 
 ## TODO
 

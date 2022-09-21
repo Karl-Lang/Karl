@@ -15,6 +15,7 @@ public class RyokoCustomVisitor extends RyokoBaseVisitor {
     private final Map<String, Object> variableMap = new HashMap<>();
     private final Map<String, RyokoParser.FuncDeclarationContext> functions = new HashMap<>();
     private final Map<String, Map<String, Object>> functionVariableMap = new HashMap<>();
+
     @Override
     public Object visitSystemLib(RyokoParser.SystemLibContext ctx) {
         var mapUsed = ctx.getParent().getParent().getParent() instanceof RyokoParser.FuncDeclarationContext ? functionVariableMap.get(((RyokoParser.FuncDeclarationContext) ctx.getParent().getParent().getParent()).IDENTIFIER().getText()) : variableMap;
@@ -38,24 +39,24 @@ public class RyokoCustomVisitor extends RyokoBaseVisitor {
                 throw new RyukoException("No argument provided to show function");
             }
         }
-    return null;
-}
-
-@Override
-public Object visitVarDeclaration(RyokoParser.VarDeclarationContext ctx) {
-    var mapUsed = ctx.getParent().getParent().getParent() instanceof RyokoParser.FuncDeclarationContext ? functionVariableMap.get(((RyokoParser.FuncDeclarationContext) ctx.getParent().getParent().getParent()).IDENTIFIER().getText()) : variableMap;
-    String varName = ctx.IDENTIFIER().getText();
-    if (ctx.expr().IDENTIFIER() != null) {
-        Object variable = mapUsed.get(ctx.expr().IDENTIFIER().getText());
-        if (variable == null) {
-            throw new NotDeclaredVariableException(ctx.expr().IDENTIFIER().getText());
-        }
-        mapUsed.put(varName, variable);
-    } else {
-        mapUsed.put(varName, ctx.expr().getText());
+        return null;
     }
-    return null;
-}
+
+    @Override
+    public Object visitVarDeclaration(RyokoParser.VarDeclarationContext ctx) {
+        var mapUsed = ctx.getParent().getParent().getParent() instanceof RyokoParser.FuncDeclarationContext ? functionVariableMap.get(((RyokoParser.FuncDeclarationContext) ctx.getParent().getParent().getParent()).IDENTIFIER().getText()) : variableMap;
+        String varName = ctx.IDENTIFIER().getText();
+        if (ctx.expr().IDENTIFIER() != null) {
+            Object variable = mapUsed.get(ctx.expr().IDENTIFIER().getText());
+            if (variable == null) {
+                throw new NotDeclaredVariableException(ctx.expr().IDENTIFIER().getText());
+            }
+            mapUsed.put(varName, variable);
+        } else {
+            mapUsed.put(varName, ctx.expr().getText());
+        }
+        return null;
+    }
 
     // Visit function declaration
     @Override

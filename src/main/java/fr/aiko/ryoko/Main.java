@@ -6,9 +6,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Paths;
 
 public class Main {
@@ -20,10 +18,11 @@ public class Main {
             e.printStackTrace();
         }
     }
+
     public static void execute(String[] args) {
         try {
             String path = args[0];
-            CharStream stream = CharStreams.fromPath(Paths.get(path)); // Main.class.getClassLoader().getResourceAsStream("test.ry")
+            CharStream stream = CharStreams.fromPath(Paths.get(path));
             RyokoLexer lexer = new RyokoLexer(stream);
             RyokoParser parser = new RyokoParser(new CommonTokenStream(lexer));
             parser.setBuildParseTree(true);
