@@ -18,12 +18,20 @@ System.show(one);
 -> 2
 ```
 
+## How to run
+
+- Compile the project with `mvn compile && maven package`
+- Copy the generated JAR file in target folder anywhere you want
+- Run the JAR file with `java -jar Ryoko.jar -f <file>` *work with -file too*
+
 ## TODO
 
-- [ ] Functions
+- [x] Functions
 - [ ] Class
 - [ ] Type Bool
 - [ ] File system
 - [x] Base of error handler
 - [ ] CLI
 - [ ] Can enter a file in option 
+- [ ] Return statement in functions
+- [ ] Math operations

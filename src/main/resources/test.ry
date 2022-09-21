@@ -1,6 +1,9 @@
 // this is a comment
+
 func main::(string: name) => void {
 	System.show("Hello, " + name + "!");
+	int:b = 4;
+	System.show(b);
 }
 
 main("Riley");

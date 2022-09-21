@@ -6,9 +6,10 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.InputStream;
+import java.nio.file.Paths;
 
 public class Main {
 
@@ -19,15 +20,16 @@ public class Main {
             e.printStackTrace();
         }
     }
-    public static Object execute(String[] args) {
+    public static void execute(String[] args) {
         try {
-            CharStream stream = CharStreams.fromStream(Main.class.getClassLoader().getResourceAsStream("test.ry")); // CharStreams.fromPath(Paths.get("test.ry"));
+            String path = args[0];
+            CharStream stream = CharStreams.fromPath(Paths.get(path)); // Main.class.getClassLoader().getResourceAsStream("test.ry")
             RyokoLexer lexer = new RyokoLexer(stream);
             RyokoParser parser = new RyokoParser(new CommonTokenStream(lexer));
             parser.setBuildParseTree(true);
 
             RyokoCustomVisitor visitor = new RyokoCustomVisitor();
-            return visitor.visit(parser.program());
+            visitor.visit(parser.program());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
