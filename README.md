@@ -22,7 +22,7 @@ System.show(one);
 
 - Compile the project with `mvn compile && maven package`
 - Copy the generated JAR file in target folder anywhere you want
-- Run the JAR file with `java -jar Ryoko.jar -f <file>` *work with -file too*
+- Run the JAR file with `java -jar Ryoko-x.x.x-y-jar-with-dependencies.jar -f <file>` *work with -file too*
 
 ## TODO
 
