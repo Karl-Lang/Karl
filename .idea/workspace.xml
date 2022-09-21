@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="Edit project version">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/RyokoCustomVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/IncorrectTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/IncorrectTypeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/IncorrectValueTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/ryoko/exceptions/IncorrectValueTypeException.java" afterDir="false" />
-    </list>
+    <list default="true" id="d9b94a79-04aa-4c80-b5bd-21671cf749b7" name="Changes" comment="Update README.md and optimize code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,7 +129,7 @@
       <workItem from="1663618037906" duration="2720000" />
       <workItem from="1663676297996" duration="18311000" />
       <workItem from="1663752968573" duration="11820000" />
-      <workItem from="1663768380677" duration="8818000" />
+      <workItem from="1663768380677" duration="8970000" />
     </task>
     <task id="LOCAL-00001" summary="Make base syntax, comments, base print and variable declaration">
       <created>1663690849938</created>
@@ -195,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663778917410</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update README.md and optimize code">
+      <created>1663779711337</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1663779711337</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,6 +221,7 @@
     <MESSAGE value="Edit version and README.md" />
     <MESSAGE value="Edit README.md" />
     <MESSAGE value="Edit project version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit project version" />
+    <MESSAGE value="Update README.md and optimize code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README.md and optimize code" />
   </component>
 </project>
