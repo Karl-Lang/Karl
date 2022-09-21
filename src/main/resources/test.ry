@@ -1,6 +1,6 @@
 // this is a comment
 func main::(string: name) => void {
-	System.show("Hello, "); // Problème : Est exécuté alors qu'on a pas appelé la fonction
+	System.show("Hello, " + name + "!");
 }
 
-System.show("Hi");
+main("Riley");

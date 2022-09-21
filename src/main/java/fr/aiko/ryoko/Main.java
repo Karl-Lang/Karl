@@ -20,17 +20,6 @@ public class Main {
         }
     }
     public static Object execute(String[] args) {
-        /*try {
-            CharStream stream = CharStreams.fromStream(Main.class.getClassLoader().getResourceAsStream("test.ry")); // CharStreams.fromPath(Paths.get("test.ry"));
-            RyokoLexer lexer = new RyokoLexer(stream);
-            RyokoParser parser = new RyokoParser(new CommonTokenStream(lexer));
-            parser.setBuildParseTree(true);
-            parser.addParseListener(new RyokoCustomListener());
-            parser.program();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-
         try {
             CharStream stream = CharStreams.fromStream(Main.class.getClassLoader().getResourceAsStream("test.ry")); // CharStreams.fromPath(Paths.get("test.ry"));
             RyokoLexer lexer = new RyokoLexer(stream);

@@ -23,7 +23,7 @@ funcBody
     ;
 
 functionCall
-    : IDENTIFIER '(' expr? ')'
+    : IDENTIFIER '(' exprList? ')'
     ;
 
 varDeclaration
@@ -31,7 +31,7 @@ varDeclaration
     ;
 
 systemLib
-    : SHOW '(' (expr) ')' // TODO: Multi call
+    : SHOW '(' (exprList) ')'
     ;
 
 parameter : TYPE ':' IDENTIFIER (',' TYPE ':' IDENTIFIER)*;
@@ -40,6 +40,10 @@ expr
     : IDENTIFIER
     | INTEGER
     | STRING
+    ;
+
+exprList
+    : expr ('+' expr)*
     ;
 
 SHOW : 'System.show';
