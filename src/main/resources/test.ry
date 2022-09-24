@@ -6,4 +6,8 @@ func main::(string: name) => void {
 	System.show(b);
 }
 
-main("Riley");
+func giveint::() => int {
+    return 5;
+}
+
+System.show(giveint());

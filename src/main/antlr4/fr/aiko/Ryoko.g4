@@ -12,6 +12,7 @@ statement
     : varDeclaration';'
     | systemLib';'
     | functionCall';'
+    | return';'
     ;
 
 funcDeclaration
@@ -20,6 +21,10 @@ funcDeclaration
 
 funcBody
     : '{' statement* '}'
+    ;
+
+return
+    : 'return' (IDENTIFIER | STRING | INTEGER)
     ;
 
 functionCall
@@ -40,6 +45,7 @@ expr
     : IDENTIFIER
     | INTEGER
     | STRING
+    | functionCall
     ;
 
 exprList

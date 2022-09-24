@@ -21,14 +21,18 @@ public class Main {
 
     public static void execute(String[] args) {
         try {
-            String path = args[0];
+            long start = System.currentTimeMillis();
+            String path = "/home/aikoo/Bureau/Developpement/Projets/Ryoko/src/main/resources/test.ry";// args[0];
             CharStream stream = CharStreams.fromPath(Paths.get(path));
             RyokoLexer lexer = new RyokoLexer(stream);
             RyokoParser parser = new RyokoParser(new CommonTokenStream(lexer));
             parser.setBuildParseTree(true);
 
             RyokoCustomVisitor visitor = new RyokoCustomVisitor();
-            visitor.visit(parser.program());
+            visitor.visit(parser.program()); // Execution du code
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("Execution time : " + timeElapsed + "ms");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

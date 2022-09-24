@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Integer.parseInt;
+
 public class RyokoCustomVisitor extends RyokoBaseVisitor {
 
     private final Map<String, Object> variableMap = new HashMap<>();
@@ -30,6 +32,8 @@ public class RyokoCustomVisitor extends RyokoBaseVisitor {
                         }
                         String result = variable.toString().replaceAll("\"", "");
                         str.append(result);
+                    } else if (expr.functionCall() != null) {
+                      System.out.println(visit(expr.functionCall()));
                     } else {
                         str.append(expr.getText().replaceAll("\"", ""));
                     }
@@ -65,6 +69,32 @@ public class RyokoCustomVisitor extends RyokoBaseVisitor {
         functions.put(funcName, ctx);
         functionVariableMap.put(funcName, new HashMap<>());
         // TODO: Check if the function is already declared
+        return null;
+    }
+
+    // Visit return statement
+    @Override
+    public Object visitReturn(RyokoParser.ReturnContext ctx) {
+        if (!(ctx.getParent().getParent() instanceof RyokoParser.FuncDeclarationContext)) {
+            throw new RyukoException("Return statement outside of a function");
+        }
+
+        Map<String, Object> mapUsed = functionVariableMap.get(((RyokoParser.FuncDeclarationContext) ctx.getParent().getParent().getParent()).IDENTIFIER().getText());
+
+        if (ctx.IDENTIFIER() != null) {
+            Object variable = mapUsed.get(ctx.IDENTIFIER().getText());
+            if (variable == null) {
+                throw new NotDeclaredVariableException(ctx.IDENTIFIER().getText());
+            }
+            return variable;
+        } else {
+            // Switch case for the different types of return
+            if (ctx.STRING() != null) {
+                return ctx.STRING().getText();
+            } else if (ctx.INTEGER() != null) {
+                return parseInt(ctx.INTEGER().getText());
+            }
+        }
         return null;
     }
 
