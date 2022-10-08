@@ -9,6 +9,7 @@ public class Lexer {
     public final ArrayList<Token> tokens = new ArrayList<>();
     private final StringBuilder buffer;
     private int position;
+    private int line;
     public String input;
 
     private final String OPERATOR_CHARS = "()[]{}^*=<>,!~&:+|./%?;-";
@@ -17,8 +18,9 @@ public class Lexer {
 
     public Lexer(String input) {
         buffer = new StringBuilder(input);
-        this.input = input.replaceAll("\\r\\n", "");;
+        this.input = input;
         position = 0;
+        line = 1;
 
         OPERATORS.put("+", TokenType.PLUS);
         OPERATORS.put("-", TokenType.MINUS);
@@ -68,7 +70,11 @@ public class Lexer {
 
         while (position < input.length()) {
             final char c = input.charAt(position);
-            if (Character.isDigit(c)) tokenizeNumber();
+            if (c == '\n' || c == '\r') {
+                line++;
+                position++;
+            }
+            else if (Character.isDigit(c)) tokenizeNumber();
             else if (Character.isLetter(c)) tokenizeIdentifier();
             else if (c == '"') tokenizeString();
             else if (OPERATOR_CHARS.indexOf(c) != -1) tokenizeOperator();
@@ -76,7 +82,7 @@ public class Lexer {
             else throw new RuntimeException("Unexpected character: " + c);
         }
 
-        tokens.add(new Token(TokenType.EOF, "EOF", input.length()));
+        tokens.add(new Token(TokenType.EOF, "EOF", input.length(), line));
     }
 
     public void tokenizeNumber() {
@@ -88,7 +94,7 @@ public class Lexer {
             }
 
             if (c == '.' && buffer.indexOf(".") != -1) {
-                throw new RuntimeException("Invalid number");
+                throw new RuntimeException("Invalid number\nLine :" + line);
             } else if (!Character.isDigit(c)) {
                 break;
             }
@@ -128,7 +134,7 @@ public class Lexer {
         char c = nextChar();
         while (true) {
             if (c == '\0') {
-                throw new RuntimeException("Unterminated string");
+                throw new RuntimeException("Unterminated string\nLine :" + line);
             }
 
             if (c == '"') {
@@ -174,6 +180,6 @@ public class Lexer {
     }
 
     public void addToken(TokenType type, String value) {
-        tokens.add(new Token(type, value, position));
+        tokens.add(new Token(type, value, position, line));
     }
 }

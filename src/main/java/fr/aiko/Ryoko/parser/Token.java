@@ -1,14 +1,16 @@
 package fr.aiko.Ryoko.parser;
 
 public class Token {
-    private final int startPosition;
+    private final int position;
+    private final int line;
     private final TokenType type;
     private String value;
 
-    public Token(TokenType type, String value, int startPosition) {
+    public Token(TokenType type, String value, int position, int line) {
         this.type = type;
         this.value = value;
-        this.startPosition = startPosition;
+        this.position = position;
+        this.line = line;
     }
 
     public TokenType getType() {
@@ -24,6 +26,8 @@ public class Token {
     }
 
     public int getStart() {
-        return startPosition;
+        return position;
     }
+
+    public int getLine() { return line; }
 }

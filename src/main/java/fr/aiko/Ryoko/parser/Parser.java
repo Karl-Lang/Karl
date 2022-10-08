@@ -39,15 +39,18 @@ public class Parser {
 
     private Statement statement() {
         if (FUNC_CALL.containsKey(currentToken.getType())) {
-            String func = FUNC_CALL.get(currentToken.getType());
             ArrayList<Token> args = getFuncCallArguments(currentToken);
-            String contentToPrint = "";
-
-            for (Token arg : args) {
-                contentToPrint += arg.getValue();
+            if (tokens.get(tokens.indexOf(currentToken)).getType() != TokenType.SEMICOLON) {
+                throw new RuntimeException("Missing ; at the end of the print statement.\nLine: " + currentToken.getLine());
             }
 
-            return new PrintStatement(contentToPrint);
+            StringBuilder contentToPrint = new StringBuilder();
+
+            for (Token arg : args) {
+                contentToPrint.append(arg.getValue());
+            }
+
+            return new PrintStatement(contentToPrint.toString());
         } else {
             throw new RuntimeException("Invalid token : " + currentToken.getValue());
         }
