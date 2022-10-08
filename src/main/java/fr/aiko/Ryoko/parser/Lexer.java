@@ -56,12 +56,12 @@ public class Lexer {
         KEYWORDS.put("float", TokenType.FLOAT);
         KEYWORDS.put("string", TokenType.STRING);
         KEYWORDS.put("bool", TokenType.BOOL);
+        KEYWORDS.put("print", TokenType.PRINT);
 
         tokenize();
     }
 
     public void tokenize() {
-
         if (input.length() == 0) {
             throw new RuntimeException("Empty file");
         }
@@ -75,6 +75,8 @@ public class Lexer {
             else if (Character.isWhitespace(c)) nextChar();
             else throw new RuntimeException("Unexpected character: " + c);
         }
+
+        tokens.add(new Token(TokenType.EOF, "EOF", input.length()));
     }
 
     public void tokenizeNumber() {
@@ -136,7 +138,6 @@ public class Lexer {
 
             buffer.append(c);
             c = nextChar();
-            System.out.println(c);
         }
 
         addToken(TokenType.STRING, buffer.toString());

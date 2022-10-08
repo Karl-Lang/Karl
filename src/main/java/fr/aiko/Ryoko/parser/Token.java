@@ -2,8 +2,8 @@ package fr.aiko.Ryoko.parser;
 
 public class Token {
     private final int startPosition;
-    public TokenType type;
-    public String value;
+    private final TokenType type;
+    private String value;
 
     public Token(TokenType type, String value, int startPosition) {
         this.type = type;

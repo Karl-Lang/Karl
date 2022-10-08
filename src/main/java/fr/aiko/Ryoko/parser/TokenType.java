@@ -8,6 +8,7 @@ public enum TokenType {
     ELSE("else"),
     WHILE("while"),
     FOR("for"),
+    PRINT("System.print"),
     // Types
     INT("int"),
     FLOAT("float"),
@@ -41,7 +42,8 @@ public enum TokenType {
     EXCLAMATION("!"),
     SEMICOLON(";"),
     // Others
-    IDENTIFIER("identifier");
+    IDENTIFIER("identifier"),
+    EOF("EOF");
 
     private final String name;
 
