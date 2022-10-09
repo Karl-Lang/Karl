@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Cleanup code">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/Variable.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Edit README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +93,7 @@
       <workItem from="1665070444742" duration="2624000" />
       <workItem from="1665240437751" duration="81000" />
       <workItem from="1665240554564" duration="7681000" />
-      <workItem from="1665334274168" duration="10398000" />
+      <workItem from="1665334274168" duration="11245000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -204,7 +200,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665342882802</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Implements final variable &amp; change variable system">
+      <created>1665345400997</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1665345400997</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Edit README.md">
+      <created>1665345476850</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1665345476850</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,9 +242,10 @@
     <MESSAGE value="Fix bug: variable name start by a digit" />
     <MESSAGE value="Fix bug: variable name is a value type (like int)" />
     <MESSAGE value="Fix bug: variable type not corresponding to value" />
-    <MESSAGE value="Edit README.md" />
     <MESSAGE value="Add variable checker in type verification" />
     <MESSAGE value="Cleanup code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup code" />
+    <MESSAGE value="Implements final variable &amp; change variable system" />
+    <MESSAGE value="Edit README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit README.md" />
   </component>
 </project>

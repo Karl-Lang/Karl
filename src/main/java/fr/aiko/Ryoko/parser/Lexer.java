@@ -89,7 +89,7 @@ public class Lexer {
         buffer.setLength(0);
         char c = input.charAt(position);
         if (Character.isLetter(input.charAt(position + 1))) {
-            throw new RuntimeException("Unexpected character at line: " + line + " position: " + position + "\nCharacter: " + input.charAt(position) + "\nRemind: Variable name can't start by a number");
+            throw new RuntimeException("Unexpected character at line: " + line + " position: " + position + "\nCharacter: " + input.charAt(position) + "\nRemind: Variable name can't start by a digit");
         }
 
         while (true) {

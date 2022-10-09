@@ -1,4 +1,4 @@
-final int: uuw = 1; // this is a comment
+int: uuw = 1; // this is a comment
 uuw = 3;
-print("Number is : ", uuw);
+print("Number is : ", uuw, " test 1 2 3 4");
 // -> Number is : 150
