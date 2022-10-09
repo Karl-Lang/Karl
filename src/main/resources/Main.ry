@@ -1,2 +1,3 @@
-int: baka = 0; // this is a comment
-print("baka kwa ", baka, " uwu");
+int: number = 150; // this is a comment
+print("Number is : ", number);
+// -> Number is : 150

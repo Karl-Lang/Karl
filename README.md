@@ -1,6 +1,12 @@
 ## Ryoko, my homemade programming language
 
-```Currently in working, sorry ! >~<```
+## Example
+
+```aidl
+int: number = 150; // this is a comment
+print("Number is : ", number);
+// -> Number is : 150
+```
 
 ## Todo list
 
