@@ -135,13 +135,21 @@ public class Parser {
     }
 
     private boolean checkCorrespondentTypeVariable(String type, Token value) {
-        return switch (type) {
-            case "int" -> value.getType() == TokenType.INT;
-            case "float" -> value.getType() == TokenType.FLOAT;
-            case "string" -> value.getType() == TokenType.STRING;
-            case "bool" -> value.getType() == TokenType.BOOL;
-            default -> false;
-        };
+        if (value.getType() == TokenType.IDENTIFIER) {
+            if (VARIABLE_MAP.containsKey(value.getValue())) {
+                return VARIABLE_MAP.get(value.getValue()).getClass().getSimpleName().toLowerCase().equals(type);
+            } else {
+                throw new RuntimeException("Unknown variable: " + value.getValue() + ".\nLine: " + value.getLine());
+            }
+        } else {
+            return switch (type) {
+                case "int" -> value.getType() == TokenType.INT;
+                case "float" -> value.getType() == TokenType.FLOAT;
+                case "string" -> value.getType() == TokenType.STRING;
+                case "bool" -> value.getType() == TokenType.BOOL;
+                default -> false;
+            };
+        }
     }
 
     private void advance() {
