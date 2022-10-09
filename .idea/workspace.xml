@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Parser working !">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Add line system for errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/Statement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/PrintStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/PrintStatement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +58,7 @@
       <module name="RyokoHomeMade.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="fr.aiko.Ryoko.parser.*" />
+          <option name="PATTERN" value="fr.aiko.Ryoko.parser.ast.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -95,7 +95,8 @@
       <workItem from="1664994578964" duration="14000" />
       <workItem from="1665070444742" duration="2624000" />
       <workItem from="1665240437751" duration="81000" />
-      <workItem from="1665240554564" duration="3382000" />
+      <workItem from="1665240554564" duration="7681000" />
+      <workItem from="1665334274168" duration="1799000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -104,7 +105,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665242419891</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add line system for errors">
+      <created>1665243982888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665243982888</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add line system for errors">
+      <created>1665243996605</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1665243996605</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +138,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Parser working !" />
-    <option name="LAST_COMMIT_MESSAGE" value="Parser working !" />
+    <MESSAGE value="Add line system for errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add line system for errors" />
   </component>
 </project>

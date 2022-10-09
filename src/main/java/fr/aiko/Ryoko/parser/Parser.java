@@ -1,8 +1,10 @@
 package fr.aiko.Ryoko.parser;
 
 import fr.aiko.Ryoko.parser.ast.PrintStatement;
+import fr.aiko.Ryoko.parser.ast.Statement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +14,7 @@ public class Parser {
     private final ArrayList<Statement> statements = new ArrayList<>();
     private Token currentToken;
     private final Map<TokenType, String> FUNC_CALL = new HashMap<>();
+    private final Map<String, Object> VARIABLE_MAP = new HashMap<>();
 
     public Parser(ArrayList<Token> tokens) {
         this.tokens = tokens;
@@ -28,7 +31,15 @@ public class Parser {
             }
 
             Statement statement = statement();
-            this.statements.add(statement);
+
+            if (statement != null) {
+                this.statements.add(statement);
+            } else {
+                boolean expr = expression();
+                if (!expr) {
+                    throw new RuntimeException("Unknown statement : " + currentToken.getValue() + "\nLine: " + currentToken.getLine());
+                } else continue;
+            }
 
             if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
                 advance();
@@ -47,13 +58,36 @@ public class Parser {
             StringBuilder contentToPrint = new StringBuilder();
 
             for (Token arg : args) {
-                contentToPrint.append(arg.getValue());
+                if (arg.getType() == TokenType.IDENTIFIER) {
+                    if (VARIABLE_MAP.containsKey(arg.getValue())) {
+                        contentToPrint.append(VARIABLE_MAP.get(arg.getValue()));
+                    } else {
+                        throw new RuntimeException("Unknown variable " + arg.getValue() + ".\nLine: " + arg.getLine());
+                    }
+                } else {
+                    contentToPrint.append(arg.getValue());
+                }
             }
 
             return new PrintStatement(contentToPrint.toString());
-        } else {
-            throw new RuntimeException("Invalid token : " + currentToken.getValue());
-        }
+        } else return null;
+    }
+
+    public boolean expression() {
+        if (isVariableDeclaration()) {
+            advance();
+            advance();
+            String varName = currentToken.getValue();
+            advance();
+            advance();
+            VARIABLE_MAP.put(varName, currentToken.getValue());
+            advance();
+            if (currentToken.getType() != TokenType.SEMICOLON) {
+                throw new RuntimeException("Missing ; at the end of the variable declaration.\nLine: " + currentToken.getLine());
+            }
+            advance();
+            return true;
+        } else return false;
     }
 
     private ArrayList<Token> getFuncCallArguments(Token currentTok) {
@@ -67,6 +101,13 @@ public class Parser {
         advance();
 
         return tokensToReturn;
+    }
+
+    private boolean isVariableDeclaration() {
+        // return currentToken.getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.EQUALS;
+        String[] types = {"int", "float", "string", "bool"};
+        // Contains the type of the variable
+        return Arrays.asList(types).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.EQUALS;
     }
 
     private void advance() {

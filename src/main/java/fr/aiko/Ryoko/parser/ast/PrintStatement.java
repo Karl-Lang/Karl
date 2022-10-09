@@ -1,7 +1,5 @@
 package fr.aiko.Ryoko.parser.ast;
 
-import fr.aiko.Ryoko.parser.Statement;
-
 public class PrintStatement extends Statement {
     private final String expr;
 
