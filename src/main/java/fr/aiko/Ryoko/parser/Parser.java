@@ -87,6 +87,14 @@ public class Parser {
             }
             advance();
             return true;
+        } else if (currentToken.getType() == TokenType.DIVIDE && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.DIVIDE) {
+            int pos = currentToken.getLine();
+            while (currentToken.getLine() == pos) {
+                if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
+                    advance();
+                } else break;
+            }
+            return true;
         } else return false;
     }
 

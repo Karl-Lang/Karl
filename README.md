@@ -6,6 +6,7 @@
 
 - [x] Print Statement
 - [x] Variable
+- [x] Comment
 - [ ] Function
 - [ ] If Statement
 - [ ] While Statement
@@ -16,4 +17,3 @@
 - [ ] Import
 - [ ] Export
 - [ ] Operator
-- [ ] Comment

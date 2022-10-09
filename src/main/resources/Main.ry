@@ -1,2 +1,2 @@
-int:baka=0;
-print("baka kwa", baka, "uwu");
+int: baka = 0; // this is a comment
+print("baka kwa ", baka, " uwu");
