@@ -2,7 +2,7 @@
 
 ## Example
 
-```aidl
+```js
 int: number = 150; // this is a comment
 print("Number is : ", number);
 // -> Number is : 150
