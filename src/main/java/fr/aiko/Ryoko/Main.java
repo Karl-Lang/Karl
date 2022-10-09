@@ -5,11 +5,16 @@ import fr.aiko.Ryoko.parser.Parser;
 import fr.aiko.Ryoko.parser.ast.Statement;
 import fr.aiko.Ryoko.parser.Token;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
-        Lexer lexer = new Lexer("int: a=1;\nprint(\"RAAAH ENFIN\");\nprint(a);");
+    public static void main(String[] args) throws IOException {
+        // Get main.ryoko in the resources folder
+        String path = "/home/aikoo/Bureau/Developpement/Projets/RyokoHomeMade/src/main/resources/Main.ry";
+        Lexer lexer = new Lexer(Files.readString(Path.of(path)));
         ArrayList<Token> tokens = lexer.tokens;
 
         Parser parser = new Parser(tokens);
