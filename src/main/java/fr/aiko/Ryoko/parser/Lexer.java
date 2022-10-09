@@ -73,8 +73,7 @@ public class Lexer {
             if (c == '\n' || c == '\r') {
                 line++;
                 position++;
-            }
-            else if (Character.isDigit(c)) tokenizeNumber();
+            } else if (Character.isDigit(c)) tokenizeNumber();
             else if (Character.isLetter(c)) tokenizeIdentifier();
             else if (c == '"') tokenizeString();
             else if (OPERATOR_CHARS.indexOf(c) != -1) tokenizeOperator();

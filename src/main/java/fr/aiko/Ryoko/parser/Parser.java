@@ -107,7 +107,7 @@ public class Parser {
         advance();
         advance();
         ArrayList<Token> tokensToReturn = new ArrayList<>();
-        while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS &&  tokens.indexOf(currentToken) + 1 < tokens.size()) {
+        while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS && tokens.indexOf(currentToken) + 1 < tokens.size()) {
             if (currentToken.getType() == TokenType.COMMA) {
                 advance();
                 continue;
@@ -122,7 +122,6 @@ public class Parser {
     }
 
     private boolean isVariableDeclaration() {
-        // return currentToken.getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.EQUALS;
         String[] types = {"int", "float", "string", "bool"};
         if (Arrays.asList(types).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.EQUALS) {
             return true;

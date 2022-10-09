@@ -2,8 +2,8 @@ package fr.aiko.Ryoko;
 
 import fr.aiko.Ryoko.parser.Lexer;
 import fr.aiko.Ryoko.parser.Parser;
-import fr.aiko.Ryoko.parser.ast.Statement;
 import fr.aiko.Ryoko.parser.Token;
+import fr.aiko.Ryoko.parser.ast.Statement;
 
 import java.io.IOException;
 import java.nio.file.Files;

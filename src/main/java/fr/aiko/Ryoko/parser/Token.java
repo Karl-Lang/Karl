@@ -29,5 +29,7 @@ public class Token {
         return position;
     }
 
-    public int getLine() { return line; }
+    public int getLine() {
+        return line;
+    }
 }
