@@ -4,6 +4,7 @@
 
 ```js
 int: number = 150; // this is a comment
+final string: name = "Ryoko";
 print("Number is : ", number);
 // -> Number is : 150
 ```
