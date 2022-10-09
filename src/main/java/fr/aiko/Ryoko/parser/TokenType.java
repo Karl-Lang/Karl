@@ -43,6 +43,7 @@ public enum TokenType {
     SEMICOLON(";"),
     // Others
     IDENTIFIER("identifier"),
+    FINAL("final"),
     EOF("EOF");
 
     private final String name;

@@ -12,6 +12,7 @@ print("Number is : ", number);
 
 - [x] Print Statement
 - [x] Variable
+- [x] Final Variable
 - [x] Comment
 - [ ] Function
 - [ ] If Statement

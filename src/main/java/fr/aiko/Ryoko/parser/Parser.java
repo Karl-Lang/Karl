@@ -2,6 +2,7 @@ package fr.aiko.Ryoko.parser;
 
 import fr.aiko.Ryoko.parser.ast.PrintStatement;
 import fr.aiko.Ryoko.parser.ast.Statement;
+import fr.aiko.Ryoko.parser.ast.Variable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +14,7 @@ public class Parser {
     private final ArrayList<Token> tokens;
     private final ArrayList<Statement> statements = new ArrayList<>();
     private final Map<TokenType, String> FUNC_CALL = new HashMap<>();
-    private final Map<String, Object> VARIABLE_MAP = new HashMap<>();
+    private final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
     private Token currentToken;
 
     public Parser(ArrayList<Token> tokens) {
@@ -60,7 +61,7 @@ public class Parser {
             for (Token arg : args) {
                 if (arg.getType() == TokenType.IDENTIFIER) {
                     if (VARIABLE_MAP.containsKey(arg.getValue())) {
-                        contentToPrint.append(VARIABLE_MAP.get(arg.getValue()));
+                        contentToPrint.append(VARIABLE_MAP.get(arg.getValue()).getValue());
                     } else {
                         throw new RuntimeException("Unknown variable " + arg.getValue() + ".\nLine: " + arg.getLine());
                     }
@@ -75,6 +76,8 @@ public class Parser {
 
     public boolean expression() {
         if (isVariableDeclaration()) {
+            boolean isFinal = isFinalVariableDeclaration();
+            if (isFinal) advance();
             String type = currentToken.getValue();
             advance();
             advance();
@@ -82,7 +85,11 @@ public class Parser {
             advance();
             advance();
             if (checkCorrespondentTypeVariable(type, currentToken)) {
-                VARIABLE_MAP.put(varName, currentToken.getValue());
+                if (isFinal) {
+                    VARIABLE_MAP.put(varName, new Variable(type, varName, currentToken.getValue(), true));
+                } else {
+                    VARIABLE_MAP.put(varName, new Variable(type, varName, currentToken.getValue(), false));
+                }
             } else {
                 throw new RuntimeException("The variable " + varName + " is not of type " + type + ".\nLine: " + currentToken.getLine());
             }
@@ -92,6 +99,29 @@ public class Parser {
             }
             advance();
             return true;
+        } else if (isVariableAssignment()) {
+          String varName = currentToken.getValue();
+            advance();
+            advance();
+            if (VARIABLE_MAP.containsKey(varName)) {
+                if (VARIABLE_MAP.get(varName).isFinal()) {
+                    throw new RuntimeException("Cannot assign a value to a final variable.\nLine: " + currentToken.getLine());
+                }
+
+                if (checkCorrespondentTypeVariable(VARIABLE_MAP.get(varName).getType(), currentToken)) {
+                    VARIABLE_MAP.get(varName).setValue(currentToken.getValue());
+                    advance();
+                    if (currentToken.getType() != TokenType.SEMICOLON) {
+                        throw new RuntimeException("Missing ; at the end of the variable assignment.\nLine: " + currentToken.getLine());
+                    }
+                    advance();
+                    return true;
+                } else {
+                    throw new RuntimeException("The variable " + varName + " is not of type " + VARIABLE_MAP.get(varName).getType() + ".\nLine: " + currentToken.getLine());
+                }
+            } else {
+                throw new RuntimeException("Unknown variable " + varName + ".\nLine: " + currentToken.getLine());
+            }
         } else if (currentToken.getType() == TokenType.DIVIDE && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.DIVIDE) {
             int pos = currentToken.getLine();
             while (currentToken.getLine() == pos) {
@@ -126,11 +156,27 @@ public class Parser {
         if (Arrays.asList(types).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.EQUALS) {
             return true;
         } else {
+            if (currentToken.getType() == TokenType.FINAL && Arrays.asList(types).contains(tokens.get(tokens.indexOf(currentToken) + 1).getValue()) && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 4).getType() == TokenType.EQUALS) {
+               return true;
+            } else if (Arrays.asList(types).contains(tokens.get(tokens.indexOf(currentToken) + 3).getValue())) {
+                throw new RuntimeException("Variable name can't be a type\nLine: " + currentToken.getLine());
+            }
+
             if (Arrays.asList(types).contains(tokens.get(tokens.indexOf(currentToken) + 2).getValue())) {
                 throw new RuntimeException("Variable name can't be a type\nLine: " + currentToken.getLine());
             }
             return false;
         }
+    }
+
+    private boolean isFinalVariableDeclaration() {
+        return currentToken.getType() == TokenType.FINAL;
+    }
+
+    private boolean isVariableAssignment() {
+        if (currentToken.getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.EQUALS) {
+            return true;
+        } else return false;
     }
 
     private boolean checkCorrespondentTypeVariable(String type, Token value) {

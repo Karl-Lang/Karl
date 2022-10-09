@@ -1,3 +1,4 @@
-int: uuw = baka; // this is a comment
+final int: uuw = 1; // this is a comment
+uuw = 3;
 print("Number is : ", uuw);
 // -> Number is : 150

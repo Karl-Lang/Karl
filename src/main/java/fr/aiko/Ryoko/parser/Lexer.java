@@ -59,6 +59,7 @@ public class Lexer {
         KEYWORDS.put("string", TokenType.STRING);
         KEYWORDS.put("bool", TokenType.BOOL);
         KEYWORDS.put("print", TokenType.PRINT);
+        KEYWORDS.put("final", TokenType.FINAL);
 
         tokenize();
     }
