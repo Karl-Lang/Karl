@@ -95,6 +95,11 @@ public class Parser {
         advance();
         ArrayList<Token> tokensToReturn = new ArrayList<>();
         while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS &&  tokens.indexOf(currentToken) + 1 < tokens.size()) {
+            if (currentToken.getType() == TokenType.COMMA) {
+                advance();
+                continue;
+            }
+
             tokensToReturn.add(currentToken);
             advance();
         }

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        // Get main.ryoko in the resources folder
         String path = "/home/aikoo/Bureau/Developpement/Projets/RyokoHomeMade/src/main/resources/Main.ry";
         Lexer lexer = new Lexer(Files.readString(Path.of(path)));
         ArrayList<Token> tokens = lexer.tokens;

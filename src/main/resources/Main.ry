@@ -1,1 +1,2 @@
-print("baka kwa");
+int:baka=0;
+print("baka kwa", baka, "uwu");

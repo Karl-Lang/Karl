@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Add ToDo List to README.md">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Move code in .ry file for more readability">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +95,7 @@
       <workItem from="1665070444742" duration="2624000" />
       <workItem from="1665240437751" duration="81000" />
       <workItem from="1665240554564" duration="7681000" />
-      <workItem from="1665334274168" duration="3061000" />
+      <workItem from="1665334274168" duration="4309000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -131,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665337018786</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Move code in .ry file for more readability">
+      <created>1665337385706</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665337385706</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +161,7 @@
     <MESSAGE value="Add line system for errors" />
     <MESSAGE value="Add Variable declarations and support in print statement" />
     <MESSAGE value="Add ToDo List to README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add ToDo List to README.md" />
+    <MESSAGE value="Move code in .ry file for more readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move code in .ry file for more readability" />
   </component>
 </project>
