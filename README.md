@@ -23,3 +23,4 @@ print("Number is : ", number);
 - [ ] Import
 - [ ] Export
 - [ ] Operator
+- [ ] Throw new RetardException()
