@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class Parser {
 
-    private ArrayList<Token> tokens;
+    private final ArrayList<Token> tokens;
     private final ArrayList<Statement> statements = new ArrayList<>();
-    private Token currentToken;
     private final Map<TokenType, String> FUNC_CALL = new HashMap<>();
     private final Map<String, Object> VARIABLE_MAP = new HashMap<>();
+    private Token currentToken;
 
     public Parser(ArrayList<Token> tokens) {
         this.tokens = tokens;
@@ -50,7 +50,7 @@ public class Parser {
 
     private Statement statement() {
         if (FUNC_CALL.containsKey(currentToken.getType())) {
-            ArrayList<Token> args = getFuncCallArguments(currentToken);
+            ArrayList<Token> args = getFuncCallArguments();
             if (tokens.get(tokens.indexOf(currentToken)).getType() != TokenType.SEMICOLON) {
                 throw new RuntimeException("Missing ; at the end of the print statement.\nLine: " + currentToken.getLine());
             }
@@ -75,12 +75,17 @@ public class Parser {
 
     public boolean expression() {
         if (isVariableDeclaration()) {
+            String type = currentToken.getValue();
             advance();
             advance();
             String varName = currentToken.getValue();
             advance();
             advance();
-            VARIABLE_MAP.put(varName, currentToken.getValue());
+            if (checkCorrespondentTypeVariable(type, currentToken)) {
+                VARIABLE_MAP.put(varName, currentToken.getValue());
+            } else {
+                throw new RuntimeException("The variable " + varName + " is not of type " + type + ".\nLine: " + currentToken.getLine());
+            }
             advance();
             if (currentToken.getType() != TokenType.SEMICOLON) {
                 throw new RuntimeException("Missing ; at the end of the variable declaration.\nLine: " + currentToken.getLine());
@@ -98,7 +103,7 @@ public class Parser {
         } else return false;
     }
 
-    private ArrayList<Token> getFuncCallArguments(Token currentTok) {
+    private ArrayList<Token> getFuncCallArguments() {
         advance();
         advance();
         ArrayList<Token> tokensToReturn = new ArrayList<>();
@@ -127,6 +132,16 @@ public class Parser {
             }
             return false;
         }
+    }
+
+    private boolean checkCorrespondentTypeVariable(String type, Token value) {
+        return switch (type) {
+            case "int" -> value.getType() == TokenType.INT;
+            case "float" -> value.getType() == TokenType.FLOAT;
+            case "string" -> value.getType() == TokenType.STRING;
+            case "bool" -> value.getType() == TokenType.BOOL;
+            default -> false;
+        };
     }
 
     private void advance() {
