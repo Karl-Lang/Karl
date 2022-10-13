@@ -1,7 +1,6 @@
 package fr.aiko.Ryoko.parser;// Create enum token type
 
 public enum TokenType {
-    // Keywords
     FUNC("func"),
     RETURN("return"),
     IF("if"),
@@ -9,26 +8,22 @@ public enum TokenType {
     WHILE("while"),
     FOR("for"),
     PRINT("System.print"),
-    // Types
     INT("int"),
     FLOAT("float"),
     STRING("string"),
     BOOL("bool"),
-    // Operators
     PLUS("+"),
     MINUS("-"),
     MULTIPLY("*"),
     DIVIDE("/"),
     MODULO("%"),
     EQUALS("="),
-    // Brackets
     LEFT_PARENTHESIS("("),
     RIGHT_PARENTHESIS(")"),
     LEFT_BRACKET("["),
     RIGHT_BRACKET("]"),
     LEFT_BRACE("{"),
     RIGHT_BRACE("}"),
-    // Separators
     COMMA(","),
     COLON(":"),
     LT("<"),
@@ -41,7 +36,6 @@ public enum TokenType {
     QUESTION("?"),
     EXCLAMATION("!"),
     SEMICOLON(";"),
-    // Others
     IDENTIFIER("identifier"),
     FINAL("final"),
     EOF("EOF");
