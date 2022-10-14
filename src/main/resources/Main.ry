@@ -1,5 +1,7 @@
-print("UwU");
+int: baja = 1;
 
 func main::(int: first) {
-    print("Baka");
+    print("Baka", baja);
 }
+
+main(123);

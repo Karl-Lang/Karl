@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Edit README.md">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/RyokoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/SemiColonException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/TypeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/UnknownVariableException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/VariableNameException.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Base of functions, in working">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/FunctionStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +120,8 @@
       <workItem from="1665588383451" duration="111000" />
       <workItem from="1665588760591" duration="294000" />
       <workItem from="1665672957466" duration="157000" />
-      <workItem from="1665678503492" duration="5920000" />
+      <workItem from="1665678503492" duration="8103000" />
+      <workItem from="1665735719312" duration="2867000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -246,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665345476850</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Base of functions, in working">
+      <created>1665687493631</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1665687493631</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +281,8 @@
     <MESSAGE value="Cleanup code" />
     <MESSAGE value="Implements final variable &amp; change variable system" />
     <MESSAGE value="Edit README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit README.md" />
+    <MESSAGE value="Base of functions, in working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Base of functions, in working" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

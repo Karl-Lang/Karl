@@ -4,6 +4,7 @@ import fr.aiko.Ryoko.parser.ErrorManager.SemiColonException;
 import fr.aiko.Ryoko.parser.ErrorManager.TypeException;
 import fr.aiko.Ryoko.parser.ErrorManager.UnknownVariableException;
 import fr.aiko.Ryoko.parser.ErrorManager.VariableNameException;
+import fr.aiko.Ryoko.parser.ast.FunctionStatement;
 import fr.aiko.Ryoko.parser.ast.PrintStatement;
 import fr.aiko.Ryoko.parser.ast.Statement;
 import fr.aiko.Ryoko.parser.ast.Variable;
@@ -18,9 +19,8 @@ public class Parser {
     private final ArrayList<Token> tokens;
     private final ArrayList<Statement> statements = new ArrayList<>();
     private final Map<TokenType, String> FUNC_CALL = new HashMap<>();
-    private final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
-    private final Map<String, ArrayList<Statement>> FUNCTIONS = new HashMap<>();
-    private final Map<String, Map<String, Variable>> FUNCTION_VARIABLE_MAP = new HashMap<>();
+    protected final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
+    private final Map<String, FunctionStatement> FUNCTIONS = new HashMap<>();
     private final String[] types = {"int", "float", "string", "bool"};
     private Token currentToken;
 
@@ -32,8 +32,8 @@ public class Parser {
     }
 
     public ArrayList<Statement> parse() {
-        while (tokens.indexOf(currentToken) < tokens.size()) {
 
+        while (tokens.indexOf(currentToken) < tokens.size()) {
             if (currentToken.getType() == TokenType.EOF) {
                 break;
             }
@@ -78,6 +78,27 @@ public class Parser {
             }
 
             return new PrintStatement(contentToPrint.toString());
+        }  else if (isFuncCall()) {
+            String funcName = currentToken.getValue();
+            if (!FUNCTIONS.containsKey(funcName)) {
+                throw new RuntimeException("Unknown function : " + funcName + "\nLine: " + currentToken.getLine());
+            }
+
+            ArrayList<Token> args = getFuncCallArguments();
+            FunctionStatement function = FUNCTIONS.get(funcName);
+
+            if (args.size() != function.argsNumber) {
+                throw new RuntimeException("Wrong number of arguments for function " + funcName + ". Expected " + function.argsNumber + " but got " + args.size() + "\nLine: " + currentToken.getLine());
+            }
+
+            for (int i = 0; i < args.size(); i++) {
+                Token arg = args.get(i);
+                Variable var = function.args.get(i);
+
+                var.setValue(arg.getValue());
+            }
+
+            return function;
         } else return null;
     }
 
@@ -133,21 +154,17 @@ public class Parser {
             ArrayList<Variable> args = getFuncDeclarationArguments();
             advance();
             ArrayList<Token> bodyToken = getFunctionBody();
-            ArrayList<Statement> body = new Parser(bodyToken).parse();
+            Parser bodyParser = new Parser(bodyToken);
+
+            for (Variable arg : args) {
+                bodyParser.VARIABLE_MAP.put(arg.getName(), arg);
+            }
 
             if (FUNCTIONS.containsKey(funcName)) {
                 throw new RuntimeException("The function " + funcName + " is already declared.\nLine: " + currentToken.getLine());
             }
 
-            FUNCTIONS.put(funcName, body);
-
-            if (!FUNCTION_VARIABLE_MAP.containsKey(funcName)) {
-                FUNCTION_VARIABLE_MAP.put(funcName, new HashMap<>());
-            }
-
-            for (Variable argument : args) {
-                FUNCTION_VARIABLE_MAP.get(funcName).put(argument.getName(), argument);
-            }
+            FUNCTIONS.put(funcName, new FunctionStatement(funcName, args, bodyParser));
 
             return true;
         } else if (currentToken.getType() == TokenType.DIVIDE && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.DIVIDE) {
@@ -242,13 +259,19 @@ public class Parser {
 
                 pos++;
                 advance();
-            } else break;
+            } else {
+                throw new RuntimeException("Unterminated function body");
+            }
         }
 
         tokensToReturn.add(new Token(TokenType.EOF, "EOF", pos, line));
         advance();
 
         return tokensToReturn;
+    }
+
+    private boolean isFuncCall() {
+        return currentToken.getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.LEFT_PARENTHESIS;
     }
 
     private boolean isFinalVariableDeclaration() {
