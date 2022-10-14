@@ -19,7 +19,7 @@ public class Parser {
     private final ArrayList<Token> tokens;
     private final ArrayList<Statement> statements = new ArrayList<>();
     private final Map<TokenType, String> FUNC_CALL = new HashMap<>();
-    protected final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
+    public final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
     private final Map<String, FunctionStatement> FUNCTIONS = new HashMap<>();
     private final String[] types = {"int", "float", "string", "bool"};
     private Token currentToken;
@@ -91,12 +91,11 @@ public class Parser {
                 throw new RuntimeException("Wrong number of arguments for function " + funcName + ". Expected " + function.argsNumber + " but got " + args.size() + "\nLine: " + currentToken.getLine());
             }
 
-            for (int i = 0; i < args.size(); i++) {
-                Token arg = args.get(i);
-                Variable var = function.args.get(i);
-
-                var.setValue(arg.getValue());
-            }
+            int i = 0;
+            function.parser.VARIABLE_MAP.forEach((key, value) -> {
+                function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(args.get(i).getValue());
+                System.out.println(function.parser.VARIABLE_MAP.get("name").getValue());
+            });
 
             return function;
         } else return null;

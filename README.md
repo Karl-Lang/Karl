@@ -5,8 +5,11 @@
 ```js
 int: number = 150; // this is a comment
 final string: name = "Ryoko";
-print("Number is : ", number);
-// -> Number is : 150
+func main::(string: name) {
+    print("Hello, ", name, "!");
+}
+main(name);
+// -> Hello, Ryoko!
 ```
 
 ## Todo list
@@ -15,7 +18,7 @@ print("Number is : ", number);
 - [x] Variable
 - [x] Final Variable
 - [x] Comment
-- [ ] Function
+- [x] Function (Need tests)
 - [ ] If Statement
 - [ ] While Statement
 - [ ] For Statement

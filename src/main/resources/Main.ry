@@ -1,7 +1,6 @@
-int: baja = 1;
-
-func main::(int: first) {
-    print("Baka", baja);
+int: number = 150; // this is a comment
+string: namea = "Ryoko";
+func main::(int: name) {
+    print("Hello, ", name, "!");
 }
-
-main(123);
+main(12);

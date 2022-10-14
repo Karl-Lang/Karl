@@ -21,6 +21,7 @@ public class FunctionStatement extends Statement {
 
     @Override
     public void execute() {
+        System.out.println(parser.VARIABLE_MAP.get("name").getValue());
         ArrayList<Statement> statements = parser.parse();
         for (Statement statement : statements) {
             statement.execute();
