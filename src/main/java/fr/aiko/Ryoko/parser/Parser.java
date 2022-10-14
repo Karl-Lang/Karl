@@ -91,10 +91,19 @@ public class Parser {
                 throw new RuntimeException("Wrong number of arguments for function " + funcName + ". Expected " + function.argsNumber + " but got " + args.size() + "\nLine: " + currentToken.getLine());
             }
 
-            int i = 0;
             function.parser.VARIABLE_MAP.forEach((key, value) -> {
-                function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(args.get(i).getValue());
-                System.out.println(function.parser.VARIABLE_MAP.get("name").getValue());
+                for (int i = 0; i < args.size(); i++) {
+                    Token token = args.get(i); // TODO: Check if types is correspondant
+                    if (token.getType() == TokenType.IDENTIFIER) {
+                        if (VARIABLE_MAP.containsKey(token.getValue())) {
+                            function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(VARIABLE_MAP.get(token.getValue()).getValue());
+                        } else {
+                            throw new UnknownVariableException(token.getValue(), token.getLine(), token.getStart());
+                        }
+                    } else {
+                        function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(token.getValue());
+                    }
+                }
             });
 
             return function;

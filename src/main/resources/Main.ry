@@ -3,4 +3,4 @@ string: namea = "Ryoko";
 func main::(int: name) {
     print("Hello, ", name, "!");
 }
-main(12);
+main(namea);
