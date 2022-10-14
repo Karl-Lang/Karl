@@ -78,7 +78,7 @@ public class Parser {
             }
 
             return new PrintStatement(contentToPrint.toString());
-        }  else if (isFuncCall()) {
+        } else if (isFuncCall()) {
             String funcName = currentToken.getValue();
             if (!FUNCTIONS.containsKey(funcName)) {
                 throw new RuntimeException("Unknown function : " + funcName + "\nLine: " + currentToken.getLine());
@@ -93,17 +93,16 @@ public class Parser {
 
             function.parser.VARIABLE_MAP.forEach((key, value) -> {
                 for (int i = 0; i < args.size(); i++) {
-                    Token token = args.get(i); // TODO: Check if types is correspondant
+                    Token token = args.get(i);
                     String varType = function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getType();
 
                     if (token.getType().toString().toLowerCase().equals(varType) || token.getType() == TokenType.IDENTIFIER) {
                         if (token.getType() == TokenType.IDENTIFIER) {
                             if (VARIABLE_MAP.containsKey(token.getValue())) {
-                                // function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(VARIABLE_MAP.get(token.getValue()).getValue());
                                 if (VARIABLE_MAP.get(token.getValue()).getType().equals(varType)) {
                                     function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(VARIABLE_MAP.get(token.getValue()).getValue());
                                 } else {
-                                    throw new TypeException("Excepted type " + varType + " for argument : " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function "  + funcName + ".\nThe entered value type is : " + VARIABLE_MAP.get(token.getValue()).getType(), token.getLine(), token.getStart());
+                                    throw new TypeException("Excepted type " + varType + " for argument : " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function " + funcName + ".\nThe entered value type is : " + VARIABLE_MAP.get(token.getValue()).getType(), token.getLine(), token.getStart());
                                 }
                             } else {
                                 throw new UnknownVariableException(token.getValue(), token.getLine(), token.getStart());
@@ -112,7 +111,7 @@ public class Parser {
                             function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(token.getValue());
                         }
                     } else {
-                        throw new TypeException("Excepted type " + varType + " for argument " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function "  + funcName + ".\nThe entered value type is : " + token.getType().toString(), token.getLine(), token.getStart());
+                        throw new TypeException("Excepted type " + varType + " for argument " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function " + funcName + ".\nThe entered value type is : " + token.getType().toString(), token.getLine(), token.getStart());
                     }
                 }
             });
@@ -136,7 +135,7 @@ public class Parser {
                     VARIABLE_MAP.put(varName, new Variable(type, varName, currentToken.getValue(), false));
                 }
             } else {
-                throw new TypeException("The variable " + varName + " is not of type " + type, + currentToken.getLine(), currentToken.getStart());
+                throw new TypeException("The variable " + varName + " is not of type " + type, +currentToken.getLine(), currentToken.getStart());
             }
             advance();
             if (currentToken.getType() != TokenType.SEMICOLON) {
@@ -145,7 +144,7 @@ public class Parser {
             advance();
             return true;
         } else if (isVariableAssignment()) {
-          String varName = currentToken.getValue();
+            String varName = currentToken.getValue();
             advance(2);
             if (VARIABLE_MAP.containsKey(varName)) {
                 if (VARIABLE_MAP.get(varName).isFinal()) {
@@ -231,7 +230,7 @@ public class Parser {
                 varsToReturn.add(new Variable(type, currentToken.getValue(), null, false));
                 advance();
             } else {
-                throw new TypeException("Unknown type " + currentToken.getValue(), + currentToken.getLine(), currentToken.getStart());
+                throw new TypeException("Unknown type " + currentToken.getValue(), +currentToken.getLine(), currentToken.getStart());
             }
         }
 
@@ -247,7 +246,7 @@ public class Parser {
             return true;
         } else {
             if (currentToken.getType() == TokenType.FINAL && Arrays.asList(types).contains(tokens.get(tokens.indexOf(currentToken) + 1).getValue()) && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 4).getType() == TokenType.EQUALS) {
-               return true;
+                return true;
             } else if (Arrays.asList(types).contains(tokens.get(tokens.indexOf(currentToken) + 3).getValue())) {
                 throw new VariableNameException("Variable name can't be a type", currentToken.getLine(), currentToken.getStart());
             }
@@ -322,6 +321,7 @@ public class Parser {
     private void advance() {
         currentToken = tokens.get(tokens.indexOf(currentToken) + 1);
     }
+
     private void advance(int number) {
         currentToken = tokens.get(tokens.indexOf(currentToken) + number);
     }

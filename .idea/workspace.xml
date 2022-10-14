@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Some modifications and optimizations for prepare new features">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Add type checking for functions arguments">
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/FunctionStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/FunctionStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +75,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fr.aiko.Ryoko.Main" />
       <module name="RyokoHomeMade.main" />
+      <option name="PROGRAM_PARAMETERS" value="--console=verbose" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="fr.aiko.Ryoko.parser.ast.*" />
@@ -120,7 +125,7 @@
       <workItem from="1665588760591" duration="294000" />
       <workItem from="1665672957466" duration="157000" />
       <workItem from="1665678503492" duration="8103000" />
-      <workItem from="1665735719312" duration="7338000" />
+      <workItem from="1665735719312" duration="11707000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -269,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665741773820</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Add type checking for functions arguments">
+      <created>1665765832177</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1665765832177</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +317,8 @@
     <MESSAGE value="Functions working, variable functions too. Need tests" />
     <MESSAGE value="Fix some bugs" />
     <MESSAGE value="Some modifications and optimizations for prepare new features" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some modifications and optimizations for prepare new features" />
+    <MESSAGE value="Add type checking for functions arguments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add type checking for functions arguments" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

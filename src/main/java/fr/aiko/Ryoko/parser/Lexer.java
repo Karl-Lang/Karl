@@ -130,7 +130,11 @@ public class Lexer {
             c = nextChar();
         }
 
-        addToken(KEYWORDS.getOrDefault(buffer.toString(), TokenType.IDENTIFIER), buffer.toString());
+        if (!buffer.toString().equals("true") && !buffer.toString().equals("false")) {
+            addToken(KEYWORDS.getOrDefault(buffer.toString(), TokenType.IDENTIFIER), buffer.toString());
+        } else {
+            addToken(TokenType.BOOL, buffer.toString());
+        }
     }
 
     public void tokenizeString() {

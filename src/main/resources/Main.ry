@@ -1,6 +1,3 @@
 int: number = 150; // this is a comment
-string: namea = "Ryoko";
-func main::(string: name) {
-    print("Hello, ", name, "!");
-}
-main("Bonchourin");
+bool: bool = true; // this is a comment
+print("Hello World! ", boolean); // this is a comment
