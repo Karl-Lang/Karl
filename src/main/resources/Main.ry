@@ -1,6 +1,6 @@
 int: number = 150; // this is a comment
 string: namea = "Ryoko";
-func main::(int: name) {
+func main::(string: name) {
     print("Hello, ", name, "!");
 }
-main(namea);
+main("Bonchourin");

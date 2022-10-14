@@ -94,14 +94,25 @@ public class Parser {
             function.parser.VARIABLE_MAP.forEach((key, value) -> {
                 for (int i = 0; i < args.size(); i++) {
                     Token token = args.get(i); // TODO: Check if types is correspondant
-                    if (token.getType() == TokenType.IDENTIFIER) {
-                        if (VARIABLE_MAP.containsKey(token.getValue())) {
-                            function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(VARIABLE_MAP.get(token.getValue()).getValue());
+                    String varType = function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getType();
+
+                    if (token.getType().toString().toLowerCase().equals(varType) || token.getType() == TokenType.IDENTIFIER) {
+                        if (token.getType() == TokenType.IDENTIFIER) {
+                            if (VARIABLE_MAP.containsKey(token.getValue())) {
+                                // function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(VARIABLE_MAP.get(token.getValue()).getValue());
+                                if (VARIABLE_MAP.get(token.getValue()).getType().equals(varType)) {
+                                    function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(VARIABLE_MAP.get(token.getValue()).getValue());
+                                } else {
+                                    throw new TypeException("Excepted type " + varType + " for argument : " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function "  + funcName + ".\nThe entered value type is : " + VARIABLE_MAP.get(token.getValue()).getType(), token.getLine(), token.getStart());
+                                }
+                            } else {
+                                throw new UnknownVariableException(token.getValue(), token.getLine(), token.getStart());
+                            }
                         } else {
-                            throw new UnknownVariableException(token.getValue(), token.getLine(), token.getStart());
+                            function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(token.getValue());
                         }
                     } else {
-                        function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(token.getValue());
+                        throw new TypeException("Excepted type " + varType + " for argument " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function "  + funcName + ".\nThe entered value type is : " + token.getType().toString(), token.getLine(), token.getStart());
                     }
                 }
             });

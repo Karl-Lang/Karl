@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix some bugs">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Some modifications and optimizations for prepare new features">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
@@ -120,7 +120,7 @@
       <workItem from="1665588760591" duration="294000" />
       <workItem from="1665672957466" duration="157000" />
       <workItem from="1665678503492" duration="8103000" />
-      <workItem from="1665735719312" duration="5985000" />
+      <workItem from="1665735719312" duration="7338000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -262,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665741351959</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Some modifications and optimizations for prepare new features">
+      <created>1665741773820</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1665741773820</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +304,8 @@
     <MESSAGE value="Base of functions, in working" />
     <MESSAGE value="Functions working, variable functions too. Need tests" />
     <MESSAGE value="Fix some bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix some bugs" />
+    <MESSAGE value="Some modifications and optimizations for prepare new features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some modifications and optimizations for prepare new features" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
