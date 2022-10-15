@@ -1,6 +1,12 @@
 package fr.aiko.Ryoko.parser;// Create enum token type
 
 public enum TokenType {
+    EQUAL("=="),
+    NOT_EQUAL("!="),
+    GREATER(">"),
+    LESS("<"),
+    GREATER_EQUAL(">="),
+    LESS_EQUAL("<="),
     FUNC("func"),
     RETURN("return"),
     IF("if"),
@@ -38,7 +44,9 @@ public enum TokenType {
     SEMICOLON(";"),
     IDENTIFIER("identifier"),
     FINAL("final"),
-    EOF("EOF");
+    EOF("EOF"),
+    AND("&&"),
+    OR("||");
 
     private final String name;
 

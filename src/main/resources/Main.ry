@@ -1,3 +1,5 @@
-int: number = 150; // this is a comment
-bool: bool = true; // this is a comment
-print("Hello World! ", boolean); // this is a comment
+func main::(string: name) {
+    print("Hello, ", name,"!");
+}
+
+main("Babar");

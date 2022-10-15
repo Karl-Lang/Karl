@@ -4,10 +4,7 @@ import fr.aiko.Ryoko.parser.ErrorManager.SemiColonException;
 import fr.aiko.Ryoko.parser.ErrorManager.TypeException;
 import fr.aiko.Ryoko.parser.ErrorManager.UnknownVariableException;
 import fr.aiko.Ryoko.parser.ErrorManager.VariableNameException;
-import fr.aiko.Ryoko.parser.ast.FunctionStatement;
-import fr.aiko.Ryoko.parser.ast.PrintStatement;
-import fr.aiko.Ryoko.parser.ast.Statement;
-import fr.aiko.Ryoko.parser.ast.Variable;
+import fr.aiko.Ryoko.parser.ast.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -119,7 +116,6 @@ public class Parser {
             return function;
         } else return null;
     }
-
     public boolean expression() {
         if (isVariableDeclaration()) {
             boolean isFinal = isFinalVariableDeclaration();
@@ -199,10 +195,15 @@ public class Parser {
     private ArrayList<Token> getFuncCallArguments() {
         advance(2);
         ArrayList<Token> tokensToReturn = new ArrayList<>();
+
         while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS && tokens.indexOf(currentToken) + 1 < tokens.size()) {
             if (currentToken.getType() == TokenType.COMMA) {
                 advance();
                 continue;
+            }
+
+            if (tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.COMMA && tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.RIGHT_PARENTHESIS) {
+                throw new RuntimeException("Unexpected token " + tokens.get(tokens.indexOf(currentToken) + 1).getValue() + " in function call");
             }
 
             tokensToReturn.add(currentToken);

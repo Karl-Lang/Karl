@@ -23,6 +23,14 @@ public class Lexer {
         line = 1;
 
         OPERATORS.put("+", TokenType.PLUS);
+        OPERATORS.put("&&", TokenType.AND);
+        OPERATORS.put("||", TokenType.OR);
+        OPERATORS.put("==", TokenType.EQUAL);
+        OPERATORS.put("!=", TokenType.NOT_EQUAL);
+        OPERATORS.put(">", TokenType.GREATER);
+        OPERATORS.put("<", TokenType.LESS);
+        OPERATORS.put(">=", TokenType.GREATER_EQUAL);
+        OPERATORS.put("<=", TokenType.LESS_EQUAL);
         OPERATORS.put("-", TokenType.MINUS);
         OPERATORS.put("*", TokenType.MULTIPLY);
         OPERATORS.put("/", TokenType.DIVIDE);
