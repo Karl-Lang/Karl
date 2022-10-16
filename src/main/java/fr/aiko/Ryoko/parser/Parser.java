@@ -139,7 +139,7 @@ public class Parser {
                     VARIABLE_MAP.put(varName, new Variable(type, varName, currentToken.getValue(), false));
                 }
             } else {
-                new TypeError("The variable " + varName + " is not of type " + type, fileName, currentToken.getLine());
+                new TypeError("Excepted type " + type + " for variable \"" + varName + "\" but got " + currentToken.getType().toString().toLowerCase(), fileName, currentToken.getLine());
             }
             advance();
             if (currentToken.getType() != TokenType.SEMICOLON) {
