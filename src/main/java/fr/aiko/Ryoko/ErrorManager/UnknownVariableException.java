@@ -1,4 +1,4 @@
-package fr.aiko.Ryoko.parser.ErrorManager;
+package fr.aiko.Ryoko.ErrorManager;
 
 public class UnknownVariableException extends RyokoException {
     public UnknownVariableException(String varName, int line, int position) {

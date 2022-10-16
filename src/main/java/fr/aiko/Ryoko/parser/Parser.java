@@ -1,9 +1,11 @@
 package fr.aiko.Ryoko.parser;
 
-import fr.aiko.Ryoko.parser.ErrorManager.SemiColonException;
-import fr.aiko.Ryoko.parser.ErrorManager.TypeException;
-import fr.aiko.Ryoko.parser.ErrorManager.UnknownVariableException;
-import fr.aiko.Ryoko.parser.ErrorManager.VariableNameException;
+import fr.aiko.Ryoko.ErrorManager.Error;
+import fr.aiko.Ryoko.ErrorManager.RuntimeError.TypeError;
+import fr.aiko.Ryoko.ErrorManager.SemiColonException;
+import fr.aiko.Ryoko.ErrorManager.TypeException;
+import fr.aiko.Ryoko.ErrorManager.UnknownVariableException;
+import fr.aiko.Ryoko.ErrorManager.VariableNameException;
 import fr.aiko.Ryoko.parser.ast.*;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.Map;
 public class Parser {
 
     private final ArrayList<Token> tokens;
+    private final String fileName;
     private final ArrayList<Statement> statements = new ArrayList<>();
     private final Map<TokenType, String> FUNC_CALL = new HashMap<>();
     public final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
@@ -21,15 +24,15 @@ public class Parser {
     private final String[] types = {"int", "float", "string", "bool"};
     private Token currentToken;
 
-    public Parser(ArrayList<Token> tokens) {
+    public Parser(ArrayList<Token> tokens, String fileName) {
         this.tokens = tokens;
+        this.fileName = fileName;
         currentToken = tokens.get(0);
 
-        FUNC_CALL.put(TokenType.PRINT, "SYSTEM_SHOW");
+        FUNC_CALL.put(TokenType.SHOW, "SYSTEM_SHOW");
     }
 
     public ArrayList<Statement> parse() {
-
         while (tokens.indexOf(currentToken) < tokens.size()) {
             if (currentToken.getType() == TokenType.EOF) {
                 break;
@@ -56,6 +59,11 @@ public class Parser {
     private Statement statement() {
         if (FUNC_CALL.containsKey(currentToken.getType())) {
             ArrayList<Token> args = getFuncCallArguments();
+
+            if (args.size() == 0) {
+                throw new RuntimeException("Excepted at least one argument for function " + "\nLine: " + currentToken.getLine());
+            }
+
             if (tokens.get(tokens.indexOf(currentToken)).getType() != TokenType.SEMICOLON) {
                 throw new RuntimeException("Missing ; at the end of the print statement.\nLine: " + currentToken.getLine());
             }
@@ -108,7 +116,7 @@ public class Parser {
                             function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(token.getValue());
                         }
                     } else {
-                        throw new TypeException("Excepted type " + varType + " for argument " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function " + funcName + ".\nThe entered value type is : " + token.getType().toString(), token.getLine(), token.getStart());
+                        new TypeError("Excepted type " + varType + " for argument " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function " + funcName + ".\nThe entered value type is : " + token.getType().toString(), fileName, token.getLine());
                     }
                 }
             });
@@ -131,7 +139,7 @@ public class Parser {
                     VARIABLE_MAP.put(varName, new Variable(type, varName, currentToken.getValue(), false));
                 }
             } else {
-                throw new TypeException("The variable " + varName + " is not of type " + type, +currentToken.getLine(), currentToken.getStart());
+                new TypeError("The variable " + varName + " is not of type " + type, fileName, currentToken.getLine());
             }
             advance();
             if (currentToken.getType() != TokenType.SEMICOLON) {
@@ -168,7 +176,7 @@ public class Parser {
             ArrayList<Variable> args = getFuncDeclarationArguments();
             advance();
             ArrayList<Token> bodyToken = getFunctionBody();
-            Parser bodyParser = new Parser(bodyToken);
+            Parser bodyParser = new Parser(bodyToken, fileName);
 
             for (Variable arg : args) {
                 bodyParser.VARIABLE_MAP.put(arg.getName(), arg);
@@ -266,24 +274,17 @@ public class Parser {
     private ArrayList<Token> getFunctionBody() {
         ArrayList<Token> tokensToReturn = new ArrayList<>();
         advance();
-        int pos = 0;
-        int line = 1;
         while (currentToken.getType() != TokenType.RIGHT_BRACE) {
-            tokensToReturn.add(new Token(currentToken.getType(), currentToken.getValue(), pos, line));
+            tokensToReturn.add(new Token(currentToken.getType(), currentToken.getValue(), currentToken.getStart(), currentToken.getLine()));
 
             if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
-                if (tokens.get(tokens.indexOf(currentToken) + 1).getLine() - line < line) {
-                    line++;
-                }
-
-                pos++;
                 advance();
             } else {
                 throw new RuntimeException("Unterminated function body");
             }
         }
 
-        tokensToReturn.add(new Token(TokenType.EOF, "EOF", pos, line));
+        tokensToReturn.add(new Token(TokenType.EOF, "EOF", currentToken.getStart(), currentToken.getLine()));
         advance();
 
         return tokensToReturn;

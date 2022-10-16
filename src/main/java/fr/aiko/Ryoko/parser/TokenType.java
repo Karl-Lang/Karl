@@ -13,7 +13,7 @@ public enum TokenType {
     ELSE("else"),
     WHILE("while"),
     FOR("for"),
-    PRINT("System.print"),
+    SHOW("System.show"),
     INT("int"),
     FLOAT("float"),
     STRING("string"),

@@ -1,4 +1,4 @@
-package fr.aiko.Ryoko.parser.ErrorManager;
+package fr.aiko.Ryoko.ErrorManager;
 
 public class SemiColonException extends RyokoException {
     public SemiColonException(int line, int position) {

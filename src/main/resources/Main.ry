@@ -1,5 +1,6 @@
 func main::(string: name) {
-    print("Hello, ", name,"!");
+    int: a = "b";
+    show(name, a);
 }
 
 main("Babar");

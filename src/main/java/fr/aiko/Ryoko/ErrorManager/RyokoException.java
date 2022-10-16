@@ -1,4 +1,4 @@
-package fr.aiko.Ryoko.parser.ErrorManager;
+package fr.aiko.Ryoko.ErrorManager;
 
 public abstract class RyokoException extends RuntimeException {
     private final String message;

@@ -1,5 +1,6 @@
 package fr.aiko.Ryoko;
 
+import fr.aiko.Ryoko.ErrorManager.Error;
 import fr.aiko.Ryoko.parser.Lexer;
 import fr.aiko.Ryoko.parser.Parser;
 import fr.aiko.Ryoko.parser.Token;
@@ -13,10 +14,14 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
         String path = "/home/aikoo/Bureau/Developpement/Projets/RyokoHomeMade/src/main/resources/Main.ry";
+
+        // Stock fileName into variable
+        String fileName = path.substring(path.lastIndexOf("/") + 1);
+
         Lexer lexer = new Lexer(Files.readString(Path.of(path)));
         ArrayList<Token> tokens = lexer.tokens;
 
-        Parser parser = new Parser(tokens);
+        Parser parser = new Parser(tokens, fileName);
         ArrayList<Statement> statements = parser.parse();
 
         for (Statement statement : statements) {
