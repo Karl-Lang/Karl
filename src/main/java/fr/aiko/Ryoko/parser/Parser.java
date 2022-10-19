@@ -215,6 +215,7 @@ public class Parser {
 
     public boolean parseIfCondition() {
         TokenType[] operators = {TokenType.EQUAL, TokenType.NOT_EQUAL, TokenType.GREATER, TokenType.LESS, TokenType.GREATER_EQUAL, TokenType.LESS_EQUAL};
+        String[] primaryOperators = {"=", ">", "<"};
 
         ArrayList<Token> conditionTokens = new ArrayList<>();
         while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS) {
@@ -228,26 +229,33 @@ public class Parser {
         Token currentConditionToken = conditionTokens.get(0);
         while (conditionTokens.indexOf(currentConditionToken) <= conditionTokens.size()) {
             if (currentConditionToken.getType() == TokenType.EXCLAMATION && conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1).getType() == TokenType.IDENTIFIER) {
-                if (VARIABLE_MAP.containsKey(conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1).getValue())) {
-                    if (VARIABLE_MAP.get(conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1).getValue()).getValue().equals("true")) {
+                Variable tokenVariable = VARIABLE_MAP.get(conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1).getValue());
+                if (tokenVariable != null) {
+                    if (tokenVariable.getValue().equals("true")) {
                         results.add(false);
                     } else {
                         results.add(true);
                     }
                     if (conditionTokens.indexOf(currentConditionToken) + 2 < conditionTokens.size()) currentConditionToken = conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 2);
+                    else if (conditionTokens.indexOf(currentConditionToken) + 1 < conditionTokens.size()) currentConditionToken = conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1);
                 } else {
                     new RuntimeError("Unknown variable: " + conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1).getValue(), fileName, currentConditionToken.getLine());
                 }
-            } else if (conditionTokens.indexOf(currentConditionToken) + 1 <= conditionTokens.size() && currentConditionToken.getValue().equals("=")) {
-                if (parseOperator(currentConditionToken) == currentConditionToken.getType()) {
+            } else if (conditionTokens.indexOf(currentConditionToken) + 1 <= conditionTokens.size() && Arrays.asList(primaryOperators).contains(currentConditionToken.getValue())) {
+                int operatorSize = 1;
+                if (parseOperator(currentConditionToken) == currentConditionToken.getType() && currentConditionToken.getType() == TokenType.EQUALS) {
                     new SyntaxError("Invalid operator : " + currentConditionToken.getValue(), fileName, currentConditionToken.getLine());
                 }
+
+                if (Arrays.asList(operators).contains(parseOperator(currentConditionToken))) {
+                    operatorSize = 2;
+                }
+
                 Token left = conditionTokens.get(conditionTokens.indexOf(currentConditionToken) - 1);
                 String operator = parseOperator(currentConditionToken).getName();
-                currentConditionToken = conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1);
+                currentConditionToken = conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + (operatorSize - 1));
                 Token right = conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1);
 
-                // First, check for each if it is a variable, then get it value
                 if (left.getType() == TokenType.IDENTIFIER) {
                     if (VARIABLE_MAP.containsKey(left.getValue())) {
                         left = new Token(TokenType.valueOf(VARIABLE_MAP.get(left.getValue()).getType().toUpperCase()), VARIABLE_MAP.get(left.getValue()).getValue(), left.getLine(), left.getStart());
@@ -280,15 +288,7 @@ public class Parser {
                         case ">=" -> results.add(Integer.parseInt(leftValue) >= Integer.parseInt(rightValue));
                         case "<=" -> results.add(Integer.parseInt(leftValue) <= Integer.parseInt(rightValue));
                     }
-                } else if (right.getType() == TokenType.STRING) {
-                    if (operator.equals("==")) {
-                        results.add(leftValue.equals(rightValue));
-                    } else if (operator.equals("!=")) {
-                        results.add(leftValue.equals(rightValue));
-                    } else {
-                        new RuntimeError("Cannot compare strings with " + operator, fileName, currentConditionToken.getLine());
-                    }
-                } else if (right.getType() == TokenType.BOOL) {
+                } else if (right.getType() == TokenType.STRING  || right.getType() == TokenType.BOOL) {
                     if (operator.equals("==")) {
                         results.add(leftValue.equals(rightValue));
                     } else if (operator.equals("!=")) {
@@ -297,8 +297,16 @@ public class Parser {
                         new RuntimeError("Cannot compare booleans with " + operator, fileName, currentConditionToken.getLine());
                     }
                 }
-
                 currentConditionToken = conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1);
+            } else if (currentConditionToken.getType() == TokenType.IDENTIFIER && !currentConditionToken.getValue().equals("true") && !currentConditionToken.getValue().equals("false") && conditionTokens.indexOf(currentConditionToken) + 1 < conditionTokens.size() && conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1).getType() != TokenType.EQUALS) {
+                if (VARIABLE_MAP.containsKey(currentConditionToken.getValue())) {
+                    if (VARIABLE_MAP.get(currentConditionToken.getValue()).getValue().equals("true")) {
+                        results.add(true);
+                    } else results.add(false);
+                    if (conditionTokens.indexOf(currentConditionToken) + 1 < conditionTokens.size()) currentConditionToken = conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1);
+                } else {
+                    new RuntimeError("Unknown variable: " + conditionTokens.get(conditionTokens.indexOf(currentConditionToken) + 1).getValue(), fileName, currentConditionToken.getLine());
+                }
             }
 
             if (conditionTokens.indexOf(currentConditionToken) + 1 < conditionTokens.size()) {

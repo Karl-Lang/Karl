@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Edit README.md">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/IfStatement.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="If statement, need a lot of tests and optimizations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/Condition.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +135,7 @@
       <workItem from="1666112927398" duration="438000" />
       <workItem from="1666178402876" duration="8526000" />
       <workItem from="1666192851648" duration="221000" />
-      <workItem from="1666193120814" duration="8100000" />
+      <workItem from="1666193120814" duration="11325000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -335,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666188757426</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="If statement, need a lot of tests and optimizations">
+      <created>1666202468563</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1666202468563</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,7 +382,8 @@
     <MESSAGE value="Change error message for TypeError" />
     <MESSAGE value="Finish Error System" />
     <MESSAGE value="Edit README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit README.md" />
+    <MESSAGE value="If statement, need a lot of tests and optimizations" />
+    <option name="LAST_COMMIT_MESSAGE" value="If statement, need a lot of tests and optimizations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

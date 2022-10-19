@@ -1,6 +1,7 @@
 int: deux = 1;
-bool: vrai = false;
+bool: vrai = true;
+string: tropBakaKwa = "coucou";
 
-if (!vrai) {
+if (vrai == false) {
     show("hey!");
 }
