@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Finish Error System">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Edit README.md">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/IfStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/Condition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +46,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -132,7 +135,9 @@
       <workItem from="1665934508363" duration="7700000" />
       <workItem from="1666110430262" duration="712000" />
       <workItem from="1666112927398" duration="438000" />
-      <workItem from="1666178402876" duration="7208000" />
+      <workItem from="1666178402876" duration="8526000" />
+      <workItem from="1666192851648" duration="221000" />
+      <workItem from="1666193120814" duration="8100000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -323,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666187999531</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Edit README.md">
+      <created>1666188757426</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1666188757426</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +366,6 @@
     <MESSAGE value="Add variable checker in type verification" />
     <MESSAGE value="Cleanup code" />
     <MESSAGE value="Implements final variable &amp; change variable system" />
-    <MESSAGE value="Edit README.md" />
     <MESSAGE value="Base of functions, in working" />
     <MESSAGE value="Functions working, variable functions too. Need tests" />
     <MESSAGE value="Fix some bugs" />
@@ -365,7 +376,8 @@
     <MESSAGE value="Base of new ErrorManager, currently in working" />
     <MESSAGE value="Change error message for TypeError" />
     <MESSAGE value="Finish Error System" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish Error System" />
+    <MESSAGE value="Edit README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

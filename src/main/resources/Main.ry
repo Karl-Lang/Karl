@@ -1,5 +1,6 @@
-func main::() {
-    show("Hello, world!");
-}
+int: deux = 1;
+bool: vrai = false;
 
-main();
+if (!vrai) {
+    show("hey!");
+}
