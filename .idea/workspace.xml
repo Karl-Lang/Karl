@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix tiny bugs">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/Error.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RuntimeError/TypeError.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Change error message for TypeError">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RuntimeError/RuntimeError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SyntaxError/SemiColonError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SyntaxError/SyntaxError.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RyokoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SemiColonException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/TypeException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/UnknownVariableException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/VariableNameException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/RyokoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RyokoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/SemiColonException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SemiColonException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/TypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/TypeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/UnknownVariableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/UnknownVariableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ErrorManager/VariableNameException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/VariableNameException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" afterDir="false" />
@@ -58,6 +59,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2FDItGGI1DJeh0qKIIYXFOhIHvR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -136,7 +140,10 @@
       <workItem from="1665861682668" duration="534000" />
       <workItem from="1665862924717" duration="435000" />
       <workItem from="1665912189349" duration="4467000" />
-      <workItem from="1665934508363" duration="7379000" />
+      <workItem from="1665934508363" duration="7700000" />
+      <workItem from="1666110430262" duration="712000" />
+      <workItem from="1666112927398" duration="438000" />
+      <workItem from="1666178402876" duration="6551000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -306,7 +313,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665861332657</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Base of new ErrorManager, currently in working">
+      <created>1665948713029</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1665948713029</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Change error message for TypeError">
+      <created>1665948896302</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1665948896302</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +366,9 @@
     <MESSAGE value="Add type checking for functions arguments" />
     <MESSAGE value="Add boolean type support" />
     <MESSAGE value="Fix tiny bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix tiny bugs" />
+    <MESSAGE value="Base of new ErrorManager, currently in working" />
+    <MESSAGE value="Change error message for TypeError" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change error message for TypeError" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

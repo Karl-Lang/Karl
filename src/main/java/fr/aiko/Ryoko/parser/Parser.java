@@ -1,10 +1,9 @@
 package fr.aiko.Ryoko.parser;
 
-import fr.aiko.Ryoko.ErrorManager.Error;
+import fr.aiko.Ryoko.ErrorManager.RuntimeError.RuntimeError;
 import fr.aiko.Ryoko.ErrorManager.RuntimeError.TypeError;
-import fr.aiko.Ryoko.ErrorManager.SemiColonException;
-import fr.aiko.Ryoko.ErrorManager.TypeException;
-import fr.aiko.Ryoko.ErrorManager.UnknownVariableException;
+import fr.aiko.Ryoko.ErrorManager.SyntaxError.SemiColonError;
+import fr.aiko.Ryoko.ErrorManager.SyntaxError.SyntaxError;
 import fr.aiko.Ryoko.ErrorManager.VariableNameException;
 import fr.aiko.Ryoko.parser.ast.*;
 
@@ -21,7 +20,7 @@ public class Parser {
     private final Map<TokenType, String> FUNC_CALL = new HashMap<>();
     public final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
     private final Map<String, FunctionStatement> FUNCTIONS = new HashMap<>();
-    private final String[] types = {"int", "float", "string", "bool"};
+    private final String[] variableTypes = {"int", "float", "string", "bool", "char"};
     private Token currentToken;
 
     public Parser(ArrayList<Token> tokens, String fileName) {
@@ -45,7 +44,7 @@ public class Parser {
             } else {
                 boolean expr = expression();
                 if (!expr) {
-                    throw new RuntimeException("Unknown statement : " + currentToken.getValue() + "\nLine: " + currentToken.getLine());
+                    new RuntimeError("Unknown statement : " + currentToken.getValue(), fileName, currentToken.getLine());
                 } else continue;
             }
 
@@ -58,14 +57,15 @@ public class Parser {
 
     private Statement statement() {
         if (FUNC_CALL.containsKey(currentToken.getType())) {
+            String funcName = currentToken.getValue();
             ArrayList<Token> args = getFuncCallArguments();
 
             if (args.size() == 0) {
-                throw new RuntimeException("Excepted at least one argument for function " + "\nLine: " + currentToken.getLine());
+                new RuntimeError("Excepted at least one argument for function " + funcName, fileName, currentToken.getLine());
             }
 
             if (tokens.get(tokens.indexOf(currentToken)).getType() != TokenType.SEMICOLON) {
-                throw new RuntimeException("Missing ; at the end of the print statement.\nLine: " + currentToken.getLine());
+                new SemiColonError(fileName, currentToken.getLine());
             }
 
             StringBuilder contentToPrint = new StringBuilder();
@@ -75,7 +75,7 @@ public class Parser {
                     if (VARIABLE_MAP.containsKey(arg.getValue())) {
                         contentToPrint.append(VARIABLE_MAP.get(arg.getValue()).getValue());
                     } else {
-                        throw new UnknownVariableException(arg.getValue(), arg.getLine(), arg.getStart());
+                        new RuntimeError("Unknown variable: " + arg.getValue(), fileName, arg.getLine());
                     }
                 } else {
                     contentToPrint.append(arg.getValue());
@@ -86,14 +86,14 @@ public class Parser {
         } else if (isFuncCall()) {
             String funcName = currentToken.getValue();
             if (!FUNCTIONS.containsKey(funcName)) {
-                throw new RuntimeException("Unknown function : " + funcName + "\nLine: " + currentToken.getLine());
+                new RuntimeError("Unknown function : " + funcName, fileName, currentToken.getLine());
             }
 
             ArrayList<Token> args = getFuncCallArguments();
             FunctionStatement function = FUNCTIONS.get(funcName);
 
             if (args.size() != function.argsNumber) {
-                throw new RuntimeException("Wrong number of arguments for function " + funcName + ". Expected " + function.argsNumber + " but got " + args.size() + "\nLine: " + currentToken.getLine());
+                new RuntimeError("Excepted " + function.argsNumber + " arguments for function " + funcName + " but got " + args.size() + " arguments.", fileName, currentToken.getLine());
             }
 
             function.parser.VARIABLE_MAP.forEach((key, value) -> {
@@ -107,10 +107,10 @@ public class Parser {
                                 if (VARIABLE_MAP.get(token.getValue()).getType().equals(varType)) {
                                     function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(VARIABLE_MAP.get(token.getValue()).getValue());
                                 } else {
-                                    throw new TypeException("Excepted type " + varType + " for argument : " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function " + funcName + ".\nThe entered value type is : " + VARIABLE_MAP.get(token.getValue()).getType(), token.getLine(), token.getStart());
+                                    new TypeError("Excepted type " + varType + " for argument : " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function " + funcName + ". The entered value type is : " + VARIABLE_MAP.get(token.getValue()).getType(), fileName, token.getLine());
                                 }
                             } else {
-                                throw new UnknownVariableException(token.getValue(), token.getLine(), token.getStart());
+                                new RuntimeError("Unknown variable: " + token.getValue(), fileName, token.getLine());
                             }
                         } else {
                             function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(token.getValue());
@@ -143,7 +143,7 @@ public class Parser {
             }
             advance();
             if (currentToken.getType() != TokenType.SEMICOLON) {
-                throw new SemiColonException(currentToken.getLine(), currentToken.getStart());
+                new SemiColonError(fileName, currentToken.getLine());
             }
             advance();
             return true;
@@ -152,22 +152,24 @@ public class Parser {
             advance(2);
             if (VARIABLE_MAP.containsKey(varName)) {
                 if (VARIABLE_MAP.get(varName).isFinal()) {
-                    throw new RuntimeException("Cannot assign a value to a final variable.\nLine: " + currentToken.getLine());
+                    new RuntimeError("Cannot assign a value to a final variable.", fileName, currentToken.getLine());
                 }
 
                 if (checkCorrespondentTypeVariable(VARIABLE_MAP.get(varName).getType(), currentToken)) {
                     VARIABLE_MAP.get(varName).setValue(currentToken.getValue());
                     advance();
                     if (currentToken.getType() != TokenType.SEMICOLON) {
-                        throw new SemiColonException(currentToken.getLine(), currentToken.getStart());
+                        new SemiColonError(fileName, currentToken.getLine());
                     }
                     advance();
                     return true;
                 } else {
-                    throw new RuntimeException("The variable " + varName + " is not of type " + VARIABLE_MAP.get(varName).getType() + ".\nLine: " + currentToken.getLine());
+                    new TypeError("The variable " + varName + " is not of type " + VARIABLE_MAP.get(varName).getType(), fileName, currentToken.getLine());
+                    return false;
                 }
             } else {
-                throw new UnknownVariableException(varName, currentToken.getLine(), currentToken.getStart());
+                new RuntimeError("Unknown variable: " + currentToken.getValue(), fileName, currentToken.getLine());
+                return false;
             }
         } else if (isFunctionDeclaration()) {
             advance();
@@ -183,7 +185,7 @@ public class Parser {
             }
 
             if (FUNCTIONS.containsKey(funcName)) {
-                throw new RuntimeException("The function " + funcName + " is already declared.\nLine: " + currentToken.getLine());
+                new RuntimeError("The function " + funcName + " is already defined", fileName, currentToken.getLine());
             }
 
             FUNCTIONS.put(funcName, new FunctionStatement(funcName, args, bodyParser));
@@ -211,7 +213,7 @@ public class Parser {
             }
 
             if (tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.COMMA && tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.RIGHT_PARENTHESIS) {
-                throw new RuntimeException("Unexpected token " + tokens.get(tokens.indexOf(currentToken) + 1).getValue() + " in function call");
+                new RuntimeError("Unexpected token " + tokens.get(tokens.indexOf(currentToken) + 1).getValue() + " in function call", fileName, currentToken.getLine());
             }
 
             tokensToReturn.add(currentToken);
@@ -224,7 +226,6 @@ public class Parser {
 
     private ArrayList<Variable> getFuncDeclarationArguments() {
         advance();
-        // type: nom
         ArrayList<Variable> varsToReturn = new ArrayList<>();
 
         while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS && tokens.indexOf(currentToken) + 1 < tokens.size()) {
@@ -239,7 +240,7 @@ public class Parser {
                 varsToReturn.add(new Variable(type, currentToken.getValue(), null, false));
                 advance();
             } else {
-                throw new TypeException("Unknown type " + currentToken.getValue(), +currentToken.getLine(), currentToken.getStart());
+                new TypeError("Unknown type " + currentToken.getValue(), fileName, currentToken.getLine());
             }
         }
 
@@ -247,21 +248,21 @@ public class Parser {
     }
 
     private boolean isFuncParameterDeclaration() {
-        return Arrays.asList(types).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER;
+        return Arrays.asList(variableTypes).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER;
     }
 
     private boolean isVariableDeclaration() {
-        if (Arrays.asList(types).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.EQUALS) {
+        if (Arrays.asList(variableTypes).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.EQUALS) {
             return true;
         } else {
-            if (currentToken.getType() == TokenType.FINAL && Arrays.asList(types).contains(tokens.get(tokens.indexOf(currentToken) + 1).getValue()) && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 4).getType() == TokenType.EQUALS) {
+            if (currentToken.getType() == TokenType.FINAL && Arrays.asList(variableTypes).contains(tokens.get(tokens.indexOf(currentToken) + 1).getValue()) && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 4).getType() == TokenType.EQUALS) {
                 return true;
-            } else if (Arrays.asList(types).contains(tokens.get(tokens.indexOf(currentToken) + 3).getValue())) {
-                throw new VariableNameException("Variable name can't be a type", currentToken.getLine(), currentToken.getStart());
+            } else if (Arrays.asList(variableTypes).contains(tokens.get(tokens.indexOf(currentToken) + 3).getValue())) {
+                new SyntaxError("Invalid variable name: " + tokens.get(tokens.indexOf(currentToken) + 3).getValue(), fileName, currentToken.getLine());
             }
 
-            if (Arrays.asList(types).contains(tokens.get(tokens.indexOf(currentToken) + 2).getValue())) {
-                throw new VariableNameException("Variable name can't be a type", currentToken.getLine(), currentToken.getStart());
+            if (Arrays.asList(variableTypes).contains(tokens.get(tokens.indexOf(currentToken) + 2).getValue())) {
+                new SyntaxError("Invalid variable name: " + tokens.get(tokens.indexOf(currentToken) + 3).getValue(), fileName, currentToken.getLine());
             }
             return false;
         }
@@ -280,7 +281,7 @@ public class Parser {
             if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
                 advance();
             } else {
-                throw new RuntimeException("Unterminated function body");
+                new SyntaxError("Unterminated function body", fileName, currentToken.getLine());
             }
         }
 
@@ -307,7 +308,8 @@ public class Parser {
             if (VARIABLE_MAP.containsKey(value.getValue())) {
                 return VARIABLE_MAP.get(value.getValue()).getClass().getSimpleName().toLowerCase().equals(type);
             } else {
-                throw new UnknownVariableException(value.getValue(), value.getLine(), value.getStart());
+                new RuntimeError("Unknown variable: " + value.getValue(), fileName, value.getLine());
+                return false;
             }
         } else {
             return switch (type) {
@@ -315,6 +317,7 @@ public class Parser {
                 case "float" -> value.getType() == TokenType.FLOAT;
                 case "string" -> value.getType() == TokenType.STRING;
                 case "bool" -> value.getType() == TokenType.BOOL;
+                case "char" -> value.getType() == TokenType.CHAR;
                 default -> false;
             };
         }

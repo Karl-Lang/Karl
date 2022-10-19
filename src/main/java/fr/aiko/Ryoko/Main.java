@@ -14,11 +14,9 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
         String path = "/home/aikoo/Bureau/Developpement/Projets/RyokoHomeMade/src/main/resources/Main.ry";
-
-        // Stock fileName into variable
         String fileName = path.substring(path.lastIndexOf("/") + 1);
 
-        Lexer lexer = new Lexer(Files.readString(Path.of(path)));
+        Lexer lexer = new Lexer(Files.readString(Path.of(path)), fileName);
         ArrayList<Token> tokens = lexer.tokens;
 
         Parser parser = new Parser(tokens, fileName);

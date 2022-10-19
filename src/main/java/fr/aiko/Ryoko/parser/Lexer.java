@@ -1,5 +1,8 @@
 package fr.aiko.Ryoko.parser;
 
+import fr.aiko.Ryoko.ErrorManager.Error;
+import fr.aiko.Ryoko.ErrorManager.SyntaxError.SyntaxError;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +18,10 @@ public class Lexer {
     private final String OPERATOR_CHARS = "()[]{}^*=<>,!~&:+|./%?;-";
     private final Map<String, TokenType> OPERATORS = new HashMap<>();
     private final Map<String, TokenType> KEYWORDS = new HashMap<>();
+    private final String fileName;
 
-    public Lexer(String input) {
+    public Lexer(String input, String fileName) {
+        this.fileName = fileName;
         buffer = new StringBuilder(input);
         this.input = input;
         position = 0;
@@ -65,6 +70,7 @@ public class Lexer {
         KEYWORDS.put("int", TokenType.INT);
         KEYWORDS.put("float", TokenType.FLOAT);
         KEYWORDS.put("string", TokenType.STRING);
+        KEYWORDS.put("char", TokenType.CHAR);
         KEYWORDS.put("bool", TokenType.BOOL);
         KEYWORDS.put("show", TokenType.SHOW);
         KEYWORDS.put("final", TokenType.FINAL);
@@ -74,7 +80,7 @@ public class Lexer {
 
     public void tokenize() {
         if (input.length() == 0) {
-            throw new RuntimeException("Empty file");
+            new Error("RetardError", "Empty file", fileName, line);
         }
 
         while (position < input.length()) {
@@ -85,19 +91,35 @@ public class Lexer {
             } else if (Character.isDigit(c)) tokenizeNumber();
             else if (Character.isLetter(c)) tokenizeIdentifier();
             else if (c == '"') tokenizeString();
+            else if (c == '\'') tokenizeChar();
             else if (OPERATOR_CHARS.indexOf(c) != -1) tokenizeOperator();
             else if (Character.isWhitespace(c)) nextChar();
-            else throw new RuntimeException("Unexpected character: " + c);
+            else new SyntaxError("Unexpected character: " + c, fileName, line);
         }
 
         tokens.add(new Token(TokenType.EOF, "EOF", input.length(), line));
+    }
+
+    private void tokenizeChar() {
+        nextChar();
+        final char c = input.charAt(position);
+        nextChar();
+        if (input.charAt(position) != '\'') {
+            if (input.charAt(position) != '\'') {
+                new SyntaxError("Character type can only contain one character", fileName, line);
+            } else {
+                new SyntaxError("Expected ' at end of char value", fileName, line);
+            }
+        }
+        nextChar();
+        tokens.add(new Token(TokenType.CHAR, String.valueOf(c), position - 2, line));
     }
 
     public void tokenizeNumber() {
         buffer.setLength(0);
         char c = input.charAt(position);
         if (Character.isLetter(input.charAt(position + 1))) {
-            throw new RuntimeException("Unexpected character at line: " + line + " position: " + position + "\nCharacter: " + input.charAt(position) + "\nRemind: Variable name can't start by a digit");
+            new SyntaxError("Unexpected character: " + input.charAt(position), fileName, line);
         }
 
         while (true) {
@@ -106,7 +128,7 @@ public class Lexer {
             }
 
             if (c == '.' && buffer.indexOf(".") != -1) {
-                throw new RuntimeException("Invalid number\nLine :" + line);
+                new SyntaxError("Invalid number", fileName, line);
             } else if (!Character.isDigit(c)) {
                 break;
             }
@@ -150,7 +172,7 @@ public class Lexer {
         char c = nextChar();
         while (true) {
             if (c == '\0') {
-                throw new RuntimeException("Unterminated string\nLine :" + line);
+                new SyntaxError("Unterminated string", fileName, line);
             }
 
             if (c == '"') {

@@ -1,6 +1,5 @@
-func main::(string: name) {
-    int: a = "b";
-    show(name, a);
+func main::() {
+    show("Hello, world!");
 }
 
-main("Babar");
+main();
