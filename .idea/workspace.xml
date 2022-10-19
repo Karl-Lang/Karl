@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Change error message for TypeError">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RuntimeError/RuntimeError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SyntaxError/SemiColonError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SyntaxError/SyntaxError.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Finish Error System">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RyokoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SemiColonException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/TypeException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/UnknownVariableException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/VariableNameException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +132,7 @@
       <workItem from="1665934508363" duration="7700000" />
       <workItem from="1666110430262" duration="712000" />
       <workItem from="1666112927398" duration="438000" />
-      <workItem from="1666178402876" duration="6551000" />
+      <workItem from="1666178402876" duration="7208000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -327,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665948896302</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Finish Error System">
+      <created>1666187999531</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1666187999531</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +364,8 @@
     <MESSAGE value="Fix tiny bugs" />
     <MESSAGE value="Base of new ErrorManager, currently in working" />
     <MESSAGE value="Change error message for TypeError" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change error message for TypeError" />
+    <MESSAGE value="Finish Error System" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish Error System" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

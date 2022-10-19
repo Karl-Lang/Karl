@@ -7,7 +7,7 @@ int: number = 150; // this is a comment
 bool: boolean = true; // this is a comment
 final string: name = "Ryoko";
 func main::(string: name) {
-    print("Hello, ", name, "!");
+    show("Hello, ", name, "!");
 }
 main(name);
 // -> Hello, Ryoko!

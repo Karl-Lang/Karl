@@ -4,7 +4,6 @@ import fr.aiko.Ryoko.ErrorManager.RuntimeError.RuntimeError;
 import fr.aiko.Ryoko.ErrorManager.RuntimeError.TypeError;
 import fr.aiko.Ryoko.ErrorManager.SyntaxError.SemiColonError;
 import fr.aiko.Ryoko.ErrorManager.SyntaxError.SyntaxError;
-import fr.aiko.Ryoko.ErrorManager.VariableNameException;
 import fr.aiko.Ryoko.parser.ast.*;
 
 import java.util.ArrayList;
