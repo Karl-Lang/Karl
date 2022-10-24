@@ -18,14 +18,14 @@ public class Error {
     }
 
     public void print() {
-        System.err.println(errorName + ": " + message);
+        System.err.println("\u001B[31m" + errorName + ": " + message + "\u001B[0m");
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         StackTraceElement main = stackTrace[stackTrace.length - 1];
-        System.err.println("    at " + fileName + "(" + fileName + ":" + line + ")");
-        System.err.println("    at " + main.getFileName() + "(" + main.getFileName() + ":" + main.getLineNumber() + ")");
+        System.err.println("\u001B[31m" + "    at " + fileName + "(" + fileName + ":" + line + ")" + "\u001B[0m");
+        System.err.println("\u001B[31m" + "    at " + main.getFileName() + "(" + main.getFileName() + ":" + main.getLineNumber() + ")" + "\u001B[0m");
         stackTrace = Arrays.copyOf(stackTrace, stackTrace.length - 1);
         for (StackTraceElement element : stackTrace) {
-            System.err.println("    at " + element.getClassName() + "." + element.getMethodName() + "(" + element.getFileName() + ":" + element.getLineNumber() + ")");
+            System.err.println("\u001B[31m" + "    at " + element.getClassName() + "." + element.getMethodName() + "(" + element.getFileName() + ":" + element.getLineNumber() + ")" + "\u001B[0m");
         }
 
         System.exit(0);

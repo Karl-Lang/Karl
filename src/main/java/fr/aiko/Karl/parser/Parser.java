@@ -1,13 +1,15 @@
-package fr.aiko.Karl.parser.ast;
+package fr.aiko.Karl.parser;
 
 import fr.aiko.Karl.ErrorManager.RuntimeError.RuntimeError;
 import fr.aiko.Karl.ErrorManager.RuntimeError.TypeError;
 import fr.aiko.Karl.ErrorManager.SyntaxError.SemiColonError;
 import fr.aiko.Karl.ErrorManager.SyntaxError.SyntaxError;
-import fr.aiko.Karl.parser.Token;
-import fr.aiko.Karl.parser.TokenType;
+import fr.aiko.Karl.parser.ast.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Parser {
     public final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
@@ -67,12 +69,14 @@ public class Parser {
         advance(2);
         ArrayList<Token> conditionTokens = new ArrayList<>();
         while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS) {
-            if (currentToken.getType() == TokenType.EOF) new SyntaxError("Missing ')' in if statement", fileName, currentToken.getLine());
+            if (currentToken.getType() == TokenType.EOF)
+                new SyntaxError("Missing ')' in if statement", fileName, currentToken.getLine());
             else if (currentToken.getType() == TokenType.RIGHT_PARENTHESIS) break;
             conditionTokens.add(currentToken);
             advance();
         }
-        if (conditionTokens.size() == 0) new SyntaxError("If statement can't be empty", fileName, currentToken.getLine());
+        if (conditionTokens.size() == 0)
+            new SyntaxError("If statement can't be empty", fileName, currentToken.getLine());
 
         boolean condition = parseCondition(conditionTokens);
         advance();
@@ -110,7 +114,7 @@ public class Parser {
     private TokenType parseOperator(Token operator) {
         if (tokens.indexOf(operator) + 1 < tokens.size()) {
             if (operator.getType() == TokenType.EQUALS) {
-                return switch(tokens.get(tokens.indexOf(operator) + 1).getType()) {
+                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
                     case LESS -> TokenType.LESS_EQUAL;
                     case GREATER -> TokenType.GREATER_EQUAL;
                     case EQUALS -> TokenType.EQUAL;
@@ -155,7 +159,8 @@ public class Parser {
 
     private boolean parseComparisonOperator(Token left, TokenType operator, Token right) {
         return switch (operator) {
-            case EQUAL -> left.getType() == right.getType() && Integer.parseInt(left.getValue()) == Integer.parseInt(right.getValue());
+            case EQUAL ->
+                    left.getType() == right.getType() && Integer.parseInt(left.getValue()) == Integer.parseInt(right.getValue());
             case NOT_EQUAL -> !left.getValue().equals(right.getValue());
             case GREATER -> Integer.parseInt(left.getValue()) > Integer.parseInt(right.getValue());
             case LESS -> Integer.parseInt(left.getValue()) < Integer.parseInt(right.getValue());
@@ -193,7 +198,8 @@ public class Parser {
     private boolean isVariableDeclaration() {
         if (currentToken.getType() == TokenType.FINAL) {
             return Arrays.asList(variableTypes).contains(tokens.get(tokens.indexOf(currentToken) + 1).getValue()) && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 4).getType() == TokenType.EQUALS;
-        } else return Arrays.asList(variableTypes).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.EQUALS;
+        } else
+            return Arrays.asList(variableTypes).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.EQUALS;
     }
 
     private void parseVariableDeclaration() {
@@ -205,7 +211,8 @@ public class Parser {
         checkValidVariableName(name);
         advance(2);
         Token value = currentToken;
-        if (checkCorrespondentTypeVariable(type, value)) new TypeError("Excepted type " + type + " for variable " + name + " but got type " + value.getType().toString().toLowerCase(), fileName, currentToken.getLine());
+        if (checkCorrespondentTypeVariable(type, value))
+            new TypeError("Excepted type " + type + " for variable " + name + " but got type " + value.getType().toString().toLowerCase(), fileName, currentToken.getLine());
         advance();
         VARIABLE_MAP.put(name, new Variable(type, name, value.getValue(), isFinal));
         checkSemiColon();
@@ -217,12 +224,15 @@ public class Parser {
 
     private void parseVariableAssignment() {
         String name = currentToken.getValue();
-        if (!VARIABLE_MAP.containsKey(name)) new RuntimeError("Variable " + name + " is not declared", fileName, currentToken.getLine());
+        if (!VARIABLE_MAP.containsKey(name))
+            new RuntimeError("Variable " + name + " is not declared", fileName, currentToken.getLine());
         Variable variable = VARIABLE_MAP.get(name);
-        if (variable.isFinal()) new RuntimeError("Cannot assign new value to a final variable", fileName, currentToken.getLine());
+        if (variable.isFinal())
+            new RuntimeError("Cannot assign new value to a final variable", fileName, currentToken.getLine());
         advance(2);
         Token value = currentToken;
-        if (checkCorrespondentTypeVariable(variable.getType(), value)) new TypeError("Excepted type " + variable.getType() + " for variable " + name + " but got type " + value.getType().toString().toLowerCase(), fileName, currentToken.getLine());
+        if (checkCorrespondentTypeVariable(variable.getType(), value))
+            new TypeError("Excepted type " + variable.getType() + " for variable " + name + " but got type " + value.getType().toString().toLowerCase(), fileName, currentToken.getLine());
         variable.setValue(value.getValue());
         advance();
         checkSemiColon();

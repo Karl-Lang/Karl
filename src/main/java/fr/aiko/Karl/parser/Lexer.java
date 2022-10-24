@@ -11,14 +11,13 @@ public class Lexer {
 
     public final ArrayList<Token> tokens = new ArrayList<>();
     private final StringBuilder buffer;
-    private int position;
-    private int line;
-    public String input;
-
     private final String OPERATOR_CHARS = "()[]{}^*=<>,!~&:+|./%?;-";
     private final Map<String, TokenType> OPERATORS = new HashMap<>();
     private final Map<String, TokenType> KEYWORDS = new HashMap<>();
     private final String fileName;
+    public String input;
+    private int position;
+    private int line;
 
     public Lexer(String input, String fileName) {
         this.fileName = fileName;

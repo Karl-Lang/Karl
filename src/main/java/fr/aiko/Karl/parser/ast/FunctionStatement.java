@@ -1,5 +1,7 @@
 package fr.aiko.Karl.parser.ast;
 
+import fr.aiko.Karl.parser.Parser;
+
 import java.util.ArrayList;
 
 public class FunctionStatement extends Statement {

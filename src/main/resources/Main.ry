@@ -1,5 +1,8 @@
-bool: val = false; // this is a comment
-// comment
-if (2 >= 2) {
-    show("T con");
+int: number = 150; // this is a comment
+bool: boolean = true; // this is a comment
+final string: name = "Karl";
+func main::(string: namea) {
+    show("Hello, ", name, "!");
 }
+main(name);
+// -> Hello, Karl!
