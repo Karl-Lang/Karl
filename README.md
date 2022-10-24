@@ -13,6 +13,11 @@ main(name);
 // -> Hello, Karl!
 ```
 
+## How to use
+
+- Download the .jar in latest release
+- Run `java -jar karl-x.x.x.jar <file.karl>`
+
 ## Todo list
 
 - [x] Print Statement
