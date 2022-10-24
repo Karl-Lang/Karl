@@ -4,26 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="If statements seems working">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Rewrite of Parser">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/Error.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RuntimeError/RuntimeError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RuntimeError/TypeError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SyntaxError/SemiColonError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SyntaxError/SyntaxError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Token.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/FunctionStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/IfStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/PrintStatement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/Statement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/Variable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +140,7 @@
       <workItem from="1666286076419" duration="630000" />
       <workItem from="1666295478463" duration="40000" />
       <workItem from="1666544410312" duration="11193000" />
-      <workItem from="1666612433050" duration="6383000" />
+      <workItem from="1666612433050" duration="6691000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -391,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666631184506</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Rewrite of Parser">
+      <created>1666634747945</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1666634747945</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +398,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Move code in .ry file for more readability" />
     <MESSAGE value="Add multi arguments support in getArguments function" />
     <MESSAGE value="Add comments" />
     <MESSAGE value="Fix bug: variable name start by a digit" />
@@ -434,7 +422,8 @@
     <MESSAGE value="Make if statement back, in tests" />
     <MESSAGE value="Make new comment support, if statement in tests" />
     <MESSAGE value="If statements seems working" />
-    <option name="LAST_COMMIT_MESSAGE" value="If statements seems working" />
+    <MESSAGE value="Rewrite of Parser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewrite of Parser" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

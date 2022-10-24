@@ -32,3 +32,4 @@ main(name);
 - [ ] Operator
 - [ ] Increment and Decrement
 - [x] Throw new RetardException()
+- [ ] Try Catch
