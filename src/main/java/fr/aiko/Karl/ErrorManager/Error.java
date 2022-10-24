@@ -1,4 +1,4 @@
-package fr.aiko.Ryoko.ErrorManager;
+package fr.aiko.Karl.ErrorManager;
 
 import java.util.Arrays;
 

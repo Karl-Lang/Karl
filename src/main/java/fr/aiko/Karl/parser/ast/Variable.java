@@ -1,4 +1,4 @@
-package fr.aiko.Ryoko.parser.ast;
+package fr.aiko.Karl.parser.ast;
 
 public class Variable {
     private final String name;
@@ -22,8 +22,7 @@ public class Variable {
     }
 
     public void setValue(String value) {
-        if (!isFinal) this.value = value;
-        else throw new RuntimeException("Cannot assign a value to a final variable");
+        this.value = value;
     }
 
     public String getType() {

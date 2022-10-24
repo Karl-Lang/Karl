@@ -1,7 +1,5 @@
-int: deux = 1;
-bool: vrai = true;
-string: tropBakaKwa = "coucou";
-
-if (vrai == false) {
-    show("hey!");
+bool: val = false; // this is a comment
+// comment
+if (2 >= 2) {
+    show("T con");
 }

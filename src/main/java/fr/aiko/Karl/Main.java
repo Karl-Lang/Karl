@@ -1,12 +1,10 @@
-package fr.aiko.Ryoko;
+package fr.aiko.Karl;
 
-import fr.aiko.Ryoko.ErrorManager.Error;
-import fr.aiko.Ryoko.parser.Lexer;
-import fr.aiko.Ryoko.parser.Parser;
-import fr.aiko.Ryoko.parser.Token;
-import fr.aiko.Ryoko.parser.ast.Statement;
+import fr.aiko.Karl.parser.Lexer;
+import fr.aiko.Karl.parser.Token;
+import fr.aiko.Karl.parser.ast.Parser;
+import fr.aiko.Karl.parser.ast.Statement;
 
-import javax.swing.plaf.nimbus.State;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String path = "/home/aikoo/Bureau/Developpement/Projets/RyokoHomeMade/src/main/resources/Main.ry";
+        String path = "/home/aikoo/Bureau/Developpement/Projets/Karl/src/main/resources/Main.ry";
         String fileName = path.substring(path.lastIndexOf("/") + 1);
 
         Lexer lexer = new Lexer(Files.readString(Path.of(path)), fileName);

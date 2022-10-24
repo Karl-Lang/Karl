@@ -1,4 +1,4 @@
-package fr.aiko.Ryoko.parser;
+package fr.aiko.Karl.parser;
 
 public class Token {
     private final int position;
@@ -25,7 +25,7 @@ public class Token {
         value = s;
     }
 
-    public int getStart() {
+    public int getPosition() {
         return position;
     }
 

@@ -1,6 +1,6 @@
-package fr.aiko.Ryoko.ErrorManager.SyntaxError;
+package fr.aiko.Karl.ErrorManager.SyntaxError;
 
-import fr.aiko.Ryoko.ErrorManager.Error;
+import fr.aiko.Karl.ErrorManager.Error;
 
 public class SyntaxError extends Error {
     public SyntaxError(String message, String fileName, int line) {

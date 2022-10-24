@@ -1,16 +1,16 @@
-## Ryoko, my homemade programming language
+## Karl, an homemade programming language
 
 ## Example
 
 ```js
 int: number = 150; // this is a comment
 bool: boolean = true; // this is a comment
-final string: name = "Ryoko";
+final string: name = "Karl";
 func main::(string: name) {
     show("Hello, ", name, "!");
 }
 main(name);
-// -> Hello, Ryoko!
+// -> Hello, Karl!
 ```
 
 ## Todo list
@@ -19,8 +19,9 @@ main(name);
 - [x] Variable
 - [x] Final Variable
 - [x] Comment
-- [x] Function (Need tests)
-- [ ] If Statement
+- [x] Functions
+- [x] If Statement
+    - [ ] AND and OR operator
 - [ ] While Statement
 - [ ] For Statement
 - [ ] Array
@@ -29,4 +30,5 @@ main(name);
 - [ ] Import
 - [ ] Export
 - [ ] Operator
-- [ ] Throw new RetardException()
+- [ ] Increment and Decrement
+- [x] Throw new RetardException()

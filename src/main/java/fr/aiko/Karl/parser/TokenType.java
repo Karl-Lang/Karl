@@ -1,4 +1,4 @@
-package fr.aiko.Ryoko.parser;// Create enum token type
+package fr.aiko.Karl.parser;// Create enum token type
 
 public enum TokenType {
     EQUAL("=="),
@@ -32,8 +32,6 @@ public enum TokenType {
     RIGHT_BRACE("}"),
     COMMA(","),
     COLON(":"),
-    LT("<"),
-    GT(">"),
     AMP("&"),
     BAR("|"),
     POINT("."),

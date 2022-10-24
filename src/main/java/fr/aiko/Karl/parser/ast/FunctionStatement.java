@@ -1,6 +1,4 @@
-package fr.aiko.Ryoko.parser.ast;
-
-import fr.aiko.Ryoko.parser.Parser;
+package fr.aiko.Karl.parser.ast;
 
 import java.util.ArrayList;
 

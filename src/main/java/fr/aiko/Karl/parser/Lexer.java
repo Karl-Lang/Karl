@@ -1,7 +1,7 @@
-package fr.aiko.Ryoko.parser;
+package fr.aiko.Karl.parser;
 
-import fr.aiko.Ryoko.ErrorManager.Error;
-import fr.aiko.Ryoko.ErrorManager.SyntaxError.SyntaxError;
+import fr.aiko.Karl.ErrorManager.Error;
+import fr.aiko.Karl.ErrorManager.SyntaxError.SyntaxError;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,8 +49,6 @@ public class Lexer {
         OPERATORS.put("}", TokenType.RIGHT_BRACE);
         OPERATORS.put(",", TokenType.COMMA);
         OPERATORS.put(":", TokenType.COLON);
-        OPERATORS.put("<", TokenType.LT);
-        OPERATORS.put(">", TokenType.GT);
         OPERATORS.put("&", TokenType.AMP);
         OPERATORS.put("|", TokenType.BAR);
         OPERATORS.put(".", TokenType.POINT);
@@ -67,12 +65,7 @@ public class Lexer {
         KEYWORDS.put("else", TokenType.ELSE);
         KEYWORDS.put("while", TokenType.WHILE);
         KEYWORDS.put("for", TokenType.FOR);
-        KEYWORDS.put("int", TokenType.INT);
-        KEYWORDS.put("float", TokenType.FLOAT);
-        KEYWORDS.put("string", TokenType.STRING);
-        KEYWORDS.put("char", TokenType.CHAR);
         KEYWORDS.put("bool", TokenType.BOOL);
-        KEYWORDS.put("show", TokenType.SHOW);
         KEYWORDS.put("final", TokenType.FINAL);
 
         tokenize();

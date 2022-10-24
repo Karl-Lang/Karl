@@ -4,9 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="If statement, need a lot of tests and optimizations">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="If statements seems working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/Error.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RuntimeError/RuntimeError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/RuntimeError/TypeError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SyntaxError/SemiColonError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/ErrorManager/SyntaxError/SyntaxError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Lexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Parser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/Token.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/TokenType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/FunctionStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/IfStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/PrintStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/Statement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Ryoko/parser/ast/Variable.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +43,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="RyokoHomeMade" type="f1a62948:ProjectNode" />
+                <item name="Karl" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -63,6 +79,7 @@
   &quot;keyToString&quot;: {
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/aikoo/Bureau/Developpement/Projets/Karl&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -73,12 +90,14 @@
 }</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="fr.aiko.Ryoko.Main" />
-      <module name="RyokoHomeMade.main" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="fr.aiko.Karl.Main" />
+      <module name="Karl.main" />
       <option name="PROGRAM_PARAMETERS" value="-q" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="fr.aiko.Ryoko.parser.ast.*" />
+          <option name="PATTERN" value="fr.aiko.Karl.parser.ast.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -135,7 +154,11 @@
       <workItem from="1666112927398" duration="438000" />
       <workItem from="1666178402876" duration="8526000" />
       <workItem from="1666192851648" duration="221000" />
-      <workItem from="1666193120814" duration="11325000" />
+      <workItem from="1666193120814" duration="12365000" />
+      <workItem from="1666286076419" duration="630000" />
+      <workItem from="1666295478463" duration="40000" />
+      <workItem from="1666544410312" duration="11193000" />
+      <workItem from="1666612433050" duration="6383000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -340,7 +363,35 @@
       <option name="project" value="LOCAL" />
       <updated>1666202468563</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Fix a lot of issues and make some optimizations">
+      <created>1666207358045</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1666207358045</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Make if statement back, in tests">
+      <created>1666624799410</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1666624799410</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Make new comment support, if statement in tests">
+      <created>1666630791548</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1666630791548</updated>
+    </task>
+    <task id="LOCAL-00033" summary="If statements seems working">
+      <created>1666631184506</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1666631184506</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,10 +409,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Parser working !" />
-    <MESSAGE value="Add line system for errors" />
-    <MESSAGE value="Add Variable declarations and support in print statement" />
-    <MESSAGE value="Add ToDo List to README.md" />
     <MESSAGE value="Move code in .ry file for more readability" />
     <MESSAGE value="Add multi arguments support in getArguments function" />
     <MESSAGE value="Add comments" />
@@ -383,7 +430,11 @@
     <MESSAGE value="Finish Error System" />
     <MESSAGE value="Edit README.md" />
     <MESSAGE value="If statement, need a lot of tests and optimizations" />
-    <option name="LAST_COMMIT_MESSAGE" value="If statement, need a lot of tests and optimizations" />
+    <MESSAGE value="Fix a lot of issues and make some optimizations" />
+    <MESSAGE value="Make if statement back, in tests" />
+    <MESSAGE value="Make new comment support, if statement in tests" />
+    <MESSAGE value="If statements seems working" />
+    <option name="LAST_COMMIT_MESSAGE" value="If statements seems working" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
