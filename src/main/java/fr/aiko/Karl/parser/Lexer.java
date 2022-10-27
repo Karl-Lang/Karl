@@ -72,7 +72,7 @@ public class Lexer {
 
     public void tokenize() {
         if (input.length() == 0) {
-            new Error("RetardError", "Empty file", fileName, line);
+            new Error("RetardError :)", "Empty file", fileName, line);
         }
 
         while (position < input.length()) {

@@ -121,20 +121,11 @@ public class Parser {
                     default -> operator.getType();
                 };
             } else if (operator.getType() == TokenType.LESS) {
-                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
-                    case EQUALS -> TokenType.LESS_EQUAL;
-                    default -> operator.getType();
-                };
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.LESS_EQUAL : operator.getType();
             } else if (operator.getType() == TokenType.GREATER) {
-                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
-                    case EQUALS -> TokenType.GREATER_EQUAL;
-                    default -> operator.getType();
-                };
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.GREATER_EQUAL : operator.getType();
             } else if (operator.getType() == TokenType.EXCLAMATION) {
-                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
-                    case EQUALS -> TokenType.NOT_EQUAL;
-                    default -> operator.getType();
-                };
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.NOT_EQUAL : operator.getType();
             } else return operator.getType();
         } else return operator.getType();
     }
@@ -158,19 +149,45 @@ public class Parser {
     }
 
     private boolean parseComparisonOperator(Token left, TokenType operator, Token right) {
-        return switch (operator) {
-            case EQUAL ->
-                    left.getType() == right.getType() && Integer.parseInt(left.getValue()) == Integer.parseInt(right.getValue());
-            case NOT_EQUAL -> !left.getValue().equals(right.getValue());
-            case GREATER -> Integer.parseInt(left.getValue()) > Integer.parseInt(right.getValue());
-            case LESS -> Integer.parseInt(left.getValue()) < Integer.parseInt(right.getValue());
-            case GREATER_EQUAL -> Integer.parseInt(left.getValue()) >= Integer.parseInt(right.getValue());
-            case LESS_EQUAL -> Integer.parseInt(left.getValue()) <= Integer.parseInt(right.getValue());
-            default -> {
-                new SyntaxError("Unknown operator: " + operator.getName(), fileName, left.getLine());
-                yield false;
-            }
-        };
+        if (left.getType() == TokenType.IDENTIFIER) {
+            Variable var = VARIABLE_MAP.get(left.getValue());
+            if (var == null) new RuntimeError("Variable " + left.getValue() + " doesn't exist", fileName, left.getLine());
+            assert var != null;
+            left = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), left.getLine(), left.getPosition());
+        } else if (right.getType() == TokenType.IDENTIFIER) {
+            Variable var = VARIABLE_MAP.get(right.getValue());
+            if (var == null) new RuntimeError("Variable " + right.getValue() + " doesn't exist", fileName, right.getLine());
+            assert var != null;
+            right = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), right.getLine(), right.getPosition());
+        }
+
+        if (left.getType() != right.getType()) {
+            new SyntaxError("Can't compare type " + left.getType().toString().toLowerCase() + " with type " + right.getType().toString().toLowerCase(), fileName, left.getLine());
+        }
+
+        if (left.getType() == TokenType.INT) {
+            return switch (operator) {
+                case EQUAL -> Integer.parseInt(left.getValue()) == Integer.parseInt(right.getValue());
+                case NOT_EQUAL -> !left.getValue().equals(right.getValue());
+                case GREATER -> Integer.parseInt(left.getValue()) > Integer.parseInt(right.getValue());
+                case LESS -> Integer.parseInt(left.getValue()) < Integer.parseInt(right.getValue());
+                case GREATER_EQUAL -> Integer.parseInt(left.getValue()) >= Integer.parseInt(right.getValue());
+                case LESS_EQUAL -> Integer.parseInt(left.getValue()) <= Integer.parseInt(right.getValue());
+                default -> {
+                    new SyntaxError("Unknown operator: " + operator.getName(), fileName, left.getLine());
+                    yield false;
+                }
+            };
+        } else {
+            return switch (operator) {
+                case EQUAL -> left.getValue().equals(right.getValue());
+                case NOT_EQUAL -> !left.getValue().equals(right.getValue());
+                default -> {
+                    new SyntaxError("Unknown operator " + operator.getName() + " for comparison with type " + left.getType().toString().toLowerCase(), fileName, left.getLine());
+                    yield false;
+                }
+            };
+        }
     }
 
     private boolean isFunctionDeclaration() {

@@ -1,8 +1,12 @@
 int: number = 150; // this is a comment
 bool: boolean = true; // this is a comment
 final string: name = "Karl";
-func main::(string: namea) {
+func main::(string: name) {
     show("Hello, ", name, "!");
 }
 main(name);
 // -> Hello, Karl!
+
+if (number > "a") {
+    show("Number is greater than 100!");
+}

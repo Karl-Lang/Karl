@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Rewrite of Parser">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.1 - Edit README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/ErrorManager/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/ErrorManager/Error.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/FunctionStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/FunctionStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.ry" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.ry" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +80,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="fr.aiko.Karl.Main" />
       <module name="Karl.main" />
-      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/main/resources/Main.ry" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/main/resources/Main.karl" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="fr.aiko.Karl.parser.*" />
@@ -147,7 +144,9 @@
       <workItem from="1666286076419" duration="630000" />
       <workItem from="1666295478463" duration="40000" />
       <workItem from="1666544410312" duration="11193000" />
-      <workItem from="1666612433050" duration="12532000" />
+      <workItem from="1666612433050" duration="15029000" />
+      <workItem from="1666716427235" duration="245000" />
+      <workItem from="1666875851898" duration="3666000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -387,7 +386,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666634747945</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="v0.1">
+      <created>1666640922507</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1666640922507</updated>
+    </task>
+    <task id="LOCAL-00036" summary="v0.1 - Edit README.md">
+      <created>1666641021078</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1666641021078</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,8 +418,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add multi arguments support in getArguments function" />
-    <MESSAGE value="Add comments" />
     <MESSAGE value="Fix bug: variable name start by a digit" />
     <MESSAGE value="Fix bug: variable name is a value type (like int)" />
     <MESSAGE value="Fix bug: variable type not corresponding to value" />
@@ -430,7 +441,9 @@
     <MESSAGE value="Make new comment support, if statement in tests" />
     <MESSAGE value="If statements seems working" />
     <MESSAGE value="Rewrite of Parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rewrite of Parser" />
+    <MESSAGE value="v0.1" />
+    <MESSAGE value="v0.1 - Edit README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.1 - Edit README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
