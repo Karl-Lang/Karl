@@ -103,8 +103,33 @@ public class Parser {
                 if (conditionsTokens.indexOf(currentTok) + 3 < conditionsTokens.size()) {
                     currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 3);
                 } else break;
+            }  else if (conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getType() == TokenType.LEFT_PARENTHESIS) {
+                ArrayList<Token> subConditionTokens = new ArrayList<>();
+                int parenthesis = 1;
+                int i = conditionsTokens.indexOf(currentTok) + 2;
+                while (parenthesis != 0) {
+                    if (conditionsTokens.get(i).getType() == TokenType.LEFT_PARENTHESIS) parenthesis++;
+                    else if (conditionsTokens.get(i).getType() == TokenType.RIGHT_PARENTHESIS) parenthesis--;
+                    subConditionTokens.add(conditionsTokens.get(i));
+                    i++;
+                }
+                results.add(parseCondition(subConditionTokens));
+                currentTok = conditionsTokens.get(i);
+            } else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.AND) {
+                boolean condition1 = parseCondition(new ArrayList<>(conditionsTokens.subList(0, conditionsTokens.indexOf(currentTok) + 1)));
+                boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
+                results.add(condition1 && condition2);
+                results.clear();
+                break;
+            } else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.OR) {
+                boolean condition1 = parseCondition(new ArrayList<>(conditionsTokens.subList(0, conditionsTokens.indexOf(currentTok) + 1)));
+                boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
+                System.out.println(condition1 || condition2);
+                results.clear();
+                results.add(condition1 || condition2);
+                break;
             } else {
-                new SyntaxError("Unknown statement: " + currentTok.getValue(), fileName, currentTok.getLine());
+                new SyntaxError("Unknown operator : " + conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getValue(), fileName, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getLine());
             }
         }
 
@@ -113,19 +138,18 @@ public class Parser {
 
     private TokenType parseOperator(Token operator) {
         if (tokens.indexOf(operator) + 1 < tokens.size()) {
-            if (operator.getType() == TokenType.EQUALS) {
-                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
-                    case LESS -> TokenType.LESS_EQUAL;
-                    case GREATER -> TokenType.GREATER_EQUAL;
-                    case EQUALS -> TokenType.EQUAL;
-                    default -> operator.getType();
-                };
+            if (operator.getType() == TokenType.EQUALS && tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS) {
+                return TokenType.EQUAL;
             } else if (operator.getType() == TokenType.LESS) {
                 return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.LESS_EQUAL : operator.getType();
             } else if (operator.getType() == TokenType.GREATER) {
                 return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.GREATER_EQUAL : operator.getType();
             } else if (operator.getType() == TokenType.EXCLAMATION) {
                 return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.NOT_EQUAL : operator.getType();
+            } else if (operator.getType() == TokenType.BAR) {
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.BAR ? TokenType.OR : operator.getType();
+            } else if (operator.getType() == TokenType.AMP) {
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.AMP ? TokenType.AND : operator.getType();
             } else return operator.getType();
         } else return operator.getType();
     }
@@ -150,15 +174,9 @@ public class Parser {
 
     private boolean parseComparisonOperator(Token left, TokenType operator, Token right) {
         if (left.getType() == TokenType.IDENTIFIER) {
-            Variable var = VARIABLE_MAP.get(left.getValue());
-            if (var == null) new RuntimeError("Variable " + left.getValue() + " doesn't exist", fileName, left.getLine());
-            assert var != null;
-            left = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), left.getLine(), left.getPosition());
+            left = getValue(left);
         } else if (right.getType() == TokenType.IDENTIFIER) {
-            Variable var = VARIABLE_MAP.get(right.getValue());
-            if (var == null) new RuntimeError("Variable " + right.getValue() + " doesn't exist", fileName, right.getLine());
-            assert var != null;
-            right = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), right.getLine(), right.getPosition());
+            right = getValue(right);
         }
 
         if (left.getType() != right.getType()) {
@@ -188,6 +206,14 @@ public class Parser {
                 }
             };
         }
+    }
+
+    private Token getValue(Token left) {
+        Variable var = VARIABLE_MAP.get(left.getValue());
+        if (var == null) new RuntimeError("Variable " + left.getValue() + " doesn't exist", fileName, left.getLine());
+        assert var != null;
+        left = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), left.getLine(), left.getPosition());
+        return left;
     }
 
     private boolean isFunctionDeclaration() {
