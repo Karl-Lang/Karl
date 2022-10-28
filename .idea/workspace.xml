@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix two major bugs : Variable in if body and if statement in functions">
-      <change afterPath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Add some tests for v0.2.0 and support for float variables">
+      <change afterPath="$PROJECT_DIR$/src/test/resources/tests/If.karl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +89,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest.testMain">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -104,6 +105,29 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;fr.aiko.Karl.MainTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="MainTest.main" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -153,6 +177,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Gradle.MainTest.testMain" />
         <item itemvalue="Gradle.MainTest.main" />
         <item itemvalue="Application.Main" />
@@ -209,7 +234,7 @@
       <workItem from="1666612433050" duration="15029000" />
       <workItem from="1666716427235" duration="245000" />
       <workItem from="1666875851898" duration="11379000" />
-      <workItem from="1666958073595" duration="12974000" />
+      <workItem from="1666958073595" duration="15919000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -491,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666976805485</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Base of tests">
+      <created>1666981107060</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1666981107060</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,8 +541,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cleanup code" />
-    <MESSAGE value="Implements final variable &amp; change variable system" />
     <MESSAGE value="Base of functions, in working" />
     <MESSAGE value="Functions working, variable functions too. Need tests" />
     <MESSAGE value="Fix some bugs" />
@@ -534,7 +564,9 @@
     <MESSAGE value="New condition type : if(boolean)" />
     <MESSAGE value="Add increment and decrement for int and float variables" />
     <MESSAGE value="Fix two major bugs : Variable in if body and if statement in functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix two major bugs : Variable in if body and if statement in functions" />
+    <MESSAGE value="Base of tests" />
+    <MESSAGE value="Add some tests for v0.2.0 and support for float variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add some tests for v0.2.0 and support for float variables" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

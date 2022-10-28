@@ -34,6 +34,7 @@ public class Main implements Runnable {
             new Error("FileError", "The file must be a .karl file", fileName, 0);
         }
 
+        Long start = System.currentTimeMillis();
         Lexer lexer = null;
         try {
             lexer = new Lexer(Files.readString(Path.of(path)), fileName);
@@ -48,5 +49,7 @@ public class Main implements Runnable {
         for (Statement statement : statements) {
             statement.execute();
         }
+        Long end = System.currentTimeMillis();
+        System.out.println("Execution time: " + (end - start) + "ms");
     }
 }

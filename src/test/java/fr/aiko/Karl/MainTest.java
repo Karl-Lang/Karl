@@ -15,9 +15,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
     @Test
-    @DisplayName("Test if the program is running")
+    @DisplayName("Show function")
     void testMain() {
         String[] args = {"src/test/resources/tests/Show.karl"};
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        Main.main(args);
+        assertEquals("Hello World!", outContent.toString().split("\n")[0]);
+    }
+
+    @Test
+    @DisplayName("If statement with different conditions")
+    void testIf() {
+        String[] args = {"src/test/resources/tests/If.karl"};
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         Main.main(args);
