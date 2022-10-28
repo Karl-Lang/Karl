@@ -9,7 +9,7 @@ import fr.aiko.Karl.parser.ast.*;
 import java.util.*;
 
 public class Parser {
-    public final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
+    public  final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
     private final ArrayList<String> systemFunctions = new ArrayList<>();
     private final ArrayList<Token> tokens;
     private final String fileName;
@@ -29,7 +29,6 @@ public class Parser {
 
     public ArrayList<Statement> parse() {
         while (currentToken.getType() != TokenType.EOF) {
-
             if (isFuncCall()) parseFuncCall();
             else if (isIfStatement()) parseIfStatement();
             else if (isVariableDeclaration()) parseVariableDeclaration();
@@ -116,7 +115,12 @@ public class Parser {
 
         boolean condition = parseCondition(conditionTokens);
         advance();
-        statements.add(new IfStatement(condition, new Parser(getFunctionBody(), fileName).parse()));
+        ArrayList<Token> ifTokens = getFunctionBody();
+        Parser ifParser = new Parser(ifTokens, fileName);
+        for (Variable variable : VARIABLE_MAP.values()) {
+            ifParser.VARIABLE_MAP.put(variable.getName(), variable);
+        }
+        statements.add(new IfStatement(condition, ifParser.parse()));
     }
 
     private boolean parseCondition(ArrayList<Token> conditionsTokens) {
@@ -416,8 +420,14 @@ public class Parser {
     private ArrayList<Token> getFunctionBody() {
         ArrayList<Token> tokensToReturn = new ArrayList<>();
         advance();
-        while (currentToken.getType() != TokenType.RIGHT_BRACE) {
-            tokensToReturn.add(new Token(currentToken.getType(), currentToken.getValue(), currentToken.getPosition(), currentToken.getLine()));
+        int braces = 1;
+        while (braces != 1 || currentToken.getType() != TokenType.RIGHT_BRACE) { // currentToken.getType() != TokenType.RIGHT_BRACE && braces != 0
+            tokensToReturn.add(currentToken);
+            if (currentToken.getType() == TokenType.LEFT_BRACE) {
+                braces++;
+            } else if (currentToken.getType() == TokenType.RIGHT_BRACE) {
+                braces--;
+            }
 
             if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
                 advance();
