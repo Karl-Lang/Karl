@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.1", description = "Karl programming language")
+@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.2.0", description = "Karl programming language")
 public class Main implements Runnable {
     @CommandLine.Parameters(index = "0", description = "The file to run")
     private String path;
@@ -29,7 +29,7 @@ public class Main implements Runnable {
         if (!fileName.endsWith(".karl")) {
             new Error("FileError", "The file must be a .karl file", fileName, 0);
         }
-
+        Long start = System.currentTimeMillis();
         Lexer lexer = null;
         try {
             lexer = new Lexer(Files.readString(Path.of(path)), fileName);
@@ -44,5 +44,7 @@ public class Main implements Runnable {
         for (Statement statement : statements) {
             statement.execute();
         }
+        Long end = System.currentTimeMillis();
+        System.out.println("Execution time: " + (end - start) + "ms");
     }
 }

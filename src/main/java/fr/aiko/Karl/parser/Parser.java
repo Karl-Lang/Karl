@@ -6,10 +6,7 @@ import fr.aiko.Karl.ErrorManager.SyntaxError.SemiColonError;
 import fr.aiko.Karl.ErrorManager.SyntaxError.SyntaxError;
 import fr.aiko.Karl.parser.ast.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Parser {
     public final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
@@ -103,19 +100,7 @@ public class Parser {
                 if (conditionsTokens.indexOf(currentTok) + 3 < conditionsTokens.size()) {
                     currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 3);
                 } else break;
-            }  else if (conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getType() == TokenType.LEFT_PARENTHESIS) {
-                ArrayList<Token> subConditionTokens = new ArrayList<>();
-                int parenthesis = 1;
-                int i = conditionsTokens.indexOf(currentTok) + 2;
-                while (parenthesis != 0) {
-                    if (conditionsTokens.get(i).getType() == TokenType.LEFT_PARENTHESIS) parenthesis++;
-                    else if (conditionsTokens.get(i).getType() == TokenType.RIGHT_PARENTHESIS) parenthesis--;
-                    subConditionTokens.add(conditionsTokens.get(i));
-                    i++;
-                }
-                results.add(parseCondition(subConditionTokens));
-                currentTok = conditionsTokens.get(i);
-            } else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.AND) {
+            }  else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.AND) {
                 boolean condition1 = parseCondition(new ArrayList<>(conditionsTokens.subList(0, conditionsTokens.indexOf(currentTok) + 1)));
                 boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
                 results.add(condition1 && condition2);
@@ -124,13 +109,26 @@ public class Parser {
             } else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.OR) {
                 boolean condition1 = parseCondition(new ArrayList<>(conditionsTokens.subList(0, conditionsTokens.indexOf(currentTok) + 1)));
                 boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
-                System.out.println(condition1 || condition2);
                 results.clear();
                 results.add(condition1 || condition2);
                 break;
             } else {
                 new SyntaxError("Unknown operator : " + conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getValue(), fileName, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getLine());
             }
+        }
+
+        if (results.size() == 0) {
+            if (currentTok.getValue().equals("true")) return true;
+            else if (currentTok.getValue().equals("false")) return false;
+            else if (currentTok.getType() == TokenType.IDENTIFIER) {
+                if (VARIABLE_MAP.containsKey(currentTok.getValue())) {
+                    Variable variable = VARIABLE_MAP.get(currentTok.getValue());
+                    if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.BOOL) {
+                        if (variable.getValue().equals("true")) results.add(true);
+                        else results.add(false);
+                    } else new SyntaxError(currentTok.getValue() + " is not a boolean", fileName, currentTok.getLine());
+                } else new SyntaxError("Unknown variable : " + currentTok.getValue(), fileName, currentTok.getLine());
+            } else new SyntaxError("Unknown condition : " + currentTok.getValue(), fileName, currentTok.getLine());
         }
 
         return !results.contains(false);
