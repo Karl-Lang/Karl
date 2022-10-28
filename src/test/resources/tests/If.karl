@@ -1,7 +1,33 @@
 string: name = "Karl";
 int: number = 230;
 float: price = 2.30;
+bool: boolean = false;
+bool: trueValue = true;
 
 if (name == "Karl" && true == true) {
-    show("Hello World!");
+    show("Test #1 success");
+}
+
+if (number == 230 || !boolean) {
+    show("Test #2 success");
+}
+
+if (price == 2.30) {
+    show("Test #3 success");
+}
+
+if (number == 230 && price == 2.30) {
+    show("Test #4 success");
+}
+
+if (trueValue) {
+    show("Test #5 success");
+}
+
+if (number == 230 && price == 2.30 && trueValue) {
+    show("Test #6 success");
+}
+
+if (number == 230 && price == 2.30 || !boolean) {
+    show("Test #7 success");
 }

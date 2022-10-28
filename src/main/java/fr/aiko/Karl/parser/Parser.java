@@ -140,17 +140,17 @@ public class Parser {
                     size = 1;
                 }
                 results.add(parseComparisonOperator(currentTok, operator, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + size + 1)));
-                if (conditionsTokens.indexOf(currentTok) + 3 < conditionsTokens.size()) {
-                    currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 3);
+                if (conditionsTokens.indexOf(currentTok) + 1 + size < conditionsTokens.size()) {
+                    currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1 + size);
                 } else break;
             }  else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.AND) {
-                boolean condition1 = parseCondition(new ArrayList<>(conditionsTokens.subList(0, conditionsTokens.indexOf(currentTok) + 1)));
+                boolean condition1 = !results.contains(false);
                 boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
-                results.add(condition1 && condition2);
                 results.clear();
+                results.add(condition1 && condition2);
                 break;
             } else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.OR) {
-                boolean condition1 = parseCondition(new ArrayList<>(conditionsTokens.subList(0, conditionsTokens.indexOf(currentTok) + 1)));
+                boolean condition1 = !results.contains(false);
                 boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
                 results.clear();
                 results.add(condition1 || condition2);
@@ -274,6 +274,10 @@ public class Parser {
         Parser parser = new Parser(bodyToken, fileName);
         for (Variable arg : parameters) {
             parser.VARIABLE_MAP.put(arg.getName(), arg);
+        }
+
+        for (FunctionStatement function : FUNCTIONS.values()) {
+            parser.FUNCTIONS.put(function.name, function);
         }
 
         FUNCTIONS.put(name, new FunctionStatement(name, parameters, parser));
