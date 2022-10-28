@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Add AND and OR keywords for condition">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="New condition type : if(boolean)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
@@ -146,7 +145,7 @@
       <workItem from="1666612433050" duration="15029000" />
       <workItem from="1666716427235" duration="245000" />
       <workItem from="1666875851898" duration="11379000" />
-      <workItem from="1666958073595" duration="2321000" />
+      <workItem from="1666958073595" duration="3738000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -407,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666891605385</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="New condition type : if(boolean)">
+      <created>1666969326811</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1666969326811</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +431,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix bug: variable name is a value type (like int)" />
     <MESSAGE value="Fix bug: variable type not corresponding to value" />
     <MESSAGE value="Add variable checker in type verification" />
     <MESSAGE value="Cleanup code" />
@@ -450,7 +455,8 @@
     <MESSAGE value="v0.1" />
     <MESSAGE value="v0.1 - Edit README.md" />
     <MESSAGE value="Add AND and OR keywords for condition" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add AND and OR keywords for condition" />
+    <MESSAGE value="New condition type : if(boolean)" />
+    <option name="LAST_COMMIT_MESSAGE" value="New condition type : if(boolean)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

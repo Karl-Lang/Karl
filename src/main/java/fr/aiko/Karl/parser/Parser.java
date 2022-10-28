@@ -35,6 +35,7 @@ public class Parser {
             else if (isVariableDeclaration()) parseVariableDeclaration();
             else if (isVariableAssignment()) parseVariableAssignment();
             else if (isFunctionDeclaration()) parseFunctionDeclaration();
+            else if (isIncrementDecrement()) parseIncrementDecrement();
             else if (isCommentary()) parseCommentary();
             else new RuntimeError("Unknown statement : " + currentToken.getValue(), fileName, currentToken.getLine());
 
@@ -43,6 +44,44 @@ public class Parser {
             }
         }
         return statements;
+    }
+
+    private boolean isIncrementDecrement() {
+        if (currentToken.getType() == TokenType.IDENTIFIER) {
+            if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
+                Token nextToken = tokens.get(tokens.indexOf(currentToken) + 1);
+                if (nextToken.getType() == TokenType.PLUS || nextToken.getType() == TokenType.MINUS) {
+                    if (tokens.indexOf(nextToken) + 1 < tokens.size()) {
+                        Token nextNextToken = tokens.get(tokens.indexOf(nextToken) + 1);
+                        return nextNextToken.getType() == nextToken.getType();
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private void parseIncrementDecrement() {
+        Variable variable = VARIABLE_MAP.get(currentToken.getValue());
+        if (variable == null) new RuntimeError("Variable " + currentToken.getValue() + " is not defined", fileName, currentToken.getLine());
+        advance();
+        Token operator = tokens.get(tokens.indexOf(currentToken));
+        if (operator.getType() == TokenType.PLUS) {
+            if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.INT) {
+                variable.setValue(Integer.toString(Integer.parseInt(variable.getValue()) + 1));
+            } else if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.FLOAT) {
+                variable.setValue(Float.toString(Float.parseFloat(variable.getValue()) + 1));
+            } else new TypeError("Cannot increment a " + variable.getType() + " variable", fileName, currentToken.getLine());
+        } else if (operator.getType() == TokenType.MINUS) {
+            if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.INT) {
+                variable.setValue(Integer.toString(Integer.parseInt(variable.getValue()) - 1));
+            } else if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.FLOAT) {
+                variable.setValue(Float.toString(Float.parseFloat(variable.getValue()) - 1));
+            } else new TypeError("Cannot decrement a " + variable.getType() + " variable", fileName, currentToken.getLine());
+        }
+        advance(2);
+        checkSemiColon();
     }
 
     private boolean isCommentary() {

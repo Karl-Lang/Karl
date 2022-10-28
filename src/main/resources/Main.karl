@@ -7,6 +7,6 @@ func main::(string: name) {
 main(name);
 // -> Hello, Karl!
 
-if (false) {
-    show("Number is greater than 100!");
-}
+show(number);
+number--;
+show(number);
