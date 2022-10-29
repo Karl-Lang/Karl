@@ -129,7 +129,16 @@ public class Parser {
         while (conditionsTokens.indexOf(currentTok) < conditionsTokens.size() - 1) {
             if (currentTok.getType() == TokenType.RIGHT_PARENTHESIS) break;
             if (isFalseOperator(currentTok, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1))) {
-                results.add(parseFalseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)));
+                Token nextTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1);
+                if (nextTok.getType() == TokenType.EXCLAMATION) {
+                    // Make a new ArrayList without previous tokens
+                    ArrayList<Token> newConditionsTokens = new ArrayList<>();
+                    for (int i = conditionsTokens.indexOf(currentTok) + 1; i < conditionsTokens.size(); i++) {
+                        newConditionsTokens.add(conditionsTokens.get(i));
+                    }
+                    results.add(!parseCondition(newConditionsTokens));
+                    break;
+                } else results.add(parseFalseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)));
                 if (conditionsTokens.indexOf(currentTok) + 2 < conditionsTokens.size()) {
                     currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 2);
                 } else break;
@@ -196,14 +205,17 @@ public class Parser {
     }
 
     private boolean isFalseOperator(Token token, Token token1) {
-        return token.getType() == TokenType.EXCLAMATION && (token1.getType() == TokenType.IDENTIFIER || token1.getType() == TokenType.BOOL);
+        return token.getType() == TokenType.EXCLAMATION && (token1.getType() == TokenType.IDENTIFIER || token1.getType() == TokenType.BOOL || token1.getType() == TokenType.EXCLAMATION);
     }
 
     private boolean parseFalseOperator(Token token) {
-        Variable var = VARIABLE_MAP.get(token.getValue());
-        if (var == null) new RuntimeError("Variable " + token.getValue() + " doesn't exist", fileName, token.getLine());
-        assert var != null;
-        return switch (var.getValue()) {
+        String value = token.getValue();
+        if (token.getType() == TokenType.IDENTIFIER) {
+            Variable var = VARIABLE_MAP.get(token.getValue());
+            if (var == null) new RuntimeError("Variable " + token.getValue() + " doesn't exist", fileName, token.getLine());
+            assert var != null;
+            value = var.getValue();
+        } return switch (value) {
             case "false", "null" -> true;
             default -> false;
         };
