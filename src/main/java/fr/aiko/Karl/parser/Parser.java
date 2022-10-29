@@ -141,6 +141,12 @@ public class Parser {
                         }
                         ArrayList<Statement> elseStatements = elseParser.parse();
                         statements.add(new IfStatement(condition, ifParser.parse(), elseStatements));
+                    } else {
+                        advance();
+                        if (isVariableAssignment()) parseVariableAssignment();
+                        else if (isIncrementDecrement()) parseIncrementDecrement();
+                        else if (isCommentary()) new RuntimeError("Unterminated else statement", fileName, currentToken.getLine());
+                        else new RuntimeError("Unauthorized else statement", fileName, currentToken.getLine());
                     }
                 } else if (isIfStatement()) {
                     parseIfStatement();

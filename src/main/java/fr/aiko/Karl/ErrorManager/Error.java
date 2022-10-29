@@ -25,6 +25,7 @@ public class Error {
         System.err.println("\u001B[31m" + "    at " + main.getFileName() + "(" + main.getFileName() + ":" + main.getLineNumber() + ")" + "\u001B[0m");
         stackTrace = Arrays.copyOf(stackTrace, stackTrace.length - 1);
         for (StackTraceElement element : stackTrace) {
+            if (!element.getClassName().startsWith("fr.aiko.Karl")) continue;
             System.err.println("\u001B[31m" + "    at " + element.getClassName() + "." + element.getMethodName() + "(" + element.getFileName() + ":" + element.getLineNumber() + ")" + "\u001B[0m");
         }
 

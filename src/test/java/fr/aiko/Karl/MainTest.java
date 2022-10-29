@@ -48,4 +48,16 @@ class MainTest {
         String[] output = Arrays.copyOf(outContent.toString().split("\n"), outContent.toString().split("\n").length - 1);
         assertArrayEquals(expected, output);
     }
+
+    @Test
+    @DisplayName("Else statements")
+    void testElse() {
+        String[] args = {"src/test/resources/tests/Else.karl"};
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        String[] expected = {"Test #1 success", "Test #2 success", "Test #3 success", "Test #4 success"};
+        System.setOut(new PrintStream(outContent));
+        Main.main(args);
+        String[] output = Arrays.copyOf(outContent.toString().split("\n"), outContent.toString().split("\n").length - 1);
+        assertArrayEquals(expected, output);
+    }
 }

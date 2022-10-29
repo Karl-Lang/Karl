@@ -4,30 +4,30 @@ float: price = 2.30;
 bool: boolean = false;
 bool: trueValue = true;
 
-if (name == "Karl" && true == true) {
+if (name == "Karl" && true == true) -> {
     show("Test #1 success");
 }
 
-if (number == 230 || !boolean) {
+if (number == 230 || !boolean) -> {
     show("Test #2 success");
 }
 
-if (price == 2.30) {
+if (price == 2.30) -> {
     show("Test #3 success");
 }
 
-if (number == 230 && price == 2.30) {
+if (number == 230 && price == 2.30) -> {
     show("Test #4 success");
 }
 
-if (trueValue) {
+if (trueValue) -> {
     show("Test #5 success");
 }
 
-if (number == 230 && price == 2.30 && trueValue) {
+if (number == 230 && price == 2.30 && trueValue) -> {
     show("Test #6 success");
 }
 
-if (number == 230 && price == 2.30 || !boolean) {
+if (number == 230 && price == 2.30 || !boolean) -> {
     show("Test #7 success");
 }
