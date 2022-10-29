@@ -115,12 +115,44 @@ public class Parser {
 
         boolean condition = parseCondition(conditionTokens);
         advance();
+        if (currentToken.getType() != TokenType.MINUS || tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.GREATER)
+            new SyntaxError("Missing '->' after if statement condition", fileName, currentToken.getLine());
+        advance(2);
         ArrayList<Token> ifTokens = getFunctionBody();
         Parser ifParser = new Parser(ifTokens, fileName);
         for (Variable variable : VARIABLE_MAP.values()) {
             ifParser.VARIABLE_MAP.put(variable.getName(), variable);
         }
-        statements.add(new IfStatement(condition, ifParser.parse()));
+        if (isElseStatement()) {
+            advance(); // else
+            if (tokens.indexOf(currentToken) + 4 < tokens.size()) {
+                advance();
+                if (!isIfStatement()) {
+                    if (currentToken.getType() != TokenType.MINUS || tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.GREATER)
+                        new SyntaxError("Missing '->' after if statement condition", fileName, currentToken.getLine());
+                    advance();
+                    Token nextToken = tokens.get(tokens.indexOf(currentToken) + 1);
+                    if (nextToken.getType() == TokenType.LEFT_BRACE) {
+                        advance();
+                        ArrayList<Token> elseTokens = getFunctionBody();
+                        Parser elseParser = new Parser(elseTokens, fileName);
+                        for (Variable variable : VARIABLE_MAP.values()) {
+                            elseParser.VARIABLE_MAP.put(variable.getName(), variable);
+                        }
+                        ArrayList<Statement> elseStatements = elseParser.parse();
+                        statements.add(new IfStatement(condition, ifParser.parse(), elseStatements));
+                    }
+                } else if (isIfStatement()) {
+                    parseIfStatement();
+                }
+            } else new SyntaxError("Unterminated else statement", fileName, currentToken.getLine());
+        } else {
+            statements.add(new IfStatement(condition, ifParser.parse(), null));
+        }
+    }
+
+    private boolean isElseStatement() {
+        return tokens.indexOf(currentToken) + 1 < tokens.size() && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.ELSE;
     }
 
     private boolean parseCondition(ArrayList<Token> conditionsTokens) {

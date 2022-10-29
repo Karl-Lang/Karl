@@ -8,6 +8,11 @@ bool: boolean = true; // this is a comment
 final string: name = "Karl";
 func main::(string: name) {
     show("Hello, ", name, "!");
+    if (!true) -> {
+        show("i");
+    } else -> {
+        show("j");
+    }
 }
 main(name);
 // -> Hello, Karl!
