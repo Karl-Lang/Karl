@@ -72,7 +72,7 @@ public class Lexer {
 
     public void tokenize() {
         if (input.length() == 0) {
-            new Error("RetardError", "Empty file", fileName, line);
+            new Error("RetardError :)", "Empty file", fileName, line);
         }
 
         while (position < input.length()) {
@@ -121,7 +121,7 @@ public class Lexer {
 
             if (c == '.' && buffer.indexOf(".") != -1) {
                 new SyntaxError("Invalid number", fileName, line);
-            } else if (!Character.isDigit(c)) {
+            } else if (!Character.isDigit(c) && c != '.') {
                 break;
             }
 

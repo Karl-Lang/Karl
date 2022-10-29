@@ -1,5 +1,6 @@
 package fr.aiko.Karl.parser.ast;
 
+import fr.aiko.Karl.ErrorManager.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.Parser;
 
 import java.util.ArrayList;

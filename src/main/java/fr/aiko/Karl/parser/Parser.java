@@ -6,16 +6,13 @@ import fr.aiko.Karl.ErrorManager.SyntaxError.SemiColonError;
 import fr.aiko.Karl.ErrorManager.SyntaxError.SyntaxError;
 import fr.aiko.Karl.parser.ast.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Parser {
-    public final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
+    public  final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
     private final ArrayList<String> systemFunctions = new ArrayList<>();
     private final ArrayList<Token> tokens;
-    private final String fileName;
+    public final String fileName;
     private final ArrayList<Statement> statements = new ArrayList<>();
     private final Map<String, FunctionStatement> FUNCTIONS = new HashMap<>();
     private final String[] variableTypes = {"int", "float", "string", "bool", "char"};
@@ -32,12 +29,12 @@ public class Parser {
 
     public ArrayList<Statement> parse() {
         while (currentToken.getType() != TokenType.EOF) {
-
             if (isFuncCall()) parseFuncCall();
             else if (isIfStatement()) parseIfStatement();
             else if (isVariableDeclaration()) parseVariableDeclaration();
             else if (isVariableAssignment()) parseVariableAssignment();
             else if (isFunctionDeclaration()) parseFunctionDeclaration();
+            else if (isIncrementDecrement()) parseIncrementDecrement();
             else if (isCommentary()) parseCommentary();
             else new RuntimeError("Unknown statement : " + currentToken.getValue(), fileName, currentToken.getLine());
 
@@ -46,6 +43,44 @@ public class Parser {
             }
         }
         return statements;
+    }
+
+    private boolean isIncrementDecrement() {
+        if (currentToken.getType() == TokenType.IDENTIFIER) {
+            if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
+                Token nextToken = tokens.get(tokens.indexOf(currentToken) + 1);
+                if (nextToken.getType() == TokenType.PLUS || nextToken.getType() == TokenType.MINUS) {
+                    if (tokens.indexOf(nextToken) + 1 < tokens.size()) {
+                        Token nextNextToken = tokens.get(tokens.indexOf(nextToken) + 1);
+                        return nextNextToken.getType() == nextToken.getType();
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private void parseIncrementDecrement() {
+        Variable variable = VARIABLE_MAP.get(currentToken.getValue());
+        if (variable == null) new RuntimeError("Variable " + currentToken.getValue() + " is not defined", fileName, currentToken.getLine());
+        advance();
+        Token operator = tokens.get(tokens.indexOf(currentToken));
+        if (operator.getType() == TokenType.PLUS) {
+            if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.INT) {
+                variable.setValue(Integer.toString(Integer.parseInt(variable.getValue()) + 1));
+            } else if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.FLOAT) {
+                variable.setValue(Float.toString(Float.parseFloat(variable.getValue()) + 1));
+            } else new TypeError("Cannot increment a " + variable.getType() + " variable", fileName, currentToken.getLine());
+        } else if (operator.getType() == TokenType.MINUS) {
+            if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.INT) {
+                variable.setValue(Integer.toString(Integer.parseInt(variable.getValue()) - 1));
+            } else if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.FLOAT) {
+                variable.setValue(Float.toString(Float.parseFloat(variable.getValue()) - 1));
+            } else new TypeError("Cannot decrement a " + variable.getType() + " variable", fileName, currentToken.getLine());
+        }
+        advance(2);
+        checkSemiColon();
     }
 
     private boolean isCommentary() {
@@ -80,7 +115,50 @@ public class Parser {
 
         boolean condition = parseCondition(conditionTokens);
         advance();
-        statements.add(new IfStatement(condition, new Parser(getFunctionBody(), fileName).parse()));
+        if (currentToken.getType() != TokenType.MINUS || tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.GREATER)
+            new SyntaxError("Missing '->' after if statement condition", fileName, currentToken.getLine());
+        advance(2);
+        ArrayList<Token> ifTokens = getFunctionBody();
+        Parser ifParser = new Parser(ifTokens, fileName);
+        for (Variable variable : VARIABLE_MAP.values()) {
+            ifParser.VARIABLE_MAP.put(variable.getName(), variable);
+        }
+        if (isElseStatement()) {
+            advance(); // else
+            if (tokens.indexOf(currentToken) + 4 < tokens.size()) {
+                advance();
+                if (!isIfStatement()) {
+                    if (currentToken.getType() != TokenType.MINUS || tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.GREATER)
+                        new SyntaxError("Missing '->' after if statement condition", fileName, currentToken.getLine());
+                    advance();
+                    Token nextToken = tokens.get(tokens.indexOf(currentToken) + 1);
+                    if (nextToken.getType() == TokenType.LEFT_BRACE) {
+                        advance();
+                        ArrayList<Token> elseTokens = getFunctionBody();
+                        Parser elseParser = new Parser(elseTokens, fileName);
+                        for (Variable variable : VARIABLE_MAP.values()) {
+                            elseParser.VARIABLE_MAP.put(variable.getName(), variable);
+                        }
+                        ArrayList<Statement> elseStatements = elseParser.parse();
+                        statements.add(new IfStatement(condition, ifParser.parse(), elseStatements));
+                    } else {
+                        advance();
+                        if (isVariableAssignment()) parseVariableAssignment();
+                        else if (isIncrementDecrement()) parseIncrementDecrement();
+                        else if (isCommentary()) new RuntimeError("Unterminated else statement", fileName, currentToken.getLine());
+                        else new RuntimeError("Unauthorized else statement", fileName, currentToken.getLine());
+                    }
+                } else if (isIfStatement()) {
+                    parseIfStatement();
+                }
+            } else new SyntaxError("Unterminated else statement", fileName, currentToken.getLine());
+        } else {
+            statements.add(new IfStatement(condition, ifParser.parse(), null));
+        }
+    }
+
+    private boolean isElseStatement() {
+        return tokens.indexOf(currentToken) + 1 < tokens.size() && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.ELSE;
     }
 
     private boolean parseCondition(ArrayList<Token> conditionsTokens) {
@@ -89,7 +167,16 @@ public class Parser {
         while (conditionsTokens.indexOf(currentTok) < conditionsTokens.size() - 1) {
             if (currentTok.getType() == TokenType.RIGHT_PARENTHESIS) break;
             if (isFalseOperator(currentTok, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1))) {
-                results.add(parseFalseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)));
+                Token nextTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1);
+                if (nextTok.getType() == TokenType.EXCLAMATION) {
+                    // Make a new ArrayList without previous tokens
+                    ArrayList<Token> newConditionsTokens = new ArrayList<>();
+                    for (int i = conditionsTokens.indexOf(currentTok) + 1; i < conditionsTokens.size(); i++) {
+                        newConditionsTokens.add(conditionsTokens.get(i));
+                    }
+                    results.add(!parseCondition(newConditionsTokens));
+                    break;
+                } else results.add(parseFalseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)));
                 if (conditionsTokens.indexOf(currentTok) + 2 < conditionsTokens.size()) {
                     currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 2);
                 } else break;
@@ -100,12 +187,38 @@ public class Parser {
                     size = 1;
                 }
                 results.add(parseComparisonOperator(currentTok, operator, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + size + 1)));
-                if (conditionsTokens.indexOf(currentTok) + 3 < conditionsTokens.size()) {
-                    currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 3);
+                if (conditionsTokens.indexOf(currentTok) + 1 + size < conditionsTokens.size()) {
+                    currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1 + size);
                 } else break;
+            }  else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.AND) {
+                boolean condition1 = !results.contains(false);
+                boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
+                results.clear();
+                results.add(condition1 && condition2);
+                break;
+            } else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.OR) {
+                boolean condition1 = !results.contains(false);
+                boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
+                results.clear();
+                results.add(condition1 || condition2);
+                break;
             } else {
-                new SyntaxError("Unknown statement: " + currentTok.getValue(), fileName, currentTok.getLine());
+                new SyntaxError("Unknown operator : " + conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getValue(), fileName, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getLine());
             }
+        }
+
+        if (results.size() == 0) {
+            if (currentTok.getValue().equals("true")) return true;
+            else if (currentTok.getValue().equals("false")) return false;
+            else if (currentTok.getType() == TokenType.IDENTIFIER) {
+                if (VARIABLE_MAP.containsKey(currentTok.getValue())) {
+                    Variable variable = VARIABLE_MAP.get(currentTok.getValue());
+                    if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.BOOL) {
+                        if (variable.getValue().equals("true")) results.add(true);
+                        else results.add(false);
+                    } else new SyntaxError(currentTok.getValue() + " is not a boolean", fileName, currentTok.getLine());
+                } else new SyntaxError("Unknown variable : " + currentTok.getValue(), fileName, currentTok.getLine());
+            } else new SyntaxError("Unknown condition : " + currentTok.getValue(), fileName, currentTok.getLine());
         }
 
         return !results.contains(false);
@@ -113,41 +226,34 @@ public class Parser {
 
     private TokenType parseOperator(Token operator) {
         if (tokens.indexOf(operator) + 1 < tokens.size()) {
-            if (operator.getType() == TokenType.EQUALS) {
-                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
-                    case LESS -> TokenType.LESS_EQUAL;
-                    case GREATER -> TokenType.GREATER_EQUAL;
-                    case EQUALS -> TokenType.EQUAL;
-                    default -> operator.getType();
-                };
+            if (operator.getType() == TokenType.EQUALS && tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS) {
+                return TokenType.EQUAL;
             } else if (operator.getType() == TokenType.LESS) {
-                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
-                    case EQUALS -> TokenType.LESS_EQUAL;
-                    default -> operator.getType();
-                };
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.LESS_EQUAL : operator.getType();
             } else if (operator.getType() == TokenType.GREATER) {
-                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
-                    case EQUALS -> TokenType.GREATER_EQUAL;
-                    default -> operator.getType();
-                };
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.GREATER_EQUAL : operator.getType();
             } else if (operator.getType() == TokenType.EXCLAMATION) {
-                return switch (tokens.get(tokens.indexOf(operator) + 1).getType()) {
-                    case EQUALS -> TokenType.NOT_EQUAL;
-                    default -> operator.getType();
-                };
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.NOT_EQUAL : operator.getType();
+            } else if (operator.getType() == TokenType.BAR) {
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.BAR ? TokenType.OR : operator.getType();
+            } else if (operator.getType() == TokenType.AMP) {
+                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.AMP ? TokenType.AND : operator.getType();
             } else return operator.getType();
         } else return operator.getType();
     }
 
     private boolean isFalseOperator(Token token, Token token1) {
-        return token.getType() == TokenType.EXCLAMATION && (token1.getType() == TokenType.IDENTIFIER || token1.getType() == TokenType.BOOL);
+        return token.getType() == TokenType.EXCLAMATION && (token1.getType() == TokenType.IDENTIFIER || token1.getType() == TokenType.BOOL || token1.getType() == TokenType.EXCLAMATION);
     }
 
     private boolean parseFalseOperator(Token token) {
-        Variable var = VARIABLE_MAP.get(token.getValue());
-        if (var == null) new RuntimeError("Variable " + token.getValue() + " doesn't exist", fileName, token.getLine());
-        assert var != null;
-        return switch (var.getValue()) {
+        String value = token.getValue();
+        if (token.getType() == TokenType.IDENTIFIER) {
+            Variable var = VARIABLE_MAP.get(token.getValue());
+            if (var == null) new RuntimeError("Variable " + token.getValue() + " doesn't exist", fileName, token.getLine());
+            assert var != null;
+            value = var.getValue();
+        } return switch (value) {
             case "false", "null" -> true;
             default -> false;
         };
@@ -158,19 +264,47 @@ public class Parser {
     }
 
     private boolean parseComparisonOperator(Token left, TokenType operator, Token right) {
-        return switch (operator) {
-            case EQUAL ->
-                    left.getType() == right.getType() && Integer.parseInt(left.getValue()) == Integer.parseInt(right.getValue());
-            case NOT_EQUAL -> !left.getValue().equals(right.getValue());
-            case GREATER -> Integer.parseInt(left.getValue()) > Integer.parseInt(right.getValue());
-            case LESS -> Integer.parseInt(left.getValue()) < Integer.parseInt(right.getValue());
-            case GREATER_EQUAL -> Integer.parseInt(left.getValue()) >= Integer.parseInt(right.getValue());
-            case LESS_EQUAL -> Integer.parseInt(left.getValue()) <= Integer.parseInt(right.getValue());
-            default -> {
-                new SyntaxError("Unknown operator: " + operator.getName(), fileName, left.getLine());
-                yield false;
-            }
-        };
+        if (left.getType() == TokenType.IDENTIFIER) {
+            left = getValue(left);
+        } else if (right.getType() == TokenType.IDENTIFIER) {
+            right = getValue(right);
+        }
+
+        if (left.getType() != right.getType()) {
+            new SyntaxError("Can't compare type " + left.getType().toString().toLowerCase() + " with type " + right.getType().toString().toLowerCase(), fileName, left.getLine());
+        }
+
+        if (left.getType() == TokenType.INT) {
+            return switch (operator) {
+                case EQUAL -> Integer.parseInt(left.getValue()) == Integer.parseInt(right.getValue());
+                case NOT_EQUAL -> !left.getValue().equals(right.getValue());
+                case GREATER -> Integer.parseInt(left.getValue()) > Integer.parseInt(right.getValue());
+                case LESS -> Integer.parseInt(left.getValue()) < Integer.parseInt(right.getValue());
+                case GREATER_EQUAL -> Integer.parseInt(left.getValue()) >= Integer.parseInt(right.getValue());
+                case LESS_EQUAL -> Integer.parseInt(left.getValue()) <= Integer.parseInt(right.getValue());
+                default -> {
+                    new SyntaxError("Unknown operator: " + operator.getName(), fileName, left.getLine());
+                    yield false;
+                }
+            };
+        } else {
+            return switch (operator) {
+                case EQUAL -> left.getValue().equals(right.getValue());
+                case NOT_EQUAL -> !left.getValue().equals(right.getValue());
+                default -> {
+                    new SyntaxError("Unknown operator " + operator.getName() + " for comparison with type " + left.getType().toString().toLowerCase(), fileName, left.getLine());
+                    yield false;
+                }
+            };
+        }
+    }
+
+    private Token getValue(Token left) {
+        Variable var = VARIABLE_MAP.get(left.getValue());
+        if (var == null) new RuntimeError("Variable " + left.getValue() + " doesn't exist", fileName, left.getLine());
+        assert var != null;
+        left = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), left.getLine(), left.getPosition());
+        return left;
     }
 
     private boolean isFunctionDeclaration() {
@@ -190,6 +324,17 @@ public class Parser {
         Parser parser = new Parser(bodyToken, fileName);
         for (Variable arg : parameters) {
             parser.VARIABLE_MAP.put(arg.getName(), arg);
+        }
+
+        for (FunctionStatement function : FUNCTIONS.values()) {
+            parser.FUNCTIONS.put(function.name, function);
+        }
+
+        // Check if bodyToken include a function declaration
+        for (Token token : bodyToken) {
+            if (token.getType() == TokenType.FUNC && tokens.get(tokens.indexOf(token) + 1).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(token) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(token) + 3).getType() == TokenType.COLON && tokens.get(tokens.indexOf(token) + 4).getType() == TokenType.LEFT_PARENTHESIS) {
+                new RuntimeError("Cannot declare a function inside another function", fileName, token.getLine());
+            }
         }
 
         FUNCTIONS.put(name, new FunctionStatement(name, parameters, parser));
@@ -336,8 +481,14 @@ public class Parser {
     private ArrayList<Token> getFunctionBody() {
         ArrayList<Token> tokensToReturn = new ArrayList<>();
         advance();
-        while (currentToken.getType() != TokenType.RIGHT_BRACE) {
-            tokensToReturn.add(new Token(currentToken.getType(), currentToken.getValue(), currentToken.getPosition(), currentToken.getLine()));
+        int braces = 1;
+        while (braces != 1 || currentToken.getType() != TokenType.RIGHT_BRACE) { // currentToken.getType() != TokenType.RIGHT_BRACE && braces != 0
+            tokensToReturn.add(currentToken);
+            if (currentToken.getType() == TokenType.LEFT_BRACE) {
+                braces++;
+            } else if (currentToken.getType() == TokenType.RIGHT_BRACE) {
+                braces--;
+            }
 
             if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
                 advance();

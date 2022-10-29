@@ -1,0 +1,10 @@
+func sayHello::(string: name) {
+    show("Hello, ", name, "!");
+}
+
+func main::() {
+    show("What is your name?");
+    sayHello("Karl");
+}
+
+main();
