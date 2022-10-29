@@ -15,7 +15,7 @@ apply plugin: 'java'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 group 'fr.aiko'
-version '0.1.0'
+version '0.2.0'
 
 repositories {
     mavenCentral()
