@@ -12,7 +12,7 @@ public class Parser {
     public  final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
     private final ArrayList<String> systemFunctions = new ArrayList<>();
     private final ArrayList<Token> tokens;
-    private final String fileName;
+    public final String fileName;
     private final ArrayList<Statement> statements = new ArrayList<>();
     private final Map<String, FunctionStatement> FUNCTIONS = new HashMap<>();
     private final String[] variableTypes = {"int", "float", "string", "bool", "char"};
@@ -322,6 +322,13 @@ public class Parser {
 
         for (FunctionStatement function : FUNCTIONS.values()) {
             parser.FUNCTIONS.put(function.name, function);
+        }
+
+        // Check if bodyToken include a function declaration
+        for (Token token : bodyToken) {
+            if (token.getType() == TokenType.FUNC && tokens.get(tokens.indexOf(token) + 1).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(token) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(token) + 3).getType() == TokenType.COLON && tokens.get(tokens.indexOf(token) + 4).getType() == TokenType.LEFT_PARENTHESIS) {
+                new RuntimeError("Cannot declare a function inside another function", fileName, token.getLine());
+            }
         }
 
         FUNCTIONS.put(name, new FunctionStatement(name, parameters, parser));
