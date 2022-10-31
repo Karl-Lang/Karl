@@ -35,7 +35,8 @@ main(name);
 - [x] Comment
 - [x] Functions
 - [x] If Statement
-    - [ ] AND and OR operator
+    - [x] AND and OR operator
+    - [x] Else Statement
 - [ ] While Statement
 - [ ] For Statement
 - [ ] Array
@@ -44,6 +45,6 @@ main(name);
 - [ ] Import
 - [ ] Export
 - [ ] Operator
-- [ ] Increment and Decrement
+- [x] Increment and Decrement
 - [x] Throw new RetardException()
 - [ ] Try Catch
