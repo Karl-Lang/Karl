@@ -1,4 +1,4 @@
 final int: base = 2;
-final int: base = 3;
+final string: base2 = 3;
 
 show(base2);

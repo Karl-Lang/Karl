@@ -358,8 +358,13 @@ public class Parser {
         checkValidVariableName(name);
         advance(2);
         Token value = currentToken;
-        if (checkCorrespondentTypeVariable(type, value))
-            new TypeError("Excepted type " + type + " for variable " + name + " but got type " + value.getType().toString().toLowerCase(), fileName, currentToken.getLine());
+        if (checkCorrespondentTypeVariable(type, value)) {
+            String valueType = value.getType().toString().toLowerCase();
+            if (valueType.equals("identifier")) {
+                valueType = VARIABLE_MAP.get(value.getValue()).getType().toLowerCase();
+            }
+            new TypeError("Excepted type " + type + " for variable " + name + " but got type " + valueType, fileName, currentToken.getLine());
+        }
         advance();
 
         if (value.getType() == TokenType.IDENTIFIER) {

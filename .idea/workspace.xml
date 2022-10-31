@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.2.0">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.2.2">
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -217,7 +217,7 @@
       <workItem from="1666958073595" duration="20870000" />
       <workItem from="1667058339772" duration="14553000" />
       <workItem from="1667217372277" duration="49000" />
-      <workItem from="1667218049126" duration="3290000" />
+      <workItem from="1667218049126" duration="3756000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -548,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667075312632</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="v0.2.2">
+      <created>1667229740434</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1667229740434</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +573,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add type checking for functions arguments" />
     <MESSAGE value="Add boolean type support" />
     <MESSAGE value="Fix tiny bugs" />
     <MESSAGE value="Base of new ErrorManager, currently in working" />
@@ -591,7 +597,8 @@
     <MESSAGE value="Infinite operator ! (`if(!!false)`)" />
     <MESSAGE value="Add Else if" />
     <MESSAGE value="v0.2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.2.0" />
+    <MESSAGE value="v0.2.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.2.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
