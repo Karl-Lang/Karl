@@ -64,6 +64,8 @@ public class Parser {
     private void parseIncrementDecrement() {
         Variable variable = VARIABLE_MAP.get(currentToken.getValue());
         if (variable == null) new RuntimeError("Variable " + currentToken.getValue() + " is not defined", fileName, currentToken.getLine());
+        assert variable != null;
+        if (variable.isFinal()) new RuntimeError("Cannot increment/decrement a final variable: " + currentToken.getValue(), fileName, currentToken.getLine());
         advance();
         Token operator = tokens.get(tokens.indexOf(currentToken));
         if (operator.getType() == TokenType.PLUS) {

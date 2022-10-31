@@ -110,7 +110,7 @@ public class Lexer {
     public void tokenizeNumber() {
         buffer.setLength(0);
         char c = input.charAt(position);
-        if (Character.isLetter(input.charAt(position + 1))) {
+        if (position + 1 < input.length() && Character.isLetter(input.charAt(position + 1))) {
             new SyntaxError("Unexpected character: " + input.charAt(position), fileName, line);
         }
 
