@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.2.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +217,7 @@
       <workItem from="1666958073595" duration="20870000" />
       <workItem from="1667058339772" duration="14553000" />
       <workItem from="1667217372277" duration="49000" />
-      <workItem from="1667218049126" duration="761000" />
+      <workItem from="1667218049126" duration="3290000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>

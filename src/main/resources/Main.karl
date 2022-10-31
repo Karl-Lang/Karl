@@ -1,3 +1,4 @@
-final int: number = 2;
-number++;
-show(number); // 3
+final int: base = 2;
+final int: base = 3;
+
+show(base2);

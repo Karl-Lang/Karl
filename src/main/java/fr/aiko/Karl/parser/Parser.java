@@ -361,6 +361,13 @@ public class Parser {
         if (checkCorrespondentTypeVariable(type, value))
             new TypeError("Excepted type " + type + " for variable " + name + " but got type " + value.getType().toString().toLowerCase(), fileName, currentToken.getLine());
         advance();
+
+        if (value.getType() == TokenType.IDENTIFIER) {
+            Variable var = VARIABLE_MAP.get(value.getValue());
+            if (var == null) new RuntimeError("Variable " + value.getValue() + " doesn't exist", fileName, value.getLine());
+            assert var != null;
+            value = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), value.getLine(), value.getPosition());
+        }
         VARIABLE_MAP.put(name, new Variable(type, name, value.getValue(), isFinal));
         checkSemiColon();
     }
@@ -559,6 +566,10 @@ public class Parser {
     private void checkValidVariableName(String name) {
         if (Arrays.asList(variableTypes).contains(name) || systemFunctions.contains(name) || FUNCTIONS.containsKey(name)) {
             new SyntaxError("Invalid variable name: " + name, fileName, currentToken.getLine());
+        }
+
+        if (VARIABLE_MAP.containsKey(name)) {
+            new SyntaxError("Variable " + name + " already exists", fileName, currentToken.getLine());
         }
     }
 
