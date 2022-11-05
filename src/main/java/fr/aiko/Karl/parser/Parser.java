@@ -9,7 +9,7 @@ import fr.aiko.Karl.parser.ast.*;
 import java.util.*;
 
 public class Parser {
-    public  final Map<String, Variable> VARIABLE_MAP = new HashMap<>();
+    public Map<String, Variable> VARIABLE_MAP = new HashMap<>();
     private final ArrayList<String> systemFunctions = new ArrayList<>();
     private final ArrayList<Token> tokens;
     public final String fileName;
@@ -390,11 +390,12 @@ public class Parser {
             new RuntimeError("Cannot assign new value to a final variable", fileName, currentToken.getLine());
         advance(2);
         Token value = currentToken;
+        String newValue = currentToken.getValue();
         if (checkCorrespondentTypeVariable(variable.getType(), value))
             new TypeError("Excepted type " + variable.getType() + " for variable " + name + " but got type " + value.getType().toString().toLowerCase(), fileName, currentToken.getLine());
-        variable.setValue(value.getValue());
         advance();
         checkSemiColon();
+        statements.add(new VariableAssignmentStatement(name, newValue, this.VARIABLE_MAP, currentToken));
     }
 
     private boolean isFuncCall() {
@@ -590,5 +591,21 @@ public class Parser {
 
     private void advance(int number) {
         currentToken = tokens.get(tokens.indexOf(currentToken) + number);
+    }
+
+    public Map<String, Variable> getVariables() {
+        return VARIABLE_MAP;
+    }
+
+    public void setVariables(Map<String, Variable> variables) {
+        this.VARIABLE_MAP = variables;
+    }
+
+    public ArrayList<Token> getTokens() {
+        return tokens;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 }

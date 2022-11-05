@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.2.2">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/VariableAssignmentStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
@@ -41,8 +44,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -78,10 +81,14 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast" />
       <recent name="$PROJECT_DIR$/src/test/resources" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -158,8 +165,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Gradle.MainTest.testElse" />
+        <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -217,7 +224,10 @@
       <workItem from="1666958073595" duration="20870000" />
       <workItem from="1667058339772" duration="14553000" />
       <workItem from="1667217372277" duration="49000" />
-      <workItem from="1667218049126" duration="3756000" />
+      <workItem from="1667218049126" duration="5000000" />
+      <workItem from="1667490793364" duration="11889000" />
+      <workItem from="1667558675065" duration="20794000" />
+      <workItem from="1667645098195" duration="1725000" />
     </task>
     <task id="LOCAL-00001" summary="Parser working !">
       <created>1665242419891</created>
@@ -555,7 +565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667229740434</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="v0.2.2">
+      <created>1667229999948</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1667229999948</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

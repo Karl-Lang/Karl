@@ -5,6 +5,8 @@ import fr.aiko.Karl.parser.Parser;
 import fr.aiko.Karl.parser.Token;
 import fr.aiko.Karl.parser.ast.Statement;
 import fr.aiko.Karl.ErrorManager.Error;
+import fr.aiko.Karl.parser.ast.Variable;
+import fr.aiko.Karl.parser.ast.VariableAssignmentStatement;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Map;
 
 @Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.2.0", description = "Karl programming language")
 public class Main implements Runnable {
@@ -42,14 +45,33 @@ public class Main implements Runnable {
             throw new RuntimeException(e);
         }
         ArrayList<Token> tokens = lexer.tokens;
+        execute(new Parser(tokens, fileName));
+        Long end = System.currentTimeMillis();
+        System.out.println("Execution time: " + (end - start) + "ms");
+    }
 
-        Parser parser = new Parser(tokens, fileName);
+    public void execute(Parser parser) {
         ArrayList<Statement> statements = parser.parse();
+        ArrayList<Token> tokens = parser.getTokens();
 
         for (Statement statement : statements) {
             statement.execute();
+
+            if (statement instanceof VariableAssignmentStatement var) {
+                Map<String, Variable> refreshedMap = var.refreshVariables();
+
+                for (Variable variable : refreshedMap.values()) {
+                    if (parser.getVariables().containsKey(variable.getName())) {
+                        parser.getVariables().get(variable.getName()).setValue(variable.getValue());
+                    }
+                }
+
+                tokens.subList(0, tokens.indexOf(var.getToken()) + 1).clear();
+                Parser newParser = new Parser(tokens, parser.getFileName());
+                newParser.setVariables(parser.getVariables());
+                execute(newParser);
+                break;
+            }
         }
-        Long end = System.currentTimeMillis();
-        System.out.println("Execution time: " + (end - start) + "ms");
     }
 }
