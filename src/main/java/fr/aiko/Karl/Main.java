@@ -3,6 +3,8 @@ package fr.aiko.Karl;
 import fr.aiko.Karl.parser.Lexer;
 import fr.aiko.Karl.parser.Parser;
 import fr.aiko.Karl.parser.Token;
+import fr.aiko.Karl.parser.TokenType;
+import fr.aiko.Karl.parser.ast.IfStatement;
 import fr.aiko.Karl.parser.ast.Statement;
 import fr.aiko.Karl.ErrorManager.Error;
 import fr.aiko.Karl.parser.ast.Variable;
@@ -27,7 +29,6 @@ public class Main implements Runnable {
 
     @Override
     public void run() {
-        // Check if the file exists
         if (!Files.exists(Path.of(path))) {
             new Error("FileNotFound", "The file " + path + " doesn't exist", "Main.java", 0);
         }
@@ -71,6 +72,37 @@ public class Main implements Runnable {
                 newParser.setVariables(parser.getVariables());
                 execute(newParser);
                 break;
+            } else if (statement instanceof IfStatement ifStatement) {
+                Parser ifParser = ifStatement.getParser();
+
+                if (ifParser != null) {
+                    Map<String, Variable> variableMap = ifParser.getVariables();
+                    ArrayList<Token> ifTokens = ifStatement.getTokens();
+
+                    for (Variable variable : variableMap.values()) {
+                        if (parser.getVariables().containsKey(variable.getName())) {
+                            parser.getVariables().get(variable.getName()).setValue(variable.getValue());
+                        }
+                    }
+
+                    Token lastToken = ifTokens.get(ifTokens.size() - 2);
+                    tokens.subList(0, tokens.indexOf(lastToken) + 2).clear();
+
+                    if (tokens.get(0).getType() != TokenType.ELSE) {
+                        Parser newParser = new Parser(tokens, parser.getFileName());
+                        newParser.setVariables(parser.getVariables());
+                        execute(newParser);
+                        break;
+                    } else {
+                        Parser elseParser = ifStatement.getElseParser();
+                        Token lastElseToken = elseParser.getTokens().get(elseParser.getTokens().size() - 2);
+                        tokens.subList(0, tokens.indexOf(lastElseToken) + 2).clear();
+                        Parser newParser = new Parser(tokens, parser.getFileName());
+                        newParser.setVariables(parser.getVariables());
+                        execute(newParser);
+                        break;
+                    }
+                }
             }
         }
     }

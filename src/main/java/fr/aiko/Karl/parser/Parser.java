@@ -145,8 +145,7 @@ public class Parser {
                         for (Variable variable : VARIABLE_MAP.values()) {
                             elseParser.VARIABLE_MAP.put(variable.getName(), variable);
                         }
-                        ArrayList<Statement> elseStatements = elseParser.parse();
-                        statements.add(new IfStatement(condition, ifParser.parse(), elseStatements));
+                        statements.add(new IfStatement(condition, ifParser, elseParser));
                     } else {
                         advance();
                         if (isVariableAssignment()) parseVariableAssignment();
@@ -159,7 +158,7 @@ public class Parser {
                 }
             } else new SyntaxError("Unterminated else statement", fileName, currentToken.getLine());
         } else {
-            statements.add(new IfStatement(condition, ifParser.parse(), null));
+            statements.add(new IfStatement(condition, ifParser, null));
         }
     }
 
@@ -611,5 +610,9 @@ public class Parser {
 
     public String getFileName() {
         return fileName;
+    }
+
+    public Token getCurrentToken() {
+        return currentToken;
     }
 }
