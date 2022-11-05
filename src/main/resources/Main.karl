@@ -1,5 +1,7 @@
 int: base = 2;
 
 base = 3;
+base++;
+base--;
 
 show(base);

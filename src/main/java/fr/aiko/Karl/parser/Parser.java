@@ -68,21 +68,25 @@ public class Parser {
         if (variable.isFinal()) new RuntimeError("Cannot increment/decrement a final variable: " + currentToken.getValue(), fileName, currentToken.getLine());
         advance();
         Token operator = tokens.get(tokens.indexOf(currentToken));
+        advance(2);
+        checkSemiColon();
         if (operator.getType() == TokenType.PLUS) {
             if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.INT) {
-                variable.setValue(Integer.toString(Integer.parseInt(variable.getValue()) + 1));
+                String value = Integer.toString(Integer.parseInt(variable.getValue()) + 1);
+                statements.add(new VariableAssignmentStatement(variable.getName(), value, VARIABLE_MAP, currentToken));
             } else if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.FLOAT) {
-                variable.setValue(Float.toString(Float.parseFloat(variable.getValue()) + 1));
+                String value = Float.toString(Float.parseFloat(variable.getValue()) + 1);
+                statements.add(new VariableAssignmentStatement(variable.getName(), value, VARIABLE_MAP, currentToken));
             } else new TypeError("Cannot increment a " + variable.getType() + " variable", fileName, currentToken.getLine());
         } else if (operator.getType() == TokenType.MINUS) {
             if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.INT) {
-                variable.setValue(Integer.toString(Integer.parseInt(variable.getValue()) - 1));
+                String value = Integer.toString(Integer.parseInt(variable.getValue()) - 1);
+                statements.add(new VariableAssignmentStatement(variable.getName(), value, VARIABLE_MAP, currentToken));
             } else if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.FLOAT) {
-                variable.setValue(Float.toString(Float.parseFloat(variable.getValue()) - 1));
+                String value = Float.toString(Float.parseFloat(variable.getValue()) - 1);
+                statements.add(new VariableAssignmentStatement(variable.getName(), value, VARIABLE_MAP, currentToken));
             } else new TypeError("Cannot decrement a " + variable.getType() + " variable", fileName, currentToken.getLine());
         }
-        advance(2);
-        checkSemiColon();
     }
 
     private boolean isCommentary() {
