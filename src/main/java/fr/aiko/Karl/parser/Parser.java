@@ -146,16 +146,11 @@ public class Parser {
                             elseParser.VARIABLE_MAP.put(variable.getName(), variable);
                         }
                         statements.add(new IfStatement(condition, ifParser, elseParser));
-                    } else {
-                        advance();
-                        if (isVariableAssignment()) parseVariableAssignment();
-                        else if (isIncrementDecrement()) parseIncrementDecrement();
-                        else if (isCommentary()) new RuntimeError("Unterminated else statement", fileName, currentToken.getLine());
-                        else new RuntimeError("Unauthorized else statement", fileName, currentToken.getLine());
-                    }
-                } else if (isIfStatement()) {
+                    } else new RuntimeError("Unauthorized else statement", fileName, currentToken.getLine());
+                } else new RuntimeError("Unauthorized else statement", fileName, currentToken.getLine());
+                /*if (isIfStatement()) {
                     parseIfStatement();
-                }
+                }*/
             } else new SyntaxError("Unterminated else statement", fileName, currentToken.getLine());
         } else {
             statements.add(new IfStatement(condition, ifParser, null));

@@ -1,12 +1,9 @@
-int: base = 3;
+int: base = 19;
 
-if (base > 18) -> {
+if (false) -> {
     show("base is less than 18");
     base++;
     show("base is now ",  base);
-} else if (base == 3)  -> {
-    show("base equal to 2");
-    base = 182;
 } else -> {
     show("base is greater than 18");
     base--;
