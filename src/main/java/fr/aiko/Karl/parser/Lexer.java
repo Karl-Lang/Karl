@@ -1,7 +1,7 @@
 package fr.aiko.Karl.parser;
 
-import fr.aiko.Karl.ErrorManager.Error;
-import fr.aiko.Karl.ErrorManager.SyntaxError.SyntaxError;
+import fr.aiko.Karl.errors.Error;
+import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +39,7 @@ public class Lexer {
         OPERATORS.put("*", TokenType.MULTIPLY);
         OPERATORS.put("/", TokenType.DIVIDE);
         OPERATORS.put("%", TokenType.MODULO);
-        OPERATORS.put("=", TokenType.EQUALS);
+        OPERATORS.put("=", TokenType.EQUAL);
         OPERATORS.put("(", TokenType.LEFT_PARENTHESIS);
         OPERATORS.put(")", TokenType.RIGHT_PARENTHESIS);
         OPERATORS.put("[", TokenType.LEFT_BRACKET);
@@ -66,6 +66,10 @@ public class Lexer {
         KEYWORDS.put("for", TokenType.FOR);
         KEYWORDS.put("bool", TokenType.BOOL);
         KEYWORDS.put("final", TokenType.FINAL);
+        KEYWORDS.put("int", TokenType.INT);
+        KEYWORDS.put("float", TokenType.FLOAT);
+        KEYWORDS.put("string", TokenType.STRING);
+        KEYWORDS.put("char", TokenType.CHAR);
 
         tokenize();
     }
@@ -152,10 +156,12 @@ public class Lexer {
             c = nextChar();
         }
 
-        if (!buffer.toString().equals("true") && !buffer.toString().equals("false")) {
-            addToken(KEYWORDS.getOrDefault(buffer.toString(), TokenType.IDENTIFIER), buffer.toString());
-        } else {
+        if (buffer.toString().equals("true") || buffer.toString().equals("false")) {
             addToken(TokenType.BOOL, buffer.toString());
+        } else if (buffer.toString().equals("show")) {
+            addToken(TokenType.SHOW, buffer.toString());
+        } else {
+            addToken(KEYWORDS.getOrDefault(buffer.toString(), TokenType.IDENTIFIER), buffer.toString());
         }
     }
 

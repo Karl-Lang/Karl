@@ -1,7 +1,7 @@
 package fr.aiko.Karl.parser;// Create enum token type
 
 public enum TokenType {
-    EQUAL("=="),
+    EQUALEQUAL("=="),
     NOT_EQUAL("!="),
     GREATER(">"),
     LESS("<"),
@@ -17,13 +17,14 @@ public enum TokenType {
     INT("int"),
     FLOAT("float"),
     STRING("string"),
+    STRINGTYPE("stringtype"),
     BOOL("bool"),
     PLUS("+"),
     MINUS("-"),
     MULTIPLY("*"),
     DIVIDE("/"),
     MODULO("%"),
-    EQUALS("="),
+    EQUAL("="),
     LEFT_PARENTHESIS("("),
     RIGHT_PARENTHESIS(")"),
     LEFT_BRACKET("["),

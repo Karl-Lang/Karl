@@ -1,6 +1,6 @@
-package fr.aiko.Karl.ErrorManager.RuntimeError;
+package fr.aiko.Karl.errors.RuntimeError;
 
-import fr.aiko.Karl.ErrorManager.Error;
+import fr.aiko.Karl.errors.Error;
 
 public class RuntimeError extends Error {
     public RuntimeError(String message, String fileName, int line) {

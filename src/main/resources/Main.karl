@@ -1,12 +1,2 @@
-int: base = 19;
-
-if (false) -> {
-    show("base is less than 18");
-    base++;
-    show("base is now ",  base);
-} else -> {
-    show("base is greater than 18");
-    base--;
-}
-
-show("New number: ", base);
+float: a = 3.14;
+show(a, " b ", 3);

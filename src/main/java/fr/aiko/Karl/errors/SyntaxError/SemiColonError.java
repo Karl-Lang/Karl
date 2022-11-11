@@ -1,4 +1,4 @@
-package fr.aiko.Karl.ErrorManager.SyntaxError;
+package fr.aiko.Karl.errors.SyntaxError;
 
 public class SemiColonError extends SyntaxError {
     public SemiColonError(String fileName, int line) {
