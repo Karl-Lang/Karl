@@ -1,4 +1,4 @@
 float: a = 3.31;
 int: b = 3;
-show(a/b);
-show(a, " b3", a+2+3+52+b);
+b = b + 4;
+show(b, "num");

@@ -40,7 +40,7 @@ public class OperationExpression extends Expression {
                 default -> throw new RuntimeException("Unknown operator: " + operator);
             };
         } else {
-            throw new RuntimeException("Unknown type: " + leftValue.getType());
+            throw new RuntimeException("Unauthorized type for operation" + leftValue.getType());
         }
     }
 }

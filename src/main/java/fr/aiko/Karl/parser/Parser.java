@@ -9,37 +9,28 @@ import fr.aiko.Karl.parser.ast.expressions.ValueExpression;
 import fr.aiko.Karl.parser.ast.expressions.VariableExpression;
 import fr.aiko.Karl.parser.ast.statements.ShowStatement;
 import fr.aiko.Karl.parser.ast.statements.Statement;
+import fr.aiko.Karl.parser.ast.statements.VariableAssignmentStatement;
 import fr.aiko.Karl.parser.ast.statements.VariableDeclarationStatement;
+import fr.aiko.Karl.parser.ast.values.Value;
 import fr.aiko.Karl.std.Operators;
 import fr.aiko.Karl.std.Types;
 import fr.aiko.Karl.std.VariableManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public final class Parser {
-    private int pos;
+    public final String fileName;
     private final int size;
     private final ArrayList<Token> tokens;
-    public final String fileName;
     private final ArrayList<Statement> statements = new ArrayList<>();
-    private final HashMap<String, TokenType> OPERATORS = new HashMap<>();
+    private int pos;
 
     public Parser(ArrayList<Token> tokens, String fileName) {
         this.tokens = tokens;
         this.fileName = fileName;
         this.pos = 0;
         this.size = tokens.size();
-
-        OPERATORS.put("+", TokenType.PLUS);
-        OPERATORS.put("-", TokenType.MINUS);
-        OPERATORS.put("*", TokenType.MULTIPLY);
-        OPERATORS.put("/", TokenType.DIVIDE);
-        OPERATORS.put("=", TokenType.EQUAL);
-        OPERATORS.put("==", TokenType.EQUALEQUAL);
-        OPERATORS.put(">", TokenType.GREATER);
-        OPERATORS.put("<", TokenType.LESS);
     }
 
     public ArrayList<Statement> parse() {
@@ -56,7 +47,9 @@ public final class Parser {
         if (match(TokenType.SHOW)) {
             return show();
         } else if (Types.contains(get(0).getType())) {
-            return varDeclaration();
+            return variableDeclaration();
+        } else if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
+            return variableAssignment();
         } else {
             new RuntimeError("Unknown statement : " + get(0).getValue(), fileName, get(0).getLine());
             return null;
@@ -107,7 +100,31 @@ public final class Parser {
         return new OperationExpression(left, right, operator.getType());
     }
 
-    private Statement varDeclaration() {
+    private Statement variableAssignment() {
+        String name = get(0).getValue();
+        match(TokenType.IDENTIFIER);
+        skip(TokenType.EQUAL);
+        Expression expr = getExpression();
+        if (expr == null) {
+            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine());
+            return null;
+        }
+
+        Value var = VariableManager.getVariable(name);
+        if (var == null) {
+            new RuntimeError("Variable " + name + " is not declared", fileName, get(0).getLine());
+            return null;
+        }
+        if (var.getType() != expr.eval().getType()) {
+            new RuntimeError("Type mismatch : " + var + " and " + expr.eval(), fileName, get(0).getLine());
+            return null;
+        }
+        skip(TokenType.SEMICOLON);
+
+        return new VariableAssignmentStatement(new VariableExpression(name, expr.eval()));
+    }
+
+    private Statement variableDeclaration() {
         Token type = get(0);
         match(type.getType());
         skip(TokenType.COLON);
@@ -116,7 +133,7 @@ public final class Parser {
         skip(TokenType.EQUAL);
         Expression expression = getExpression();
         if (expression == null) {
-            new RuntimeError("Expected expression after " + name.getValue(), fileName, name.getLine());
+            new RuntimeError("Excepted expression after " + name.getValue(), fileName, name.getLine());
             return null;
         }
 
@@ -142,7 +159,7 @@ public final class Parser {
             }
             expressions.add(expr);
             if (!match(TokenType.COMMA) && !checkType(0, TokenType.RIGHT_PARENTHESIS) && !checkType(1, TokenType.RIGHT_PARENTHESIS)) {
-                new SyntaxError("Expected ',' for separate parameters", fileName, get(0).getLine());
+                new SyntaxError("Excepted ',' for separate parameters", fileName, get(0).getLine());
             }
         }
         if (!match(TokenType.SEMICOLON)) new SemiColonError(fileName, get(0).getLine());
@@ -151,7 +168,7 @@ public final class Parser {
 
     private void skip(TokenType type) {
         if (get(0).getType() != type) {
-            new RuntimeError("Expected " + type + " but got " + get(0).getType(), fileName, get(0).getLine());
+            new RuntimeError("Excepted " + type.toString().toLowerCase() + " but got " + get(0).getType().toString().toLowerCase(), fileName, get(0).getLine());
         }
         pos++;
     }

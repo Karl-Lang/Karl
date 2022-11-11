@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 public class Operators {
     private static final HashMap<String, TokenType> operators = new HashMap<>();
+
     static {
         operators.put("+", TokenType.PLUS);
         operators.put("-", TokenType.MINUS);

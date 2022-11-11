@@ -24,8 +24,7 @@ public class VariableExpression extends Expression {
         }
     }
 
-    public Value setValue(Value value) {
+    public void setValue(Value value) {
         VariableManager.setVariable(name, value);
-        return value;
     }
 }

@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.2.3">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Support for float, fix bugs">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/OperationExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/OperationExpression.java" afterDir="false" />
@@ -229,14 +230,7 @@
       <workItem from="1667645098195" duration="11548000" />
       <workItem from="1668110478291" duration="4213000" />
       <workItem from="1668116630145" duration="232000" />
-      <workItem from="1668170512696" duration="26829000" />
-    </task>
-    <task id="LOCAL-00003" summary="Add line system for errors">
-      <created>1665243996605</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1665243996605</updated>
+      <workItem from="1668170512696" duration="29491000" />
     </task>
     <task id="LOCAL-00004" summary="Add Variable declarations and support in print statement">
       <created>1665336219439</created>
@@ -574,7 +568,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667647333508</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Support for float, fix bugs">
+      <created>1668206212951</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1668206212951</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Base of new ErrorManager, currently in working" />
     <MESSAGE value="Change error message for TypeError" />
     <MESSAGE value="Finish Error System" />
     <MESSAGE value="Edit README.md" />
@@ -617,7 +617,8 @@
     <MESSAGE value="v0.2.2" />
     <MESSAGE value="Add VariableAssignmentStatement.java" />
     <MESSAGE value="Switch increment and decrement to VariableAssignmentStatement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Switch increment and decrement to VariableAssignmentStatement" />
+    <MESSAGE value="Support for float, fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Support for float, fix bugs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

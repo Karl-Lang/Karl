@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 public final class Types {
     private static final HashMap<String, TokenType> types = new HashMap<>();
+
     static {
         types.put("int", TokenType.INT);
         types.put("string", TokenType.STRING);
