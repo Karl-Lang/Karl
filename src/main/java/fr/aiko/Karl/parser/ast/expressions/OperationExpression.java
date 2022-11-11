@@ -3,10 +3,7 @@ package fr.aiko.Karl.parser.ast.expressions;
 import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.parser.ast.values.FloatValue;
 import fr.aiko.Karl.parser.ast.values.IntValue;
-import fr.aiko.Karl.parser.ast.values.StringValue;
 import fr.aiko.Karl.parser.ast.values.Value;
-
-import java.util.HashMap;
 
 public class OperationExpression extends Expression {
     private final Expression left;
@@ -24,7 +21,7 @@ public class OperationExpression extends Expression {
         Value leftValue = left.eval();
         Value rightValue = right.eval();
 
-        if (leftValue.getType() == TokenType.INT) {
+        if (leftValue.getType() == TokenType.INT && rightValue.getType() == TokenType.INT) {
             return switch (operator) {
                 case PLUS -> new IntValue(leftValue.toInt() + rightValue.toInt());
                 case MINUS -> new IntValue(leftValue.toInt() - rightValue.toInt());
@@ -33,7 +30,7 @@ public class OperationExpression extends Expression {
                 case MODULO -> new IntValue(leftValue.toInt() % rightValue.toInt());
                 default -> throw new RuntimeException("Unknown operator: " + operator);
             };
-        } else if (leftValue.getType() == TokenType.FLOAT) {
+        } else if (leftValue.getType() == TokenType.FLOAT || rightValue.getType() == TokenType.INT || leftValue.getType() == TokenType.INT || rightValue.getType() == TokenType.FLOAT) {
             return switch (operator) {
                 case PLUS -> new FloatValue(leftValue.toFloat() + rightValue.toFloat());
                 case MINUS -> new FloatValue(leftValue.toFloat() - rightValue.toFloat());

@@ -15,6 +15,7 @@ import fr.aiko.Karl.std.Types;
 import fr.aiko.Karl.std.VariableManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public final class Parser {
@@ -42,10 +43,10 @@ public final class Parser {
     }
 
     public ArrayList<Statement> parse() {
-        while (pos < size - 1 && !checkType(pos, TokenType.EOF)) {
-            Statement state = getStatement();
-            if (state != null) {
-                statements.add(state);
+        while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
+            Statement statement = getStatement();
+            if (statement != null) {
+                statements.add(statement);
             }
         }
         return statements;
@@ -98,7 +99,7 @@ public final class Parser {
             return null;
         }
 
-        if (right.eval().getType() != left.eval().getType()) {
+        if (right.eval().getType() != left.eval().getType() && (!Arrays.asList(new TokenType[]{TokenType.INT, TokenType.FLOAT}).contains(right.eval().getType()) || !Arrays.asList(new TokenType[]{TokenType.INT, TokenType.FLOAT}).contains(left.eval().getType()))) {
             new RuntimeError("Type mismatch : " + left.eval() + " and " + right.eval(), fileName, get(0).getLine());
             return null;
         }
