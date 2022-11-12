@@ -3,15 +3,14 @@ package fr.aiko.Karl.parser;
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.errors.SyntaxError.SemiColonError;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
-import fr.aiko.Karl.parser.ast.expressions.Expression;
-import fr.aiko.Karl.parser.ast.expressions.OperationExpression;
-import fr.aiko.Karl.parser.ast.expressions.ValueExpression;
-import fr.aiko.Karl.parser.ast.expressions.VariableExpression;
+import fr.aiko.Karl.parser.ast.expressions.*;
 import fr.aiko.Karl.parser.ast.statements.ShowStatement;
 import fr.aiko.Karl.parser.ast.statements.Statement;
 import fr.aiko.Karl.parser.ast.statements.VariableAssignmentStatement;
 import fr.aiko.Karl.parser.ast.statements.VariableDeclarationStatement;
+import fr.aiko.Karl.parser.ast.values.BooleanValue;
 import fr.aiko.Karl.parser.ast.values.Value;
+import fr.aiko.Karl.std.LogicalOperators;
 import fr.aiko.Karl.std.Operators;
 import fr.aiko.Karl.std.Types;
 import fr.aiko.Karl.std.VariableManager;
@@ -50,6 +49,8 @@ public final class Parser {
             return variableDeclaration();
         } else if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
             return variableAssignment();
+        } else if (match(TokenType.IF)) {
+            return ifElse();
         } else {
             new RuntimeError("Unknown statement : " + get(0).getValue(), fileName, get(0).getLine());
             return null;
@@ -59,20 +60,42 @@ public final class Parser {
     private Expression getExpression() {
         Token token = get(0);
         Expression expr = null;
-        if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT)) {
+        if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
             switch (token.getType()) {
                 case STRING -> expr = new ValueExpression(token.getValue(), token.getType());
                 case INT -> expr = new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
                 case BOOL -> expr = new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
                 case FLOAT -> expr = new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
+                case CHAR -> expr = new ValueExpression(token.getValue().charAt(0), token.getType());
             }
         } else if (match(TokenType.IDENTIFIER)) {
             expr = new ValueExpression(VariableManager.getVariable(token.getValue()), token.getType());
-        }
+        } else if (match(TokenType.LEFT_PARENTHESIS)) {
+            ConditionalExpression expression = getConditionalExpression();
+            skip(TokenType.RIGHT_PARENTHESIS);
+            return expression;
+        } else return getConditionalExpression();
 
-        if (Operators.isType(get(0).getType())) {
+        if (Operators.isOperator(get(0).getType())) {
             return getOperationExpression(expr);
         } else return expr;
+    }
+
+    private ConditionalExpression getConditionalExpression() {
+        ConditionalExpression result;
+        Expression left = getExpression();
+        if (LogicalOperators.isOperator(get(0).getType())) {
+            Token operator = get(0);
+            skip(operator.getType());
+            Expression right = getExpression();
+            result = new ConditionalExpression(operator.getType(), left, right);
+        } else result = new ConditionalExpression(null, left, null);
+
+        if (LogicalOperators.isOperator(getType())) {
+            TokenType type = getType();
+            match(type);
+            return new ConditionalExpression(type, result, getConditionalExpression());
+        } else return result;
     }
 
     private OperationExpression getOperationExpression(Expression left) {
@@ -81,7 +104,7 @@ public final class Parser {
             return null;
         }
         Token operator = get(0);
-        if (!Operators.isType(operator.getType())) {
+        if (!Operators.isOperator(operator.getType())) {
             new RuntimeError("Unknown operator : " + operator.getValue(), fileName, operator.getLine());
             return null;
         }
@@ -98,6 +121,12 @@ public final class Parser {
         }
 
         return new OperationExpression(left, right, operator.getType());
+    }
+
+    private Statement ifElse() {
+        Expression condition = getExpression();
+        System.out.println(condition.eval() + " -> Res");
+        return null;
     }
 
     private Statement variableAssignment() {
@@ -179,6 +208,10 @@ public final class Parser {
             return new Token(TokenType.EOF, "", -1, -1);
         }
         return tokens.get(pos + relativePosition);
+    }
+
+    private TokenType getType() {
+        return get(0).getType();
     }
 
     private boolean checkType(int pos, TokenType type) {

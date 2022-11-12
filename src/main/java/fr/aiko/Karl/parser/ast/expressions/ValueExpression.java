@@ -32,6 +32,11 @@ public class ValueExpression extends Expression {
         this.type = type;
     }
 
+    public ValueExpression(Character value, TokenType type) {
+        this.value = new CharValue(value);
+        this.type = type;
+    }
+
     @Override
     public Value eval() {
         return value;

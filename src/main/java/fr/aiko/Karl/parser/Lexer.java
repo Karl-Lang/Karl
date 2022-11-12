@@ -4,6 +4,7 @@ import fr.aiko.Karl.errors.Error;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class Lexer {
         OPERATORS.put("+", TokenType.PLUS);
         OPERATORS.put("&&", TokenType.AND);
         OPERATORS.put("||", TokenType.OR);
-        OPERATORS.put("==", TokenType.EQUAL);
+        OPERATORS.put("==", TokenType.EQUALEQUAL);
         OPERATORS.put("!=", TokenType.NOT_EQUAL);
         OPERATORS.put(">", TokenType.GREATER);
         OPERATORS.put("<", TokenType.LESS);
@@ -155,7 +156,6 @@ public class Lexer {
             buffer.append(c);
             c = nextChar();
         }
-
         if (buffer.toString().equals("true") || buffer.toString().equals("false")) {
             addToken(TokenType.BOOL, buffer.toString());
         } else if (buffer.toString().equals("show")) {
@@ -201,7 +201,15 @@ public class Lexer {
             c = nextChar();
 
             if (OPERATORS.containsKey(buffer.toString())) {
-                addToken(OPERATORS.get(buffer.toString()), buffer.toString());
+                if (Character.toString(c).equals(buffer.toString()) && Arrays.asList(new Character[]{'|', '&', '='}).contains(c)) {
+                    addToken(OPERATORS.get(buffer.toString() + c), buffer.toString() + c);
+                    nextChar();
+                } else if (Arrays.asList(new String[]{">", "<", "!"}).contains(buffer.toString()) && c == '=') {
+                    addToken(OPERATORS.get(buffer.toString() + c), buffer.toString() + c);
+                    nextChar();
+                } else {
+                    addToken(OPERATORS.get(buffer.toString()), buffer.toString());
+                }
                 return;
             }
         }
