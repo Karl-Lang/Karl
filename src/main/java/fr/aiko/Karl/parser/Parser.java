@@ -167,7 +167,7 @@ public final class Parser {
             return null;
         }
         if (var.getType() != expr.eval().getType()) {
-            new RuntimeError("Type mismatch : " + var + " and " + expr.eval(), fileName, get(0).getLine(), get(0).getPosition());
+            new RuntimeError("Type mismatch : " + var.getType().toString().toLowerCase() + " and " + expr.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
         skip(TokenType.SEMICOLON);
@@ -189,7 +189,7 @@ public final class Parser {
         }
 
         if (expression.eval().getType() != type.getType()) {
-            new RuntimeError("Excepted type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition());
+            new RuntimeError("Excepted type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
             return null;
         }
 

@@ -85,7 +85,7 @@ public class Lexer {
             if (c == '\n' || c == '\r') {
                 line++;
                 position++;
-            } else if (Character.isDigit(c)) tokenizeNumber();
+            } else if (Character.isDigit(c) || (c == '-' && position + 1 < input.length() && Character.isDigit(input.charAt(position + 1)))) tokenizeNumber();
             else if (Character.isLetter(c)) tokenizeIdentifier();
             else if (c == '"') tokenizeString();
             else if (c == '\'') tokenizeChar();
@@ -124,9 +124,9 @@ public class Lexer {
                 break;
             }
 
-            if (c == '.' && buffer.indexOf(".") != -1) {
+            if ((c == '.' && buffer.indexOf(".") != -1) || (buffer.indexOf("-") != -1 && buffer.indexOf("-") != -1)) {
                 new SyntaxError("Invalid number", fileName, line, position);
-            } else if (!Character.isDigit(c) && c != '.') {
+            } else if (!Character.isDigit(c) && (c != '.' && c != '-')) {
                 break;
             }
 
@@ -134,7 +134,7 @@ public class Lexer {
             c = nextChar();
         }
 
-        if (buffer.indexOf(".") == 1) {
+        if (buffer.indexOf(".") != -1) {
             addToken(TokenType.FLOAT, buffer.toString());
         } else {
             addToken(TokenType.INT, buffer.toString());

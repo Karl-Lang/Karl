@@ -44,10 +44,19 @@ public class Error {
         }
     }
 
+    private String getFile() {
+        try {
+            return Files.readString(Path.of(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private String printIndicator() {
-        String[] line = getLine().split("");
-        Arrays.fill(line, " ");
-        line[position] = "^";
-        return String.join("", line);
+        String line = getLine();
+        int pos = position - getFile().indexOf(line);
+        char[] chars = new char[pos - 1];
+        Arrays.fill(chars, ' ');
+        return new String(chars) + "^";
     }
 }
