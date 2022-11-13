@@ -30,6 +30,21 @@ public final class Parser {
 
     public ArrayList<Statement> parse() {
         while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
+            if (match(TokenType.COMMENTARY)) {
+                int baseLine = get(0).getLine();
+                while (get(0).getLine() == baseLine && pos < size - 1 && !checkType(0, TokenType.EOF)) {
+                    match(getType());
+                }
+                if (pos == size - 1 || checkType(0, TokenType.EOF)) break;
+            } else if (match(TokenType.DIVIDE) && match(TokenType.MULTIPLY)) {
+                while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
+                    if (match(TokenType.MULTIPLY) && match(TokenType.DIVIDE)) break;
+
+                    match(getType());
+                }
+                if (pos == size - 1 || checkType(0, TokenType.EOF)) break;
+            }
+
             Statement statement = getStatement();
             if (statement != null) {
                 statements.add(statement);
@@ -47,9 +62,33 @@ public final class Parser {
             return variableAssignment();
         } else if (match(TokenType.IF)) {
             return ifElse();
+        } else if (match(TokenType.IDENTIFIER) && (match(TokenType.PLUSPLUS) || match(TokenType.MINUSMINUS))) {
+            return incrementDecrement();
         } else {
-            new RuntimeError("Unknown statement : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
+            new RuntimeError("Unexpected token " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
+        }
+    }
+
+    private Statement incrementDecrement() {
+        String name = get(-2).getValue();
+        Value var = VariableManager.getVariable(name);
+        if (var == null) {
+            new RuntimeError("Variable " + name + " is not defined", fileName, get(-2).getLine(), get(-2).getPosition());
+            return null;
+        } else {
+            if (var.getType() != TokenType.INT && var.getType() != TokenType.FLOAT) {
+                new RuntimeError("Variable " + name + " is not a number", fileName, get(-2).getLine(), get(-2).getPosition());
+                return null;
+            } else {
+                if (get(-1).getType() == TokenType.PLUSPLUS) {
+                    skip(TokenType.SEMICOLON);
+                    return new VariableAssignmentStatement(name, new OperationExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.PLUS).eval());
+                } else {
+                    skip(TokenType.SEMICOLON);
+                    return new VariableAssignmentStatement(name, new OperationExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.MINUS).eval());
+                }
+            }
         }
     }
 

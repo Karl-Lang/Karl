@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bugs and add new error messages design">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bugs and add negative numbers support">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/TokenType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -233,14 +234,7 @@
       <workItem from="1668116630145" duration="232000" />
       <workItem from="1668170512696" duration="29491000" />
       <workItem from="1668270538891" duration="9120000" />
-      <workItem from="1668343220175" duration="10610000" />
-    </task>
-    <task id="LOCAL-00007" summary="Add multi arguments support in getArguments function">
-      <created>1665338931947</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1665338931947</updated>
+      <workItem from="1668343220175" duration="15383000" />
     </task>
     <task id="LOCAL-00008" summary="Add comments">
       <created>1665339257105</created>
@@ -578,7 +572,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668358502524</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Fix bugs and add negative numbers support">
+      <created>1668360720421</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1668360720421</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +597,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="If statement, need a lot of tests and optimizations" />
     <MESSAGE value="Fix a lot of issues and make some optimizations" />
     <MESSAGE value="Make if statement back, in tests" />
     <MESSAGE value="Make new comment support, if statement in tests" />
@@ -621,7 +621,8 @@
     <MESSAGE value="Support for char, base of conditions" />
     <MESSAGE value="Fix bugs in variable assignment, add base of if statement" />
     <MESSAGE value="Fix bugs and add new error messages design" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs and add new error messages design" />
+    <MESSAGE value="Fix bugs and add negative numbers support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs and add negative numbers support" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

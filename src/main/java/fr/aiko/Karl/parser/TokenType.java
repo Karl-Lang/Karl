@@ -46,7 +46,10 @@ public enum TokenType {
     EOF("EOF"),
     AND("&&"),
     OR("||"),
-    CHAR("char");
+    CHAR("char"),
+    MINUSMINUS("--"),
+    PLUSPLUS("++"),
+    COMMENTARY("//");
 
     private final String name;
 

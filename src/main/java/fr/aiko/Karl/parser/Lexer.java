@@ -28,6 +28,8 @@ public class Lexer {
         line = 1;
 
         OPERATORS.put("+", TokenType.PLUS);
+        OPERATORS.put("++", TokenType.PLUSPLUS);
+        OPERATORS.put("--", TokenType.MINUSMINUS);
         OPERATORS.put("&&", TokenType.AND);
         OPERATORS.put("||", TokenType.OR);
         OPERATORS.put("==", TokenType.EQUALEQUAL);
@@ -57,6 +59,7 @@ public class Lexer {
         OPERATORS.put("?", TokenType.QUESTION);
         OPERATORS.put("!", TokenType.EXCLAMATION);
         OPERATORS.put(";", TokenType.SEMICOLON);
+        OPERATORS.put("//", TokenType.COMMENTARY);
 
 
         KEYWORDS.put("func", TokenType.FUNC);
@@ -201,7 +204,7 @@ public class Lexer {
             c = nextChar();
 
             if (OPERATORS.containsKey(buffer.toString())) {
-                if (Character.toString(c).equals(buffer.toString()) && Arrays.asList(new Character[]{'|', '&', '='}).contains(c)) {
+                if (Character.toString(c).equals(buffer.toString()) && Arrays.asList(new Character[]{'|', '&', '=', '+', '-', '/'}).contains(c)) {
                     addToken(OPERATORS.get(buffer.toString() + c), buffer.toString() + c);
                     nextChar();
                 } else if (Arrays.asList(new String[]{">", "<", "!"}).contains(buffer.toString()) && c == '=') {

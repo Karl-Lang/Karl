@@ -1,14 +1,1 @@
-float: number = 46.3;
-if (number == 46.3 && (false == false)) -> {
-    show(number);
-    show("Hello World! 1");
-} else if (10 > 1 && (false == false)) -> {
-    number = 3.2;
-    show(number);
-    show("Hello World! 2");
-} else -> {
-    show(number);
-    show("Hello World! 3");
-}
-
-show("Number is ", number);
+show("It working!");
