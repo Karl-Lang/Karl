@@ -1,11 +1,14 @@
-int: number = 0;
-if (10 > 1 && (false == false)) -> {
+int: number = -2;
+if (number == 0 && (false == false)) -> {
     show(number);
-    show("Hello World!");
+    show("Hello World! 1");
+} else if (10 > 1 && (false == false)) -> {
+    number = 3;
+    show(number);
+    show("Hello World! 2");
 } else -> {
-    number = number + 1;
-    show(number, " output");
-    show("Goodbye World!");
+    show(number);
+    show("Hello World! 3");
 }
 
 show("Number is ", number);

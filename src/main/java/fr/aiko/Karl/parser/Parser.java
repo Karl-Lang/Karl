@@ -48,7 +48,7 @@ public final class Parser {
         } else if (match(TokenType.IF)) {
             return ifElse();
         } else {
-            new RuntimeError("Unknown statement : " + get(0).getValue(), fileName, get(0).getLine());
+            new RuntimeError("Unknown statement : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
     }
@@ -70,7 +70,7 @@ public final class Parser {
             ConditionalExpression expression = getConditionalExpression();
             skip(TokenType.RIGHT_PARENTHESIS);
             return expression;
-        } else return getConditionalExpression();
+        } else new RuntimeError("Unknown expression : " + token.getValue(), fileName, token.getLine(), token.getPosition());
 
         if (Operators.isOperator(get(0).getType())) {
             return getOperationExpression(expr);
@@ -111,23 +111,23 @@ public final class Parser {
 
     private OperationExpression getOperationExpression(Expression left) {
         if (left == null) {
-            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine());
+            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
         Token operator = get(0);
         if (!Operators.isOperator(operator.getType())) {
-            new RuntimeError("Unknown operator : " + operator.getValue(), fileName, operator.getLine());
+            new RuntimeError("Unknown operator : " + operator.getValue(), fileName, operator.getLine(), operator.getPosition());
             return null;
         }
         match(operator.getType());
         Expression right = getExpression();
         if (right == null) {
-            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine());
+            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
 
         if (right.eval().getType() != left.eval().getType() && (!Arrays.asList(new TokenType[]{TokenType.INT, TokenType.FLOAT}).contains(right.eval().getType()) || !Arrays.asList(new TokenType[]{TokenType.INT, TokenType.FLOAT}).contains(left.eval().getType()))) {
-            new RuntimeError("Type mismatch : " + left.eval() + " and " + right.eval(), fileName, get(0).getLine());
+            new RuntimeError("Type mismatch : " + left.eval() + " and " + right.eval(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
 
@@ -135,11 +135,19 @@ public final class Parser {
     }
 
     private Statement ifElse() {
+        if (!checkType(0, TokenType.LEFT_PARENTHESIS)) {
+            new SyntaxError("Expected '('", fileName, get(0).getLine(), get(0).getPosition());
+            return null;
+        }
         Expression condition = getExpression();
         BlockStatement ifBlock = getBlock();
         if (match(TokenType.ELSE)) {
-            BlockStatement elseBlock = getBlock();
-            return new IfElseStatement(condition, ifBlock, elseBlock);
+            if (match(TokenType.IF)) {
+                return new IfElseStatement(condition, ifBlock, ifElse());
+            } else {
+                BlockStatement elseBlock = getBlock();
+                return new IfElseStatement(condition, ifBlock, elseBlock);
+            }
         } else return new IfElseStatement(condition, ifBlock, null);
     }
 
@@ -149,17 +157,17 @@ public final class Parser {
         skip(TokenType.EQUAL);
         Expression expr = getExpression();
         if (expr == null) {
-            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine());
+            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
 
         Value var = VariableManager.getVariable(name);
         if (var == null) {
-            new RuntimeError("Variable " + name + " is not declared", fileName, get(0).getLine());
+            new RuntimeError("Variable " + name + " is not declared", fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
         if (var.getType() != expr.eval().getType()) {
-            new RuntimeError("Type mismatch : " + var + " and " + expr.eval(), fileName, get(0).getLine());
+            new RuntimeError("Type mismatch : " + var + " and " + expr.eval(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
         skip(TokenType.SEMICOLON);
@@ -176,17 +184,17 @@ public final class Parser {
         skip(TokenType.EQUAL);
         Expression expression = getExpression();
         if (expression == null) {
-            new RuntimeError("Excepted expression after " + name.getValue(), fileName, name.getLine());
+            new RuntimeError("Excepted expression after " + name.getValue(), fileName, name.getLine(), get(0).getPosition());
             return null;
         }
 
         if (expression.eval().getType() != type.getType()) {
-            new RuntimeError("Excepted type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine());
+            new RuntimeError("Excepted type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
 
         if (!match(TokenType.SEMICOLON)) {
-            new SemiColonError(fileName, get(0).getLine());
+            new SemiColonError(fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
         return new VariableDeclarationStatement(new VariableExpression(name.getValue(), expression.eval()));
@@ -198,20 +206,20 @@ public final class Parser {
         while (!match(TokenType.RIGHT_PARENTHESIS)) {
             Expression expr = getExpression();
             if (expr == null) {
-                new RuntimeError("Unknown expression: " + get(0).getValue(), fileName, get(0).getLine());
+                new RuntimeError("Unknown expression: " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             }
             expressions.add(expr);
             if (!match(TokenType.COMMA) && !checkType(0, TokenType.RIGHT_PARENTHESIS) && !checkType(1, TokenType.RIGHT_PARENTHESIS)) {
-                new SyntaxError("Excepted ',' for separate parameters", fileName, get(0).getLine());
+                new SyntaxError("Excepted ',' for separate parameters", fileName, get(0).getLine(), get(0).getPosition());
             }
         }
-        if (!match(TokenType.SEMICOLON)) new SemiColonError(fileName, get(0).getLine());
+        if (!match(TokenType.SEMICOLON)) new SemiColonError(fileName, get(0).getLine(), get(0).getPosition());
         return new ShowStatement(expressions);
     }
 
     private void skip(TokenType type) {
         if (get(0).getType() != type) {
-            new RuntimeError("Excepted " + type.toString().toLowerCase() + " but got " + get(0).getType().toString().toLowerCase(), fileName, get(0).getLine());
+            new RuntimeError("Excepted " + type.toString().toLowerCase() + " but got " + get(0).getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition());
         }
         pos++;
     }

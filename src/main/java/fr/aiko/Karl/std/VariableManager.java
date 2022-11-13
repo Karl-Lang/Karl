@@ -3,23 +3,16 @@ package fr.aiko.Karl.std;
 import fr.aiko.Karl.parser.ast.values.Value;
 
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
 public final class VariableManager {
-    private static final ConcurrentHashMap<String, Value> variables = new ConcurrentHashMap<>();
-    private static final Object lock = new Object();
+    private static final HashMap<String, Value> variables = new HashMap<>();
 
     public static Value getVariable(String name) {
-        synchronized (lock) {
-            return variables.get(name);
-        }
+        return variables.get(name);
     }
 
     public static void setVariable(String name, Value value) {
-        synchronized (lock) {
-            variables.put(name, value);
-        }
+        variables.put(name, value);
     }
 
     public static void removeVariable(String name) {

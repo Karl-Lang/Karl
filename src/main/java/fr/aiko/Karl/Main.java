@@ -25,24 +25,25 @@ public class Main implements Runnable {
     @Override
     public void run() {
         if (!Files.exists(Path.of(path))) {
-            new Error("FileNotFound", "The file " + path + " doesn't exist", "Main.java", 0);
+            new Error("FileNotFound", "The file " + path + " doesn't exist", "Main.java", 0, 0);
         }
         String fileName = path.substring(path.lastIndexOf("/") + 1);
 
         if (!fileName.endsWith(".karl")) {
-            new Error("FileError", "The file must be a .karl file", fileName, 0);
+            new Error("FileError", "The file must be a .karl file", fileName, 0, 0);
         }
 
-        Long start = System.currentTimeMillis();
         Lexer lexer = null;
         try {
-            lexer = new Lexer(Files.readString(Path.of(path)), fileName);
+            lexer = new Lexer(Files.readString(Path.of(path)), path);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         ArrayList<Token> tokens = lexer.tokens;
-        Parser parser = new Parser(tokens, fileName);
+        Parser parser = new Parser(tokens, path);
         ArrayList<Statement> statements = parser.parse();
+
+        Long start = System.currentTimeMillis();
         statements.forEach(Statement::eval);
         Long end = System.currentTimeMillis();
         System.out.println("Execution time: " + (end - start) + "ms");

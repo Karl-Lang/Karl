@@ -77,7 +77,7 @@ public class Lexer {
 
     public void tokenize() {
         if (input.length() == 0) {
-            new Error("RetardError :)", "Empty file", fileName, line);
+            new Error("RetardError :)", "Empty file", fileName, line, 0);
         }
 
         while (position < input.length()) {
@@ -91,7 +91,7 @@ public class Lexer {
             else if (c == '\'') tokenizeChar();
             else if (OPERATOR_CHARS.indexOf(c) != -1) tokenizeOperator();
             else if (Character.isWhitespace(c)) nextChar();
-            else new SyntaxError("Unexpected character: " + c, fileName, line);
+            else new SyntaxError("Unexpected character: " + c, fileName, line, position);
         }
 
         tokens.add(new Token(TokenType.EOF, "EOF", input.length(), line));
@@ -103,9 +103,9 @@ public class Lexer {
         nextChar();
         if (input.charAt(position) != '\'') {
             if (input.charAt(position) != '\'') {
-                new SyntaxError("Character type can only contain one character", fileName, line);
+                new SyntaxError("Character type can only contain one character", fileName, line, position);
             } else {
-                new SyntaxError("Expected ' at end of char value", fileName, line);
+                new SyntaxError("Expected ' at end of char value", fileName, line, position);
             }
         }
         nextChar();
@@ -116,7 +116,7 @@ public class Lexer {
         buffer.setLength(0);
         char c = input.charAt(position);
         if (position + 1 < input.length() && Character.isLetter(input.charAt(position + 1))) {
-            new SyntaxError("Unexpected character: " + input.charAt(position), fileName, line);
+            new SyntaxError("Unexpected character: " + input.charAt(position), fileName, line, position);
         }
 
         while (true) {
@@ -125,7 +125,7 @@ public class Lexer {
             }
 
             if (c == '.' && buffer.indexOf(".") != -1) {
-                new SyntaxError("Invalid number", fileName, line);
+                new SyntaxError("Invalid number", fileName, line, position);
             } else if (!Character.isDigit(c) && c != '.') {
                 break;
             }
@@ -170,7 +170,7 @@ public class Lexer {
         char c = nextChar();
         while (true) {
             if (c == '\0') {
-                new SyntaxError("Unterminated string", fileName, line);
+                new SyntaxError("Unterminated string", fileName, line, position);
             }
 
             if (c == '"') {
