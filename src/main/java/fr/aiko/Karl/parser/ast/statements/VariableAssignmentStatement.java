@@ -1,16 +1,20 @@
 package fr.aiko.Karl.parser.ast.statements;
 
-import fr.aiko.Karl.parser.ast.expressions.Expression;
+import fr.aiko.Karl.parser.ast.expressions.VariableExpression;
+import fr.aiko.Karl.parser.ast.values.Value;
+import fr.aiko.Karl.std.VariableManager;
 
 public class VariableAssignmentStatement extends Statement {
-    private final Expression expression;
+    public final Value value;
+    private final String name;
 
-    public VariableAssignmentStatement(Expression expression) {
-        this.expression = expression;
+    public VariableAssignmentStatement(String name, Value value) {
+        this.name = name;
+        this.value = value;
     }
 
     @Override
     public void eval() {
-        expression.eval();
+        VariableManager.setVariable(name, value);
     }
 }

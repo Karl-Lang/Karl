@@ -4,10 +4,12 @@ import fr.aiko.Karl.parser.ast.values.Value;
 import fr.aiko.Karl.std.VariableManager;
 
 public class VariableExpression extends Expression {
+    public final Value value;
     private final String name;
 
     public VariableExpression(String name, Value value) {
         this.name = name;
+        this.value = value;
         setValue(value);
     }
 
@@ -16,15 +18,11 @@ public class VariableExpression extends Expression {
         return getValue();
     }
 
-    public Value getValue() {
-        if (VariableManager.getVariable(name) != null) {
-            return VariableManager.getVariable(name);
-        } else {
-            return null;
-        }
+    public synchronized Value getValue() {
+        return VariableManager.getVariable(name);
     }
 
-    public void setValue(Value value) {
+    public synchronized void setValue(Value value) {
         VariableManager.setVariable(name, value);
     }
 }

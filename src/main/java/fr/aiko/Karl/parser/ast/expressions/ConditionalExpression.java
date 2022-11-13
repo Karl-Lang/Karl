@@ -22,7 +22,6 @@ public class ConditionalExpression extends Expression {
         if (operator != null) {
             if (right != null) {
                 Value rightValue = right.eval();
-                System.out.println("Result = " + leftValue + " " + rightValue);
                 if (leftValue.getType() == TokenType.INT || leftValue.getType() == TokenType.FLOAT) {
                     return switch (operator) {
                         case EQUALEQUAL -> new BooleanValue(leftValue.toFloat() == rightValue.toFloat());
@@ -31,16 +30,21 @@ public class ConditionalExpression extends Expression {
                         case GREATER_EQUAL -> new BooleanValue(leftValue.toFloat() >= rightValue.toFloat());
                         case LESS -> new BooleanValue(leftValue.toFloat() < rightValue.toFloat());
                         case LESS_EQUAL -> new BooleanValue(leftValue.toFloat() <= rightValue.toFloat());
-                        case AND -> new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
-                        case OR -> new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case AND ->
+                                new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case OR ->
+                                new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
                         default -> throw new RuntimeException("Unknown operator: " + operator);
                     };
                 } else {
+                    final boolean equals = leftValue.toString().equals(rightValue.toString());
                     return switch (operator) {
-                        case EQUALEQUAL -> new BooleanValue(leftValue.equals(rightValue));
-                        case NOT_EQUAL -> new BooleanValue(!leftValue.equals(rightValue));
-                        case AND -> new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
-                        case OR -> new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case EQUALEQUAL -> new BooleanValue(equals);
+                        case NOT_EQUAL -> new BooleanValue(!equals);
+                        case AND ->
+                                new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case OR ->
+                                new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
                         default -> throw new RuntimeException("Unknown operator: " + operator);
                     };
                 }

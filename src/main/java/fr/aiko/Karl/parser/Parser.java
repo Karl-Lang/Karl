@@ -4,11 +4,7 @@ import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.errors.SyntaxError.SemiColonError;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 import fr.aiko.Karl.parser.ast.expressions.*;
-import fr.aiko.Karl.parser.ast.statements.ShowStatement;
-import fr.aiko.Karl.parser.ast.statements.Statement;
-import fr.aiko.Karl.parser.ast.statements.VariableAssignmentStatement;
-import fr.aiko.Karl.parser.ast.statements.VariableDeclarationStatement;
-import fr.aiko.Karl.parser.ast.values.BooleanValue;
+import fr.aiko.Karl.parser.ast.statements.*;
 import fr.aiko.Karl.parser.ast.values.Value;
 import fr.aiko.Karl.std.LogicalOperators;
 import fr.aiko.Karl.std.Operators;
@@ -69,7 +65,7 @@ public final class Parser {
                 case CHAR -> expr = new ValueExpression(token.getValue().charAt(0), token.getType());
             }
         } else if (match(TokenType.IDENTIFIER)) {
-            expr = new ValueExpression(VariableManager.getVariable(token.getValue()), token.getType());
+            expr = new VariableCallExpression(token.getValue());
         } else if (match(TokenType.LEFT_PARENTHESIS)) {
             ConditionalExpression expression = getConditionalExpression();
             skip(TokenType.RIGHT_PARENTHESIS);
@@ -79,6 +75,21 @@ public final class Parser {
         if (Operators.isOperator(get(0).getType())) {
             return getOperationExpression(expr);
         } else return expr;
+    }
+
+    private BlockStatement getBlock() {
+        ArrayList<Statement> statements = new ArrayList<>();
+        skip(TokenType.MINUS);
+        skip(TokenType.GREATER);
+        skip(TokenType.LEFT_BRACE);
+        while (!checkType(0, TokenType.RIGHT_BRACE) && !checkType(0, TokenType.EOF) && pos < size - 1) {
+            Statement statement = getStatement();
+            if (statement != null) {
+                statements.add(statement);
+            }
+        }
+        skip(TokenType.RIGHT_BRACE);
+        return new BlockStatement(statements);
     }
 
     private ConditionalExpression getConditionalExpression() {
@@ -125,8 +136,11 @@ public final class Parser {
 
     private Statement ifElse() {
         Expression condition = getExpression();
-        System.out.println(condition.eval() + " -> Res");
-        return null;
+        BlockStatement ifBlock = getBlock();
+        if (match(TokenType.ELSE)) {
+            BlockStatement elseBlock = getBlock();
+            return new IfElseStatement(condition, ifBlock, elseBlock);
+        } else return new IfElseStatement(condition, ifBlock, null);
     }
 
     private Statement variableAssignment() {
@@ -150,7 +164,7 @@ public final class Parser {
         }
         skip(TokenType.SEMICOLON);
 
-        return new VariableAssignmentStatement(new VariableExpression(name, expr.eval()));
+        return new VariableAssignmentStatement(name, expr.eval());
     }
 
     private Statement variableDeclaration() {
@@ -184,7 +198,7 @@ public final class Parser {
         while (!match(TokenType.RIGHT_PARENTHESIS)) {
             Expression expr = getExpression();
             if (expr == null) {
-                new RuntimeError("Unknow expression: " + get(0).getValue(), fileName, get(0).getLine());
+                new RuntimeError("Unknown expression: " + get(0).getValue(), fileName, get(0).getLine());
             }
             expressions.add(expr);
             if (!match(TokenType.COMMA) && !checkType(0, TokenType.RIGHT_PARENTHESIS) && !checkType(1, TokenType.RIGHT_PARENTHESIS)) {
