@@ -49,7 +49,8 @@ public enum TokenType {
     CHAR("char"),
     MINUSMINUS("--"),
     PLUSPLUS("++"),
-    COMMENTARY("//");
+    COMMENTARY("//"),
+    VOID("void");
 
     private final String name;
 

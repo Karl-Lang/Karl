@@ -74,6 +74,7 @@ public class Lexer {
         KEYWORDS.put("float", TokenType.FLOAT);
         KEYWORDS.put("string", TokenType.STRING);
         KEYWORDS.put("char", TokenType.CHAR);
+        KEYWORDS.put("void", TokenType.VOID);
 
         tokenize();
     }

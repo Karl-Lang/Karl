@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.2.4", description = "Karl programming language")
+@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.4", description = "Karl programming language")
 public class Main implements Runnable {
     @CommandLine.Parameters(index = "0", description = "The file to run")
     private String path;
@@ -33,19 +33,18 @@ public class Main implements Runnable {
             new Error("FileError", "The file must be a .karl file", fileName, 0, 0);
         }
 
-        Lexer lexer = null;
         try {
-            lexer = new Lexer(Files.readString(Path.of(path)), path);
+            Lexer lexer = new Lexer(Files.readString(Path.of(path)), path);
+            ArrayList<Token> tokens = lexer.tokens;
+            Parser parser = new Parser(tokens, path);
+            ArrayList<Statement> statements = parser.parse();
+
+            Long start = System.currentTimeMillis();
+            statements.forEach(Statement::eval);
+            Long end = System.currentTimeMillis();
+            System.out.println("Execution time: " + (end - start) + "ms");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ArrayList<Token> tokens = lexer.tokens;
-        Parser parser = new Parser(tokens, path);
-        ArrayList<Statement> statements = parser.parse();
-
-        Long start = System.currentTimeMillis();
-        statements.forEach(Statement::eval);
-        Long end = System.currentTimeMillis();
-        System.out.println("Execution time: " + (end - start) + "ms");
     }
 }

@@ -1,1 +1,5 @@
-show("It working!");
+func main::() -> void {
+    show("Uwu");
+}
+
+main();

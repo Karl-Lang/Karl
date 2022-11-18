@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bugs and add negative numbers support">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bugs, add base of functions (need tests &amp; args)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FuncCallStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/FunctionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,13 +166,38 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="MainTest.testIf" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;fr.aiko.Karl.MainTest.testIf&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.MainTest.testIf" />
       <item itemvalue="Gradle.MainTest.testElse" />
       <item itemvalue="Gradle.MainTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MainTest.testIf" />
         <item itemvalue="Gradle.MainTest.testElse" />
         <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Application.Main" />
@@ -234,14 +265,13 @@
       <workItem from="1668116630145" duration="232000" />
       <workItem from="1668170512696" duration="29491000" />
       <workItem from="1668270538891" duration="9120000" />
-      <workItem from="1668343220175" duration="15383000" />
-    </task>
-    <task id="LOCAL-00008" summary="Add comments">
-      <created>1665339257105</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1665339257105</updated>
+      <workItem from="1668343220175" duration="17530000" />
+      <workItem from="1668455490686" duration="2426000" />
+      <workItem from="1668513270938" duration="6759000" />
+      <workItem from="1668597462449" duration="494000" />
+      <workItem from="1668603358142" duration="10498000" />
+      <workItem from="1668699433875" duration="1233000" />
+      <workItem from="1668798842985" duration="956000" />
     </task>
     <task id="LOCAL-00009" summary="Edit README.md">
       <created>1665339392155</created>
@@ -579,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668360720421</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Increment/Decrement, Comments &amp; Multi-line comments">
+      <created>1668370217825</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1668370217825</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,8 +634,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix a lot of issues and make some optimizations" />
-    <MESSAGE value="Make if statement back, in tests" />
     <MESSAGE value="Make new comment support, if statement in tests" />
     <MESSAGE value="If statements seems working" />
     <MESSAGE value="Rewrite of Parser" />
@@ -622,7 +657,20 @@
     <MESSAGE value="Fix bugs in variable assignment, add base of if statement" />
     <MESSAGE value="Fix bugs and add new error messages design" />
     <MESSAGE value="Fix bugs and add negative numbers support" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs and add negative numbers support" />
+    <MESSAGE value="Increment/Decrement, Comments &amp; Multi-line comments" />
+    <MESSAGE value="Fix bugs, add base of functions (need tests &amp; args)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs, add base of functions (need tests &amp; args)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/ValueExpression.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
