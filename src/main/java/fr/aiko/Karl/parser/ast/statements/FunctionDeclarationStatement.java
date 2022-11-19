@@ -20,6 +20,5 @@ public class FunctionDeclarationStatement extends Statement {
     }
 
     @Override
-    public void eval() {
-    }
+    public void eval() {}
 }

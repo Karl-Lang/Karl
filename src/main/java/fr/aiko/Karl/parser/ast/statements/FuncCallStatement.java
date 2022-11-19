@@ -31,17 +31,18 @@ public class FuncCallStatement extends Statement {
         }
 
         Function function = FunctionManager.getFunction(name);
-        if (args.size() != function.getArgs().size()) {
-            new RuntimeError("Function " + name + " takes " + function.getArgs().size() + " arguments, " + args.size() + " given", fileName, line, pos);
+        HashMap<String, TokenType> parameters = function.getArgs();
+        if (args.size() != parameters.size()) {
+            new RuntimeError("Function " + name + " takes " + parameters.size() + " arguments, " + args.size() + " given", fileName, line, pos);
         }
 
         int i = 0;
         for (String arg : function.getArgs().keySet()) {
             if (function.getArgs().get(arg) != args.get(i).eval().getType()) {
-                new RuntimeError("Argument " + arg + " of function " + name + " must be of type " + function.getArgs().get(arg) + ", " + args.get(i) + " given", fileName, line, pos);
+                new RuntimeError("Argument " + arg + " of function " + name + " must be of type " + parameters.get(arg) + ", " + args.get(i) + " given", fileName, line, pos);
             }
             i++;
         }
-        FunctionManager.getFunction(name).eval();
+        function.eval(args);
     }
 }

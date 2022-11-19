@@ -1,5 +1,5 @@
-main();
+main(1);
 
-func main::(): void -> {
-    show("Hello, world!");
+func main::(int: number): void -> {
+    show("Hello, world! ", number);
 }

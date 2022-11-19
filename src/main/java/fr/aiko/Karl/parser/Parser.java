@@ -88,6 +88,11 @@ public final class Parser {
     private Statement funcDeclaration() {
         skip(TokenType.IDENTIFIER);
         String name = get(-1).getValue();
+        if (FunctionManager.isFunction(name)) {
+            new RuntimeError("Function " + name + " already exists", fileName, get(-1).getLine(), get(-1).getPosition());
+            return null;
+        }
+
         skip(TokenType.COLON);
         skip(TokenType.COLON);
         skip(TokenType.LEFT_PARENTHESIS);
