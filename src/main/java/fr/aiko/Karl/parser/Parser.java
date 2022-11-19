@@ -171,11 +171,7 @@ public final class Parser {
                 case CHAR -> expr = new ValueExpression(token.getValue().charAt(0), token.getType());
             }
         } else if (match(TokenType.IDENTIFIER)) {
-            if (VariableManager.getVariable(token.getValue()) == null) {
-                new RuntimeError("Variable " + token.getValue() + " is not declared", fileName, get(0).getLine(), get(0).getPosition());
-                return null;
-            }
-            expr = new VariableCallExpression(token.getValue());
+            expr = new VariableCallExpression(token.getValue(), fileName, get(0).getLine(), get(0).getPosition());
         } else if (match(TokenType.LEFT_PARENTHESIS)) {
             ConditionalExpression expression = getConditionalExpression();
             skip(TokenType.RIGHT_PARENTHESIS);

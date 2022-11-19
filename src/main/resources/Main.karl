@@ -1,5 +1,5 @@
 func main::() -> void {
-    show("Uwu");
+    int: b = 3;
 }
 
 main();

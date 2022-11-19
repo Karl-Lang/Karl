@@ -9,32 +9,58 @@ public final class VariableManager {
     private static Scope currentScope = new Scope(null);
 
     public static Value getVariable(String name) {
-        return currentScope.variables.get(name);
+        return currentScope.getVariables().get(name);
     }
 
     public static void setVariable(String name, Value value) {
-        currentScope.variables.put(name, value);
+        currentScope.getVariables().put(name, value);
     }
 
     public static void removeVariable(String name) {
-        currentScope.variables.remove(name);
+        currentScope.getVariables().remove(name);
     }
 
     public static boolean containsVariable(String name) {
-        return currentScope.variables.containsKey(name);
+        return currentScope.getVariables().containsKey(name);
     }
 
     public static void clearVariables() {
-        currentScope.variables.clear();
+        currentScope.getVariables().clear();
     }
 
-    private static class Scope {
+    public static void newScope() {
+        currentScope = new Scope(currentScope);
+    }
+
+    public static void exitScope() {
+        if (currentScope.getParent() != null) {
+            currentScope = currentScope.getParent();
+        }
+    }
+
+    public static Scope getScope() {
+        return currentScope;
+    }
+
+    public static void setScope(Scope scope) {
+        currentScope = scope;
+    }
+
+    public static class Scope {
         private final Scope parent;
 
         public Scope(Scope parent) {
             this.parent = parent;
         }
 
-        private static final HashMap<String, Value> variables = new HashMap<>();
+        private final HashMap<String, Value> variables = new HashMap<>();
+
+        public Scope getParent() {
+            return parent;
+        }
+
+        public HashMap<String, Value> getVariables() {
+            return variables;
+        }
     }
 }

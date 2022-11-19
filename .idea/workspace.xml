@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bugs, add base of functions (need tests &amp; args)">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bugs with variable scope">
       <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FuncCallStatement.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
@@ -14,6 +14,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
@@ -634,7 +637,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Make new comment support, if statement in tests" />
     <MESSAGE value="If statements seems working" />
     <MESSAGE value="Rewrite of Parser" />
     <MESSAGE value="v0.1" />
@@ -659,7 +661,8 @@
     <MESSAGE value="Fix bugs and add negative numbers support" />
     <MESSAGE value="Increment/Decrement, Comments &amp; Multi-line comments" />
     <MESSAGE value="Fix bugs, add base of functions (need tests &amp; args)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs, add base of functions (need tests &amp; args)" />
+    <MESSAGE value="Fix bugs with variable scope" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs with variable scope" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
