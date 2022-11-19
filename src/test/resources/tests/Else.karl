@@ -11,7 +11,7 @@ if (number < 10) -> {
     show("Test #2 success");
 }
 
-func main::() {
+func main::(): void -> {
     if (!true) -> {
         show("No");
     } else -> {

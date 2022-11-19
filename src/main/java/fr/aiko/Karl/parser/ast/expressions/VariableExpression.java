@@ -10,7 +10,6 @@ public class VariableExpression extends Expression {
     public VariableExpression(String name, Value value) {
         this.name = name;
         this.value = value;
-        // setValue(value);
     }
 
     @Override

@@ -29,7 +29,11 @@ public final class VariableManager {
     }
 
     public static void newScope() {
-        currentScope = new Scope(currentScope);
+        Scope newScope = new Scope(currentScope);
+        for (String key : currentScope.getVariables().keySet()) {
+            newScope.getVariables().put(key, currentScope.getVariables().get(key));
+        }
+        currentScope = newScope;
     }
 
     public static void exitScope() {

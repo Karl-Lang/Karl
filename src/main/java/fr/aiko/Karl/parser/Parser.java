@@ -74,35 +74,15 @@ public final class Parser {
 
     private Statement funcCall() {
         String name = get(-2).getValue();
-        if (!FunctionManager.isFunction(name)) {
-            new RuntimeError("Unknown function: " + name, fileName, get(-2).getLine(), get(-2).getPosition());
-            return null;
-        }
-
-        Function function = FunctionManager.getFunction(name);
         ArrayList<Expression> args = new ArrayList<>();
         while (!match(TokenType.RIGHT_PARENTHESIS) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
             if (match(TokenType.COMMA)) continue;
             Expression expression = getExpression();
             args.add(expression);
         }
-
-        if (args.size() != function.getArgs().size()) {
-            new RuntimeError("Function " + name + " takes " + function.getArgs().size() + " arguments, " + args.size() + " given", fileName, get(-2).getLine(), get(-2).getPosition());
-            return null;
-        }
-
-        int i = 0;
-        for (String arg : function.getArgs().keySet()) {
-            if (function.getArgs().get(arg) != args.get(i).eval().getType()) {
-                new RuntimeError("Argument " + arg + " of function " + name + " must be of type " + function.getArgs().get(arg) + ", " + args.get(i) + " given", fileName, get(-2).getLine(), get(-2).getPosition());
-                return null;
-            }
-            i++;
-        }
         skip(TokenType.SEMICOLON);
 
-        return new FuncCallStatement(name);
+        return new FuncCallStatement(name, args, fileName, get(-2).getLine(), get(-2).getPosition());
     }
 
     private Statement funcDeclaration() {
@@ -123,8 +103,7 @@ public final class Parser {
                 new SyntaxError("Unexpected token " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             }
         }
-        skip(TokenType.MINUS);
-        skip(TokenType.GREATER);
+        skip(TokenType.COLON);
         if (!Types.isType(getType()) && !checkType(0, TokenType.VOID)) {
             new SyntaxError("Unexpected return type " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
         }
@@ -206,6 +185,8 @@ public final class Parser {
     }
 
     private BlockStatement getBlock() {
+        skip(TokenType.MINUS);
+        skip(TokenType.GREATER);
         ArrayList<Statement> statements = new ArrayList<>();
         skip(TokenType.LEFT_BRACE);
         while (!checkType(0, TokenType.RIGHT_BRACE) && !checkType(0, TokenType.EOF) && pos < size - 1) {
@@ -266,8 +247,6 @@ public final class Parser {
             return null;
         }
         Expression condition = getExpression();
-        skip(TokenType.MINUS);
-        skip(TokenType.GREATER);
         BlockStatement ifBlock = getBlock();
         if (match(TokenType.ELSE)) {
             if (match(TokenType.IF)) {

@@ -1,8 +1,8 @@
-func sayHello::(string: name) {
+func sayHello::(string: name): void -> {
     show("Hello, ", name, "!");
 }
 
-func main::() {
+func main::(): void -> {
     show("What is your name?");
     sayHello("Karl");
 }
