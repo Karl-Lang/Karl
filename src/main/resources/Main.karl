@@ -1,6 +1,7 @@
-func main::(): string -> {
+func main::(int: num, string: sentence): string -> {
+    show(num);
+    show(sentence);
     return "Hello World!";
 }
 
-show(main());
 

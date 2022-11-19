@@ -8,6 +8,7 @@ import fr.aiko.Karl.std.FunctionManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class FuncCallExpression extends Expression {
     private final String name;
@@ -31,14 +32,14 @@ public class FuncCallExpression extends Expression {
         }
 
         Function function = FunctionManager.getFunction(name);
-        HashMap<String, TokenType> parameters = function.getArgs();
+        LinkedHashMap<String, TokenType> parameters = function.getArgs();
         if (args.size() != parameters.size()) {
             new RuntimeError("Function " + name + " takes " + parameters.size() + " arguments, " + args.size() + " given", fileName, line, pos);
         }
 
         int i = 0;
-        for (String arg : function.getArgs().keySet()) {
-            if (function.getArgs().get(arg) != args.get(i).eval().getType()) {
+        for (String arg : parameters.keySet()) {
+            if (parameters.get(arg) != args.get(i).eval().getType()) {
                 new RuntimeError("Type mismatch for argument " + arg + " of function " + name + ": Excepted type " + parameters.get(arg).getName() + ", but got type " + args.get(i).eval().getType().getName(), fileName, line, pos);
             }
             i++;

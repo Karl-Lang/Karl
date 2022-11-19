@@ -11,6 +11,7 @@ import fr.aiko.Karl.std.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public final class Parser {
     public final String fileName;
@@ -96,7 +97,7 @@ public final class Parser {
         skip(TokenType.COLON);
         skip(TokenType.COLON);
         skip(TokenType.LEFT_PARENTHESIS);
-        HashMap<String, TokenType> args = new HashMap<>();
+        LinkedHashMap<String, TokenType> args = new LinkedHashMap<>();
         while (!match(TokenType.RIGHT_PARENTHESIS) && !checkType(0, TokenType.EOF)) {
             if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
                 TokenType type = get(-1).getType();
@@ -107,6 +108,7 @@ public final class Parser {
             } else {
                 new SyntaxError("Unexpected token " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             }
+            match(TokenType.COMMA);
         }
         skip(TokenType.COLON);
         if (!Types.isType(getType()) && !checkType(0, TokenType.VOID)) {
@@ -146,13 +148,14 @@ public final class Parser {
     private Expression getExpression() {
         Token token = get(0);
         Expression expr = null;
-        if (match(TokenType.IDENTIFIER) && match(TokenType.LEFT_PARENTHESIS)) {
-            String name = get(-2).getValue();
+        if (getType() == TokenType.IDENTIFIER && get(1).getType() == TokenType.LEFT_PARENTHESIS) {
+            String name = get(0).getValue();
+            match(TokenType.IDENTIFIER);
+            match(TokenType.LEFT_PARENTHESIS);
             ArrayList<Expression> args = new ArrayList<>();
             while (!match(TokenType.RIGHT_PARENTHESIS) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
-                if (match(TokenType.COMMA)) continue;
-                Expression expression = getExpression();
-                args.add(expression);
+                args.add(getExpression());
+                match(TokenType.COMMA);
             }
 
             expr = new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition());

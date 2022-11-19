@@ -9,15 +9,16 @@ import fr.aiko.Karl.parser.ast.values.Value;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Function {
     private final String name;
-    private final HashMap<String, TokenType> args;
+    private final LinkedHashMap<String, TokenType> args;
     private final BlockStatement body;
     private final TokenType type;
     private ArrayList<Expression> argsValues;
 
-    public Function(String name, HashMap<String, TokenType> args, TokenType returnType, BlockStatement body) {
+    public Function(String name, LinkedHashMap<String, TokenType> args, TokenType returnType, BlockStatement body) {
         this.name = name;
         this.args = args;
         this.body = body;
@@ -53,7 +54,7 @@ public class Function {
         return name;
     }
 
-    public HashMap<String, TokenType> getArgs() {
+    public LinkedHashMap<String, TokenType> getArgs() {
         return args;
     }
 
