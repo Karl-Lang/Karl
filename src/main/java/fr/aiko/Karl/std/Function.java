@@ -1,5 +1,6 @@
 package fr.aiko.Karl.std;
 
+import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.parser.ast.expressions.Expression;
 import fr.aiko.Karl.parser.ast.statements.BlockStatement;
@@ -23,7 +24,7 @@ public class Function {
         this.type = returnType;
     }
 
-    public void eval(ArrayList<Expression> values) {
+    public Value eval(ArrayList<Expression> values, String fileName, int line, int pos) {
         this.argsValues = values;
         // For each variable in args, assign new value
         HashMap<String, Value> arguments = new HashMap<>();
@@ -34,6 +35,18 @@ public class Function {
         }
         body.setArgs(arguments);
         body.eval();
+        if (body.getResult() != null) {
+            if (type == TokenType.VOID) {
+                new RuntimeError("Function " + name + " is void, but return a value", fileName, line, pos);
+            }
+            if (body.getResult().getType() == type) {
+                return body.getResult();
+            } else {
+                new RuntimeError("Function " + name + " returns type " + type.getName() + ", but got type " + body.getResult().getType().getName(), fileName, line, pos);
+            }
+        }
+
+        return null;
     }
 
     public String getName() {

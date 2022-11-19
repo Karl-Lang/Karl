@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class BlockStatement extends Statement {
     private final ArrayList<Statement> statements;
+    private Value result;
     private HashMap<String, Value> args;
 
     public BlockStatement(ArrayList<Statement> statements) {
@@ -33,7 +34,16 @@ public class BlockStatement extends Statement {
         }
         for (Statement statement : statements) {
             statement.eval();
+
+            if (statement instanceof ReturnStatement) {
+                result = ((ReturnStatement) statement).getResult();
+                break;
+            }
         }
         VariableManager.setScope(scope);
+    }
+
+    public Value getResult() {
+        return result;
     }
 }

@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Make functions usable before initialization">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Base of return system, need tests">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/ReturnStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FuncCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FuncCallStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FunctionDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,13 +269,6 @@
       <workItem from="1668603358142" duration="10498000" />
       <workItem from="1668699433875" duration="1233000" />
       <workItem from="1668798842985" duration="956000" />
-    </task>
-    <task id="LOCAL-00011" summary="Fix bug: variable name is a value type (like int)">
-      <created>1665341525761</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1665341525761</updated>
     </task>
     <task id="LOCAL-00012" summary="Fix bug: variable type not corresponding to value">
       <created>1665342323697</created>
@@ -609,7 +606,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668889391483</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Base of parameters, need tests">
+      <created>1668890277451</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1668890277452</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,8 +631,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Rewrite of Parser" />
-    <MESSAGE value="v0.1" />
     <MESSAGE value="v0.1 - Edit README.md" />
     <MESSAGE value="Add AND and OR keywords for condition" />
     <MESSAGE value="New condition type : if(boolean)" />
@@ -652,7 +654,9 @@
     <MESSAGE value="Fix bugs, add base of functions (need tests &amp; args)" />
     <MESSAGE value="Fix bugs with variable scope" />
     <MESSAGE value="Make functions usable before initialization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make functions usable before initialization" />
+    <MESSAGE value="Base of parameters, need tests" />
+    <MESSAGE value="Base of return system, need tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Base of return system, need tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

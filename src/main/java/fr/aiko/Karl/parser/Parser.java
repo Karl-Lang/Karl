@@ -82,7 +82,7 @@ public final class Parser {
         }
         skip(TokenType.SEMICOLON);
 
-        return new FuncCallStatement(name, args, fileName, get(-2).getLine(), get(-2).getPosition());
+        return new FuncCallStatement(new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition()));
     }
 
     private Statement funcDeclaration() {
@@ -146,7 +146,17 @@ public final class Parser {
     private Expression getExpression() {
         Token token = get(0);
         Expression expr = null;
-        if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
+        if (match(TokenType.IDENTIFIER) && match(TokenType.LEFT_PARENTHESIS)) {
+            String name = get(-2).getValue();
+            ArrayList<Expression> args = new ArrayList<>();
+            while (!match(TokenType.RIGHT_PARENTHESIS) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
+                if (match(TokenType.COMMA)) continue;
+                Expression expression = getExpression();
+                args.add(expression);
+            }
+
+            expr = new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition());
+        } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
             switch (token.getType()) {
                 case STRING -> expr = new ValueExpression(token.getValue(), token.getType());
                 case INT -> expr = new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
@@ -161,7 +171,7 @@ public final class Parser {
             skip(TokenType.RIGHT_PARENTHESIS);
             return expression;
         } else if (match(TokenType.EXCLAMATION) && (match(TokenType.IDENTIFIER) || match(TokenType.EXCLAMATION) || match(TokenType.BOOL))) {
-            boolean value = false;
+            boolean value;
             boolean exceptedValue = false;
 
             if (get(-1).getType() == TokenType.EXCLAMATION) {
@@ -195,9 +205,15 @@ public final class Parser {
         ArrayList<Statement> statements = new ArrayList<>();
         skip(TokenType.LEFT_BRACE);
         while (!checkType(0, TokenType.RIGHT_BRACE) && !checkType(0, TokenType.EOF) && pos < size - 1) {
-            Statement statement = getStatement();
-            if (statement != null) {
-                statements.add(statement);
+            if (match(TokenType.RETURN)) {
+                Expression expr = getExpression();
+                skip(TokenType.SEMICOLON);
+                statements.add(new ReturnStatement(expr));
+            } else {
+                Statement statement = getStatement();
+                if (statement != null) {
+                    statements.add(statement);
+                }
             }
         }
         if (!match(TokenType.RIGHT_BRACE)) new RuntimeError("Missing }", fileName, get(-1).getLine(), get(-1).getPosition());
