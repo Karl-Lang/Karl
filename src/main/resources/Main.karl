@@ -1,5 +1,9 @@
-int: stringe = 6;
+int: stringer = 6;
 
-func show::(): void -> {
-    show("Uwu");
+print(5);
+
+func print::(int: stringe): int -> {
+    stringer++;
+    show(stringer);
+    return stringer;
 }

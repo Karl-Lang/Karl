@@ -42,6 +42,8 @@ public class Function {
             } else {
                 new RuntimeError("Incorrect return type for function " + name + ": except " + type.getName() + " but got type " + body.getResult().getType().getName(), fileName, line, pos);
             }
+        } else if (body.getResult() == null && type != TokenType.VOID) {
+            new RuntimeError("Missing return statement in function: " + name, fileName, line, pos);
         }
 
         return null;

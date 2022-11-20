@@ -40,6 +40,12 @@ public class BlockStatement extends Statement {
                 break;
             }
         }
+
+        for (String var : scope.getVariables().keySet()) {
+            if (!VariableManager.getVariable(var).equals(scope.getVariables().get(var))) {
+                scope.getVariables().put(var, VariableManager.getVariable(var));
+            }
+        }
         VariableManager.setScope(scope);
     }
 
