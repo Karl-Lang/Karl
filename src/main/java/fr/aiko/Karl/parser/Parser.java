@@ -87,8 +87,12 @@ public final class Parser {
     }
 
     private Statement funcDeclaration() {
+        String name = get(0).getValue();
+        if (ForbiddenNames.isForbiddenName(name)) {
+            new RuntimeError("Function name " + name + " is forbidden", fileName, get(-1).getLine(), get(-1).getPosition());
+            return null;
+        }
         skip(TokenType.IDENTIFIER);
-        String name = get(-1).getValue();
         if (FunctionManager.isFunction(name)) {
             new RuntimeError("Function " + name + " already exists", fileName, get(-1).getLine(), get(-1).getPosition());
             return null;
@@ -306,6 +310,10 @@ public final class Parser {
         match(type.getType());
         skip(TokenType.COLON);
         Token name = get(0);
+        if (ForbiddenNames.isForbiddenName(name.getValue())) {
+            new RuntimeError("Variable name " + name.getValue() + " is forbidden", fileName, get(0).getLine(), get(0).getPosition());
+            return null;
+        }
         skip(TokenType.IDENTIFIER);
         skip(TokenType.EQUAL);
         Expression expression = getExpression();

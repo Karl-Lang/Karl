@@ -16,7 +16,6 @@ public class Function {
     private final LinkedHashMap<String, TokenType> args;
     private final BlockStatement body;
     private final TokenType type;
-    private ArrayList<Expression> argsValues;
 
     public Function(String name, LinkedHashMap<String, TokenType> args, TokenType returnType, BlockStatement body) {
         this.name = name;
@@ -26,7 +25,6 @@ public class Function {
     }
 
     public Value eval(ArrayList<Expression> values, String fileName, int line, int pos) {
-        this.argsValues = values;
         HashMap<String, Value> arguments = new HashMap<>();
         int i = 0;
         for (String arg : args.keySet()) {
@@ -42,7 +40,7 @@ public class Function {
             if (body.getResult().getType() == type) {
                 return body.getResult();
             } else {
-                new RuntimeError("Function " + name + " returns type " + type.getName() + ", but got type " + body.getResult().getType().getName(), fileName, line, pos);
+                new RuntimeError("Incorrect return type for function " + name + ": except " + type.getName() + " but got type " + body.getResult().getType().getName(), fileName, line, pos);
             }
         }
 

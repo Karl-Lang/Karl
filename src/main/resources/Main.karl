@@ -1,9 +1,5 @@
-int: num = 4;
+int: stringe = 6;
 
-show(main() - num);
-
-func main::(): int -> {
-    return 1;
+func show::(): void -> {
+    show("Uwu");
 }
-
-show(main() + num);

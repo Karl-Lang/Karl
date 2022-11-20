@@ -25,7 +25,6 @@ public class VariableCallExpression extends Expression {
     @Override
     public Value eval() {
         if (VariableManager.getVariable(name) == null) {
-            System.out.println("Scope :" + VariableManager.getScope());
             new RuntimeError("Variable " + name + " is not defined", fileName, line, pos);
         }
         return VariableManager.getVariable(name);

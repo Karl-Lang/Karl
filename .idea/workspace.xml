@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="First bugs fix">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Add forbidden names">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/ForbiddenNames.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/OperationExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/OperationExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
@@ -270,13 +270,6 @@
       <workItem from="1668603358142" duration="10498000" />
       <workItem from="1668699433875" duration="1233000" />
       <workItem from="1668798842985" duration="956000" />
-    </task>
-    <task id="LOCAL-00013" summary="Edit README.md">
-      <created>1665342510181</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1665342510181</updated>
     </task>
     <task id="LOCAL-00014" summary="Add variable checker in type verification">
       <created>1665342799376</created>
@@ -614,7 +607,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668897343274</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Fix 2 bugs linked to functions">
+      <created>1668947058492</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1668947058493</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,8 +632,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.1 - Edit README.md" />
-    <MESSAGE value="Add AND and OR keywords for condition" />
     <MESSAGE value="New condition type : if(boolean)" />
     <MESSAGE value="Add increment and decrement for int and float variables" />
     <MESSAGE value="Fix two major bugs : Variable in if body and if statement in functions" />
@@ -657,7 +655,9 @@
     <MESSAGE value="Make functions usable before initialization" />
     <MESSAGE value="Base of parameters, need tests" />
     <MESSAGE value="Base of return system, need tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Base of return system, need tests" />
+    <MESSAGE value="Fix 2 bugs linked to functions" />
+    <MESSAGE value="Add forbidden names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add forbidden names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

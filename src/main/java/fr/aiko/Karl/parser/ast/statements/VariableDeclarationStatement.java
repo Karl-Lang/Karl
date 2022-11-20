@@ -12,7 +12,6 @@ public class VariableDeclarationStatement extends Statement {
 
     @Override
     public void eval() {
-        System.out.println("VariableExpression.eval() : " + VariableManager.getScope());
         expression.eval();
     }
 }
