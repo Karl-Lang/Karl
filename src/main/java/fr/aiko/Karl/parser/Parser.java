@@ -136,10 +136,10 @@ public final class Parser {
             } else {
                 if (get(-1).getType() == TokenType.PLUSPLUS) {
                     skip(TokenType.SEMICOLON);
-                    return new VariableAssignmentStatement(name, new OperationExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.PLUS).eval());
+                    return new VariableAssignmentStatement(name, new OperationExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.PLUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 } else {
                     skip(TokenType.SEMICOLON);
-                    return new VariableAssignmentStatement(name, new OperationExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.MINUS).eval());
+                    return new VariableAssignmentStatement(name, new OperationExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.MINUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 }
             }
         }
@@ -257,12 +257,7 @@ public final class Parser {
             return null;
         }
 
-        if (right.eval().getType() != left.eval().getType() && (!Arrays.asList(new TokenType[]{TokenType.INT, TokenType.FLOAT}).contains(right.eval().getType()) || !Arrays.asList(new TokenType[]{TokenType.INT, TokenType.FLOAT}).contains(left.eval().getType()))) {
-            new RuntimeError("Type mismatch : " + left.eval().getType().toString().toLowerCase() + " and " + right.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition());
-            return null;
-        }
-
-        return new OperationExpression(left, right, operator.getType());
+        return new OperationExpression(left, right, operator.getType(), fileName, operator.getLine(), operator.getPosition());
     }
 
     private Statement ifElse() {
@@ -331,7 +326,9 @@ public final class Parser {
         }
 
         skip(TokenType.SEMICOLON);
-        return new VariableDeclarationStatement(new VariableExpression(name.getValue(), expression.eval()));
+        VariableExpression expr = new VariableExpression(name.getValue(), expression.eval());
+        expr.setValue(expression.eval());
+        return new VariableDeclarationStatement(expr);
     }
 
     private ShowStatement show() {

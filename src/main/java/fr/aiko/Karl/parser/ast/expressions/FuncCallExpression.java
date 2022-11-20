@@ -27,7 +27,7 @@ public class FuncCallExpression extends Expression {
 
     @Override
     public Value eval() {
-        if (!FunctionManager.isFunction(name)) {
+        if (!FunctionManager.isFunction(name)) { // here
             new RuntimeError("Unknown function: " + name, fileName, line, pos);
         }
 

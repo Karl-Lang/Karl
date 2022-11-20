@@ -1,7 +1,9 @@
-func main::(int: num, string: sentence): string -> {
-    show(num);
-    show(sentence);
-    return "Hello World!";
+int: num = 4;
+
+show(main() - num);
+
+func main::(): int -> {
+    return 1;
 }
 
-
+show(main() + num);

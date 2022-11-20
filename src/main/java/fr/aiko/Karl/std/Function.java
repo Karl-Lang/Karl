@@ -27,7 +27,6 @@ public class Function {
 
     public Value eval(ArrayList<Expression> values, String fileName, int line, int pos) {
         this.argsValues = values;
-        // For each variable in args, assign new value
         HashMap<String, Value> arguments = new HashMap<>();
         int i = 0;
         for (String arg : args.keySet()) {
