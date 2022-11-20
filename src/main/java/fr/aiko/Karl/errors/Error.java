@@ -27,8 +27,8 @@ public class Error {
     public void print() {
         String fileName = path.substring(path.lastIndexOf("/") + 1);
         System.err.println(Colors.RED + "-- " + errorName.toUpperCase() + " ------------------------------------------------ " + fileName + Colors.RESET + "\n");
-        System.err.println(Colors.WHITE + "Description: " +"\u001B[0m" + Colors.RED + message + Colors.RESET);
-        System.err.println(Colors.WHITE + "File path: " +"\u001B[0m" + Colors.RED + path + Colors.RESET + "\n");
+        System.err.println(Colors.WHITE + "Description: " + "\u001B[0m" + Colors.RED + message + Colors.RESET);
+        System.err.println(Colors.WHITE + "File path: " + "\u001B[0m" + Colors.RED + path + Colors.RESET + "\n");
         System.err.println(Colors.RED + line + " | " + getLine() + Colors.RESET);
         System.err.println(Colors.RED + "   " + printIndicator() + Colors.RESET);
         System.err.println(Colors.RED + "--------------------------------------------------------------------------" + Colors.RESET + "\n");

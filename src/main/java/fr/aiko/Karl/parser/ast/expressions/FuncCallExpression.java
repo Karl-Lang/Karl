@@ -7,7 +7,6 @@ import fr.aiko.Karl.std.Function;
 import fr.aiko.Karl.std.FunctionManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class FuncCallExpression extends Expression {

@@ -1,8 +1,6 @@
 package fr.aiko.Karl.parser.ast.statements;
 
 import fr.aiko.Karl.parser.TokenType;
-import fr.aiko.Karl.std.Function;
-import fr.aiko.Karl.std.FunctionManager;
 
 import java.util.HashMap;
 
@@ -20,5 +18,6 @@ public class FunctionDeclarationStatement extends Statement {
     }
 
     @Override
-    public void eval() {}
+    public void eval() {
+    }
 }

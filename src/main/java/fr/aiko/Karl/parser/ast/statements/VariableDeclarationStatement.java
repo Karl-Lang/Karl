@@ -1,7 +1,6 @@
 package fr.aiko.Karl.parser.ast.statements;
 
 import fr.aiko.Karl.parser.ast.expressions.VariableExpression;
-import fr.aiko.Karl.std.VariableManager;
 
 public class VariableDeclarationStatement extends Statement {
     private final VariableExpression expression;

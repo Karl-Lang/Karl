@@ -52,12 +52,11 @@ public final class VariableManager {
 
     public static class Scope {
         private final Scope parent;
+        private final HashMap<String, Value> variables = new HashMap<>();
 
         public Scope(Scope parent) {
             this.parent = parent;
         }
-
-        private final HashMap<String, Value> variables = new HashMap<>();
 
         public Scope getParent() {
             return parent;

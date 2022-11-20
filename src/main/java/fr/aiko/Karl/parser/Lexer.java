@@ -89,7 +89,8 @@ public class Lexer {
             if (c == '\n' || c == '\r') {
                 line++;
                 position++;
-            } else if (Character.isDigit(c) || (c == '-' && position + 1 < input.length() && Character.isDigit(input.charAt(position + 1)))) tokenizeNumber();
+            } else if (Character.isDigit(c) || (c == '-' && position + 1 < input.length() && Character.isDigit(input.charAt(position + 1))))
+                tokenizeNumber();
             else if (Character.isLetter(c)) tokenizeIdentifier();
             else if (c == '"') tokenizeString();
             else if (c == '\'') tokenizeChar();
