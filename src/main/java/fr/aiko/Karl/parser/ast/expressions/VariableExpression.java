@@ -21,6 +21,7 @@ public class VariableExpression extends Expression {
     public synchronized Value getValue() {
         return VariableManager.getVariable(name);
     }
+
     public synchronized void setValue(Value value) {
         VariableManager.setVariable(name, value);
     }

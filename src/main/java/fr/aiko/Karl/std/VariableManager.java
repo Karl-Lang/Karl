@@ -50,6 +50,10 @@ public final class VariableManager {
         currentScope = scope;
     }
 
+    public static void clear() {
+        currentScope = new Scope(null);
+    }
+
     public static class Scope {
         private final Scope parent;
         private final HashMap<String, Value> variables = new HashMap<>();

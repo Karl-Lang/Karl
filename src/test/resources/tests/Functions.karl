@@ -7,4 +7,14 @@ func main::(): void -> {
     sayHello("Karl");
 }
 
+func getStr::(): string -> {
+    return "Hello, World!";
+}
 main();
+show(getStr());
+show(getInt(9) + 1);
+
+func getInt::(int: num): int -> {
+    return num + 1;
+}
+show(getInt(6) + 1);

@@ -8,11 +8,11 @@ if (name == "Karl" && true == true) -> {
     show("Test #1 success");
 }
 
-if (number == 230 || !boolean) -> {
+if (number == 230 || !bool) -> {
     show("Test #2 success");
 }
 
-if (price == 2.30) -> {
+if (price == 2.30 && (!bool || number > 1300)) -> {
     show("Test #3 success");
 }
 

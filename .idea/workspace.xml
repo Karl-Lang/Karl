@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Cleanup code">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Bugs fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/ForbiddenNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/ForbiddenNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Else.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Else.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/If.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/If.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,21 +74,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/aikoo/Bureau/Own-Programming-Language-Tutorial-30f18ab053d5ada0223bc1f7e502dd918bdbd344&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "/home/aikoo/Bureau/Own-Programming-Language-Tutorial-30f18ab053d5ada0223bc1f7e502dd918bdbd344",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -191,9 +199,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MainTest.testIf" />
-        <item itemvalue="Gradle.MainTest.testElse" />
         <item itemvalue="Gradle.MainTest" />
+        <item itemvalue="Gradle.MainTest.testElse" />
+        <item itemvalue="Gradle.MainTest.testIf" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -266,13 +274,6 @@
       <workItem from="1668603358142" duration="10498000" />
       <workItem from="1668699433875" duration="1233000" />
       <workItem from="1668798842985" duration="956000" />
-    </task>
-    <task id="LOCAL-00016" summary="Implements final variable &amp; change variable system">
-      <created>1665345400997</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1665345400997</updated>
     </task>
     <task id="LOCAL-00017" summary="Edit README.md">
       <created>1665345476850</created>
@@ -610,7 +611,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668950590691</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Bugs fix">
+      <created>1668953657489</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1668953657489</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +636,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add increment and decrement for int and float variables" />
     <MESSAGE value="Fix two major bugs : Variable in if body and if statement in functions" />
     <MESSAGE value="Base of tests" />
     <MESSAGE value="Add some tests for v0.2.0 and support for float variables" />
@@ -653,7 +660,8 @@
     <MESSAGE value="Fix 2 bugs linked to functions" />
     <MESSAGE value="Add forbidden names" />
     <MESSAGE value="Cleanup code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup code" />
+    <MESSAGE value="Bugs fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugs fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

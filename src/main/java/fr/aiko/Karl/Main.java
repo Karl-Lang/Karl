@@ -5,6 +5,8 @@ import fr.aiko.Karl.parser.Lexer;
 import fr.aiko.Karl.parser.Parser;
 import fr.aiko.Karl.parser.Token;
 import fr.aiko.Karl.parser.ast.statements.Statement;
+import fr.aiko.Karl.std.FunctionManager;
+import fr.aiko.Karl.std.VariableManager;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -42,9 +44,17 @@ public class Main implements Runnable {
             Long start = System.currentTimeMillis();
             statements.forEach(Statement::eval);
             Long end = System.currentTimeMillis();
+            VariableManager.clear();
+            FunctionManager.clear();
             System.out.println("Execution time: " + (end - start) + "ms");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            new Error("FileReading", "An error occured while reading file : " + path, "Main.java", 0, 0);
         }
+
+        /*try {
+            String[] array = new String[100000 * 100000];
+        } catch (OutOfMemoryError e) {
+            System.out.println("Out of memory uwu baka");
+        }*/
     }
 }

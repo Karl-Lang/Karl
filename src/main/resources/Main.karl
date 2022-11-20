@@ -1,9 +1,11 @@
-int: stringer = 6;
+string: name = "Karl";
+int: number = 230;
+float: price = 2.30;
+bool: boolean = false;
+bool: trueValue = true;
 
-print(5);
-
-func print::(int: stringe): int -> {
-    stringer++;
-    show(stringer);
-    return stringer;
+if (price == 2.30 && (!boolean || number > 1300)) -> {
+    show("Test #3 success");
+} else -> {
+    show("Test #3 failed");
 }

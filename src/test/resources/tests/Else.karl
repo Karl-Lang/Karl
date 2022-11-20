@@ -24,7 +24,9 @@ main();
 bool: testPassed = false;
 if (testPassed) -> {
     show("No");
-} else -> testPassed = true;
+} else -> {
+     testPassed = true;
+}
 
 if (testPassed) -> {
     show("Test #4 success");

@@ -24,7 +24,6 @@ public class LogicalOperators {
     }
 
     public static boolean or(boolean a, boolean b) {
-        System.out.println(a + " " + b + " c");
         return a || b;
     }
 

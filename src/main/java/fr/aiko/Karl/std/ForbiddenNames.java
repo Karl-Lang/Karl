@@ -8,7 +8,7 @@ public final class ForbiddenNames {
             "int",
             "float",
             "double",
-            "boolean",
+            "bool",
             "char",
             "void",
             "null",
