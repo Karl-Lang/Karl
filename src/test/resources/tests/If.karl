@@ -31,3 +31,11 @@ if (number == 230 && price == 2.30 && trueValue) -> {
 if (number == 230 && price == 2.30 || !boolean) -> {
     show("Test #7 success");
 }
+
+func getBool::(): bool -> {
+    return false;
+}
+
+if (!getBool() || boolean) -> {
+    show("Test #8 success");
+}

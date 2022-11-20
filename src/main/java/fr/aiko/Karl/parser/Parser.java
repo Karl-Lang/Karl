@@ -11,6 +11,7 @@ import fr.aiko.Karl.std.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 public final class Parser {
     public final String fileName;
@@ -198,26 +199,25 @@ public final class Parser {
             }
 
             return new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition());
-        } else if (match(TokenType.EXCLAMATION) && (match(TokenType.IDENTIFIER) || match(TokenType.EXCLAMATION) || match(TokenType.BOOL))) {
+        } else if (match(TokenType.EXCLAMATION)) {
             boolean value;
             boolean exceptedValue = false;
-            if (get(-1).getType() == TokenType.EXCLAMATION) {
+            if (getType() == TokenType.EXCLAMATION) {
                 exceptedValue = true;
                 while (match(TokenType.EXCLAMATION) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
                     exceptedValue = !exceptedValue;
                 }
+                match(getType());
                 if (!match(TokenType.IDENTIFIER) && !match(TokenType.EXCLAMATION) && !match(TokenType.BOOL))
                     new RuntimeError("Unexpected token " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
             }
 
-            if (get(-1).getType() == TokenType.IDENTIFIER) {
-                if (VariableManager.getVariable(get(-1).getValue()) == null) {
-                    new RuntimeError("Variable " + get(-1).getValue() + " is not declared", fileName, get(-1).getLine(), get(-1).getPosition());
-                }
-                value = !Boolean.parseBoolean(VariableManager.getVariable(get(-1).getValue()).toString());
-            } else {
-                value = !Boolean.parseBoolean(get(-1).getValue());
+            Value valueExpr = Objects.requireNonNull(getValue()).eval();
+            if (valueExpr.getType() != TokenType.BOOL) {
+                new RuntimeError("Expected boolean value but got " + valueExpr.getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
             }
+
+            value = !Boolean.parseBoolean(valueExpr.toString());
 
             return new ValueExpression(value != exceptedValue, TokenType.BOOL);
         } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {

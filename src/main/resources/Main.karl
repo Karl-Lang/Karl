@@ -9,3 +9,11 @@ if (price == 2.30 && (!boolean || number > 1300)) -> {
 } else -> {
     show("Test #3 failed");
 }
+
+func getBool::(): bool -> {
+    return false;
+}
+
+if (!boolean) -> {
+    show("Test #8 success");
+}
