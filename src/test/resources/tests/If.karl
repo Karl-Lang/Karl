@@ -39,3 +39,13 @@ func getBool::(): bool -> {
 if (!getBool() || boolean) -> {
     show("Test #8 success");
 }
+
+if (price == 2.30 && (!boolean || (number > 1300 || 1 == 1))) -> {
+    show("Test #9 success");
+} else -> {
+    show("Test #9 failed");
+}
+
+if ((name == "karl" || name == "Karl") && (number == 230 || number == 231)) -> {
+    show("Test #10 success");
+}

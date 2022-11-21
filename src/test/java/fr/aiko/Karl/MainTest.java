@@ -25,7 +25,7 @@ class MainTest {
     @DisplayName("If statements")
     void testIf() {
         String[] args = {"src/test/resources/tests/If.karl"};
-        String[] expected = {"Test #1 success", "Test #2 success", "Test #3 success", "Test #4 success", "Test #5 success", "Test #6 success", "Test #7 success", "Test #8 success"};
+        String[] expected = {"Test #1 success", "Test #2 success", "Test #3 success", "Test #4 success", "Test #5 success", "Test #6 success", "Test #7 success", "Test #8 success", "Test #9 success", "Test #10 success"};
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         Main.main(args);

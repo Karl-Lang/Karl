@@ -177,7 +177,6 @@ public final class Parser {
         } else if (match(TokenType.LEFT_PARENTHESIS)) {
             expr = getExpression();
             skip(TokenType.RIGHT_PARENTHESIS);
-            return expr;
         } else new RuntimeError("Unknown expression : " + token.getValue(), fileName, token.getLine(), token.getPosition());
 
         if (LogicalOperators.isOperator(getType())) {
@@ -258,12 +257,11 @@ public final class Parser {
 
         ConditionalExpression expr = new ConditionalExpression(operator.getType(), left, right);
 
-        if (LogicalOperators.isOperator(getType())) {
+        if (Arrays.asList(TokenType.AND, TokenType.OR).contains(getType())) {
+            Token op = get(0);
             match(getType());
-            return new ConditionalExpression(operator.getType(), getExpression(), expr);
-        } else {
-            return expr;
-        }
+           return new ConditionalExpression(op.getType(), expr, getExpression());
+        }  else return expr;
     }
 
     private OperationExpression getOperationExpression(Expression left) {
