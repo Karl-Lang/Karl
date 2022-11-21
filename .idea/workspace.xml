@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bugs with forbiddenNames, fix major bug with ! keyword, fix bugs in expression system and optimize it">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix all known bugs with condition parsing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/ConditionalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/ConditionalExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/If.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/If.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,14 +266,7 @@
       <workItem from="1668603358142" duration="10498000" />
       <workItem from="1668699433875" duration="1233000" />
       <workItem from="1668798842985" duration="956000" />
-      <workItem from="1669046656001" duration="4657000" />
-    </task>
-    <task id="LOCAL-00018" summary="Base of functions, in working">
-      <created>1665687493631</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1665687493631</updated>
+      <workItem from="1669046656001" duration="9485000" />
     </task>
     <task id="LOCAL-00019" summary="Functions working, variable functions too. Need tests">
       <created>1665738659093</created>
@@ -613,7 +604,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668967989823</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Fix all known bugs with condition parsing">
+      <created>1669054587328</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1669054587329</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +629,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Base of tests" />
     <MESSAGE value="Add some tests for v0.2.0 and support for float variables" />
     <MESSAGE value="Bug fix #4" />
     <MESSAGE value="Infinite operator ! (`if(!!false)`)" />
@@ -656,7 +653,8 @@
     <MESSAGE value="Cleanup code" />
     <MESSAGE value="Bugs fix" />
     <MESSAGE value="Fix bugs with forbiddenNames, fix major bug with ! keyword, fix bugs in expression system and optimize it" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs with forbiddenNames, fix major bug with ! keyword, fix bugs in expression system and optimize it" />
+    <MESSAGE value="Fix all known bugs with condition parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix all known bugs with condition parsing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

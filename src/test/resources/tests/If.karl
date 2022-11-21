@@ -49,3 +49,11 @@ if (price == 2.30 && (!boolean || (number > 1300 || 1 == 1))) -> {
 if ((name == "karl" || name == "Karl") && (number == 230 || number == 231)) -> {
     show("Test #10 success");
 }
+
+int: lol = 42;
+string: mdr = "El psy kongroo";
+if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4)) || !false) -> {
+      show("Test réussit !! ^U^");
+} else -> {
+      show("Test échoué !! >_<");
+}
