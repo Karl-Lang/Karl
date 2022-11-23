@@ -1,33 +1,8 @@
-int: number = 10;
-if (number == 11) -> {
-    show("No");
-} else if (number == 10) -> {
-    show("Test #1 success");
+int: num = 5;
+
+func main::(): int -> {
+  return 1;
 }
 
-if (number < 10) -> {
-    show("No");
-} else -> {
-    show("Test #2 success");
-}
-
-func main::(): void -> {
-    if (!true) -> {
-        show("No");
-    } else -> {
-        show("Test #3 success");
-    }
-}
-
-main();
-
-bool: testPassed = false;
-if (testPassed) -> {
-    show("No");
-} else -> {
-     testPassed = true;
-}
-
-if (testPassed) -> {
-    show("Test #4 success");
-}
+show(main() + num);
+// -> 2
