@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix last bugs, add new features for ! keyword in conditions">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/UnaryExpression.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v4.0.0-alpha">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/OperationExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +100,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -166,6 +163,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="MainTest.testFunctions" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;fr.aiko.Karl.MainTest.testFunctions&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="MainTest.testIf" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -191,12 +211,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.MainTest.testFunctions" />
       <item itemvalue="Gradle.MainTest.testIf" />
       <item itemvalue="Gradle.MainTest.testElse" />
       <item itemvalue="Gradle.MainTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MainTest.testFunctions" />
         <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Gradle.MainTest.testElse" />
         <item itemvalue="Gradle.MainTest.testIf" />
@@ -274,14 +296,7 @@
       <workItem from="1668798842985" duration="956000" />
       <workItem from="1669046656001" duration="12842000" />
       <workItem from="1669128384786" duration="8892000" />
-      <workItem from="1669213478156" duration="5065000" />
-    </task>
-    <task id="LOCAL-00020" summary="Fix some bugs">
-      <created>1665741351959</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1665741351959</updated>
+      <workItem from="1669213478156" duration="5866000" />
     </task>
     <task id="LOCAL-00021" summary="Some modifications and optimizations for prepare new features">
       <created>1665741773820</created>
@@ -619,7 +634,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669060897709</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="v4.0.0-alpha">
+      <created>1669225360842</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1669225360842</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -637,7 +659,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bug fix #4" />
     <MESSAGE value="Infinite operator ! (`if(!!false)`)" />
     <MESSAGE value="Add Else if" />
     <MESSAGE value="v0.2.0" />
@@ -662,7 +683,8 @@
     <MESSAGE value="Fix bugs with forbiddenNames, fix major bug with ! keyword, fix bugs in expression system and optimize it" />
     <MESSAGE value="Fix all known bugs with condition parsing" />
     <MESSAGE value="Fix last bugs, add new features for ! keyword in conditions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix last bugs, add new features for ! keyword in conditions" />
+    <MESSAGE value="v4.0.0-alpha" />
+    <option name="LAST_COMMIT_MESSAGE" value="v4.0.0-alpha" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

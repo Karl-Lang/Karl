@@ -24,12 +24,10 @@ show(main() + num);
 
 - [x] Print Statement
 - [x] Variable
-- [x] Final Variable
+- [ ] Final Variable
 - [x] Comment
 - [x] Functions
-- [x] If Statement
-    - [x] AND and OR operator
-    - [x] Else Statement
+- [x] If and else conditions
 - [ ] While Statement
 - [ ] For Statement
 - [ ] Array
@@ -37,7 +35,9 @@ show(main() + num);
 - [ ] Module
 - [ ] Import
 - [ ] Export
-- [ ] Operator
+- [x] Mathematical operations
 - [x] Increment and Decrement
-- [x] Throw new RetardException()
 - [ ] Try Catch
+- [ ] Throw
+- [ ] Switch
+- [ ] Bitwise operations
