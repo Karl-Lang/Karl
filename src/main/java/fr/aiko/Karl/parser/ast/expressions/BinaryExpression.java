@@ -8,7 +8,7 @@ import fr.aiko.Karl.parser.ast.values.Value;
 
 import java.util.Arrays;
 
-public class OperationExpression extends Expression {
+public class BinaryExpression extends Expression {
     private final Expression left;
     private final Expression right;
     private final TokenType operator;
@@ -16,7 +16,7 @@ public class OperationExpression extends Expression {
     private final int line;
     private final int pos;
 
-    public OperationExpression(Expression left, Expression right, TokenType operator, String fileName, int line, int pos) {
+    public BinaryExpression(Expression left, Expression right, TokenType operator, String fileName, int line, int pos) {
         this.left = left;
         this.right = right;
         this.operator = operator;

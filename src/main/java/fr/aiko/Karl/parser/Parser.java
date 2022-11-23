@@ -5,14 +5,12 @@ import fr.aiko.Karl.errors.SyntaxError.SemiColonError;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 import fr.aiko.Karl.parser.ast.expressions.*;
 import fr.aiko.Karl.parser.ast.statements.*;
-import fr.aiko.Karl.parser.ast.values.BooleanValue;
 import fr.aiko.Karl.parser.ast.values.Value;
 import fr.aiko.Karl.std.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.Objects;
 
 public final class Parser {
     public final String fileName;
@@ -139,10 +137,10 @@ public final class Parser {
             } else {
                 if (get(-1).getType() == TokenType.PLUSPLUS) {
                     skip(TokenType.SEMICOLON);
-                    return new VariableAssignmentStatement(name, new OperationExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.PLUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
+                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.PLUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 } else {
                     skip(TokenType.SEMICOLON);
-                    return new VariableAssignmentStatement(name, new OperationExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.MINUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
+                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.MINUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 }
             }
         }
@@ -181,12 +179,21 @@ public final class Parser {
         } else new RuntimeError("Unknown expression : " + token.getValue(), fileName, token.getLine(), token.getPosition());
 
         if (Operators.isOperator(getType())) {
-            expr = getOperationExpression(expr);
+            return getOperationExpression(expr);
         }
 
         if (LogicalOperators.isOperator(getType())) {
-            return compare(expr);
+            return getLogicalExpression(expr);
         }  else return expr;
+    }
+
+    private Expression getLogicalExpression(Expression expr) {
+        Token token = get(0);
+        TokenType type = getType();
+        match(type);
+        Expression right = getExpression();
+        return new LogicalExpression(type, expr, right, fileName, token.getLine(), token.getPosition());
+
     }
 
     private Expression getValue() {
@@ -202,35 +209,10 @@ public final class Parser {
 
             return new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition());
         } else if (match(TokenType.EXCLAMATION)) {
-            boolean value;
-            boolean exceptedValue = false;
-            if (getType() == TokenType.EXCLAMATION) {
-                exceptedValue = true;
-                while (match(TokenType.EXCLAMATION) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
-                    exceptedValue = !exceptedValue;
-                }
-            }
             if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL && getType() != TokenType.LEFT_PARENTHESIS)
                 new RuntimeError("Unexpected token " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
 
-            Value valueExpr;
-            if (getType() == TokenType.LEFT_PARENTHESIS) {
-                valueExpr = getExpression().eval();
-
-                if (valueExpr.getType() != TokenType.BOOL) {
-                    new RuntimeError("Expected boolean value but got " + valueExpr.getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
-                }
-
-                valueExpr = new BooleanValue(!Boolean.parseBoolean(valueExpr.toString()));
-            } else valueExpr = Objects.requireNonNull(getValue()).eval();
-
-            if (valueExpr.getType() != TokenType.BOOL) {
-                new RuntimeError("Expected boolean value but got " + valueExpr.getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
-            }
-
-            value = !Boolean.parseBoolean(valueExpr.toString());
-
-            return new ValueExpression(value != exceptedValue, TokenType.BOOL);
+            return new UnaryExpression(TokenType.EXCLAMATION, getType() == TokenType.LEFT_PARENTHESIS ? getExpression() : getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
         } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
             Token token = get(-1);
             switch (token.getType()) {
@@ -256,27 +238,7 @@ public final class Parser {
         return null;
     }
 
-    private ConditionalExpression compare(Expression left) {
-        Token operator = get(0);
-        skip(operator.getType());
-
-        Expression right;
-        if (Arrays.asList(TokenType.NOT_EQUAL, TokenType.GREATER_EQUAL, TokenType.GREATER, TokenType.LESS_EQUAL, TokenType.LESS, TokenType.EQUALEQUAL).contains(operator.getType())) {
-            right = getValue();
-        } else {
-            right = getExpression();
-        }
-
-        ConditionalExpression expr = new ConditionalExpression(operator.getType(), left, right);
-
-        if (Arrays.asList(TokenType.AND, TokenType.OR).contains(getType())) {
-            Token op = get(0);
-            match(getType());
-           return new ConditionalExpression(op.getType(), expr, getExpression());
-        }  else return expr;
-    }
-
-    private OperationExpression getOperationExpression(Expression left) {
+    private BinaryExpression getOperationExpression(Expression left) {
         if (left == null) {
             new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
         }
@@ -285,12 +247,12 @@ public final class Parser {
             new RuntimeError("Unknown operator : " + operator.getValue(), fileName, operator.getLine(), operator.getPosition());
         }
         match(operator.getType());
-        Expression right = getValue();
+        Expression right = getValue(); // à retravailler, 2+2+2 pas marcher
         if (right == null) {
             new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
         }
 
-        return new OperationExpression(left, right, operator.getType(), fileName, operator.getLine(), operator.getPosition());
+        return new BinaryExpression(left, right, operator.getType(), fileName, operator.getLine(), operator.getPosition());
     }
 
     private Statement ifElse() {

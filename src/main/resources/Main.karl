@@ -1,13 +1,33 @@
-string: name = "Karl";
-int: number = 230;
-float: price = 2.30;
-bool: boolean = true;
-bool: trueValue = true;
+int: number = 10;
+if (number == 11) -> {
+    show("No");
+} else if (number == 10) -> {
+    show("Test #1 success");
+}
 
-int: lol = 42;
-string: mdr = "El psy kongroo";
-if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4)) || !false) -> {
-      show("Test réussit !! ^U^");
+if (number < 10) -> {
+    show("No");
 } else -> {
-      show("Test échoué !! >_<");
+    show("Test #2 success");
+}
+
+func main::(): void -> {
+    if (!true) -> {
+        show("No");
+    } else -> {
+        show("Test #3 success");
+    }
+}
+
+main();
+
+bool: testPassed = false;
+if (testPassed) -> {
+    show("No");
+} else -> {
+     testPassed = true;
+}
+
+if (testPassed) -> {
+    show("Test #4 success");
 }

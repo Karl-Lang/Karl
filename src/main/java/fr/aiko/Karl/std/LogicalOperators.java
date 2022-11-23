@@ -30,4 +30,16 @@ public class LogicalOperators {
     public static boolean isOperator(TokenType type) {
         return operators.containsValue(type);
     }
+
+    public static Boolean compare(float toInt, float toInt1, TokenType operator) {
+        return switch (operator) {
+            case LESS -> toInt < toInt1;
+            case LESS_EQUAL -> toInt <= toInt1;
+            case GREATER_EQUAL -> toInt >= toInt1;
+            case GREATER -> toInt > toInt1;
+            case EQUALEQUAL -> toInt == toInt1;
+            case NOT_EQUAL -> toInt != toInt1;
+            default -> throw new RuntimeException("Unknown operator: " + operator);
+        };
+    }
 }
