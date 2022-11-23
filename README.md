@@ -4,22 +4,15 @@
 
 ```js
 int: number = 150; // this is a comment
-bool: boolean = true; // this is a comment
-final string: name = "Karl";
-func main::(string: name) {
-    show("Hello, ", name, "!");
-    int: number = 5;
-    if (number == 5) -> {
-        show("number is 5");
-    } else if (number == 4) -> {
-        show("number is 4");
-    } else -> {
-        show("number is not 5 or 4");
-    }
+bool: boolean = true;
+int: num = 1;
+
+func main::(): int -> {
+  return 1;
 }
-main(name);
-// -> Hello, Karl!
-// -> number is not 5 or 4
+
+show(main() + num);
+// -> 2
 ```
 
 ## How to use

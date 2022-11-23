@@ -1,9 +1,10 @@
 package fr.aiko.Karl.parser;
 
-import fr.aiko.Karl.ErrorManager.Error;
-import fr.aiko.Karl.ErrorManager.SyntaxError.SyntaxError;
+import fr.aiko.Karl.errors.Error;
+import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,9 +28,11 @@ public class Lexer {
         line = 1;
 
         OPERATORS.put("+", TokenType.PLUS);
+        OPERATORS.put("++", TokenType.PLUSPLUS);
+        OPERATORS.put("--", TokenType.MINUSMINUS);
         OPERATORS.put("&&", TokenType.AND);
         OPERATORS.put("||", TokenType.OR);
-        OPERATORS.put("==", TokenType.EQUAL);
+        OPERATORS.put("==", TokenType.EQUALEQUAL);
         OPERATORS.put("!=", TokenType.NOT_EQUAL);
         OPERATORS.put(">", TokenType.GREATER);
         OPERATORS.put("<", TokenType.LESS);
@@ -39,7 +42,7 @@ public class Lexer {
         OPERATORS.put("*", TokenType.MULTIPLY);
         OPERATORS.put("/", TokenType.DIVIDE);
         OPERATORS.put("%", TokenType.MODULO);
-        OPERATORS.put("=", TokenType.EQUALS);
+        OPERATORS.put("=", TokenType.EQUAL);
         OPERATORS.put("(", TokenType.LEFT_PARENTHESIS);
         OPERATORS.put(")", TokenType.RIGHT_PARENTHESIS);
         OPERATORS.put("[", TokenType.LEFT_BRACKET);
@@ -56,6 +59,7 @@ public class Lexer {
         OPERATORS.put("?", TokenType.QUESTION);
         OPERATORS.put("!", TokenType.EXCLAMATION);
         OPERATORS.put(";", TokenType.SEMICOLON);
+        OPERATORS.put("//", TokenType.COMMENTARY);
 
 
         KEYWORDS.put("func", TokenType.FUNC);
@@ -66,13 +70,18 @@ public class Lexer {
         KEYWORDS.put("for", TokenType.FOR);
         KEYWORDS.put("bool", TokenType.BOOL);
         KEYWORDS.put("final", TokenType.FINAL);
+        KEYWORDS.put("int", TokenType.INT);
+        KEYWORDS.put("float", TokenType.FLOAT);
+        KEYWORDS.put("string", TokenType.STRING);
+        KEYWORDS.put("char", TokenType.CHAR);
+        KEYWORDS.put("void", TokenType.VOID);
 
         tokenize();
     }
 
     public void tokenize() {
         if (input.length() == 0) {
-            new Error("RetardError :)", "Empty file", fileName, line);
+            new Error("RetardError :)", "Empty file", fileName, line, 0);
         }
 
         while (position < input.length()) {
@@ -80,13 +89,14 @@ public class Lexer {
             if (c == '\n' || c == '\r') {
                 line++;
                 position++;
-            } else if (Character.isDigit(c)) tokenizeNumber();
+            } else if (Character.isDigit(c) || (c == '-' && position + 1 < input.length() && Character.isDigit(input.charAt(position + 1))))
+                tokenizeNumber();
             else if (Character.isLetter(c)) tokenizeIdentifier();
             else if (c == '"') tokenizeString();
             else if (c == '\'') tokenizeChar();
             else if (OPERATOR_CHARS.indexOf(c) != -1) tokenizeOperator();
             else if (Character.isWhitespace(c)) nextChar();
-            else new SyntaxError("Unexpected character: " + c, fileName, line);
+            else new SyntaxError("Unexpected character: " + c, fileName, line, position);
         }
 
         tokens.add(new Token(TokenType.EOF, "EOF", input.length(), line));
@@ -98,9 +108,9 @@ public class Lexer {
         nextChar();
         if (input.charAt(position) != '\'') {
             if (input.charAt(position) != '\'') {
-                new SyntaxError("Character type can only contain one character", fileName, line);
+                new SyntaxError("Character type can only contain one character", fileName, line, position);
             } else {
-                new SyntaxError("Expected ' at end of char value", fileName, line);
+                new SyntaxError("Expected ' at end of char value", fileName, line, position);
             }
         }
         nextChar();
@@ -111,7 +121,7 @@ public class Lexer {
         buffer.setLength(0);
         char c = input.charAt(position);
         if (position + 1 < input.length() && Character.isLetter(input.charAt(position + 1))) {
-            new SyntaxError("Unexpected character: " + input.charAt(position), fileName, line);
+            new SyntaxError("Unexpected character: " + input.charAt(position), fileName, line, position);
         }
 
         while (true) {
@@ -119,9 +129,9 @@ public class Lexer {
                 break;
             }
 
-            if (c == '.' && buffer.indexOf(".") != -1) {
-                new SyntaxError("Invalid number", fileName, line);
-            } else if (!Character.isDigit(c) && c != '.') {
+            if ((c == '.' && buffer.indexOf(".") != -1) || (buffer.indexOf("-") != -1 && buffer.indexOf("-") != -1)) {
+                new SyntaxError("Invalid number", fileName, line, position);
+            } else if (!Character.isDigit(c) && (c != '.' && c != '-')) {
                 break;
             }
 
@@ -129,7 +139,7 @@ public class Lexer {
             c = nextChar();
         }
 
-        if (buffer.indexOf(".") == 1) {
+        if (buffer.indexOf(".") != -1) {
             addToken(TokenType.FLOAT, buffer.toString());
         } else {
             addToken(TokenType.INT, buffer.toString());
@@ -151,11 +161,12 @@ public class Lexer {
             buffer.append(c);
             c = nextChar();
         }
-
-        if (!buffer.toString().equals("true") && !buffer.toString().equals("false")) {
-            addToken(KEYWORDS.getOrDefault(buffer.toString(), TokenType.IDENTIFIER), buffer.toString());
-        } else {
+        if (buffer.toString().equals("true") || buffer.toString().equals("false")) {
             addToken(TokenType.BOOL, buffer.toString());
+        } else if (buffer.toString().equals("show")) {
+            addToken(TokenType.SHOW, buffer.toString());
+        } else {
+            addToken(KEYWORDS.getOrDefault(buffer.toString(), TokenType.IDENTIFIER), buffer.toString());
         }
     }
 
@@ -164,7 +175,7 @@ public class Lexer {
         char c = nextChar();
         while (true) {
             if (c == '\0') {
-                new SyntaxError("Unterminated string", fileName, line);
+                new SyntaxError("Unterminated string", fileName, line, position);
             }
 
             if (c == '"') {
@@ -195,7 +206,15 @@ public class Lexer {
             c = nextChar();
 
             if (OPERATORS.containsKey(buffer.toString())) {
-                addToken(OPERATORS.get(buffer.toString()), buffer.toString());
+                if (Character.toString(c).equals(buffer.toString()) && Arrays.asList(new Character[]{'|', '&', '=', '+', '-', '/'}).contains(c)) {
+                    addToken(OPERATORS.get(buffer.toString() + c), buffer.toString() + c);
+                    nextChar();
+                } else if (Arrays.asList(new String[]{">", "<", "!"}).contains(buffer.toString()) && c == '=') {
+                    addToken(OPERATORS.get(buffer.toString() + c), buffer.toString() + c);
+                    nextChar();
+                } else {
+                    addToken(OPERATORS.get(buffer.toString()), buffer.toString());
+                }
                 return;
             }
         }

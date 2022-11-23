@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Switch increment and decrement to VariableAssignmentStatement">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix last bugs, add new features for ! keyword in conditions">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/UnaryExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/OperationExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,26 +64,30 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2FDItGGI1DJeh0qKIIYXFOhIHvR" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/aikoo/Bureau/Developpement/Projets/Karl&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "/home/aikoo/Bureau/Karl-0.2.3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -92,7 +103,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.MainTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -155,15 +166,40 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="MainTest.testIf" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;fr.aiko.Karl.MainTest.testIf&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.MainTest.testIf" />
       <item itemvalue="Gradle.MainTest.testElse" />
       <item itemvalue="Gradle.MainTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MainTest.testElse" />
         <item itemvalue="Gradle.MainTest" />
+        <item itemvalue="Gradle.MainTest.testElse" />
+        <item itemvalue="Gradle.MainTest.testIf" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -225,125 +261,20 @@
       <workItem from="1667490793364" duration="11889000" />
       <workItem from="1667558675065" duration="20794000" />
       <workItem from="1667645098195" duration="11548000" />
-    </task>
-    <task id="LOCAL-00003" summary="Add line system for errors">
-      <created>1665243996605</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1665243996605</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Add Variable declarations and support in print statement">
-      <created>1665336219439</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1665336219439</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Add ToDo List to README.md">
-      <created>1665337018786</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1665337018786</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Move code in .ry file for more readability">
-      <created>1665337385706</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1665337385706</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Add multi arguments support in getArguments function">
-      <created>1665338931947</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1665338931947</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Add comments">
-      <created>1665339257105</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1665339257105</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Edit README.md">
-      <created>1665339392155</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1665339392155</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Fix bug: variable name start by a digit">
-      <created>1665340971802</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1665340971802</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Fix bug: variable name is a value type (like int)">
-      <created>1665341525761</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1665341525761</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Fix bug: variable type not corresponding to value">
-      <created>1665342323697</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1665342323697</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Edit README.md">
-      <created>1665342510181</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1665342510181</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Add variable checker in type verification">
-      <created>1665342799376</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1665342799376</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Cleanup code">
-      <created>1665342882802</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1665342882802</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Implements final variable &amp; change variable system">
-      <created>1665345400997</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1665345400997</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Edit README.md">
-      <created>1665345476850</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1665345476850</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Base of functions, in working">
-      <created>1665687493631</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1665687493631</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Functions working, variable functions too. Need tests">
-      <created>1665738659093</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1665738659093</updated>
+      <workItem from="1668110478291" duration="4213000" />
+      <workItem from="1668116630145" duration="232000" />
+      <workItem from="1668170512696" duration="29491000" />
+      <workItem from="1668270538891" duration="9120000" />
+      <workItem from="1668343220175" duration="17530000" />
+      <workItem from="1668455490686" duration="2426000" />
+      <workItem from="1668513270938" duration="6759000" />
+      <workItem from="1668597462449" duration="494000" />
+      <workItem from="1668603358142" duration="10498000" />
+      <workItem from="1668699433875" duration="1233000" />
+      <workItem from="1668798842985" duration="956000" />
+      <workItem from="1669046656001" duration="12842000" />
+      <workItem from="1669128384786" duration="8892000" />
+      <workItem from="1669213478156" duration="5065000" />
     </task>
     <task id="LOCAL-00020" summary="Fix some bugs">
       <created>1665741351959</created>
@@ -569,7 +500,126 @@
       <option name="project" value="LOCAL" />
       <updated>1667647333508</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Support for float, fix bugs">
+      <created>1668206212951</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1668206212951</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Support for char, base of conditions">
+      <created>1668271164134</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1668271164135</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Fix bugs in variable assignment, add base of if statement">
+      <created>1668344183582</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1668344183585</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Fix bugs and add new error messages design">
+      <created>1668358502524</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1668358502524</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Fix bugs and add negative numbers support">
+      <created>1668360720421</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1668360720421</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Increment/Decrement, Comments &amp; Multi-line comments">
+      <created>1668370217825</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1668370217825</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Fix bugs with variable scope">
+      <created>1668888186822</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1668888186829</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Make functions usable before initialization">
+      <created>1668889391483</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1668889391483</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Base of parameters, need tests">
+      <created>1668890277451</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1668890277452</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Base of return system, need tests">
+      <created>1668897343274</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1668897343274</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Fix 2 bugs linked to functions">
+      <created>1668947058492</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1668947058493</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Add forbidden names">
+      <created>1668950216404</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1668950216404</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Cleanup code">
+      <created>1668950590691</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1668950590691</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Bugs fix">
+      <created>1668953657489</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1668953657489</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Fix bugs with forbiddenNames, fix major bug with ! keyword, fix bugs in expression system and optimize it">
+      <created>1668967989823</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1668967989823</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Fix all known bugs with condition parsing">
+      <created>1669054587328</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1669054587329</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Fix last bugs, add new features for ! keyword in conditions">
+      <created>1669060897709</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1669060897709</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,24 +637,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Base of new ErrorManager, currently in working" />
-    <MESSAGE value="Change error message for TypeError" />
-    <MESSAGE value="Finish Error System" />
-    <MESSAGE value="Edit README.md" />
-    <MESSAGE value="If statement, need a lot of tests and optimizations" />
-    <MESSAGE value="Fix a lot of issues and make some optimizations" />
-    <MESSAGE value="Make if statement back, in tests" />
-    <MESSAGE value="Make new comment support, if statement in tests" />
-    <MESSAGE value="If statements seems working" />
-    <MESSAGE value="Rewrite of Parser" />
-    <MESSAGE value="v0.1" />
-    <MESSAGE value="v0.1 - Edit README.md" />
-    <MESSAGE value="Add AND and OR keywords for condition" />
-    <MESSAGE value="New condition type : if(boolean)" />
-    <MESSAGE value="Add increment and decrement for int and float variables" />
-    <MESSAGE value="Fix two major bugs : Variable in if body and if statement in functions" />
-    <MESSAGE value="Base of tests" />
-    <MESSAGE value="Add some tests for v0.2.0 and support for float variables" />
     <MESSAGE value="Bug fix #4" />
     <MESSAGE value="Infinite operator ! (`if(!!false)`)" />
     <MESSAGE value="Add Else if" />
@@ -612,7 +644,36 @@
     <MESSAGE value="v0.2.2" />
     <MESSAGE value="Add VariableAssignmentStatement.java" />
     <MESSAGE value="Switch increment and decrement to VariableAssignmentStatement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Switch increment and decrement to VariableAssignmentStatement" />
+    <MESSAGE value="Support for float, fix bugs" />
+    <MESSAGE value="Support for char, base of conditions" />
+    <MESSAGE value="Fix bugs in variable assignment, add base of if statement" />
+    <MESSAGE value="Fix bugs and add new error messages design" />
+    <MESSAGE value="Fix bugs and add negative numbers support" />
+    <MESSAGE value="Increment/Decrement, Comments &amp; Multi-line comments" />
+    <MESSAGE value="Fix bugs, add base of functions (need tests &amp; args)" />
+    <MESSAGE value="Fix bugs with variable scope" />
+    <MESSAGE value="Make functions usable before initialization" />
+    <MESSAGE value="Base of parameters, need tests" />
+    <MESSAGE value="Base of return system, need tests" />
+    <MESSAGE value="Fix 2 bugs linked to functions" />
+    <MESSAGE value="Add forbidden names" />
+    <MESSAGE value="Cleanup code" />
+    <MESSAGE value="Bugs fix" />
+    <MESSAGE value="Fix bugs with forbiddenNames, fix major bug with ! keyword, fix bugs in expression system and optimize it" />
+    <MESSAGE value="Fix all known bugs with condition parsing" />
+    <MESSAGE value="Fix last bugs, add new features for ! keyword in conditions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix last bugs, add new features for ! keyword in conditions" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/ValueExpression.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

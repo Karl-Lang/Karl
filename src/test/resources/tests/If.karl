@@ -8,11 +8,11 @@ if (name == "Karl" && true == true) -> {
     show("Test #1 success");
 }
 
-if (number == 230 || !boolean) -> {
+if (number == 230 || !bool) -> {
     show("Test #2 success");
 }
 
-if (price == 2.30) -> {
+if (price == 2.30 && (!bool || number > 1300)) -> {
     show("Test #3 success");
 }
 
@@ -30,4 +30,30 @@ if (number == 230 && price == 2.30 && trueValue) -> {
 
 if (number == 230 && price == 2.30 || !boolean) -> {
     show("Test #7 success");
+}
+
+func getBool::(): bool -> {
+    return false;
+}
+
+if (!getBool() || boolean) -> {
+    show("Test #8 success");
+}
+
+if (price == 2.30 && (!boolean || (number > 1300 || 1 == 1))) -> {
+    show("Test #9 success");
+} else -> {
+    show("Test #9 failed");
+}
+
+if ((name == "karl" || name == "Karl") && (number == 230 || number == 231)) -> {
+    show("Test #10 success");
+}
+
+int: lol = 42;
+string: mdr = "El psy kongroo";
+if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4)) || !false) -> {
+      show("Test réussit !! ^U^");
+} else -> {
+      show("Test échoué !! >_<");
 }

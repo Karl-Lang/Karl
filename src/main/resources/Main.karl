@@ -1,12 +1,33 @@
-int: base = 19;
-
-if (false) -> {
-    show("base is less than 18");
-    base++;
-    show("base is now ",  base);
-} else -> {
-    show("base is greater than 18");
-    base--;
+int: number = 10;
+if (number == 11) -> {
+    show("No");
+} else if (number == 10) -> {
+    show("Test #1 success");
 }
 
-show("New number: ", base);
+if (number < 10) -> {
+    show("No");
+} else -> {
+    show("Test #2 success");
+}
+
+func main::(): void -> {
+    if (!true) -> {
+        show("No");
+    } else -> {
+        show("Test #3 success");
+    }
+}
+
+main();
+
+bool: testPassed = false;
+if (testPassed) -> {
+    show("No");
+} else -> {
+     testPassed = true;
+}
+
+if (testPassed) -> {
+    show("Test #4 success");
+}

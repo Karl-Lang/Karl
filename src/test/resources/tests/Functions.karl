@@ -1,10 +1,20 @@
-func sayHello::(string: name) {
+func sayHello::(string: name): void -> {
     show("Hello, ", name, "!");
 }
 
-func main::() {
+func main::(): void -> {
     show("What is your name?");
     sayHello("Karl");
 }
 
+func getStr::(): string -> {
+    return "Hello, World!";
+}
 main();
+show(getStr());
+show(getInt(9) + 1);
+
+func getInt::(int: num): int -> {
+    return num + 1;
+}
+show(getInt(6) + 1);

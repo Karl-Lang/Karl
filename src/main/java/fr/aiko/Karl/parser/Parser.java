@@ -1,613 +1,376 @@
 package fr.aiko.Karl.parser;
 
-import fr.aiko.Karl.ErrorManager.RuntimeError.RuntimeError;
-import fr.aiko.Karl.ErrorManager.RuntimeError.TypeError;
-import fr.aiko.Karl.ErrorManager.SyntaxError.SemiColonError;
-import fr.aiko.Karl.ErrorManager.SyntaxError.SyntaxError;
-import fr.aiko.Karl.parser.ast.*;
+import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
+import fr.aiko.Karl.errors.SyntaxError.SemiColonError;
+import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
+import fr.aiko.Karl.parser.ast.expressions.*;
+import fr.aiko.Karl.parser.ast.statements.*;
+import fr.aiko.Karl.parser.ast.values.Value;
+import fr.aiko.Karl.std.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 
-public class Parser {
-    public Map<String, Variable> VARIABLE_MAP = new HashMap<>();
-    private final ArrayList<String> systemFunctions = new ArrayList<>();
-    private final ArrayList<Token> tokens;
+public final class Parser {
     public final String fileName;
+    private final int size;
+    private final ArrayList<Token> tokens;
     private final ArrayList<Statement> statements = new ArrayList<>();
-    private final Map<String, FunctionStatement> FUNCTIONS = new HashMap<>();
-    private final String[] variableTypes = {"int", "float", "string", "bool", "char"};
-    private final TokenType[] primaryOperatorsToken = {TokenType.EQUALS, TokenType.LESS, TokenType.GREATER};
-    private Token currentToken;
+    private int pos;
 
     public Parser(ArrayList<Token> tokens, String fileName) {
         this.tokens = tokens;
         this.fileName = fileName;
-        currentToken = tokens.get(0);
-
-        systemFunctions.add("show");
+        this.pos = 0;
+        this.size = tokens.size();
     }
 
     public ArrayList<Statement> parse() {
-        while (currentToken.getType() != TokenType.EOF) {
-            if (isFuncCall()) parseFuncCall();
-            else if (isIfStatement()) parseIfStatement();
-            else if (isVariableDeclaration()) parseVariableDeclaration();
-            else if (isVariableAssignment()) parseVariableAssignment();
-            else if (isFunctionDeclaration()) parseFunctionDeclaration();
-            else if (isIncrementDecrement()) parseIncrementDecrement();
-            else if (isCommentary()) parseCommentary();
-            else new RuntimeError("Unknown statement : " + currentToken.getValue(), fileName, currentToken.getLine());
+        while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
+            if (match(TokenType.COMMENTARY)) {
+                int baseLine = get(0).getLine();
+                while (get(0).getLine() == baseLine && pos < size - 1 && !checkType(0, TokenType.EOF)) {
+                    match(getType());
+                }
+                if (pos == size - 1 || checkType(0, TokenType.EOF)) break;
+            } else if (match(TokenType.DIVIDE) && match(TokenType.MULTIPLY)) {
+                while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
+                    if (match(TokenType.MULTIPLY) && match(TokenType.DIVIDE)) break;
 
-            if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
-                advance();
+                    match(getType());
+                }
+                if (pos == size - 1 || checkType(0, TokenType.EOF)) break;
+            }
+
+            Statement statement = getStatement();
+            if (statement != null) {
+                statements.add(statement);
             }
         }
         return statements;
     }
 
-    private boolean isIncrementDecrement() {
-        if (currentToken.getType() == TokenType.IDENTIFIER) {
-            if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
-                Token nextToken = tokens.get(tokens.indexOf(currentToken) + 1);
-                if (nextToken.getType() == TokenType.PLUS || nextToken.getType() == TokenType.MINUS) {
-                    if (tokens.indexOf(nextToken) + 1 < tokens.size()) {
-                        Token nextNextToken = tokens.get(tokens.indexOf(nextToken) + 1);
-                        return nextNextToken.getType() == nextToken.getType();
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private void parseIncrementDecrement() {
-        Variable variable = VARIABLE_MAP.get(currentToken.getValue());
-        if (variable == null) new RuntimeError("Variable " + currentToken.getValue() + " is not defined", fileName, currentToken.getLine());
-        assert variable != null;
-        if (variable.isFinal()) new RuntimeError("Cannot increment/decrement a final variable: " + currentToken.getValue(), fileName, currentToken.getLine());
-        advance();
-        Token operator = tokens.get(tokens.indexOf(currentToken));
-        advance(2);
-        checkSemiColon();
-        if (operator.getType() == TokenType.PLUS) {
-            if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.INT) {
-                String value = Integer.toString(Integer.parseInt(variable.getValue()) + 1);
-                statements.add(new VariableAssignmentStatement(variable.getName(), value, VARIABLE_MAP, currentToken));
-            } else if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.FLOAT) {
-                String value = Float.toString(Float.parseFloat(variable.getValue()) + 1);
-                statements.add(new VariableAssignmentStatement(variable.getName(), value, VARIABLE_MAP, currentToken));
-            } else new TypeError("Cannot increment a " + variable.getType() + " variable", fileName, currentToken.getLine());
-        } else if (operator.getType() == TokenType.MINUS) {
-            if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.INT) {
-                String value = Integer.toString(Integer.parseInt(variable.getValue()) - 1);
-                statements.add(new VariableAssignmentStatement(variable.getName(), value, VARIABLE_MAP, currentToken));
-            } else if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.FLOAT) {
-                String value = Float.toString(Float.parseFloat(variable.getValue()) - 1);
-                statements.add(new VariableAssignmentStatement(variable.getName(), value, VARIABLE_MAP, currentToken));
-            } else new TypeError("Cannot decrement a " + variable.getType() + " variable", fileName, currentToken.getLine());
-        }
-    }
-
-    private boolean isCommentary() {
-        return currentToken.getType() == TokenType.DIVIDE && tokens.indexOf(currentToken) + 1 < tokens.size() && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.DIVIDE;
-    }
-
-    private void parseCommentary() {
-        int baseLine = currentToken.getLine();
-        while (currentToken.getLine() == baseLine && tokens.indexOf(currentToken) + 1 < tokens.size()) {
-            advance();
-        }
-
-        advance(-1);
-    }
-
-    private boolean isIfStatement() {
-        return currentToken.getType() == TokenType.IF && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.LEFT_PARENTHESIS;
-    }
-
-    private void parseIfStatement() {
-        advance(2);
-        ArrayList<Token> conditionTokens = new ArrayList<>();
-        while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS) {
-            if (currentToken.getType() == TokenType.EOF)
-                new SyntaxError("Missing ')' in if statement", fileName, currentToken.getLine());
-            else if (currentToken.getType() == TokenType.RIGHT_PARENTHESIS) break;
-            conditionTokens.add(currentToken);
-            advance();
-        }
-        if (conditionTokens.size() == 0)
-            new SyntaxError("If statement can't be empty", fileName, currentToken.getLine());
-
-        boolean condition = parseCondition(conditionTokens);
-        advance();
-        if (currentToken.getType() != TokenType.MINUS || tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.GREATER)
-            new SyntaxError("Missing '->' after if statement condition", fileName, currentToken.getLine());
-        advance(2);
-        ArrayList<Token> ifTokens = getFunctionBody();
-        Parser ifParser = new Parser(ifTokens, fileName);
-        for (Variable variable : VARIABLE_MAP.values()) {
-            ifParser.VARIABLE_MAP.put(variable.getName(), variable);
-        }
-        if (isElseStatement()) {
-            advance(); // else
-            if (tokens.indexOf(currentToken) + 4 < tokens.size()) {
-                advance();
-                if (!isIfStatement()) {
-                    if (currentToken.getType() != TokenType.MINUS || tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.GREATER)
-                        new SyntaxError("Missing '->' after if statement condition", fileName, currentToken.getLine());
-                    advance();
-                    Token nextToken = tokens.get(tokens.indexOf(currentToken) + 1);
-                    if (nextToken.getType() == TokenType.LEFT_BRACE) {
-                        advance();
-                        ArrayList<Token> elseTokens = getFunctionBody();
-                        Parser elseParser = new Parser(elseTokens, fileName);
-                        for (Variable variable : VARIABLE_MAP.values()) {
-                            elseParser.VARIABLE_MAP.put(variable.getName(), variable);
-                        }
-                        statements.add(new IfStatement(condition, ifParser, elseParser));
-                    } else new RuntimeError("Unauthorized else statement", fileName, currentToken.getLine());
-                } else new RuntimeError("Unauthorized else statement", fileName, currentToken.getLine());
-                /*if (isIfStatement()) {
-                    parseIfStatement();
-                }*/
-            } else new SyntaxError("Unterminated else statement", fileName, currentToken.getLine());
+    private Statement getStatement() {
+        if (match(TokenType.SHOW)) {
+            return show();
+        } else if (Types.contains(get(0).getType())) {
+            return variableDeclaration();
+        } else if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
+            return variableAssignment();
+        } else if (match(TokenType.IF)) {
+            return ifElse();
+        } else if (checkType(0, TokenType.IDENTIFIER) && (checkType(1, TokenType.PLUSPLUS) || checkType(1, TokenType.MINUSMINUS))) {
+            return incrementDecrement();
+        } else if (match(TokenType.FUNC)) {
+            return funcDeclaration();
+        } else if (match(TokenType.IDENTIFIER) && match(TokenType.LEFT_PARENTHESIS)) {
+            return funcCall();
         } else {
-            statements.add(new IfStatement(condition, ifParser, null));
+            new RuntimeError("Unexpected token: " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
+            return null;
         }
     }
 
-    private boolean isElseStatement() {
-        return tokens.indexOf(currentToken) + 1 < tokens.size() && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.ELSE;
+    private Statement funcCall() {
+        String name = get(-2).getValue();
+        ArrayList<Expression> args = new ArrayList<>();
+        while (!match(TokenType.RIGHT_PARENTHESIS) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
+            if (match(TokenType.COMMA)) continue;
+            Expression expression = getExpression();
+            args.add(expression);
+        }
+        skip(TokenType.SEMICOLON);
+
+        return new FuncCallStatement(new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition()));
     }
 
-    private boolean parseCondition(ArrayList<Token> conditionsTokens) {
-        ArrayList<Boolean> results = new ArrayList<>();
-        Token currentTok = conditionsTokens.get(0);
-        while (conditionsTokens.indexOf(currentTok) < conditionsTokens.size() - 1) {
-            if (currentTok.getType() == TokenType.RIGHT_PARENTHESIS) break;
-            if (isFalseOperator(currentTok, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1))) {
-                Token nextTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1);
-                if (nextTok.getType() == TokenType.EXCLAMATION) {
-                    // Make a new ArrayList without previous tokens
-                    ArrayList<Token> newConditionsTokens = new ArrayList<>();
-                    for (int i = conditionsTokens.indexOf(currentTok) + 1; i < conditionsTokens.size(); i++) {
-                        newConditionsTokens.add(conditionsTokens.get(i));
-                    }
-                    results.add(!parseCondition(newConditionsTokens));
-                    break;
-                } else results.add(parseFalseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)));
-                if (conditionsTokens.indexOf(currentTok) + 2 < conditionsTokens.size()) {
-                    currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 2);
-                } else break;
-            } else if (isComparisonOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1))) {
-                int size = 2;
-                TokenType operator = parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1));
-                if (Arrays.asList(primaryOperatorsToken).contains(operator)) {
-                    size = 1;
-                }
-                results.add(parseComparisonOperator(currentTok, operator, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + size + 1)));
-                if (conditionsTokens.indexOf(currentTok) + 1 + size < conditionsTokens.size()) {
-                    currentTok = conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1 + size);
-                } else break;
-            }  else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.AND) {
-                boolean condition1 = !results.contains(false);
-                boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
-                results.clear();
-                results.add(condition1 && condition2);
-                break;
-            } else if (parseOperator(conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1)) == TokenType.OR) {
-                boolean condition1 = !results.contains(false);
-                boolean condition2 = parseCondition(new ArrayList<>(conditionsTokens.subList(conditionsTokens.indexOf(currentTok) + 3, conditionsTokens.size())));
-                results.clear();
-                results.add(condition1 || condition2);
-                break;
+    private Statement funcDeclaration() {
+        String name = get(0).getValue();
+        if (ForbiddenNames.isForbiddenName(name)) {
+            new RuntimeError("Function name " + name + " is forbidden", fileName, get(-1).getLine(), get(-1).getPosition());
+        }
+        skip(TokenType.IDENTIFIER);
+        if (FunctionManager.isFunction(name)) {
+            new RuntimeError("Function " + name + " already exists", fileName, get(-1).getLine(), get(-1).getPosition());
+        }
+
+        skip(TokenType.COLON);
+        skip(TokenType.COLON);
+        skip(TokenType.LEFT_PARENTHESIS);
+        LinkedHashMap<String, TokenType> args = new LinkedHashMap<>();
+        while (!match(TokenType.RIGHT_PARENTHESIS) && !checkType(0, TokenType.EOF)) {
+            if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
+                TokenType type = get(-1).getType();
+                skip(TokenType.COLON);
+                skip(TokenType.IDENTIFIER);
+                String paramName = get(-1).getValue();
+                args.put(paramName, type);
             } else {
-                new SyntaxError("Unknown operator : " + conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getValue(), fileName, conditionsTokens.get(conditionsTokens.indexOf(currentTok) + 1).getLine());
+                new SyntaxError("Unexpected token " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             }
+            match(TokenType.COMMA);
         }
-
-        if (results.size() == 0) {
-            if (currentTok.getValue().equals("true")) return true;
-            else if (currentTok.getValue().equals("false")) return false;
-            else if (currentTok.getType() == TokenType.IDENTIFIER) {
-                if (VARIABLE_MAP.containsKey(currentTok.getValue())) {
-                    Variable variable = VARIABLE_MAP.get(currentTok.getValue());
-                    if (TokenType.valueOf(variable.getType().toUpperCase()) == TokenType.BOOL) {
-                        if (variable.getValue().equals("true")) results.add(true);
-                        else results.add(false);
-                    } else new SyntaxError(currentTok.getValue() + " is not a boolean", fileName, currentTok.getLine());
-                } else new SyntaxError("Unknown variable : " + currentTok.getValue(), fileName, currentTok.getLine());
-            } else new SyntaxError("Unknown condition : " + currentTok.getValue(), fileName, currentTok.getLine());
+        skip(TokenType.COLON);
+        if (!Types.isType(getType()) && !checkType(0, TokenType.VOID)) {
+            new SyntaxError("Unexpected return type " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
         }
-
-        return !results.contains(false);
+        TokenType returnType = getType();
+        match(returnType);
+        BlockStatement block = getBlock();
+        FunctionManager.addFunction(new Function(name, args, returnType, block));
+        return new FunctionDeclarationStatement(name, args, returnType, block);
     }
 
-    private TokenType parseOperator(Token operator) {
-        if (tokens.indexOf(operator) + 1 < tokens.size()) {
-            if (operator.getType() == TokenType.EQUALS && tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS) {
-                return TokenType.EQUAL;
-            } else if (operator.getType() == TokenType.LESS) {
-                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.LESS_EQUAL : operator.getType();
-            } else if (operator.getType() == TokenType.GREATER) {
-                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.GREATER_EQUAL : operator.getType();
-            } else if (operator.getType() == TokenType.EXCLAMATION) {
-                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.EQUALS ? TokenType.NOT_EQUAL : operator.getType();
-            } else if (operator.getType() == TokenType.BAR) {
-                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.BAR ? TokenType.OR : operator.getType();
-            } else if (operator.getType() == TokenType.AMP) {
-                return tokens.get(tokens.indexOf(operator) + 1).getType() == TokenType.AMP ? TokenType.AND : operator.getType();
-            } else return operator.getType();
-        } else return operator.getType();
-    }
-
-    private boolean isFalseOperator(Token token, Token token1) {
-        return token.getType() == TokenType.EXCLAMATION && (token1.getType() == TokenType.IDENTIFIER || token1.getType() == TokenType.BOOL || token1.getType() == TokenType.EXCLAMATION);
-    }
-
-    private boolean parseFalseOperator(Token token) {
-        String value = token.getValue();
-        if (token.getType() == TokenType.IDENTIFIER) {
-            Variable var = VARIABLE_MAP.get(token.getValue());
-            if (var == null) new RuntimeError("Variable " + token.getValue() + " doesn't exist", fileName, token.getLine());
-            assert var != null;
-            value = var.getValue();
-        } return switch (value) {
-            case "false", "null" -> true;
-            default -> false;
-        };
-    }
-
-    private boolean isComparisonOperator(Token token) {
-        return token.getType() == TokenType.EQUALS || token.getType() == TokenType.NOT_EQUAL || token.getType() == TokenType.GREATER || token.getType() == TokenType.LESS || token.getType() == TokenType.GREATER_EQUAL || token.getType() == TokenType.LESS_EQUAL || (token.getType() == TokenType.EXCLAMATION && tokens.get(tokens.indexOf(token) + 1).getType() == TokenType.EQUALS);
-    }
-
-    private boolean parseComparisonOperator(Token left, TokenType operator, Token right) {
-        if (left.getType() == TokenType.IDENTIFIER) {
-            left = getValue(left);
-        } else if (right.getType() == TokenType.IDENTIFIER) {
-            right = getValue(right);
-        }
-
-        if (left.getType() != right.getType()) {
-            new SyntaxError("Can't compare type " + left.getType().toString().toLowerCase() + " with type " + right.getType().toString().toLowerCase(), fileName, left.getLine());
-        }
-
-        if (left.getType() == TokenType.INT) {
-            return switch (operator) {
-                case EQUAL -> Integer.parseInt(left.getValue()) == Integer.parseInt(right.getValue());
-                case NOT_EQUAL -> !left.getValue().equals(right.getValue());
-                case GREATER -> Integer.parseInt(left.getValue()) > Integer.parseInt(right.getValue());
-                case LESS -> Integer.parseInt(left.getValue()) < Integer.parseInt(right.getValue());
-                case GREATER_EQUAL -> Integer.parseInt(left.getValue()) >= Integer.parseInt(right.getValue());
-                case LESS_EQUAL -> Integer.parseInt(left.getValue()) <= Integer.parseInt(right.getValue());
-                default -> {
-                    new SyntaxError("Unknown operator: " + operator.getName(), fileName, left.getLine());
-                    yield false;
-                }
-            };
+    private Statement incrementDecrement() {
+        match(TokenType.IDENTIFIER);
+        match(getType());
+        String name = get(-2).getValue();
+        Value var = VariableManager.getVariable(name);
+        if (var == null) {
+            new RuntimeError("Variable " + name + " is not defined", fileName, get(-2).getLine(), get(-2).getPosition());
+            return null;
         } else {
-            return switch (operator) {
-                case EQUAL -> left.getValue().equals(right.getValue());
-                case NOT_EQUAL -> !left.getValue().equals(right.getValue());
-                default -> {
-                    new SyntaxError("Unknown operator " + operator.getName() + " for comparison with type " + left.getType().toString().toLowerCase(), fileName, left.getLine());
-                    yield false;
-                }
-            };
-        }
-    }
-
-    private Token getValue(Token left) {
-        Variable var = VARIABLE_MAP.get(left.getValue());
-        if (var == null) new RuntimeError("Variable " + left.getValue() + " doesn't exist", fileName, left.getLine());
-        assert var != null;
-        left = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), left.getLine(), left.getPosition());
-        return left;
-    }
-
-    private boolean isFunctionDeclaration() {
-        return currentToken.getType() == TokenType.FUNC && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 4).getType() == TokenType.LEFT_PARENTHESIS;
-    }
-
-    private void parseFunctionDeclaration() {
-        advance();
-        String name = currentToken.getValue();
-        if (FUNCTIONS.containsKey(name)) {
-            new RuntimeError("The function " + name + " is already defined", fileName, currentToken.getLine());
-        }
-        advance(3);
-        ArrayList<Variable> parameters = getFunctionDeclarationArguments();
-        advance();
-        ArrayList<Token> bodyToken = getFunctionBody();
-        Parser parser = new Parser(bodyToken, fileName);
-        for (Variable arg : parameters) {
-            parser.VARIABLE_MAP.put(arg.getName(), arg);
-        }
-
-        for (FunctionStatement function : FUNCTIONS.values()) {
-            parser.FUNCTIONS.put(function.name, function);
-        }
-
-        // Check if bodyToken include a function declaration
-        for (Token token : bodyToken) {
-            if (token.getType() == TokenType.FUNC && tokens.get(tokens.indexOf(token) + 1).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(token) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(token) + 3).getType() == TokenType.COLON && tokens.get(tokens.indexOf(token) + 4).getType() == TokenType.LEFT_PARENTHESIS) {
-                new RuntimeError("Cannot declare a function inside another function", fileName, token.getLine());
-            }
-        }
-
-        FUNCTIONS.put(name, new FunctionStatement(name, parameters, parser));
-    }
-
-    private boolean isVariableDeclaration() {
-        if (currentToken.getType() == TokenType.FINAL) {
-            return Arrays.asList(variableTypes).contains(tokens.get(tokens.indexOf(currentToken) + 1).getValue()) && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 4).getType() == TokenType.EQUALS;
-        } else
-            return Arrays.asList(variableTypes).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER && tokens.get(tokens.indexOf(currentToken) + 3).getType() == TokenType.EQUALS;
-    }
-
-    private void parseVariableDeclaration() {
-        boolean isFinal = currentToken.getType() == TokenType.FINAL;
-        if (isFinal) advance();
-        String type = currentToken.getValue();
-        advance(2);
-        String name = currentToken.getValue();
-        checkValidVariableName(name);
-        advance(2);
-        Token value = currentToken;
-        if (checkCorrespondentTypeVariable(type, value)) {
-            String valueType = value.getType().toString().toLowerCase();
-            if (valueType.equals("identifier")) {
-                valueType = VARIABLE_MAP.get(value.getValue()).getType().toLowerCase();
-            }
-            new TypeError("Excepted type " + type + " for variable " + name + " but got type " + valueType, fileName, currentToken.getLine());
-        }
-        advance();
-
-        if (value.getType() == TokenType.IDENTIFIER) {
-            Variable var = VARIABLE_MAP.get(value.getValue());
-            if (var == null) new RuntimeError("Variable " + value.getValue() + " doesn't exist", fileName, value.getLine());
-            assert var != null;
-            value = new Token(TokenType.valueOf(var.getType().toUpperCase()), var.getValue(), value.getLine(), value.getPosition());
-        }
-        VARIABLE_MAP.put(name, new Variable(type, name, value.getValue(), isFinal));
-        checkSemiColon();
-    }
-
-    private boolean isVariableAssignment() {
-        return currentToken.getType() == TokenType.IDENTIFIER && tokens.indexOf(currentToken) + 1 < tokens.size() && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.EQUALS;
-    }
-
-    private void parseVariableAssignment() {
-        String name = currentToken.getValue();
-        if (!VARIABLE_MAP.containsKey(name))
-            new RuntimeError("Variable " + name + " is not declared", fileName, currentToken.getLine());
-        Variable variable = VARIABLE_MAP.get(name);
-        if (variable.isFinal())
-            new RuntimeError("Cannot assign new value to a final variable", fileName, currentToken.getLine());
-        advance(2);
-        Token value = currentToken;
-        String newValue = currentToken.getValue();
-        if (checkCorrespondentTypeVariable(variable.getType(), value))
-            new TypeError("Excepted type " + variable.getType() + " for variable " + name + " but got type " + value.getType().toString().toLowerCase(), fileName, currentToken.getLine());
-        advance();
-        checkSemiColon();
-        statements.add(new VariableAssignmentStatement(name, newValue, this.VARIABLE_MAP, currentToken));
-    }
-
-    private boolean isFuncCall() {
-        if (currentToken.getType() == TokenType.IDENTIFIER) {
-            return tokens.indexOf(currentToken) + 1 < tokens.size() && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.LEFT_PARENTHESIS;
-        } else return false;
-    }
-
-    private void parseFuncCall() {
-        if (isSystemFunction(currentToken.getValue()) && currentToken.getValue().equals("show")) {
-            ArrayList<Token> args = getFuncCallArguments();
-            if (args.size() == 0) {
-                new RuntimeError("Excepted at least one argument for function " + "show", fileName, currentToken.getLine());
-            }
-
-            if (tokens.get(tokens.indexOf(currentToken)).getType() != TokenType.SEMICOLON) {
-                new SemiColonError(fileName, currentToken.getLine());
-            }
-
-            StringBuilder contentToPrint = new StringBuilder();
-
-            for (Token arg : args) {
-                if (arg.getType() == TokenType.IDENTIFIER) {
-                    if (VARIABLE_MAP.containsKey(arg.getValue())) {
-                        contentToPrint.append(VARIABLE_MAP.get(arg.getValue()).getValue());
-                    } else {
-                        new RuntimeError("Unknown variable: " + arg.getValue(), fileName, arg.getLine());
-                    }
+            if (var.getType() != TokenType.INT && var.getType() != TokenType.FLOAT) {
+                new RuntimeError("Variable " + name + " is not a number", fileName, get(-2).getLine(), get(-2).getPosition());
+                return null;
+            } else {
+                if (get(-1).getType() == TokenType.PLUSPLUS) {
+                    skip(TokenType.SEMICOLON);
+                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.PLUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 } else {
-                    contentToPrint.append(arg.getValue());
+                    skip(TokenType.SEMICOLON);
+                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.MINUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 }
             }
+        }
+    }
 
-            statements.add(new PrintStatement(contentToPrint.toString()));
-        } else {
-            String funcName = currentToken.getValue();
-            if (!FUNCTIONS.containsKey(funcName)) {
-                new RuntimeError("Unknown function : " + funcName, fileName, currentToken.getLine());
-            }
-
-            ArrayList<Token> args = getFuncCallArguments();
-            FunctionStatement function = FUNCTIONS.get(funcName);
-
-            if (args.size() != function.argsNumber) {
-                new RuntimeError("Excepted " + function.argsNumber + " arguments for function " + funcName + " but got " + args.size() + " arguments.", fileName, currentToken.getLine());
-            }
-
-            function.parser.VARIABLE_MAP.forEach((key, value) -> {
-                for (int i = 0; i < args.size(); i++) {
-                    Token token = args.get(i);
-                    String varType = function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getType();
-
-                    if (token.getType().toString().toLowerCase().equals(varType) || token.getType() == TokenType.IDENTIFIER) {
-                        if (token.getType() == TokenType.IDENTIFIER) {
-                            if (VARIABLE_MAP.containsKey(token.getValue())) {
-                                if (VARIABLE_MAP.get(token.getValue()).getType().equals(varType)) {
-                                    function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(VARIABLE_MAP.get(token.getValue()).getValue());
-                                } else {
-                                    new TypeError("Excepted type " + varType + " for argument : " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function " + funcName + ". The entered value type is : " + VARIABLE_MAP.get(token.getValue()).getType(), fileName, token.getLine());
-                                }
-                            } else {
-                                new RuntimeError("Unknown variable: " + token.getValue(), fileName, token.getLine());
-                            }
-                        } else {
-                            function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).setValue(token.getValue());
-                        }
-                    } else {
-                        new TypeError("Excepted type " + varType + " for argument " + function.parser.VARIABLE_MAP.get(function.args.get(i).getName()).getName() + " in function " + funcName + " but got " + token.getType().toString().toLowerCase() + " type", fileName, token.getLine());
-                    }
+    private BlockStatement getBlock() {
+        skip(TokenType.MINUS);
+        skip(TokenType.GREATER);
+        ArrayList<Statement> statements = new ArrayList<>();
+        skip(TokenType.LEFT_BRACE);
+        while (!checkType(0, TokenType.RIGHT_BRACE) && !checkType(0, TokenType.EOF) && pos < size - 1) {
+            if (match(TokenType.RETURN)) {
+                Expression expr = getExpression();
+                skip(TokenType.SEMICOLON);
+                statements.add(new ReturnStatement(expr));
+            } else {
+                Statement statement = getStatement();
+                if (statement != null) {
+                    statements.add(statement);
                 }
-            });
-
-            statements.add(function);
+            }
         }
+        if (!match(TokenType.RIGHT_BRACE))
+            new RuntimeError("Missing }", fileName, get(-1).getLine(), get(-1).getPosition());
+        return new BlockStatement(statements);
     }
 
-    private ArrayList<Token> getFuncCallArguments() {
-        advance(2); // go to parameters
-        ArrayList<Token> tokensToReturn = new ArrayList<>();
+    private Expression getExpression() {
+        Token token = get(0);
+        Expression expr = null;
+        if ((getType() == TokenType.IDENTIFIER && checkType(1, TokenType.LEFT_PARENTHESIS)) || (getType() == TokenType.IDENTIFIER) || (Types.isType(getType())) || (getType() == TokenType.EXCLAMATION)) {
+            expr = getValue();
+        } else if (match(TokenType.LEFT_PARENTHESIS)) {
+            expr = getExpression();
+            skip(TokenType.RIGHT_PARENTHESIS);
+        } else new RuntimeError("Unknown expression : " + token.getValue(), fileName, token.getLine(), token.getPosition());
 
-        while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS && tokens.indexOf(currentToken) + 1 < tokens.size()) {
-            if (currentToken.getType() == TokenType.COMMA) {
-                advance();
-                continue;
-            } else if (tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.COMMA && tokens.get(tokens.indexOf(currentToken) + 1).getType() != TokenType.RIGHT_PARENTHESIS) {
-                new RuntimeError("Unexpected token " + tokens.get(tokens.indexOf(currentToken) + 1).getValue() + " in function call", fileName, currentToken.getLine());
-            }
-
-            tokensToReturn.add(currentToken);
-            advance();
+        if (Operators.isOperator(getType())) {
+            return getOperationExpression(expr);
         }
 
-        advance();
-
-        return tokensToReturn;
+        if (LogicalOperators.isOperator(getType())) {
+            return getLogicalExpression(expr);
+        }  else return expr;
     }
 
-    private ArrayList<Token> getFunctionBody() {
-        ArrayList<Token> tokensToReturn = new ArrayList<>();
-        advance();
-        int braces = 1;
-        while (braces != 1 || currentToken.getType() != TokenType.RIGHT_BRACE) { // currentToken.getType() != TokenType.RIGHT_BRACE && braces != 0
-            tokensToReturn.add(currentToken);
-            if (currentToken.getType() == TokenType.LEFT_BRACE) {
-                braces++;
-            } else if (currentToken.getType() == TokenType.RIGHT_BRACE) {
-                braces--;
+    private Expression getLogicalExpression(Expression expr) {
+        Token token = get(0);
+        TokenType type = getType();
+        match(type);
+        Expression right = getExpression();
+        return new LogicalExpression(type, expr, right, fileName, token.getLine(), token.getPosition());
+
+    }
+
+    private Expression getValue() {
+        if (getType() == TokenType.IDENTIFIER && get(1).getType() == TokenType.LEFT_PARENTHESIS) {
+            String name = get(0).getValue();
+            match(TokenType.IDENTIFIER);
+            match(TokenType.LEFT_PARENTHESIS);
+            ArrayList<Expression> args = new ArrayList<>();
+            while (!match(TokenType.RIGHT_PARENTHESIS) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
+                args.add(getExpression());
+                match(TokenType.COMMA);
             }
 
-            if (tokens.indexOf(currentToken) + 1 < tokens.size()) {
-                advance();
+            return new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition());
+        } else if (match(TokenType.EXCLAMATION)) {
+            if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL && getType() != TokenType.LEFT_PARENTHESIS)
+                new RuntimeError("Unexpected token " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
+
+            return new UnaryExpression(TokenType.EXCLAMATION, getType() == TokenType.LEFT_PARENTHESIS ? getExpression() : getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
+        } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
+            Token token = get(-1);
+            switch (token.getType()) {
+                case STRING -> {
+                    return new ValueExpression(token.getValue(), token.getType());
+                }
+                case INT -> {
+                    return new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
+                }
+                case BOOL -> {
+                    return new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
+                }
+                case FLOAT -> {
+                    return new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
+                }
+                case CHAR -> {
+                    return new ValueExpression(token.getValue().charAt(0), token.getType());
+                }
+            }
+        } else if (match(TokenType.IDENTIFIER)) {
+            return new VariableCallExpression(get(-1).getValue(), fileName, get(0).getLine(), get(0).getPosition());
+        } else new RuntimeError("Unknown expression : " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
+        return null;
+    }
+
+    private BinaryExpression getOperationExpression(Expression left) {
+        if (left == null) {
+            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
+        }
+        Token operator = get(0);
+        if (!Operators.isOperator(operator.getType())) {
+            new RuntimeError("Unknown operator : " + operator.getValue(), fileName, operator.getLine(), operator.getPosition());
+        }
+        match(operator.getType());
+        Expression right = getValue(); // à retravailler, 2+2+2 pas marcher
+        if (right == null) {
+            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
+        }
+
+        return new BinaryExpression(left, right, operator.getType(), fileName, operator.getLine(), operator.getPosition());
+    }
+
+    private Statement ifElse() {
+        skip(TokenType.LEFT_PARENTHESIS);
+        Expression condition = getExpression();
+        skip(TokenType.RIGHT_PARENTHESIS);
+        BlockStatement ifBlock = getBlock();
+        if (match(TokenType.ELSE)) {
+            if (match(TokenType.IF)) {
+                return new IfElseStatement(condition, ifBlock, ifElse());
             } else {
-                new SyntaxError("Unterminated function body", fileName, currentToken.getLine());
+                BlockStatement elseBlock = getBlock();
+                return new IfElseStatement(condition, ifBlock, elseBlock);
+            }
+        } else return new IfElseStatement(condition, ifBlock, null);
+    }
+
+    private Statement variableAssignment() {
+        String name = get(0).getValue();
+        match(TokenType.IDENTIFIER);
+        skip(TokenType.EQUAL);
+        Expression expr = getExpression();
+        if (expr == null) {
+            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
+        }
+
+        Value var = VariableManager.getVariable(name);
+        if (var == null) {
+            new RuntimeError("Variable " + name + " is not declared", fileName, get(0).getLine(), get(0).getPosition());
+        }
+        assert var != null;
+        assert expr != null;
+        if (var.getType() != expr.eval().getType()) {
+            new RuntimeError("Type mismatch : " + var.getType().toString().toLowerCase() + " and " + expr.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition());
+        }
+        skip(TokenType.SEMICOLON);
+
+        return new VariableAssignmentStatement(name, expr.eval());
+    }
+
+    private Statement variableDeclaration() {
+        Token type = get(0);
+        match(type.getType());
+        skip(TokenType.COLON);
+        Token name = get(0);
+        if (ForbiddenNames.isForbiddenName(name.getValue())) {
+            new RuntimeError("Variable name " + name.getValue() + " is forbidden", fileName, get(0).getLine(), get(0).getPosition());
+        }
+        skip(TokenType.IDENTIFIER);
+        skip(TokenType.EQUAL);
+        Expression expression = getExpression();
+        if (expression == null) {
+            new RuntimeError("Excepted expression after " + name.getValue(), fileName, name.getLine(), get(0).getPosition());
+        }
+
+        Value var = VariableManager.getVariable(name.getValue());
+        if (var != null) {
+            new RuntimeError("Variable " + name.getValue() + " is already declared", fileName, get(0).getLine(), get(0).getPosition());
+        }
+
+        if (expression.eval().getType() != type.getType()) {
+            new RuntimeError("Excepted type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
+        }
+
+        skip(TokenType.SEMICOLON);
+        VariableExpression expr = new VariableExpression(name.getValue(), expression.eval());
+        expr.setValue(expression.eval());
+        return new VariableDeclarationStatement(expr);
+    }
+
+    private ShowStatement show() {
+        skip(TokenType.LEFT_PARENTHESIS);
+        ArrayList<Expression> expressions = new ArrayList<>();
+        while (!match(TokenType.RIGHT_PARENTHESIS)) {
+            Expression expr = getExpression();
+            if (expr == null) {
+                new RuntimeError("Unknown expression: " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
+            }
+            expressions.add(expr);
+            if (!match(TokenType.COMMA) && !checkType(0, TokenType.RIGHT_PARENTHESIS) && !checkType(1, TokenType.RIGHT_PARENTHESIS)) {
+                new SyntaxError("Excepted ',' for separate parameters", fileName, get(0).getLine(), get(0).getPosition());
             }
         }
-
-        tokensToReturn.add(new Token(TokenType.EOF, "EOF", currentToken.getPosition(), currentToken.getLine()));
-
-        return tokensToReturn;
+        skip(TokenType.SEMICOLON);
+        return new ShowStatement(expressions);
     }
 
-    private boolean isFuncParameterDeclaration() {
-        return Arrays.asList(variableTypes).contains(currentToken.getValue()) && tokens.get(tokens.indexOf(currentToken) + 1).getType() == TokenType.COLON && tokens.get(tokens.indexOf(currentToken) + 2).getType() == TokenType.IDENTIFIER;
-    }
-
-    private ArrayList<Variable> getFunctionDeclarationArguments() {
-        advance();
-        ArrayList<Variable> varsToReturn = new ArrayList<>();
-
-        while (currentToken.getType() != TokenType.RIGHT_PARENTHESIS && tokens.indexOf(currentToken) + 1 < tokens.size()) {
-            if (currentToken.getType() == TokenType.COMMA) {
-                advance();
-                continue;
-            }
-
-            if (isFuncParameterDeclaration()) {
-                String type = currentToken.getValue();
-                advance(2);
-                checkValidVariableName(currentToken.getValue());
-                varsToReturn.add(new Variable(type, currentToken.getValue(), null, false));
-                advance();
-            } else {
-                new TypeError("Unknown type " + currentToken.getValue(), fileName, currentToken.getLine());
-            }
+    private void skip(TokenType type) {
+        if (get(0).getType() != type) {
+            if (type == TokenType.SEMICOLON) {
+                new SemiColonError(fileName, get(0).getLine(), get(0).getPosition());
+            } else
+                new SyntaxError("Excepted " + type.getName() + " but got " + get(0).getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
         }
-
-        return varsToReturn;
+        pos++;
     }
 
-    private boolean isSystemFunction(String name) {
-        return systemFunctions.contains(name);
-    }
-
-    private boolean checkCorrespondentTypeVariable(String type, Token value) {
-        if (value.getType() == TokenType.IDENTIFIER) {
-            if (VARIABLE_MAP.containsKey(value.getValue())) {
-                return !VARIABLE_MAP.get(value.getValue()).getType().equalsIgnoreCase(type);
-            } else {
-                new RuntimeError("Unknown variable: " + value.getValue(), fileName, value.getLine());
-                return true;
-            }
-        } else {
-            return !switch (type) {
-                case "int" -> value.getType() == TokenType.INT;
-                case "float" -> value.getType() == TokenType.FLOAT;
-                case "string" -> value.getType() == TokenType.STRING;
-                case "bool" -> value.getType() == TokenType.BOOL;
-                case "char" -> value.getType() == TokenType.CHAR;
-                default -> false;
-            };
+    private Token get(int relativePosition) {
+        int newPos = pos + relativePosition;
+        if (newPos >= size || newPos < 0) {
+            return new Token(TokenType.EOF, "", -1, -1);
         }
+        return tokens.get(pos + relativePosition);
     }
 
-    private void checkValidVariableName(String name) {
-        if (Arrays.asList(variableTypes).contains(name) || systemFunctions.contains(name) || FUNCTIONS.containsKey(name)) {
-            new SyntaxError("Invalid variable name: " + name, fileName, currentToken.getLine());
+    private TokenType getType() {
+        return get(0).getType();
+    }
+
+    private boolean checkType(int pos, TokenType type) {
+        return get(pos).getType() == type;
+    }
+
+    private boolean match(TokenType type) {
+        if (checkType(0, type)) {
+            pos++;
+            return true;
         }
-
-        if (VARIABLE_MAP.containsKey(name)) {
-            new SyntaxError("Variable " + name + " already exists", fileName, currentToken.getLine());
-        }
-    }
-
-    private void checkSemiColon() {
-        if (tokens.get(tokens.indexOf(currentToken)).getType() != TokenType.SEMICOLON) {
-            new SemiColonError(fileName, currentToken.getLine());
-        }
-    }
-
-    private void advance() {
-        currentToken = tokens.get(tokens.indexOf(currentToken) + 1);
-    }
-
-    private void advance(int number) {
-        currentToken = tokens.get(tokens.indexOf(currentToken) + number);
-    }
-
-    public Map<String, Variable> getVariables() {
-        return VARIABLE_MAP;
-    }
-
-    public void setVariables(Map<String, Variable> variables) {
-        this.VARIABLE_MAP = variables;
-    }
-
-    public ArrayList<Token> getTokens() {
-        return tokens;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public Token getCurrentToken() {
-        return currentToken;
+        return false;
     }
 }
