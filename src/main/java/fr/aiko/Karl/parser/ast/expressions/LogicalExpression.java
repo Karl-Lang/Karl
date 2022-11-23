@@ -1,9 +1,9 @@
 package fr.aiko.Karl.parser.ast.expressions;
 
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
+import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.parser.ast.values.BooleanValue;
 import fr.aiko.Karl.parser.ast.values.Value;
-import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.std.LogicalOperators;
 
 public class LogicalExpression extends Expression {
@@ -32,8 +32,10 @@ public class LogicalExpression extends Expression {
 
                 if (leftValue.getType() != TokenType.INT && rightValue.getType() != TokenType.INT && leftValue.getType() != TokenType.FLOAT && rightValue.getType() != TokenType.FLOAT) {
                     return switch (operator) {
-                        case AND -> new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
-                        case OR -> new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case AND ->
+                                new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case OR ->
+                                new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
                         case EQUALEQUAL -> new BooleanValue(leftValue.equals(rightValue));
                         case NOT_EQUAL -> new BooleanValue(!leftValue.equals(rightValue));
                         default -> {

@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v4.0.0-alpha">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.4.0-alpha - Edit README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,14 +297,7 @@
       <workItem from="1668798842985" duration="956000" />
       <workItem from="1669046656001" duration="12842000" />
       <workItem from="1669128384786" duration="8892000" />
-      <workItem from="1669213478156" duration="5866000" />
-    </task>
-    <task id="LOCAL-00021" summary="Some modifications and optimizations for prepare new features">
-      <created>1665741773820</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1665741773820</updated>
+      <workItem from="1669213478156" duration="8511000" />
     </task>
     <task id="LOCAL-00022" summary="Add type checking for functions arguments">
       <created>1665765832177</created>
@@ -641,7 +635,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669225360842</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="v0.4.0-alpha - Edit README.md">
+      <created>1669225889838</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1669225889838</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,7 +660,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Infinite operator ! (`if(!!false)`)" />
     <MESSAGE value="Add Else if" />
     <MESSAGE value="v0.2.0" />
     <MESSAGE value="v0.2.2" />
@@ -684,7 +684,8 @@
     <MESSAGE value="Fix all known bugs with condition parsing" />
     <MESSAGE value="Fix last bugs, add new features for ! keyword in conditions" />
     <MESSAGE value="v4.0.0-alpha" />
-    <option name="LAST_COMMIT_MESSAGE" value="v4.0.0-alpha" />
+    <MESSAGE value="v0.4.0-alpha - Edit README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.4.0-alpha - Edit README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

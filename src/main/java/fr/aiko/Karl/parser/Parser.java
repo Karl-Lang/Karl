@@ -9,7 +9,6 @@ import fr.aiko.Karl.parser.ast.values.Value;
 import fr.aiko.Karl.std.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public final class Parser {
@@ -30,16 +29,21 @@ public final class Parser {
         while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
             if (match(TokenType.COMMENTARY)) {
                 int baseLine = get(0).getLine();
-                while (get(0).getLine() == baseLine && pos < size - 1 && !checkType(0, TokenType.EOF)) {
+                while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
                     match(getType());
+                    if (get(0).getLine() != baseLine) break;
                 }
                 if (pos == size - 1 || checkType(0, TokenType.EOF)) break;
-            } else if (match(TokenType.DIVIDE) && match(TokenType.MULTIPLY)) {
+            }
+            if (match(TokenType.DIVIDE) && match(TokenType.MULTIPLY)) {
                 while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
+                    System.out.println(get(0).getLine() + "nfgojezbfe");
                     if (match(TokenType.MULTIPLY) && match(TokenType.DIVIDE)) break;
 
                     match(getType());
                 }
+                match(TokenType.DIVIDE);
+                System.out.println("Commentary found : " + getType());
                 if (pos == size - 1 || checkType(0, TokenType.EOF)) break;
             }
 
@@ -176,7 +180,8 @@ public final class Parser {
         } else if (match(TokenType.LEFT_PARENTHESIS)) {
             expr = getExpression();
             skip(TokenType.RIGHT_PARENTHESIS);
-        } else new RuntimeError("Unknown expression : " + token.getValue(), fileName, token.getLine(), token.getPosition());
+        } else
+            new RuntimeError("Unknown expression : " + token.getValue(), fileName, token.getLine(), token.getPosition());
 
         if (Operators.isOperator(getType())) {
             return getOperationExpression(expr);
@@ -184,7 +189,7 @@ public final class Parser {
 
         if (LogicalOperators.isOperator(getType())) {
             return getLogicalExpression(expr);
-        }  else return expr;
+        } else return expr;
     }
 
     private Expression getLogicalExpression(Expression expr) {
@@ -234,7 +239,8 @@ public final class Parser {
             }
         } else if (match(TokenType.IDENTIFIER)) {
             return new VariableCallExpression(get(-1).getValue(), fileName, get(0).getLine(), get(0).getPosition());
-        } else new RuntimeError("Unknown expression : " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
+        } else
+            new RuntimeError("Unknown expression : " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
         return null;
     }
 

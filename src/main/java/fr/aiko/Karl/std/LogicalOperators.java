@@ -31,14 +31,14 @@ public class LogicalOperators {
         return operators.containsValue(type);
     }
 
-    public static Boolean compare(float toInt, float toInt1, TokenType operator) {
+    public static Boolean compare(float firstNumber, float secondNumber, TokenType operator) {
         return switch (operator) {
-            case LESS -> toInt < toInt1;
-            case LESS_EQUAL -> toInt <= toInt1;
-            case GREATER_EQUAL -> toInt >= toInt1;
-            case GREATER -> toInt > toInt1;
-            case EQUALEQUAL -> toInt == toInt1;
-            case NOT_EQUAL -> toInt != toInt1;
+            case LESS -> firstNumber < secondNumber;
+            case LESS_EQUAL -> firstNumber <= secondNumber;
+            case GREATER_EQUAL -> firstNumber >= secondNumber;
+            case GREATER -> firstNumber > secondNumber;
+            case EQUALEQUAL -> firstNumber == secondNumber;
+            case NOT_EQUAL -> firstNumber != secondNumber;
             default -> throw new RuntimeException("Unknown operator: " + operator);
         };
     }

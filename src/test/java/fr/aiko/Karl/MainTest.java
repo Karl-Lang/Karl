@@ -38,7 +38,7 @@ class MainTest {
     void testFunctions() {
         String[] args = {"src/test/resources/tests/Functions.karl"};
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        String[] expected = {"What is your name?", "Hello, Karl!", "Hello, World!", "11","8"};
+        String[] expected = {"What is your name?", "Hello, Karl!", "Hello, World!", "11", "8"};
         System.setOut(new PrintStream(outContent));
         Main.main(args);
         String[] output = Arrays.copyOf(outContent.toString().split("\n"), outContent.toString().split("\n").length - 1);
