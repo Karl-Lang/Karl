@@ -29,22 +29,23 @@ public class LogicalExpression extends Expression {
         if (operator != null) {
             if (right != null) {
                 Value rightValue = right.eval();
+                if ((leftValue.getType() != TokenType.INT && leftValue.getType() != TokenType.FLOAT) || (rightValue.getType() != TokenType.INT && rightValue.getType() != TokenType.FLOAT)) {
+                    final boolean equals = leftValue.toString().equals(rightValue.toString());
 
-                if (leftValue.getType() != TokenType.INT && rightValue.getType() != TokenType.INT && leftValue.getType() != TokenType.FLOAT && rightValue.getType() != TokenType.FLOAT) {
                     return switch (operator) {
                         case AND ->
                                 new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
                         case OR ->
                                 new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
-                        case EQUALEQUAL -> new BooleanValue(leftValue.equals(rightValue));
-                        case NOT_EQUAL -> new BooleanValue(!leftValue.equals(rightValue));
+                        case EQUALEQUAL -> new BooleanValue(equals);
+                        case NOT_EQUAL -> new BooleanValue(!equals);
                         default -> {
                             new RuntimeError("Unknown operator: " + operator, fileName, line, pos);
                             yield null;
                         }
                     };
                 } else {
-                    return new BooleanValue(LogicalOperators.compare(leftValue.toFloat(), rightValue.toFloat(), operator));
+                    return new BooleanValue(LogicalOperators.compare(leftValue, rightValue, operator, fileName, line, pos));
                 }
             } else {
                 if (operator == TokenType.EXCLAMATION) {

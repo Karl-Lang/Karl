@@ -1,3 +1,9 @@
-show((2+2)*2);
-// 8
-/*UwU*/
+func main::(int: number): int -> {
+  if (number == 14) -> {
+    return 1;
+  } else -> {
+    return 0;
+  }
+}
+
+show(main(14));

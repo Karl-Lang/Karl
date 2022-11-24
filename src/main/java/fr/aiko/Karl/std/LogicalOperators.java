@@ -1,7 +1,10 @@
 package fr.aiko.Karl.std;
 
+import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.TokenType;
+import fr.aiko.Karl.parser.ast.values.Value;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class LogicalOperators {
@@ -10,7 +13,6 @@ public class LogicalOperators {
     static {
         operators.put("&&", TokenType.AND);
         operators.put("||", TokenType.OR);
-        operators.put("!", TokenType.EXCLAMATION);
         operators.put("==", TokenType.EQUALEQUAL);
         operators.put("!=", TokenType.NOT_EQUAL);
         operators.put(">", TokenType.GREATER);
@@ -31,14 +33,19 @@ public class LogicalOperators {
         return operators.containsValue(type);
     }
 
-    public static Boolean compare(float firstNumber, float secondNumber, TokenType operator) {
+    public static Boolean compare(Value firstNumber, Value secondNumber, TokenType operator, String fileName, int line, int pos) {
+        if (firstNumber.getType() != TokenType.INT && firstNumber.getType() != TokenType.FLOAT && secondNumber.getType() != TokenType.INT && secondNumber.getType() != TokenType.FLOAT) {
+            new RuntimeError("Type mismatch : " + firstNumber.getType().toString().toLowerCase() + " and " + secondNumber.getType().toString().toLowerCase(), fileName, line, pos);
+            return null;
+        }
         return switch (operator) {
-            case LESS -> firstNumber < secondNumber;
-            case LESS_EQUAL -> firstNumber <= secondNumber;
-            case GREATER_EQUAL -> firstNumber >= secondNumber;
-            case GREATER -> firstNumber > secondNumber;
-            case EQUALEQUAL -> firstNumber == secondNumber;
-            case NOT_EQUAL -> firstNumber != secondNumber;
+            case LESS -> firstNumber.toFloat() < secondNumber.toFloat();
+            case LESS_EQUAL -> firstNumber.toFloat() <= secondNumber.toFloat();
+            case GREATER_EQUAL -> firstNumber.toFloat() >= secondNumber.toFloat();
+            case GREATER -> firstNumber.toFloat() > secondNumber.toFloat();
+            case EQUALEQUAL -> firstNumber.toFloat() == secondNumber.toFloat();
+            case NOT_EQUAL -> firstNumber.toFloat() != secondNumber.toFloat();
+            case OR, AND -> true;
             default -> throw new RuntimeException("Unknown operator: " + operator);
         };
     }

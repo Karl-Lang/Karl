@@ -27,26 +27,6 @@ public final class Parser {
 
     public ArrayList<Statement> parse() {
         while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
-            if (match(TokenType.COMMENTARY)) {
-                int baseLine = get(0).getLine();
-                while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
-                    match(getType());
-                    if (get(0).getLine() != baseLine) break;
-                }
-                if (pos == size - 1 || checkType(0, TokenType.EOF)) break;
-            }
-            if (match(TokenType.DIVIDE) && match(TokenType.MULTIPLY)) {
-                while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
-                    System.out.println(get(0).getLine() + "nfgojezbfe");
-                    if (match(TokenType.MULTIPLY) && match(TokenType.DIVIDE)) break;
-
-                    match(getType());
-                }
-                match(TokenType.DIVIDE);
-                System.out.println("Commentary found : " + getType());
-                if (pos == size - 1 || checkType(0, TokenType.EOF)) break;
-            }
-
             Statement statement = getStatement();
             if (statement != null) {
                 statements.add(statement);
@@ -183,22 +163,32 @@ public final class Parser {
         } else
             new RuntimeError("Unknown expression : " + token.getValue(), fileName, token.getLine(), token.getPosition());
 
+        // Binary operations
         if (Operators.isOperator(getType())) {
-            return getOperationExpression(expr);
+            while (Operators.isOperator(getType())) {
+                TokenType operator = getType();
+                skip(operator);
+                Expression right = getValue();
+                expr = new BinaryExpression(expr, right, operator, fileName, token.getLine(), token.getPosition());
+            }
         }
 
+        // Logical operations
         if (LogicalOperators.isOperator(getType())) {
-            return getLogicalExpression(expr);
-        } else return expr;
-    }
+            while (LogicalOperators.isOperator(getType())) {
+                TokenType operator = getType();
+                skip(operator);
+                Expression right;
+                if (operator == TokenType.AND || operator == TokenType.OR) {
+                    right = getExpression();
+                } else {
+                    right = getValue();
+                }
+                expr = new LogicalExpression(operator, expr, right, fileName, token.getLine(), token.getPosition());
+            }
+        }
 
-    private Expression getLogicalExpression(Expression expr) {
-        Token token = get(0);
-        TokenType type = getType();
-        match(type);
-        Expression right = getExpression();
-        return new LogicalExpression(type, expr, right, fileName, token.getLine(), token.getPosition());
-
+        return expr;
     }
 
     private Expression getValue() {
@@ -217,7 +207,13 @@ public final class Parser {
             if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL && getType() != TokenType.LEFT_PARENTHESIS)
                 new RuntimeError("Unexpected token " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
 
-            return new UnaryExpression(TokenType.EXCLAMATION, getType() == TokenType.LEFT_PARENTHESIS ? getExpression() : getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
+            Expression expr;
+            if (match(TokenType.LEFT_PARENTHESIS)) {
+                expr = getExpression();
+                skip(TokenType.RIGHT_PARENTHESIS);
+            } else expr = getValue();
+
+            return new UnaryExpression(TokenType.EXCLAMATION, expr, fileName, get(-1).getLine(), get(-1).getPosition());
         } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
             Token token = get(-1);
             switch (token.getType()) {
@@ -242,23 +238,6 @@ public final class Parser {
         } else
             new RuntimeError("Unknown expression : " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
         return null;
-    }
-
-    private BinaryExpression getOperationExpression(Expression left) {
-        if (left == null) {
-            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
-        }
-        Token operator = get(0);
-        if (!Operators.isOperator(operator.getType())) {
-            new RuntimeError("Unknown operator : " + operator.getValue(), fileName, operator.getLine(), operator.getPosition());
-        }
-        match(operator.getType());
-        Expression right = getValue(); // à retravailler, 2+2+2 pas marcher
-        if (right == null) {
-            new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
-        }
-
-        return new BinaryExpression(left, right, operator.getType(), fileName, operator.getLine(), operator.getPosition());
     }
 
     private Statement ifElse() {

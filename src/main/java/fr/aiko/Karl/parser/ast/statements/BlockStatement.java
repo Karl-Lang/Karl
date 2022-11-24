@@ -38,6 +38,9 @@ public class BlockStatement extends Statement {
             if (statement instanceof ReturnStatement) {
                 result = ((ReturnStatement) statement).getResult();
                 break;
+            } else if (statement instanceof IfElseStatement) {
+                result = ((IfElseStatement) statement).getResult();
+                break;
             }
         }
 

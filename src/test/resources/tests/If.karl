@@ -38,12 +38,19 @@ func getBool::(): bool -> {
 
 if (!getBool() || boolean) -> {
     show("Test #8 success");
+    /*
+
+    hnpmhdalk
+
+    */
 }
 
 if (price == 2.30 && (!boolean || (number > 1300 || 1 == 1))) -> {
+/* Hhm*/
     show("Test #9 success");
 } else -> {
-    show("Test #9 failed");
+// Ç aussi
+    show("Test #9 failed"); // Ça c'est un comment
 }
 
 if ((name == "karl" || name == "Karl") && (number == 230 || number == 231)) -> {
@@ -56,4 +63,30 @@ if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4))
       show("Test réussit !! ^U^");
 } else -> {
       show("Test échoué !! >_<");
+}
+
+/*
+    * Et c'est tout
+    */
+//
+
+show(true || "Yoo" == "Yoo");
+if (true || "Yoo" == "Yoo") -> {
+    show("Yay!");
+}
+
+show(42 || true);
+if (42 || true) -> {
+    show("Yay!2");
+} else -> {
+    show("No");
+}
+
+show("Yoo" == "Yoo" || true);
+if ("Yoo" == "Yoo" || true) -> {
+    show("Yay!3");
+}
+
+if (42 == 42 || true) -> {
+  show("Yay!4");
 }

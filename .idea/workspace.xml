@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.4.0-alpha - Edit README.md">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bug with multi-line comment &amp; optimize code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/IfElseStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/IfElseStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/If.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/If.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,23 +74,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "extract.method.default.visibility": "private",
-    "last_opened_file_path": "/home/aikoo/Bureau/Karl-0.2.3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/aikoo/Bureau/Karl-0.2.3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -219,11 +224,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MainTest.testFunctions" />
         <item itemvalue="Gradle.MainTest" />
-        <item itemvalue="Gradle.MainTest.testElse" />
         <item itemvalue="Gradle.MainTest.testIf" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.MainTest.testFunctions" />
+        <item itemvalue="Gradle.MainTest.testElse" />
       </list>
     </recent_temporary>
   </component>
@@ -297,14 +302,8 @@
       <workItem from="1668798842985" duration="956000" />
       <workItem from="1669046656001" duration="12842000" />
       <workItem from="1669128384786" duration="8892000" />
-      <workItem from="1669213478156" duration="8511000" />
-    </task>
-    <task id="LOCAL-00022" summary="Add type checking for functions arguments">
-      <created>1665765832177</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1665765832177</updated>
+      <workItem from="1669213478156" duration="9935000" />
+      <workItem from="1669307647906" duration="12117000" />
     </task>
     <task id="LOCAL-00023" summary="Add boolean type support">
       <created>1665774747654</created>
@@ -642,7 +641,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669225889838</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Fix bug with multi-line comment &amp; optimize code">
+      <created>1669233742340</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1669233742340</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +666,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add Else if" />
     <MESSAGE value="v0.2.0" />
     <MESSAGE value="v0.2.2" />
     <MESSAGE value="Add VariableAssignmentStatement.java" />
@@ -685,7 +690,8 @@
     <MESSAGE value="Fix last bugs, add new features for ! keyword in conditions" />
     <MESSAGE value="v4.0.0-alpha" />
     <MESSAGE value="v0.4.0-alpha - Edit README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.4.0-alpha - Edit README.md" />
+    <MESSAGE value="Fix bug with multi-line comment &amp; optimize code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug with multi-line comment &amp; optimize code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
