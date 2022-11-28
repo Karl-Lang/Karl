@@ -1,8 +1,2 @@
-int: num = 5;
-
-func main::(): int -> {
-  return 1;
-}
-
-show(main() + num);
-// -> 2
+int: a = (3 + ( 5 - 9 ) + 42)/2;
+show(a);

@@ -18,3 +18,13 @@ func getInt::(int: num): int -> {
     return num + 1;
 }
 show(getInt(6) + 1);
+
+func getIfInt::(int: number): int -> {
+  if (number == 14) -> {
+    return 1;
+  } else -> {
+    return 0;
+  }
+}
+
+show(getIfInt(14));

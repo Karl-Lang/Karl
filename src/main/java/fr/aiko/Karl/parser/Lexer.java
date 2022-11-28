@@ -86,7 +86,9 @@ public class Lexer {
 
         while (position < input.length()) {
             final char c = input.charAt(position);
-            if (c == '\n' || c == '\r') {
+            if (c == '/' && position + 1 < input.length() && input.charAt(position + 1) == '/') tokenizeComment();
+            else if (c == '/' && position + 1 < input.length() && input.charAt(position + 1) == '*') tokenizeMultiLineComment();
+            else if (c == '\n' || c == '\r') {
                 line++;
                 position++;
             } else if (Character.isDigit(c) || (c == '-' && position + 1 < input.length() && Character.isDigit(input.charAt(position + 1))))
@@ -102,6 +104,18 @@ public class Lexer {
         tokens.add(new Token(TokenType.EOF, "EOF", input.length(), line));
     }
 
+    private void tokenizeComment() {
+        while (position < input.length() && input.charAt(position) != '\n') {
+            position++;
+        }
+    }
+
+    private void tokenizeMultiLineComment() {
+        while (position + 1 < input.length() && !(input.charAt(position) == '*' && input.charAt(position + 1) == '/')) {
+            position++;
+        }
+        position += 2;
+    }
     private void tokenizeChar() {
         nextChar();
         final char c = input.charAt(position);
