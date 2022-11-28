@@ -168,7 +168,12 @@ public final class Parser {
             while (Operators.isOperator(getType())) {
                 TokenType operator = getType();
                 skip(operator);
-                Expression right = getValue();
+                int position = pos;
+                Expression right = getExpression();
+                if (!(right instanceof ValueExpression) && !(right instanceof BinaryExpression))  {
+                    pos = position;
+                    right = getValue();
+                }
                 expr = new BinaryExpression(expr, right, operator, fileName, token.getLine(), token.getPosition());
             }
         }

@@ -1,9 +1,2 @@
-func main::(int: number): int -> {
-  if (number == 14) -> {
-    return 1;
-  } else -> {
-    return 0;
-  }
-}
-
-show(main(14));
+int: a = (3 + ( 5 - 9 ) + 42)/2;
+show(a);
