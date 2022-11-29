@@ -303,6 +303,7 @@ public final class Parser {
             new RuntimeError("Variable " + name.getValue() + " is already declared", fileName, get(0).getLine(), get(0).getPosition());
         }
 
+        assert expression != null;
         if (expression.eval().getType() != type.getType()) {
             new RuntimeError("Excepted type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
         }

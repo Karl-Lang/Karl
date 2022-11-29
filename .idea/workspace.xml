@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bug with multi-line comment &amp; optimize code">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Patch 005 &amp; 010">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
@@ -298,14 +300,8 @@
       <workItem from="1669307647906" duration="12117000" />
       <workItem from="1669639940469" duration="1238000" />
       <workItem from="1669642221302" duration="1810000" />
-      <workItem from="1669656201340" duration="3023000" />
-    </task>
-    <task id="LOCAL-00023" summary="Add boolean type support">
-      <created>1665774747654</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1665774747654</updated>
+      <workItem from="1669656201340" duration="5936000" />
+      <workItem from="1669730044115" duration="1889000" />
     </task>
     <task id="LOCAL-00024" summary="Fix tiny bugs">
       <created>1665861332657</created>
@@ -643,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669233742340</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Patch 004">
+      <created>1669667124661</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1669667124662</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,8 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.2.0" />
-    <MESSAGE value="v0.2.2" />
     <MESSAGE value="Add VariableAssignmentStatement.java" />
     <MESSAGE value="Switch increment and decrement to VariableAssignmentStatement" />
     <MESSAGE value="Support for float, fix bugs" />
@@ -686,7 +687,9 @@
     <MESSAGE value="v4.0.0-alpha" />
     <MESSAGE value="v0.4.0-alpha - Edit README.md" />
     <MESSAGE value="Fix bug with multi-line comment &amp; optimize code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bug with multi-line comment &amp; optimize code" />
+    <MESSAGE value="Patch 004" />
+    <MESSAGE value="Patch 005 &amp; 010" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patch 005 &amp; 010" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

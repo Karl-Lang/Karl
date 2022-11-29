@@ -38,7 +38,10 @@ public class Error {
 
     private String getLine() {
         try {
-            return Files.readAllLines(Path.of(path)).get(line - 1);
+            // Get text at line
+            String text = Files.readAllLines(Path.of(path)).get(line - 1);
+            // Get last 20 characters
+            return text.substring(Math.max(text.length() - 40, 0));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -54,9 +57,11 @@ public class Error {
 
     private String printIndicator() {
         String line = getLine();
-        int pos = position - getFile().indexOf(line);
-        char[] chars = new char[pos - 1];
-        Arrays.fill(chars, ' ');
-        return new String(chars) + "^";
+        String[] array = line.split("");
+        String[] array2 = new String[array.length + 1];
+        Arrays.fill(array, " ");
+        System.arraycopy(array, 0, array2, 0, array.length);
+        array2[array2.length - 1] = "^";
+        return String.join("", array2);
     }
 }
