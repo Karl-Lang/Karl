@@ -188,6 +188,23 @@ public class Lexer {
         buffer.setLength(0);
         char c = nextChar();
         while (true) {
+            if (c == '\\') {
+                c = nextChar();
+                switch (c) {
+                    case 'n' -> buffer.append('\n');
+                    case 't' -> buffer.append('\t');
+                    case 'r' -> buffer.append('\r');
+                    case 'b' -> buffer.append('\b');
+                    case 'f' -> buffer.append('\f');
+                    case '\'' -> buffer.append('\'');
+                    case '"' -> buffer.append('\"');
+                    case '\\' -> buffer.append('\\');
+                    case '0' -> buffer.append('\0');
+                    default -> new SyntaxError("Invalid escape character: " + c, fileName, line, position);
+                }
+                c = nextChar();
+            }
+
             if (c == '\0') {
                 new SyntaxError("Unterminated string", fileName, line, position);
             }

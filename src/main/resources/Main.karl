@@ -1,2 +1,2 @@
-int: cute = 10;
-cute = "Dix";
+string: test = "RedTarded\"Uw\nU";
+show(test);
