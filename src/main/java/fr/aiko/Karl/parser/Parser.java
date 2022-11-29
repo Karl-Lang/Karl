@@ -89,6 +89,9 @@ public final class Parser {
                 skip(TokenType.COLON);
                 skip(TokenType.IDENTIFIER);
                 String paramName = get(-1).getValue();
+                if (args.containsKey(paramName)) {
+                    new RuntimeError("Parameter " + paramName + " already exists", fileName, get(-1).getLine(), get(-1).getPosition());
+                }
                 args.put(paramName, type);
             } else {
                 new SyntaxError("Unexpected token " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
@@ -103,6 +106,7 @@ public final class Parser {
         match(returnType);
         BlockStatement block = getBlock();
         FunctionManager.addFunction(new Function(name, args, returnType, block));
+
         return new FunctionDeclarationStatement(name, args, returnType, block);
     }
 
@@ -329,9 +333,8 @@ public final class Parser {
     private void skip(TokenType type) {
         if (get(0).getType() != type) {
             if (type == TokenType.SEMICOLON) {
-                new SemiColonError(fileName, get(0).getLine(), get(0).getPosition());
-            } else
-                new SyntaxError("Excepted " + type.getName() + " but got " + get(0).getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
+                new SemiColonError(fileName, get(-1).getLine(), get(-1).getPosition());
+            } else new SyntaxError("Excepted " + type.getName() + " but got " + get(0).getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
         }
         pos++;
     }

@@ -3,10 +3,7 @@ package fr.aiko.Karl.parser;
 import fr.aiko.Karl.errors.Error;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Lexer {
 
@@ -143,7 +140,7 @@ public class Lexer {
                 break;
             }
 
-            if ((c == '.' && buffer.indexOf(".") != -1) || (buffer.indexOf("-") != -1 && buffer.indexOf("-") != -1)) {
+            if ((c == '.' && buffer.indexOf(".") != -1) || (c == '-' && buffer.indexOf("-") != -1)) {
                 new SyntaxError("Invalid number", fileName, line, position);
             } else if (!Character.isDigit(c) && (c != '.' && c != '-')) {
                 break;
