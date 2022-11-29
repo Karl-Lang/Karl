@@ -107,19 +107,21 @@ public final class Parser {
     }
 
     private Statement incrementDecrement() {
+        Token nameToken = get(0);
         match(TokenType.IDENTIFIER);
-        match(getType());
-        String name = get(-2).getValue();
+        String name = nameToken.getValue();
         Value var = VariableManager.getVariable(name);
         if (var == null) {
-            new RuntimeError("Variable " + name + " is not defined", fileName, get(-2).getLine(), get(-2).getPosition());
+            new RuntimeError("Variable " + name + " is not defined", fileName, nameToken.getLine(), nameToken.getPosition());
             return null;
         } else {
             if (var.getType() != TokenType.INT && var.getType() != TokenType.FLOAT) {
-                new RuntimeError("Variable " + name + " is not a number", fileName, get(-2).getLine(), get(-2).getPosition());
+                new RuntimeError("Variable " + name + " is not a number", fileName, nameToken.getLine(), nameToken.getPosition());
                 return null;
             } else {
-                if (get(-1).getType() == TokenType.PLUSPLUS) {
+                Token operator = get(0);
+                match(getType());
+                if (operator.getType() == TokenType.PLUSPLUS) {
                     skip(TokenType.SEMICOLON);
                     return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.PLUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 } else {
@@ -154,11 +156,11 @@ public final class Parser {
 
     private Expression getExpression() {
         Token token = get(0);
-        Expression expr = null;
+        Expression expression = null;
         if ((getType() == TokenType.IDENTIFIER && checkType(1, TokenType.LEFT_PARENTHESIS)) || (getType() == TokenType.IDENTIFIER) || (Types.isType(getType())) || (getType() == TokenType.EXCLAMATION)) {
-            expr = getValue();
+            expression = getValue();
         } else if (match(TokenType.LEFT_PARENTHESIS)) {
-            expr = getExpression();
+            expression = getExpression();
             skip(TokenType.RIGHT_PARENTHESIS);
         } else
             new RuntimeError("Unknown expression : " + token.getValue(), fileName, token.getLine(), token.getPosition());
@@ -174,7 +176,7 @@ public final class Parser {
                     pos = position;
                     right = getValue();
                 }
-                expr = new BinaryExpression(expr, right, operator, fileName, token.getLine(), token.getPosition());
+                expression = new BinaryExpression(expression, right, operator, fileName, token.getLine(), token.getPosition());
             }
         }
 
@@ -189,16 +191,17 @@ public final class Parser {
                 } else {
                     right = getValue();
                 }
-                expr = new LogicalExpression(operator, expr, right, fileName, token.getLine(), token.getPosition());
+                expression = new LogicalExpression(operator, expression, right, fileName, token.getLine(), token.getPosition());
             }
         }
 
-        return expr;
+        return expression;
     }
 
     private Expression getValue() {
         if (getType() == TokenType.IDENTIFIER && get(1).getType() == TokenType.LEFT_PARENTHESIS) {
-            String name = get(0).getValue();
+            Token nameToken = get(0);
+            String name = nameToken.getValue();
             match(TokenType.IDENTIFIER);
             match(TokenType.LEFT_PARENTHESIS);
             ArrayList<Expression> args = new ArrayList<>();
@@ -207,7 +210,7 @@ public final class Parser {
                 match(TokenType.COMMA);
             }
 
-            return new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition());
+            return new FuncCallExpression(name, args, fileName, nameToken.getLine(), nameToken.getPosition());
         } else if (match(TokenType.EXCLAMATION)) {
             if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL && getType() != TokenType.LEFT_PARENTHESIS)
                 new RuntimeError("Unexpected token " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
@@ -221,28 +224,20 @@ public final class Parser {
             return new UnaryExpression(TokenType.EXCLAMATION, expr, fileName, get(-1).getLine(), get(-1).getPosition());
         } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
             Token token = get(-1);
-            switch (token.getType()) {
-                case STRING -> {
-                    return new ValueExpression(token.getValue(), token.getType());
-                }
-                case INT -> {
-                    return new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
-                }
-                case BOOL -> {
-                    return new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
-                }
-                case FLOAT -> {
-                    return new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
-                }
-                case CHAR -> {
-                    return new ValueExpression(token.getValue().charAt(0), token.getType());
-                }
-            }
+            return switch (token.getType()) {
+                case STRING -> new ValueExpression(token.getValue(), token.getType());
+                case INT -> new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
+                case BOOL -> new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
+                case FLOAT -> new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
+                case CHAR -> new ValueExpression(token.getValue().charAt(0), token.getType());
+                default -> null;
+            };
         } else if (match(TokenType.IDENTIFIER)) {
             return new VariableCallExpression(get(-1).getValue(), fileName, get(0).getLine(), get(0).getPosition());
-        } else
+        } else {
             new RuntimeError("Unknown expression : " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
-        return null;
+            return null;
+        }
     }
 
     private Statement ifElse() {

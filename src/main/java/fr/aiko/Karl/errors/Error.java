@@ -40,8 +40,11 @@ public class Error {
         try {
             // Get text at line
             String text = Files.readAllLines(Path.of(path)).get(line - 1);
-            // Get last 20 characters
-            return text.substring(Math.max(text.length() - 40, 0));
+            // Get last 20 characters before position and next 10 characters after position
+            String before = text.substring(Math.max(0, position - 20), position);
+            String after = text.substring(position, Math.min(text.length(), position + 10));
+            // Return the text
+            return before + after;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -58,10 +61,20 @@ public class Error {
     private String printIndicator() {
         String line = getLine();
         String[] array = line.split("");
-        String[] array2 = new String[array.length + 1];
-        Arrays.fill(array, " ");
-        System.arraycopy(array, 0, array2, 0, array.length);
-        array2[array2.length - 1] = "^";
-        return String.join("", array2);
+        StringBuilder indicator = new StringBuilder();
+        System.out.println(position);
+        for (int i = 0; i < array.length; i++) {
+            if (i == position) {
+                indicator.append("^");
+            } else {
+                indicator.append(" ");
+            }
+        }
+
+        if (!indicator.toString().endsWith("^") && !indicator.toString().contains("^")) {
+            indicator.append("^");
+        }
+
+        return indicator.toString();
     }
 }

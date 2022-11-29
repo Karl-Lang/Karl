@@ -1,2 +1,1 @@
-string: test = "RedTarded\"Uw\nU";
-show(test);
+string: int = "a";
