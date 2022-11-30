@@ -166,7 +166,7 @@ public class Lexer {
                 break;
             }
 
-            if (!String.valueOf(c).matches("^[a-zA-Z_$][a-zA-Z_$0-9]*$")) {
+            if (!Character.isLetterOrDigit(c) && c != '_') {
                 break;
             }
 

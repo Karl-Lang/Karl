@@ -1,9 +1,5 @@
-string: test = null;
+int: var1 = 5;
+int: var = 5;
+int: op = var1 / var;
 
-if(test == null) -> {
-    show("test is null");
-} else -> {
-    show("test is not null");
-}
-
-show(test);
+show(op);
