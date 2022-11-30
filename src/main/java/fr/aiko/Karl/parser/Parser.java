@@ -304,6 +304,10 @@ public final class Parser {
         }
 
         assert expression != null;
+        if (type.getType() == TokenType.FLOAT && expression.eval().getType() == TokenType.INT) {
+            expression = new ValueExpression(expression.eval().toFloat(), TokenType.FLOAT);
+        }
+
         if (expression.eval().getType() != type.getType() && expression.eval().getType() != TokenType.NULL) {
             new RuntimeError("Expected type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
         }

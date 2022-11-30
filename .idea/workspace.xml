@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Patch 015">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/RuntimeError/DivisionByZeroError.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Patch 016 &amp; 017">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +99,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.MainTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -304,14 +304,7 @@
       <workItem from="1669810896195" duration="92000" />
       <workItem from="1669811204586" duration="1286000" />
       <workItem from="1669820581872" duration="150000" />
-      <workItem from="1669820777994" duration="10138000" />
-    </task>
-    <task id="LOCAL-00031" summary="Make if statement back, in tests">
-      <created>1666624799410</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1666624799410</updated>
+      <workItem from="1669820777994" duration="12701000" />
     </task>
     <task id="LOCAL-00032" summary="Make new comment support, if statement in tests">
       <created>1666630791548</created>
@@ -649,7 +642,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669832203702</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Patch 016 &amp; 017">
+      <created>1669836653860</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1669836653860</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,7 +667,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix bugs and add negative numbers support" />
     <MESSAGE value="Increment/Decrement, Comments &amp; Multi-line comments" />
     <MESSAGE value="Fix bugs, add base of functions (need tests &amp; args)" />
     <MESSAGE value="Fix bugs with variable scope" />
@@ -692,7 +691,8 @@
     <MESSAGE value="Patch 008" />
     <MESSAGE value="Patch 014 &amp; v0.4.0-alpha.3" />
     <MESSAGE value="Patch 015" />
-    <option name="LAST_COMMIT_MESSAGE" value="Patch 015" />
+    <MESSAGE value="Patch 016 &amp; 017" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patch 016 &amp; 017" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

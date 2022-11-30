@@ -2,6 +2,7 @@ package fr.aiko.Karl.parser.ast.expressions;
 
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.TokenType;
+import fr.aiko.Karl.parser.ast.values.NullValue;
 import fr.aiko.Karl.parser.ast.values.Value;
 import fr.aiko.Karl.std.Function;
 import fr.aiko.Karl.std.FunctionManager;
@@ -43,6 +44,10 @@ public class FuncCallExpression extends Expression {
             }
             i++;
         }
-        return function.eval(args, fileName, line, pos);
+
+        if (function.getType() == TokenType.VOID) {
+            function.eval(args, fileName, line, pos);
+            return new NullValue("null");
+        } else return function.eval(args, fileName, line, pos);
     }
 }
