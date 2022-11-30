@@ -1,21 +1,5 @@
-func verifMinMax::(int: min, int: max): bool -> {
-    if (min > max) -> {
-        return false;
-    } else if (min == max) -> {
-        return false;
-    } else -> {
-        return true;
-    }
-    return false;
+func getStr::(): string -> {
+    return null;
 }
 
-func randomMinMaxInt::(int:min, int:max): int -> {
-    if (!verifMinMax(min, max)) -> {
-        show("ErrorValue: bad values transmitted");
-    } else -> {
-        show("success");
-    }
-    return 1;
-}
-
-show(randomMinMaxInt(12, 15));
+show(getStr());

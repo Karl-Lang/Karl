@@ -38,7 +38,7 @@ public final class Parser {
     private Statement getStatement() {
         if (match(TokenType.SHOW)) {
             return show();
-        } else if (Types.contains(get(0).getType())) {
+        } else if (Types.contains(getType()) && getType() != TokenType.NULL) {
             return variableDeclaration();
         } else if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
             return variableAssignment();
@@ -226,7 +226,7 @@ public final class Parser {
             } else expr = getValue();
 
             return new UnaryExpression(TokenType.EXCLAMATION, expr, fileName, get(-1).getLine(), get(-1).getPosition());
-        } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
+        } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR) || match(TokenType.NULL)) {
             Token token = get(-1);
             return switch (token.getType()) {
                 case STRING -> new ValueExpression(token.getValue(), token.getType());
@@ -234,6 +234,7 @@ public final class Parser {
                 case BOOL -> new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
                 case FLOAT -> new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
                 case CHAR -> new ValueExpression(token.getValue().charAt(0), token.getType());
+                case NULL -> new ValueExpression((String) null, token.getType());
                 default -> null;
             };
         } else if (match(TokenType.IDENTIFIER)) {
@@ -294,7 +295,7 @@ public final class Parser {
         skip(TokenType.EQUAL);
         Expression expression = getExpression();
         if (expression == null) {
-            new RuntimeError("Excepted expression after " + name.getValue(), fileName, name.getLine(), get(0).getPosition());
+            new RuntimeError("Expected expression after " + name.getValue(), fileName, name.getLine(), get(0).getPosition());
         }
 
         Value var = VariableManager.getVariable(name.getValue());
@@ -303,8 +304,12 @@ public final class Parser {
         }
 
         assert expression != null;
-        if (expression.eval().getType() != type.getType()) {
-            new RuntimeError("Excepted type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
+        if (expression.eval().getType() != type.getType() && expression.eval().getType() != TokenType.NULL) {
+            new RuntimeError("Expected type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
+        }
+
+        if (expression.eval().getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
+            new RuntimeError( type.getValue() + " variable cannot be null", fileName, get(0).getLine(), get(0).getPosition() - 1);
         }
 
         skip(TokenType.SEMICOLON);
@@ -327,6 +332,7 @@ public final class Parser {
             }
         }
         skip(TokenType.SEMICOLON);
+
         return new ShowStatement(expressions);
     }
 

@@ -3,6 +3,8 @@ package fr.aiko.Karl.parser.ast.expressions;
 import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.parser.ast.values.*;
 
+import javax.lang.model.type.NullType;
+
 public class ValueExpression extends Expression {
     private final Value value;
     private final TokenType type;
@@ -13,7 +15,11 @@ public class ValueExpression extends Expression {
     }
 
     public ValueExpression(String value, TokenType type) {
-        this.value = new StringValue(value);
+        if (type == TokenType.STRING) {
+            this.value = new StringValue(value);
+        } else {
+            this.value = new NullValue(value);
+        }
         this.type = type;
     }
 
