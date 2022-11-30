@@ -27,10 +27,6 @@ public class BinaryExpression extends Expression {
 
     @Override
     public Value eval() {
-        if (right.eval().getType() != left.eval().getType() && (!Arrays.asList(new TokenType[]{TokenType.INT, TokenType.FLOAT}).contains(right.eval().getType()) || !Arrays.asList(new TokenType[]{TokenType.INT, TokenType.FLOAT}).contains(left.eval().getType()))) {
-            new RuntimeError("Type mismatch : " + left.eval().getType().toString().toLowerCase() + " and " + right.eval().getType().toString().toLowerCase(), fileName, line, pos);
-            return null;
-        }
 
         Value leftValue = left.eval();
         Value rightValue = right.eval();
@@ -42,19 +38,24 @@ public class BinaryExpression extends Expression {
                 case MULTIPLY -> new IntValue(leftValue.toInt() * rightValue.toInt());
                 case DIVIDE -> new IntValue(leftValue.toInt() / rightValue.toInt());
                 case MODULO -> new IntValue(leftValue.toInt() % rightValue.toInt());
-                default -> throw new RuntimeException("Unknown operator: " + operator);
+                default -> throw new RuntimeException("Bad operator: " + operator);
             };
-        } else if (leftValue.getType() == TokenType.FLOAT || rightValue.getType() == TokenType.INT || leftValue.getType() == TokenType.INT || rightValue.getType() == TokenType.FLOAT) {
+        } else if ((leftValue.getType() == TokenType.FLOAT || leftValue.getType() == TokenType.INT) && (rightValue.getType() == TokenType.INT || rightValue.getType() == TokenType.FLOAT)) {
             return switch (operator) {
                 case PLUS -> new FloatValue(leftValue.toFloat() + rightValue.toFloat());
                 case MINUS -> new FloatValue(leftValue.toFloat() - rightValue.toFloat());
                 case MULTIPLY -> new FloatValue(leftValue.toFloat() * rightValue.toFloat());
                 case DIVIDE -> new FloatValue(leftValue.toFloat() / rightValue.toFloat());
                 case MODULO -> new FloatValue(leftValue.toFloat() % rightValue.toFloat());
-                default -> throw new RuntimeException("Unknown operator: " + operator);
+                default -> throw new RuntimeException("Bad operator: " + operator);
+            };
+        } else if (leftValue.getType() == TokenType.STRING || rightValue.getType() == TokenType.STRING) {
+            return switch (operator) {
+                case PLUS -> new fr.aiko.Karl.parser.ast.values.StringValue(leftValue + rightValue.toString());
+                default -> throw new RuntimeException("Bad operator: " + operator);
             };
         } else {
-            throw new RuntimeException("Unauthorized type for operation" + leftValue.getType());
+            throw new RuntimeException("Unauthorized type for operation " + leftValue.getType().getName());
         }
     }
 }

@@ -1,6 +1,8 @@
 package fr.aiko.Karl;
 
 import fr.aiko.Karl.errors.Error;
+import fr.aiko.Karl.errors.FileError.FileError;
+import fr.aiko.Karl.errors.FileError.FileNotFoundError;
 import fr.aiko.Karl.parser.Lexer;
 import fr.aiko.Karl.parser.Parser;
 import fr.aiko.Karl.parser.Token;
@@ -15,7 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.4.0-alpha", description = "Karl programming language")
+@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.4.0-alpha.3", description = "Karl programming language")
 public class Main implements Runnable {
     @CommandLine.Parameters(index = "0", description = "The file to run")
     private String path;
@@ -27,12 +29,12 @@ public class Main implements Runnable {
     @Override
     public void run() {
         if (!Files.exists(Path.of(path))) {
-            new Error("FileNotFound", "The file " + path + " doesn't exist", "Main.java", 0, 0);
+            new FileNotFoundError(path);
         }
         String fileName = path.substring(path.lastIndexOf("/") + 1);
 
         if (!fileName.endsWith(".karl")) {
-            new Error("FileError", "The file must be a .karl file", fileName, 0, 0);
+            new FileError(path);
         }
 
         try {

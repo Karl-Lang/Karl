@@ -1,2 +1,3 @@
-int: a = (3 + ( 5 - 9 ) + 42)/2;
-show(a);
+string: test = "gggg" + "terer";
+
+show(test + 5);

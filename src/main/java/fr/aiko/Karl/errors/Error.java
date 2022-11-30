@@ -19,7 +19,7 @@ public class Error {
         this.message = message;
         this.path = path;
         this.line = line;
-        this.position = position;
+        this.position = getPosition(position);
 
         print();
     }
@@ -40,23 +40,41 @@ public class Error {
         try {
             return Files.readAllLines(Path.of(path)).get(line - 1);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-    }
-
-    private String getFile() {
-        try {
-            return Files.readString(Path.of(path));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        return null;
     }
 
     private String printIndicator() {
         String line = getLine();
-        int pos = position - getFile().indexOf(line);
-        char[] chars = new char[pos - 1];
-        Arrays.fill(chars, ' ');
-        return new String(chars) + "^";
+        if (line != null) {
+            String[] array = line.split("");
+            StringBuilder indicator = new StringBuilder();
+            for (int i = 0; i < array.length; i++) {
+                if (i == position) {
+                    indicator.append("^");
+                } else {
+                    indicator.append(" ");
+                }
+            }
+
+            if (!indicator.toString().endsWith("^") && !indicator.toString().contains("^")) {
+                indicator.append("^");
+            }
+
+            return indicator.toString();
+        } else {
+            return "^";
+        }
+    }
+
+    private int getPosition(int givePos) {
+        try {
+            String[] lines = Files.readAllLines(Path.of(path)).subList(0, line - 1).toArray(new String[0]);
+            int pos = Arrays.stream(lines).mapToInt(String::length).sum();
+            return givePos - pos;
+        } catch (IOException ignored) {
+            return givePos;
+        }
     }
 }

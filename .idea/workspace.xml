@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bug with multi-line comment &amp; optimize code">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Patch 008">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +97,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.MainTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -298,49 +297,12 @@
       <workItem from="1669307647906" duration="12117000" />
       <workItem from="1669639940469" duration="1238000" />
       <workItem from="1669642221302" duration="1810000" />
-      <workItem from="1669656201340" duration="3023000" />
-    </task>
-    <task id="LOCAL-00023" summary="Add boolean type support">
-      <created>1665774747654</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1665774747654</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Fix tiny bugs">
-      <created>1665861332657</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1665861332657</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Base of new ErrorManager, currently in working">
-      <created>1665948713029</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1665948713029</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Change error message for TypeError">
-      <created>1665948896302</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1665948896302</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Finish Error System">
-      <created>1666187999531</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1666187999531</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Edit README.md">
-      <created>1666188757426</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1666188757426</updated>
+      <workItem from="1669656201340" duration="5936000" />
+      <workItem from="1669730044115" duration="19905000" />
+      <workItem from="1669810896195" duration="92000" />
+      <workItem from="1669811204586" duration="1286000" />
+      <workItem from="1669820581872" duration="150000" />
+      <workItem from="1669820777994" duration="7782000" />
     </task>
     <task id="LOCAL-00029" summary="If statement, need a lot of tests and optimizations">
       <created>1666202468563</created>
@@ -643,7 +605,49 @@
       <option name="project" value="LOCAL" />
       <updated>1669233742340</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Patch 004">
+      <created>1669667124661</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1669667124662</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Patch 005 &amp; 010">
+      <created>1669731980112</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1669731980113</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Patch 007">
+      <created>1669732965898</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1669732965898</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Patch 009">
+      <created>1669751785932</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1669751785933</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Patch 013">
+      <created>1669825811241</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1669825811241</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Patch 008">
+      <created>1669828340049</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1669828340049</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,12 +665,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.2.0" />
-    <MESSAGE value="v0.2.2" />
-    <MESSAGE value="Add VariableAssignmentStatement.java" />
-    <MESSAGE value="Switch increment and decrement to VariableAssignmentStatement" />
-    <MESSAGE value="Support for float, fix bugs" />
-    <MESSAGE value="Support for char, base of conditions" />
     <MESSAGE value="Fix bugs in variable assignment, add base of if statement" />
     <MESSAGE value="Fix bugs and add new error messages design" />
     <MESSAGE value="Fix bugs and add negative numbers support" />
@@ -686,18 +684,13 @@
     <MESSAGE value="v4.0.0-alpha" />
     <MESSAGE value="v0.4.0-alpha - Edit README.md" />
     <MESSAGE value="Fix bug with multi-line comment &amp; optimize code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bug with multi-line comment &amp; optimize code" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/ValueExpression.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Patch 004" />
+    <MESSAGE value="Patch 005 &amp; 010" />
+    <MESSAGE value="Patch 007" />
+    <MESSAGE value="Patch 009" />
+    <MESSAGE value="Patch 013" />
+    <MESSAGE value="Patch 008" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patch 008" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

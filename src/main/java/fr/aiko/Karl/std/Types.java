@@ -13,6 +13,7 @@ public final class Types {
         types.put("bool", TokenType.BOOL);
         types.put("float", TokenType.FLOAT);
         types.put("char", TokenType.CHAR);
+        types.put("null", TokenType.NULL);
     }
 
     public static TokenType getType(String name) {

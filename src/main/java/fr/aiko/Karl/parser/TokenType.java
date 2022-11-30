@@ -50,7 +50,8 @@ public enum TokenType {
     MINUSMINUS("--"),
     PLUSPLUS("++"),
     COMMENTARY("//"),
-    VOID("void");
+    VOID("void"),
+    NULL("null");
 
     private final String name;
 

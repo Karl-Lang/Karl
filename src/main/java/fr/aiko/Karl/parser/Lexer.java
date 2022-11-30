@@ -3,10 +3,7 @@ package fr.aiko.Karl.parser;
 import fr.aiko.Karl.errors.Error;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Lexer {
 
@@ -75,6 +72,7 @@ public class Lexer {
         KEYWORDS.put("string", TokenType.STRING);
         KEYWORDS.put("char", TokenType.CHAR);
         KEYWORDS.put("void", TokenType.VOID);
+        KEYWORDS.put("null", TokenType.NULL);
 
         tokenize();
     }
@@ -143,7 +141,7 @@ public class Lexer {
                 break;
             }
 
-            if ((c == '.' && buffer.indexOf(".") != -1) || (buffer.indexOf("-") != -1 && buffer.indexOf("-") != -1)) {
+            if ((c == '.' && buffer.indexOf(".") != -1) || (c == '-' && buffer.indexOf("-") != -1)) {
                 new SyntaxError("Invalid number", fileName, line, position);
             } else if (!Character.isDigit(c) && (c != '.' && c != '-')) {
                 break;
@@ -188,6 +186,23 @@ public class Lexer {
         buffer.setLength(0);
         char c = nextChar();
         while (true) {
+            if (c == '\\') {
+                c = nextChar();
+                switch (c) {
+                    case 'n' -> buffer.append('\n');
+                    case 't' -> buffer.append('\t');
+                    case 'r' -> buffer.append('\r');
+                    case 'b' -> buffer.append('\b');
+                    case 'f' -> buffer.append('\f');
+                    case '\'' -> buffer.append('\'');
+                    case '"' -> buffer.append('\"');
+                    case '\\' -> buffer.append('\\');
+                    case '0' -> buffer.append('\0');
+                    default -> new SyntaxError("Invalid escape character: " + c, fileName, line, position);
+                }
+                c = nextChar();
+            }
+
             if (c == '\0') {
                 new SyntaxError("Unterminated string", fileName, line, position);
             }

@@ -37,6 +37,10 @@ public class IfElseStatement extends Statement {
                     if (((BlockStatement) elseStatement).getResult() != null) {
                         returnValue = ((BlockStatement) elseStatement).getResult();
                     }
+                } else if (elseStatement instanceof IfElseStatement) {
+                    if (((IfElseStatement) elseStatement).getResult() != null) {
+                        returnValue = ((IfElseStatement) elseStatement).getResult();
+                    }
                 }
             }
         }
