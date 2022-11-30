@@ -35,11 +35,13 @@ public class BlockStatement extends Statement {
         for (Statement statement : statements) {
             statement.eval();
 
-            if (statement instanceof ReturnStatement) {
+            if (statement instanceof IfElseStatement) {
+                if (((IfElseStatement) statement).getResult() != null) {
+                    result = ((IfElseStatement) statement).getResult();
+                    break;
+                }
+            } else if (statement instanceof ReturnStatement) {
                 result = ((ReturnStatement) statement).getResult();
-                break;
-            } else if (statement instanceof IfElseStatement) {
-                result = ((IfElseStatement) statement).getResult();
                 break;
             }
         }
