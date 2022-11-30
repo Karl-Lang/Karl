@@ -91,7 +91,7 @@ public class Lexer {
                 position++;
             } else if (Character.isDigit(c) || (c == '-' && position + 1 < input.length() && Character.isDigit(input.charAt(position + 1))))
                 tokenizeNumber();
-            else if (Character.isLetter(c)) tokenizeIdentifier();
+            else if (String.valueOf(c).matches("^[a-zA-Z_$][a-zA-Z_$0-9]*$")) tokenizeIdentifier();
             else if (c == '"') tokenizeString();
             else if (c == '\'') tokenizeChar();
             else if (OPERATOR_CHARS.indexOf(c) != -1) tokenizeOperator();
@@ -166,7 +166,7 @@ public class Lexer {
                 break;
             }
 
-            if (!Character.isLetterOrDigit(c)) {
+            if (!String.valueOf(c).matches("^[a-zA-Z_$][a-zA-Z_$0-9]*$")) {
                 break;
             }
 

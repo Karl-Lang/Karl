@@ -1,5 +1,6 @@
 package fr.aiko.Karl.parser.ast.expressions;
 
+import fr.aiko.Karl.errors.RuntimeError.DivisionByZeroError;
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.parser.ast.values.FloatValue;
@@ -36,7 +37,14 @@ public class BinaryExpression extends Expression {
                 case PLUS -> new IntValue(leftValue.toInt() + rightValue.toInt());
                 case MINUS -> new IntValue(leftValue.toInt() - rightValue.toInt());
                 case MULTIPLY -> new IntValue(leftValue.toInt() * rightValue.toInt());
-                case DIVIDE -> new IntValue(leftValue.toInt() / rightValue.toInt());
+                case DIVIDE -> {
+                    if (rightValue.toFloat() == 0) {
+                        new DivisionByZeroError(fileName, line, pos);
+                        yield null;
+                    } else {
+                        yield new FloatValue(leftValue.toFloat() / rightValue.toFloat());
+                    }
+                }
                 case MODULO -> new IntValue(leftValue.toInt() % rightValue.toInt());
                 default -> {
                     new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
@@ -48,7 +56,14 @@ public class BinaryExpression extends Expression {
                 case PLUS -> new FloatValue(leftValue.toFloat() + rightValue.toFloat());
                 case MINUS -> new FloatValue(leftValue.toFloat() - rightValue.toFloat());
                 case MULTIPLY -> new FloatValue(leftValue.toFloat() * rightValue.toFloat());
-                case DIVIDE -> new FloatValue(leftValue.toFloat() / rightValue.toFloat());
+                case DIVIDE -> {
+                    if (rightValue.toFloat() == 0) {
+                        new DivisionByZeroError(fileName, line, pos);
+                        yield null;
+                    } else {
+                        yield new FloatValue(leftValue.toFloat() / rightValue.toFloat());
+                    }
+                }
                 case MODULO -> new FloatValue(leftValue.toFloat() % rightValue.toFloat());
                 default -> {
                     new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);

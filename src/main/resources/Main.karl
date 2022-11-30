@@ -1,9 +1,2 @@
-string: test = null;
-
-if(test == null) -> {
-    show("test is null");
-} else -> {
-    show("test is not null");
-}
-
-show(test);
+int: _test = 5;
+show(1/0);
