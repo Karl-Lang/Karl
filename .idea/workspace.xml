@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Patch 008">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Patch 014 &amp; v0.4.0-alpha.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +96,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -302,14 +301,7 @@
       <workItem from="1669810896195" duration="92000" />
       <workItem from="1669811204586" duration="1286000" />
       <workItem from="1669820581872" duration="150000" />
-      <workItem from="1669820777994" duration="7782000" />
-    </task>
-    <task id="LOCAL-00029" summary="If statement, need a lot of tests and optimizations">
-      <created>1666202468563</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1666202468563</updated>
+      <workItem from="1669820777994" duration="8592000" />
     </task>
     <task id="LOCAL-00030" summary="Fix a lot of issues and make some optimizations">
       <created>1666207358045</created>
@@ -647,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669828340049</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Patch 014 &amp; v0.4.0-alpha.3">
+      <created>1669829978808</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1669829978808</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -665,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix bugs in variable assignment, add base of if statement" />
     <MESSAGE value="Fix bugs and add new error messages design" />
     <MESSAGE value="Fix bugs and add negative numbers support" />
     <MESSAGE value="Increment/Decrement, Comments &amp; Multi-line comments" />
@@ -690,7 +688,8 @@
     <MESSAGE value="Patch 009" />
     <MESSAGE value="Patch 013" />
     <MESSAGE value="Patch 008" />
-    <option name="LAST_COMMIT_MESSAGE" value="Patch 008" />
+    <MESSAGE value="Patch 014 &amp; v0.4.0-alpha.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patch 014 &amp; v0.4.0-alpha.3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

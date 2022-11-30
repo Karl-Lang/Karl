@@ -1,3 +1,9 @@
-string: test = "gggg" + "terer";
+string: test = null;
 
-show(test + 5);
+if(test == null) -> {
+    show("test is null");
+} else -> {
+    show("test is not null");
+}
+
+show(test);

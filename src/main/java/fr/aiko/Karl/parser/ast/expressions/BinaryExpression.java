@@ -38,7 +38,10 @@ public class BinaryExpression extends Expression {
                 case MULTIPLY -> new IntValue(leftValue.toInt() * rightValue.toInt());
                 case DIVIDE -> new IntValue(leftValue.toInt() / rightValue.toInt());
                 case MODULO -> new IntValue(leftValue.toInt() % rightValue.toInt());
-                default -> throw new RuntimeException("Bad operator: " + operator);
+                default -> {
+                    new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                    yield null;
+                }
             };
         } else if ((leftValue.getType() == TokenType.FLOAT || leftValue.getType() == TokenType.INT) && (rightValue.getType() == TokenType.INT || rightValue.getType() == TokenType.FLOAT)) {
             return switch (operator) {
@@ -47,15 +50,22 @@ public class BinaryExpression extends Expression {
                 case MULTIPLY -> new FloatValue(leftValue.toFloat() * rightValue.toFloat());
                 case DIVIDE -> new FloatValue(leftValue.toFloat() / rightValue.toFloat());
                 case MODULO -> new FloatValue(leftValue.toFloat() % rightValue.toFloat());
-                default -> throw new RuntimeException("Bad operator: " + operator);
+                default -> {
+                    new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                    yield null;
+                }
             };
         } else if (leftValue.getType() == TokenType.STRING || rightValue.getType() == TokenType.STRING) {
             return switch (operator) {
                 case PLUS -> new fr.aiko.Karl.parser.ast.values.StringValue(leftValue + rightValue.toString());
-                default -> throw new RuntimeException("Bad operator: " + operator);
+                default -> {
+                    new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                    yield null;
+                }
             };
         } else {
-            throw new RuntimeException("Unauthorized type for operation " + leftValue.getType().getName());
+            new RuntimeError("Unauthorized type for operation " + leftValue.getType().getName(), fileName, line, pos);
+            return null;
         }
     }
 }
