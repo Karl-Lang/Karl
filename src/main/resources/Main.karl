@@ -1,30 +1,9 @@
-func sayHello::(string: name): void -> {
-    show("Hello, ", name, "!");
+string: test = null;
+
+if(test == null) -> {
+    show("test is null");
+} else -> {
+    show("test is not null");
 }
 
-func main::(): void -> {
-    show("What is your name?");
-    sayHello("Karl");
-}
-
-func getStr::(): string -> {
-    return "Hello, World!";
-}
-main();
-show(getStr());
-show(getInt(9) + 1);
-
-func getInt::(int: num): int -> {
-    return num + 1;
-}
-show(getInt(6) + 1);
-
-func getIfInt::(int: number): int -> {
-  if (number == 14) -> {
-    return 1;
-  } else -> {
-    return 0;
-  }
-}
-
-show(getIfInt(14));
+show(test);
