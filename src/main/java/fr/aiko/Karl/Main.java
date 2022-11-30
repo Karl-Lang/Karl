@@ -17,7 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.4.0-alpha.2", description = "Karl programming language")
+@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.4.0-alpha.3", description = "Karl programming language")
 public class Main implements Runnable {
     @CommandLine.Parameters(index = "0", description = "The file to run")
     private String path;

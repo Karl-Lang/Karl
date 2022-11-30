@@ -1,5 +1,3 @@
-func getStr::(): string -> {
-    return null;
-}
+string: test = "gggg" + "terer";
 
-show(getStr());
+show(test + 5);
