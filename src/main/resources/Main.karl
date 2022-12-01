@@ -1,5 +1,1 @@
-int: var1 = 5;
-int: var = 5;
-int: op = var1 / var;
-
-show(op);
+int: a = 056412561651551654645546;

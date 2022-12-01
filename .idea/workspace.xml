@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Patch 021">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix bug in lexer">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/RuntimeError/NumberError.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +101,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -302,14 +306,8 @@
       <workItem from="1669810896195" duration="92000" />
       <workItem from="1669811204586" duration="1286000" />
       <workItem from="1669820581872" duration="150000" />
-      <workItem from="1669820777994" duration="15981000" />
-    </task>
-    <task id="LOCAL-00034" summary="Rewrite of Parser">
-      <created>1666634747945</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1666634747945</updated>
+      <workItem from="1669820777994" duration="16600000" />
+      <workItem from="1669899513007" duration="1823000" />
     </task>
     <task id="LOCAL-00035" summary="v0.1">
       <created>1666640922507</created>
@@ -647,7 +645,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669841123201</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Fix bug in lexer">
+      <created>1669845188341</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1669845188341</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -665,7 +670,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix bugs with variable scope" />
     <MESSAGE value="Make functions usable before initialization" />
     <MESSAGE value="Base of parameters, need tests" />
     <MESSAGE value="Base of return system, need tests" />
@@ -690,7 +694,8 @@
     <MESSAGE value="Patch 016 &amp; 017" />
     <MESSAGE value="Patch 018, 019 &amp; 020" />
     <MESSAGE value="Patch 021" />
-    <option name="LAST_COMMIT_MESSAGE" value="Patch 021" />
+    <MESSAGE value="Fix bug in lexer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug in lexer" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

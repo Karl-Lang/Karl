@@ -4,7 +4,6 @@ import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.parser.ast.values.Value;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class LogicalOperators {

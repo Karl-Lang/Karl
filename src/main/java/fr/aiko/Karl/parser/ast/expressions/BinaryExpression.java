@@ -1,13 +1,10 @@
 package fr.aiko.Karl.parser.ast.expressions;
 
-import fr.aiko.Karl.errors.RuntimeError.DivisionByZeroError;
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.parser.ast.values.FloatValue;
 import fr.aiko.Karl.parser.ast.values.IntValue;
 import fr.aiko.Karl.parser.ast.values.Value;
-
-import java.util.Arrays;
 
 public class BinaryExpression extends Expression {
     private final Expression left;

@@ -32,11 +32,13 @@ public class LogicalExpression extends Expression {
                 if (leftValue.getType() == TokenType.NULL || rightValue.getType() == TokenType.NULL) {
                     return switch (operator) {
                         case NOT_EQUAL -> {
-                            if (leftValue.getType() == TokenType.NULL && rightValue.getType() == TokenType.NULL) yield new BooleanValue(false);
+                            if (leftValue.getType() == TokenType.NULL && rightValue.getType() == TokenType.NULL)
+                                yield new BooleanValue(false);
                             else yield new BooleanValue(true);
                         }
                         case EQUALEQUAL -> {
-                            if (leftValue.getType() == TokenType.NULL && rightValue.getType() == TokenType.NULL) yield new BooleanValue(true);
+                            if (leftValue.getType() == TokenType.NULL && rightValue.getType() == TokenType.NULL)
+                                yield new BooleanValue(true);
                             else yield new BooleanValue(false);
                         }
                         default -> {

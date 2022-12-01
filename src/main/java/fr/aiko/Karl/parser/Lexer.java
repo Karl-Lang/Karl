@@ -3,7 +3,10 @@ package fr.aiko.Karl.parser;
 import fr.aiko.Karl.errors.Error;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Lexer {
 
@@ -85,7 +88,8 @@ public class Lexer {
         while (position < input.length()) {
             final char c = input.charAt(position);
             if (c == '/' && position + 1 < input.length() && input.charAt(position + 1) == '/') tokenizeComment();
-            else if (c == '/' && position + 1 < input.length() && input.charAt(position + 1) == '*') tokenizeMultiLineComment();
+            else if (c == '/' && position + 1 < input.length() && input.charAt(position + 1) == '*')
+                tokenizeMultiLineComment();
             else if (c == '\n' || c == '\r') {
                 line++;
                 position++;
@@ -114,6 +118,7 @@ public class Lexer {
         }
         position += 2;
     }
+
     private void tokenizeChar() {
         nextChar();
         final char c = input.charAt(position);

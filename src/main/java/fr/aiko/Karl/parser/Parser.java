@@ -1,5 +1,6 @@
 package fr.aiko.Karl.parser;
 
+import fr.aiko.Karl.errors.RuntimeError.NumberError;
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.errors.SyntaxError.SemiColonError;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
@@ -176,7 +177,7 @@ public final class Parser {
                 skip(operator);
                 int position = pos;
                 Expression right = getExpression();
-                if (!(right instanceof ValueExpression) && !(right instanceof BinaryExpression))  {
+                if (!(right instanceof ValueExpression) && !(right instanceof BinaryExpression)) {
                     pos = position;
                     right = getValue();
                 }
@@ -230,9 +231,23 @@ public final class Parser {
             Token token = get(-1);
             return switch (token.getType()) {
                 case STRING -> new ValueExpression(token.getValue(), token.getType());
-                case INT -> new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
+                case INT -> {
+                    try {
+                        yield new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
+                    } catch (NumberFormatException e) {
+                        new NumberError("Invalid number: " + token.getValue(), fileName, token.getLine(), token.getPosition());
+                        yield null;
+                    }
+                }
                 case BOOL -> new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
-                case FLOAT -> new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
+                case FLOAT -> {
+                    try {
+                        yield new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
+                    } catch (NumberFormatException e) {
+                        new NumberError("Invalid number: " + token.getValue(), fileName, token.getLine(), token.getPosition());
+                        yield null;
+                    }
+                }
                 case CHAR -> new ValueExpression(token.getValue().charAt(0), token.getType());
                 case NULL -> new ValueExpression((String) null, token.getType());
                 default -> null;
@@ -313,7 +328,7 @@ public final class Parser {
         }
 
         if (expression.eval().getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
-            new RuntimeError( type.getValue() + " variable cannot be null", fileName, get(0).getLine(), get(0).getPosition() - 1);
+            new RuntimeError(type.getValue() + " variable cannot be null", fileName, get(0).getLine(), get(0).getPosition() - 1);
         }
 
         skip(TokenType.SEMICOLON);
@@ -344,7 +359,8 @@ public final class Parser {
         if (get(0).getType() != type) {
             if (type == TokenType.SEMICOLON) {
                 new SemiColonError(fileName, get(-1).getLine(), get(-1).getPosition());
-            } else new SyntaxError("Excepted " + type.getName() + " but got " + get(0).getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
+            } else
+                new SyntaxError("Excepted " + type.getName() + " but got " + get(0).getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
         }
         pos++;
     }

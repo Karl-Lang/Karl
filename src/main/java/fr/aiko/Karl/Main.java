@@ -1,6 +1,5 @@
 package fr.aiko.Karl;
 
-import fr.aiko.Karl.errors.Error;
 import fr.aiko.Karl.errors.FileError.FileError;
 import fr.aiko.Karl.errors.FileError.FileNotFoundError;
 import fr.aiko.Karl.parser.Lexer;
@@ -42,7 +41,6 @@ public class Main implements Runnable {
             ArrayList<Token> tokens = lexer.tokens;
             Parser parser = new Parser(tokens, path);
             ArrayList<Statement> statements = parser.parse();
-
             Long start = System.currentTimeMillis();
             statements.forEach(Statement::eval);
             Long end = System.currentTimeMillis();
@@ -50,7 +48,7 @@ public class Main implements Runnable {
             FunctionManager.clear();
             System.out.println("Execution time: " + (end - start) + "ms");
         } catch (IOException e) {
-            new Error("FileReading", "An error occured while reading file : " + path, "Main.java", 0, 0);
+            new FileError(path);
         }
 
         /*try {
