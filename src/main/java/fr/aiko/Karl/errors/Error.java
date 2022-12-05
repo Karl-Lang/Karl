@@ -33,8 +33,6 @@ public class Error {
         System.err.println(Colors.RED + "   " + printIndicator() + Colors.RESET);
         System.err.println(Colors.RED + "--------------------------------------------------------------------------" + Colors.RESET + "\n");
 
-        Arrays.stream(Thread.currentThread().getStackTrace()).forEach(System.out::println);
-
         System.exit(0);
     }
 

@@ -1,0 +1,23 @@
+// Make a lot of mathematical operations with the result
+int: one = 5 + (3+3) * 2; // 17
+int: two = 5 + 3 + 3 * 2; // 14
+int: three = (5 + 3 + 3) * 2; // 22
+int: four = 5 + 3 + (3 * 2); // 14
+int: five = (8*9) / 2; // 36
+int: six = 8 * 9 / 2; // 36
+int: seven = 8 * (9 / 2); // 36
+float: eight = 4 + 5 * 2 / 3; // 7.3333..
+int: nine = (4 + 5) * 2 / 3; // 6
+float: ten = 4 + 5 * (2 / 3); // 7.333
+
+// Print the results
+show(one);
+show(two);
+show(three);
+show(four);
+show(five);
+show(six);
+show(seven);
+show(eight);
+show(nine);
+show(ten);
