@@ -1,2 +1,10 @@
-int: test = int;
-show(test);
+int: number = 150; // this is a comment
+bool: boolean = true;
+int: num = 1;
+
+func main::(): int -> {
+  return 1;
+}
+
+show(main() + num);
+// -> 2
