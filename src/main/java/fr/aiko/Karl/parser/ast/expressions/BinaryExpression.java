@@ -6,8 +6,6 @@ import fr.aiko.Karl.parser.ast.values.FloatValue;
 import fr.aiko.Karl.parser.ast.values.IntValue;
 import fr.aiko.Karl.parser.ast.values.Value;
 
-import java.util.Arrays;
-
 public class BinaryExpression extends Expression {
     private final Expression left;
     private final Expression right;
@@ -31,31 +29,74 @@ public class BinaryExpression extends Expression {
         Value leftValue = left.eval();
         Value rightValue = right.eval();
 
-        if (leftValue.getType() == TokenType.INT && rightValue.getType() == TokenType.INT) {
+        if ((leftValue.getType() == TokenType.INT_VALUE || leftValue.getType() == TokenType.FLOAT_VALUE) && (rightValue.getType() == TokenType.INT_VALUE || rightValue.getType() == TokenType.FLOAT_VALUE)) {
             return switch (operator) {
-                case PLUS -> new IntValue(leftValue.toInt() + rightValue.toInt());
-                case MINUS -> new IntValue(leftValue.toInt() - rightValue.toInt());
-                case MULTIPLY -> new IntValue(leftValue.toInt() * rightValue.toInt());
-                case DIVIDE -> new IntValue(leftValue.toInt() / rightValue.toInt());
-                case MODULO -> new IntValue(leftValue.toInt() % rightValue.toInt());
-                default -> throw new RuntimeException("Bad operator: " + operator);
+                case PLUS -> add(leftValue, rightValue);
+                case MINUS -> sub(leftValue, rightValue);
+                case MULTIPLY -> multiply(leftValue, rightValue);
+                case DIVIDE -> divide(leftValue, rightValue);
+                case MODULO -> modulo(leftValue, rightValue);
+                default -> {
+                    new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                    yield null;
+                }
             };
-        } else if ((leftValue.getType() == TokenType.FLOAT || leftValue.getType() == TokenType.INT) && (rightValue.getType() == TokenType.INT || rightValue.getType() == TokenType.FLOAT)) {
-            return switch (operator) {
-                case PLUS -> new FloatValue(leftValue.toFloat() + rightValue.toFloat());
-                case MINUS -> new FloatValue(leftValue.toFloat() - rightValue.toFloat());
-                case MULTIPLY -> new FloatValue(leftValue.toFloat() * rightValue.toFloat());
-                case DIVIDE -> new FloatValue(leftValue.toFloat() / rightValue.toFloat());
-                case MODULO -> new FloatValue(leftValue.toFloat() % rightValue.toFloat());
-                default -> throw new RuntimeException("Bad operator: " + operator);
-            };
-        } else if (leftValue.getType() == TokenType.STRING || rightValue.getType() == TokenType.STRING) {
+        } else if (leftValue.getType() == TokenType.STR_VALUE || rightValue.getType() == TokenType.STR_VALUE) {
             return switch (operator) {
                 case PLUS -> new fr.aiko.Karl.parser.ast.values.StringValue(leftValue + rightValue.toString());
-                default -> throw new RuntimeException("Bad operator: " + operator);
+                default -> {
+                    new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                    yield null;
+                }
             };
         } else {
-            throw new RuntimeException("Unauthorized type for operation " + leftValue.getType().getName());
+            new RuntimeError("Unauthorized type for operation " + leftValue.getType().getName(), fileName, line, pos);
+            return null;
+        }
+    }
+
+    private Value divide(Value leftValue, Value rightValue) {
+        float result = leftValue.toFloat() / rightValue.toFloat();
+        if (result % 1 == 0) {
+            return new IntValue((int) result);
+        } else {
+            return new FloatValue(result);
+        }
+    }
+
+    private Value multiply(Value leftValue, Value rightValue) {
+        float result = leftValue.toFloat() * rightValue.toFloat();
+        if (result % 1 == 0) {
+            return new IntValue((int) result);
+        } else {
+            return new FloatValue(result);
+        }
+    }
+
+    private Value modulo(Value leftValue, Value rightValue) {
+        float result = leftValue.toFloat() % rightValue.toFloat();
+        if (result % 1 == 0) {
+            return new IntValue((int) result);
+        } else {
+            return new FloatValue(result);
+        }
+    }
+
+    private Value sub(Value leftValue, Value rightValue) {
+        float result = leftValue.toFloat() - rightValue.toFloat();
+        if (result % 1 == 0) {
+            return new IntValue((int) result);
+        } else {
+            return new FloatValue(result);
+        }
+    }
+
+    private Value add(Value leftValue, Value rightValue) {
+        float result = leftValue.toFloat() + rightValue.toFloat();
+        if (result % 1 == 0) {
+            return new IntValue((int) result);
+        } else {
+            return new FloatValue(result);
         }
     }
 }

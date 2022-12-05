@@ -16,8 +16,11 @@ public enum TokenType {
     SHOW("System.show"),
     INT("int"),
     FLOAT("float"),
+    FLOAT_VALUE("fltval"),
+    INT_VALUE("intval"),
+    BOOL_VALUE("boolval"),
     STRING("string"),
-    STRINGTYPE("stringtype"),
+    STR_VALUE("strvalue"),
     BOOL("bool"),
     PLUS("+"),
     MINUS("-"),
@@ -51,7 +54,8 @@ public enum TokenType {
     PLUSPLUS("++"),
     COMMENTARY("//"),
     VOID("void"),
-    NULL("null");
+    NULL("null"),
+    CHAR_VALUE("charVal");
 
     private final String name;
 

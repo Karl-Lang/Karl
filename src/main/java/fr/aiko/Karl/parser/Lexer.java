@@ -3,7 +3,10 @@ package fr.aiko.Karl.parser;
 import fr.aiko.Karl.errors.Error;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Lexer {
 
@@ -85,13 +88,14 @@ public class Lexer {
         while (position < input.length()) {
             final char c = input.charAt(position);
             if (c == '/' && position + 1 < input.length() && input.charAt(position + 1) == '/') tokenizeComment();
-            else if (c == '/' && position + 1 < input.length() && input.charAt(position + 1) == '*') tokenizeMultiLineComment();
+            else if (c == '/' && position + 1 < input.length() && input.charAt(position + 1) == '*')
+                tokenizeMultiLineComment();
             else if (c == '\n' || c == '\r') {
                 line++;
                 position++;
             } else if (Character.isDigit(c) || (c == '-' && position + 1 < input.length() && Character.isDigit(input.charAt(position + 1))))
                 tokenizeNumber();
-            else if (Character.isLetter(c)) tokenizeIdentifier();
+            else if (String.valueOf(c).matches("^[a-zA-Z_$][a-zA-Z_$0-9]*$")) tokenizeIdentifier();
             else if (c == '"') tokenizeString();
             else if (c == '\'') tokenizeChar();
             else if (OPERATOR_CHARS.indexOf(c) != -1) tokenizeOperator();
@@ -114,6 +118,7 @@ public class Lexer {
         }
         position += 2;
     }
+
     private void tokenizeChar() {
         nextChar();
         final char c = input.charAt(position);
@@ -126,7 +131,7 @@ public class Lexer {
             }
         }
         nextChar();
-        tokens.add(new Token(TokenType.CHAR, String.valueOf(c), position - 2, line));
+        tokens.add(new Token(TokenType.CHAR_VALUE, String.valueOf(c), position - 2, line));
     }
 
     public void tokenizeNumber() {
@@ -152,9 +157,9 @@ public class Lexer {
         }
 
         if (buffer.indexOf(".") != -1) {
-            addToken(TokenType.FLOAT, buffer.toString());
+            addToken(TokenType.FLOAT_VALUE, buffer.toString());
         } else {
-            addToken(TokenType.INT, buffer.toString());
+            addToken(TokenType.INT_VALUE, buffer.toString());
         }
     }
 
@@ -166,7 +171,7 @@ public class Lexer {
                 break;
             }
 
-            if (!Character.isLetterOrDigit(c)) {
+            if (!Character.isLetterOrDigit(c) && c != '_') {
                 break;
             }
 
@@ -174,7 +179,7 @@ public class Lexer {
             c = nextChar();
         }
         if (buffer.toString().equals("true") || buffer.toString().equals("false")) {
-            addToken(TokenType.BOOL, buffer.toString());
+            addToken(TokenType.BOOL_VALUE, buffer.toString());
         } else if (buffer.toString().equals("show")) {
             addToken(TokenType.SHOW, buffer.toString());
         } else {
@@ -216,7 +221,7 @@ public class Lexer {
             c = nextChar();
         }
 
-        addToken(TokenType.STRING, buffer.toString());
+        addToken(TokenType.STR_VALUE, buffer.toString());
     }
 
     public void tokenizeOperator() {

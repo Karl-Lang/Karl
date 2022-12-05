@@ -26,6 +26,6 @@ public class FloatValue extends Value {
 
     @Override
     public TokenType getType() {
-        return TokenType.FLOAT;
+        return TokenType.FLOAT_VALUE;
     }
 }

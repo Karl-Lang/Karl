@@ -56,4 +56,16 @@ class MainTest {
         String[] output = Arrays.copyOf(outContent.toString().split("\n"), outContent.toString().split("\n").length - 1);
         assertArrayEquals(expected, output);
     }
+
+    @Test
+    @DisplayName("Mathematical operations")
+    void mathTest() {
+        String[] args = {"src/test/resources/tests/Math.karl"};
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        String[] expected = {"17", "14", "22", "14", "36", "36", "36", "7.3333335", "6", "7.3333335"};
+        System.setOut(new PrintStream(outContent));
+        Main.main(args);
+        String[] output = Arrays.copyOf(outContent.toString().split("\n"), outContent.toString().split("\n").length - 1);
+        assertArrayEquals(expected, output);
+    }
 }

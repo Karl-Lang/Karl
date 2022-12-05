@@ -37,7 +37,7 @@ public class Function {
             if (type == TokenType.VOID) {
                 new RuntimeError("Function " + name + " is void, but return a value", fileName, line, pos);
             }
-            if (body.getResult().getType() == type || (type == TokenType.STRING && body.getResult().getType() == TokenType.NULL)) {
+            if (Types.checkValueType(type, body.getResult().getType()) || (type == TokenType.STRING && body.getResult().getType() == TokenType.NULL)) {
                 return body.getResult();
             } else {
                 new RuntimeError("Incorrect return type for function " + name + ": except " + type.getName() + " but got type " + body.getResult().getType().getName(), fileName, line, pos);

@@ -22,7 +22,7 @@ public class ConditionalExpression extends Expression {
         if (operator != null) {
             if (right != null) {
                 Value rightValue = right.eval();
-                if ((leftValue.getType() == TokenType.INT || leftValue.getType() == TokenType.FLOAT) && (rightValue.getType() == TokenType.INT || rightValue.getType() == TokenType.FLOAT)) {
+                if ((leftValue.getType() == TokenType.INT_VALUE || leftValue.getType() == TokenType.FLOAT_VALUE) && (rightValue.getType() == TokenType.INT_VALUE || rightValue.getType() == TokenType.FLOAT_VALUE)) {
                     return switch (operator) {
                         case EQUALEQUAL -> new BooleanValue(leftValue.toFloat() == rightValue.toFloat());
                         case NOT_EQUAL -> new BooleanValue(leftValue.toFloat() != rightValue.toFloat());

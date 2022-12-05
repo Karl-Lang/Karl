@@ -29,7 +29,25 @@ public class LogicalExpression extends Expression {
         if (operator != null) {
             if (right != null) {
                 Value rightValue = right.eval();
-                if ((leftValue.getType() != TokenType.INT && leftValue.getType() != TokenType.FLOAT) || (rightValue.getType() != TokenType.INT && rightValue.getType() != TokenType.FLOAT)) {
+                if (leftValue.getType() == TokenType.NULL || rightValue.getType() == TokenType.NULL) {
+                    return switch (operator) {
+                        case NOT_EQUAL -> {
+                            if (leftValue.getType() == TokenType.NULL && rightValue.getType() == TokenType.NULL)
+                                yield new BooleanValue(false);
+                            else yield new BooleanValue(true);
+                        }
+                        case EQUALEQUAL -> {
+                            if (leftValue.getType() == TokenType.NULL && rightValue.getType() == TokenType.NULL)
+                                yield new BooleanValue(true);
+                            else yield new BooleanValue(false);
+                        }
+                        default -> {
+                            new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                            yield null;
+                        }
+                    };
+
+                } else if ((leftValue.getType() != TokenType.INT_VALUE && leftValue.getType() != TokenType.FLOAT_VALUE) || (rightValue.getType() != TokenType.INT_VALUE && rightValue.getType() != TokenType.FLOAT_VALUE)) {
                     final boolean equals = leftValue.toString().equals(rightValue.toString());
 
                     return switch (operator) {
@@ -44,6 +62,7 @@ public class LogicalExpression extends Expression {
                             yield null;
                         }
                     };
+
                 } else {
                     return new BooleanValue(LogicalOperators.compare(leftValue, rightValue, operator, fileName, line, pos));
                 }

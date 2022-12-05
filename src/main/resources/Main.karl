@@ -1,3 +1,10 @@
-string: test = "gggg" + "terer";
+int: number = 150; // this is a comment
+bool: boolean = true;
+int: num = 1;
 
-show(test + 5);
+func main::(): int -> {
+  return 1;
+}
+
+show(main() + num);
+// -> 2

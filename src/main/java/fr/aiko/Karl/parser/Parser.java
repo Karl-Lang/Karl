@@ -1,5 +1,6 @@
 package fr.aiko.Karl.parser;
 
+import fr.aiko.Karl.errors.RuntimeError.NumberError;
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.errors.SyntaxError.SemiColonError;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
@@ -119,7 +120,7 @@ public final class Parser {
             new RuntimeError("Variable " + name + " is not defined", fileName, nameToken.getLine(), nameToken.getPosition());
             return null;
         } else {
-            if (var.getType() != TokenType.INT && var.getType() != TokenType.FLOAT) {
+            if (var.getType() != TokenType.INT_VALUE && var.getType() != TokenType.FLOAT_VALUE) {
                 new RuntimeError("Variable " + name + " is not a number", fileName, nameToken.getLine(), nameToken.getPosition());
                 return null;
             } else {
@@ -127,10 +128,10 @@ public final class Parser {
                 match(getType());
                 if (operator.getType() == TokenType.PLUSPLUS) {
                     skip(TokenType.SEMICOLON);
-                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.PLUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
+                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT_VALUE), new ValueExpression(1, TokenType.INT_VALUE), TokenType.PLUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 } else {
                     skip(TokenType.SEMICOLON);
-                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT), new ValueExpression(1, TokenType.INT), TokenType.MINUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
+                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT_VALUE), new ValueExpression(1, TokenType.INT_VALUE), TokenType.MINUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
                 }
             }
         }
@@ -161,7 +162,7 @@ public final class Parser {
     private Expression getExpression() {
         Token token = get(0);
         Expression expression = null;
-        if ((getType() == TokenType.IDENTIFIER && checkType(1, TokenType.LEFT_PARENTHESIS)) || (getType() == TokenType.IDENTIFIER) || (Types.isType(getType())) || (getType() == TokenType.EXCLAMATION)) {
+        if ((getType() == TokenType.IDENTIFIER && checkType(1, TokenType.LEFT_PARENTHESIS)) || (getType() == TokenType.IDENTIFIER) || (Types.isValueType(getType())) || (getType() == TokenType.EXCLAMATION)) {
             expression = getValue();
         } else if (match(TokenType.LEFT_PARENTHESIS)) {
             expression = getExpression();
@@ -176,7 +177,7 @@ public final class Parser {
                 skip(operator);
                 int position = pos;
                 Expression right = getExpression();
-                if (!(right instanceof ValueExpression) && !(right instanceof BinaryExpression))  {
+                if (!(right instanceof ValueExpression) && !(right instanceof BinaryExpression)) {
                     pos = position;
                     right = getValue();
                 }
@@ -216,7 +217,7 @@ public final class Parser {
 
             return new FuncCallExpression(name, args, fileName, nameToken.getLine(), nameToken.getPosition());
         } else if (match(TokenType.EXCLAMATION)) {
-            if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL && getType() != TokenType.LEFT_PARENTHESIS)
+            if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL_VALUE && getType() != TokenType.LEFT_PARENTHESIS)
                 new RuntimeError("Unexpected token " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
 
             Expression expr;
@@ -226,14 +227,28 @@ public final class Parser {
             } else expr = getValue();
 
             return new UnaryExpression(TokenType.EXCLAMATION, expr, fileName, get(-1).getLine(), get(-1).getPosition());
-        } else if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR) || match(TokenType.NULL)) {
+        } else if (match(TokenType.STR_VALUE) || match(TokenType.INT_VALUE) || match(TokenType.BOOL_VALUE) || match(TokenType.FLOAT_VALUE) || match(TokenType.CHAR_VALUE) || match(TokenType.NULL)) {
             Token token = get(-1);
             return switch (token.getType()) {
-                case STRING -> new ValueExpression(token.getValue(), token.getType());
-                case INT -> new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
-                case BOOL -> new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
-                case FLOAT -> new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
-                case CHAR -> new ValueExpression(token.getValue().charAt(0), token.getType());
+                case STR_VALUE -> new ValueExpression(token.getValue(), token.getType());
+                case INT_VALUE -> {
+                    try {
+                        yield new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
+                    } catch (NumberFormatException e) {
+                        new NumberError("Invalid number: " + token.getValue(), fileName, token.getLine(), token.getPosition());
+                        yield null;
+                    }
+                }
+                case BOOL_VALUE -> new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
+                case FLOAT_VALUE -> {
+                    try {
+                        yield new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
+                    } catch (NumberFormatException e) {
+                        new NumberError("Invalid number: " + token.getValue(), fileName, token.getLine(), token.getPosition());
+                        yield null;
+                    }
+                }
+                case CHAR_VALUE -> new ValueExpression(token.getValue().charAt(0), token.getType());
                 case NULL -> new ValueExpression((String) null, token.getType());
                 default -> null;
             };
@@ -304,12 +319,16 @@ public final class Parser {
         }
 
         assert expression != null;
-        if (expression.eval().getType() != type.getType() && expression.eval().getType() != TokenType.NULL) {
+        if (type.getType() == TokenType.FLOAT && expression.eval().getType() == TokenType.INT_VALUE) {
+            expression = new ValueExpression(expression.eval().toFloat(), TokenType.FLOAT_VALUE);
+        }
+
+        if (!Types.checkValueType(type.getType(), expression.eval().getType()) && expression.eval().getType() != TokenType.NULL) { // Here
             new RuntimeError("Expected type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
         }
 
         if (expression.eval().getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
-            new RuntimeError( type.getValue() + " variable cannot be null", fileName, get(0).getLine(), get(0).getPosition() - 1);
+            new RuntimeError(type.getValue() + " variable cannot be null", fileName, get(0).getLine(), get(0).getPosition() - 1);
         }
 
         skip(TokenType.SEMICOLON);
@@ -340,7 +359,8 @@ public final class Parser {
         if (get(0).getType() != type) {
             if (type == TokenType.SEMICOLON) {
                 new SemiColonError(fileName, get(-1).getLine(), get(-1).getPosition());
-            } else new SyntaxError("Excepted " + type.getName() + " but got " + get(0).getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
+            } else
+                new SyntaxError("Excepted " + type.getName() + " but got " + get(0).getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
         }
         pos++;
     }

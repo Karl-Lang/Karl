@@ -2,9 +2,11 @@ package fr.aiko.Karl.parser.ast.expressions;
 
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.TokenType;
+import fr.aiko.Karl.parser.ast.values.NullValue;
 import fr.aiko.Karl.parser.ast.values.Value;
 import fr.aiko.Karl.std.Function;
 import fr.aiko.Karl.std.FunctionManager;
+import fr.aiko.Karl.std.Types;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -38,11 +40,15 @@ public class FuncCallExpression extends Expression {
 
         int i = 0;
         for (String arg : parameters.keySet()) {
-            if (parameters.get(arg) != args.get(i).eval().getType()) {
+            if (!Types.checkValueType(parameters.get(arg), args.get(i).eval().getType())) { // parameters.get(arg) != args.get(i).eval().getType()
                 new RuntimeError("Type mismatch for argument " + arg + " of function " + name + ": Excepted type " + parameters.get(arg).getName() + ", but got type " + args.get(i).eval().getType().getName(), fileName, line, pos);
             }
             i++;
         }
-        return function.eval(args, fileName, line, pos);
+
+        if (function.getType() == TokenType.VOID) {
+            function.eval(args, fileName, line, pos);
+            return new NullValue("null");
+        } else return function.eval(args, fileName, line, pos);
     }
 }
