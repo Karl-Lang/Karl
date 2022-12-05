@@ -30,6 +30,6 @@ public class CharValue extends Value {
 
     @Override
     public TokenType getType() {
-        return TokenType.CHAR;
+        return TokenType.CHAR_VALUE;
     }
 }

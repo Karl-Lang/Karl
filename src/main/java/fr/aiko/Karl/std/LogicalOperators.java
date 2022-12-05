@@ -33,7 +33,7 @@ public class LogicalOperators {
     }
 
     public static Boolean compare(Value firstNumber, Value secondNumber, TokenType operator, String fileName, int line, int pos) {
-        if (firstNumber.getType() != TokenType.INT && firstNumber.getType() != TokenType.FLOAT && secondNumber.getType() != TokenType.INT && secondNumber.getType() != TokenType.FLOAT) {
+        if (firstNumber.getType() != TokenType.INT_VALUE && firstNumber.getType() != TokenType.FLOAT_VALUE && secondNumber.getType() != TokenType.INT_VALUE && secondNumber.getType() != TokenType.FLOAT_VALUE) {
             new RuntimeError("Type mismatch : " + firstNumber.getType().toString().toLowerCase() + " and " + secondNumber.getType().toString().toLowerCase(), fileName, line, pos);
             return null;
         }

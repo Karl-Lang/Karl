@@ -47,7 +47,7 @@ public class LogicalExpression extends Expression {
                         }
                     };
 
-                } else if ((leftValue.getType() != TokenType.INT && leftValue.getType() != TokenType.FLOAT) || (rightValue.getType() != TokenType.INT && rightValue.getType() != TokenType.FLOAT)) {
+                } else if ((leftValue.getType() != TokenType.INT_VALUE && leftValue.getType() != TokenType.FLOAT_VALUE) || (rightValue.getType() != TokenType.INT_VALUE && rightValue.getType() != TokenType.FLOAT_VALUE)) {
                     final boolean equals = leftValue.toString().equals(rightValue.toString());
 
                     return switch (operator) {

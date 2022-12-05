@@ -131,7 +131,7 @@ public class Lexer {
             }
         }
         nextChar();
-        tokens.add(new Token(TokenType.CHAR, String.valueOf(c), position - 2, line));
+        tokens.add(new Token(TokenType.CHAR_VALUE, String.valueOf(c), position - 2, line));
     }
 
     public void tokenizeNumber() {
@@ -157,9 +157,9 @@ public class Lexer {
         }
 
         if (buffer.indexOf(".") != -1) {
-            addToken(TokenType.FLOAT, buffer.toString());
+            addToken(TokenType.FLOAT_VALUE, buffer.toString());
         } else {
-            addToken(TokenType.INT, buffer.toString());
+            addToken(TokenType.INT_VALUE, buffer.toString());
         }
     }
 
@@ -179,7 +179,7 @@ public class Lexer {
             c = nextChar();
         }
         if (buffer.toString().equals("true") || buffer.toString().equals("false")) {
-            addToken(TokenType.BOOL, buffer.toString());
+            addToken(TokenType.BOOL_VALUE, buffer.toString());
         } else if (buffer.toString().equals("show")) {
             addToken(TokenType.SHOW, buffer.toString());
         } else {
@@ -221,7 +221,7 @@ public class Lexer {
             c = nextChar();
         }
 
-        addToken(TokenType.STRING, buffer.toString());
+        addToken(TokenType.STR_VALUE, buffer.toString());
     }
 
     public void tokenizeOperator() {

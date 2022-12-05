@@ -26,6 +26,6 @@ public class StringValue extends Value {
 
     @Override
     public TokenType getType() {
-        return TokenType.STRING;
+        return TokenType.STR_VALUE;
     }
 }

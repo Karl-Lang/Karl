@@ -13,7 +13,7 @@ public class ValueExpression extends Expression {
     }
 
     public ValueExpression(String value, TokenType type) {
-        if (type == TokenType.STRING) {
+        if (type == TokenType.STR_VALUE) {
             this.value = new StringValue(value);
         } else {
             this.value = new NullValue(value);

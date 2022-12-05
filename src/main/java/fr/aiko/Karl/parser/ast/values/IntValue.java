@@ -26,6 +26,6 @@ public class IntValue extends Value {
 
     @Override
     public TokenType getType() {
-        return TokenType.INT;
+        return TokenType.INT_VALUE;
     }
 }

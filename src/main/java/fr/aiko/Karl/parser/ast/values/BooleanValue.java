@@ -26,6 +26,6 @@ public class BooleanValue extends Value {
 
     @Override
     public TokenType getType() {
-        return TokenType.BOOL;
+        return TokenType.BOOL_VALUE;
     }
 }

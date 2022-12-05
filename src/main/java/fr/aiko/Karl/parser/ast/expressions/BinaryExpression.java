@@ -29,7 +29,7 @@ public class BinaryExpression extends Expression {
         Value leftValue = left.eval();
         Value rightValue = right.eval();
 
-        if ((leftValue.getType() == TokenType.INT || leftValue.getType() == TokenType.FLOAT) && (rightValue.getType() == TokenType.INT || rightValue.getType() == TokenType.FLOAT)) {
+        if ((leftValue.getType() == TokenType.INT_VALUE || leftValue.getType() == TokenType.FLOAT_VALUE) && (rightValue.getType() == TokenType.INT_VALUE || rightValue.getType() == TokenType.FLOAT_VALUE)) {
             return switch (operator) {
                 case PLUS -> add(leftValue, rightValue);
                 case MINUS -> sub(leftValue, rightValue);
@@ -41,7 +41,7 @@ public class BinaryExpression extends Expression {
                     yield null;
                 }
             };
-        } else if (leftValue.getType() == TokenType.STRING || rightValue.getType() == TokenType.STRING) {
+        } else if (leftValue.getType() == TokenType.STR_VALUE || rightValue.getType() == TokenType.STR_VALUE) {
             return switch (operator) {
                 case PLUS -> new fr.aiko.Karl.parser.ast.values.StringValue(leftValue + rightValue.toString());
                 default -> {
