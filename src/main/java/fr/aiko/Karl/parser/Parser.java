@@ -306,41 +306,23 @@ public final class Parser {
         if (ForbiddenNames.isForbiddenName(name.getValue())) {
             new RuntimeError("Variable name " + name.getValue() + " is forbidden", fileName, get(0).getLine(), get(0).getPosition());
         }
+
+        if (VariableManager.getVariable(name.getValue()) != null) {
+            new RuntimeError("Variable " + name.getValue() + " is already declared", fileName, get(0).getLine(), get(0).getPosition());
+        }
+
         skip(TokenType.IDENTIFIER);
         skip(TokenType.EQUAL);
         Expression expression = getExpression();
+        skip(TokenType.SEMICOLON);
+
         if (expression == null) {
             new RuntimeError("Expected expression after " + name.getValue(), fileName, name.getLine(), get(0).getPosition());
         }
 
-        Value var = VariableManager.getVariable(name.getValue());
-        if (var != null) {
-            new RuntimeError("Variable " + name.getValue() + " is already declared", fileName, get(0).getLine(), get(0).getPosition());
-        }
-
         assert expression != null;
-        Value value = expression.eval();
-        if (type.getType() == TokenType.FLOAT && value.getType() == TokenType.INT_VALUE) {
-            expression = new ValueExpression(value.toFloat(), TokenType.FLOAT_VALUE);
-            value = expression.eval();
-        }
 
-        if (value.toString().equals("null_void")) {
-            new RuntimeError("Cannot assign void function to a variable", fileName, get(0).getLine(), get(0).getPosition());
-        }
-
-        if (!Types.checkValueType(type.getType(), value.getType()) && value.getType() != TokenType.NULL) { // Here
-            new RuntimeError("Expected type " + type.getValue() + " but got " + value.getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
-        }
-
-        if (value.getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
-            new RuntimeError(type.getValue() + " variable cannot be null", fileName, get(0).getLine(), get(0).getPosition() - 1);
-        }
-
-        skip(TokenType.SEMICOLON);
-        VariableExpression expr = new VariableExpression(name.getValue(), value);
-        expr.setValue(value);
-        return new VariableDeclarationStatement(expr);
+        return new VariableDeclarationStatement(expression, name.getValue(), type.getType(), fileName, name.getLine(), name.getPosition());
     }
 
     private ShowStatement show() {

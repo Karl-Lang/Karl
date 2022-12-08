@@ -1,7 +1,6 @@
+string: lol = main();
+
 func main::(): string -> {
-    show("maince alors");
+    show("The world is cute");
     return "a";
 }
-
-string: lol  = main();
-show(lol);
