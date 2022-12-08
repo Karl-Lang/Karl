@@ -2,8 +2,6 @@ package fr.aiko.Karl.parser.ast.statements;
 
 import fr.aiko.Karl.errors.RuntimeError.RuntimeError;
 import fr.aiko.Karl.parser.TokenType;
-import fr.aiko.Karl.parser.ast.expressions.BinaryExpression;
-import fr.aiko.Karl.parser.ast.expressions.ValueExpression;
 import fr.aiko.Karl.parser.ast.values.FloatValue;
 import fr.aiko.Karl.parser.ast.values.IntValue;
 import fr.aiko.Karl.parser.ast.values.Value;

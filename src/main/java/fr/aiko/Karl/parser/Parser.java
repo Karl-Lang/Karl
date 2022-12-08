@@ -6,7 +6,6 @@ import fr.aiko.Karl.errors.SyntaxError.SemiColonError;
 import fr.aiko.Karl.errors.SyntaxError.SyntaxError;
 import fr.aiko.Karl.parser.ast.expressions.*;
 import fr.aiko.Karl.parser.ast.statements.*;
-import fr.aiko.Karl.parser.ast.values.Value;
 import fr.aiko.Karl.std.*;
 
 import java.util.ArrayList;

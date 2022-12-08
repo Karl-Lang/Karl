@@ -49,11 +49,11 @@ public class VariableDeclarationStatement extends Statement {
         }
 
         if (!Types.checkValueType(type.getType(), value.getType()) && value.getType() != TokenType.NULL) {
-            new RuntimeError("Expected type " + type.getValue() + " but got " + value.getType().toString().toLowerCase(), fileName, line, pos - 1);
+            new RuntimeError("Expected type " + Types.getTypeName(type.getType()) + " but got " + Types.getTypeName(value.getType()), fileName, line, pos - 1);
         }
 
         if (value.getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
-            new RuntimeError(type.getValue() + " variable cannot be null", fileName, line, pos - 1);
+            new RuntimeError(Types.getTypeName(type.getType()) + " variable cannot be null", fileName, line, pos - 1);
         }
 
         VariableExpression expr = new VariableExpression(name, value);

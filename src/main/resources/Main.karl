@@ -1,3 +1,5 @@
-float: lol = 45.0;
+func main::(): void -> {
+    show("Hello, world!");
+}
 
-lol = "lol";
+string: str = main();
