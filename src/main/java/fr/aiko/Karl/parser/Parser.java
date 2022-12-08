@@ -115,25 +115,15 @@ public final class Parser {
         Token nameToken = get(0);
         match(TokenType.IDENTIFIER);
         String name = nameToken.getValue();
-        Value var = VariableManager.getVariable(name);
-        if (var == null) {
-            new RuntimeError("Variable " + name + " is not defined", fileName, nameToken.getLine(), nameToken.getPosition());
-            return null;
+
+        Token operator = get(0);
+        match(getType());
+        if (operator.getType() == TokenType.PLUSPLUS) {
+            skip(TokenType.SEMICOLON);
+            return new IncrementDecrementStatement(name, TokenType.PLUS, fileName, nameToken.getLine(), nameToken.getPosition());
         } else {
-            if (var.getType() != TokenType.INT_VALUE && var.getType() != TokenType.FLOAT_VALUE) {
-                new RuntimeError("Variable " + name + " is not a number", fileName, nameToken.getLine(), nameToken.getPosition());
-                return null;
-            } else {
-                Token operator = get(0);
-                match(getType());
-                if (operator.getType() == TokenType.PLUSPLUS) {
-                    skip(TokenType.SEMICOLON);
-                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT_VALUE), new ValueExpression(1, TokenType.INT_VALUE), TokenType.PLUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
-                } else {
-                    skip(TokenType.SEMICOLON);
-                    return new VariableAssignmentStatement(name, new BinaryExpression(new ValueExpression(var, TokenType.INT_VALUE), new ValueExpression(1, TokenType.INT_VALUE), TokenType.MINUS, fileName, get(0).getLine(), get(0).getPosition()).eval());
-                }
-            }
+            skip(TokenType.SEMICOLON);
+            return new IncrementDecrementStatement(name, TokenType.MINUS, fileName, nameToken.getLine(), nameToken.getPosition());
         }
     }
 
@@ -279,23 +269,17 @@ public final class Parser {
         String name = get(0).getValue();
         match(TokenType.IDENTIFIER);
         skip(TokenType.EQUAL);
+
         Expression expr = getExpression();
+
         if (expr == null) {
             new RuntimeError("Unknown expression : " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
         }
 
-        Value var = VariableManager.getVariable(name);
-        if (var == null) {
-            new RuntimeError("Variable " + name + " is not declared", fileName, get(0).getLine(), get(0).getPosition());
-        }
-        assert var != null;
-        assert expr != null;
-        if (var.getType() != expr.eval().getType()) {
-            new RuntimeError("Type mismatch : " + var.getType().toString().toLowerCase() + " and " + expr.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition());
-        }
         skip(TokenType.SEMICOLON);
 
-        return new VariableAssignmentStatement(name, expr.eval());
+        assert expr != null;
+        return new VariableAssignmentStatement(name, expr, fileName, get(0).getLine(), get(0).getPosition());
     }
 
     private Statement variableDeclaration() {
@@ -303,13 +287,6 @@ public final class Parser {
         match(type.getType());
         skip(TokenType.COLON);
         Token name = get(0);
-        if (ForbiddenNames.isForbiddenName(name.getValue())) {
-            new RuntimeError("Variable name " + name.getValue() + " is forbidden", fileName, get(0).getLine(), get(0).getPosition());
-        }
-
-        if (VariableManager.getVariable(name.getValue()) != null) {
-            new RuntimeError("Variable " + name.getValue() + " is already declared", fileName, get(0).getLine(), get(0).getPosition());
-        }
 
         skip(TokenType.IDENTIFIER);
         skip(TokenType.EQUAL);
@@ -320,9 +297,7 @@ public final class Parser {
             new RuntimeError("Expected expression after " + name.getValue(), fileName, name.getLine(), get(0).getPosition());
         }
 
-        assert expression != null;
-
-        return new VariableDeclarationStatement(expression, name.getValue(), type.getType(), fileName, name.getLine(), name.getPosition());
+        return new VariableDeclarationStatement(expression, name.getValue(), type, fileName, name.getLine(), name.getPosition());
     }
 
     private ShowStatement show() {
@@ -348,7 +323,7 @@ public final class Parser {
             if (type == TokenType.SEMICOLON) {
                 new SemiColonError(fileName, get(-1).getLine(), get(-1).getPosition());
             } else
-                new SyntaxError("Excepted " + type.getName() + " but got " + get(0).getType().getName(), fileName, get(0).getLine(), get(0).getPosition());
+                new SyntaxError("Excepted " + Types.getTypeName(type) + " but got " + Types.getTypeName(get(0).getType()), fileName, get(0).getLine(), get(0).getPosition());
         }
         pos++;
     }

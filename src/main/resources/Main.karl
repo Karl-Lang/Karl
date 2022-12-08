@@ -1,6 +1,3 @@
-string: lol = main();
+float: lol = 45.0;
 
-func main::(): string -> {
-    show("The world is cute");
-    return "a";
-}
+lol = "lol";

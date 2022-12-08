@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.4.0-alpha.4 Fix">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Patch 024">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Types.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Types.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -306,14 +309,7 @@
       <workItem from="1669820777994" duration="16600000" />
       <workItem from="1669899513007" duration="3446000" />
       <workItem from="1670261710611" duration="4060000" />
-      <workItem from="1670523063755" duration="3549000" />
-    </task>
-    <task id="LOCAL-00039" summary="Add increment and decrement for int and float variables">
-      <created>1666970942888</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1666970942888</updated>
+      <workItem from="1670523063755" duration="5709000" />
     </task>
     <task id="LOCAL-00040" summary="Fix two major bugs : Variable in if body and if statement in functions">
       <created>1666976805485</created>
@@ -651,7 +647,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670524444375</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Patch 024">
+      <created>1670532093859</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1670532093859</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -669,7 +672,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add forbidden names" />
     <MESSAGE value="Cleanup code" />
     <MESSAGE value="Bugs fix" />
     <MESSAGE value="Fix bugs with forbiddenNames, fix major bug with ! keyword, fix bugs in expression system and optimize it" />
@@ -694,7 +696,8 @@
     <MESSAGE value="First part of patch 023" />
     <MESSAGE value="Patch 023" />
     <MESSAGE value="v0.4.0-alpha.4 Fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.4.0-alpha.4 Fix" />
+    <MESSAGE value="Patch 024" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patch 024" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

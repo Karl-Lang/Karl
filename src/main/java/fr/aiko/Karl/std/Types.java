@@ -34,6 +34,17 @@ public final class Types {
         };
     }
 
+    public static String getTypeName(TokenType type) {
+        return switch (type) {
+            case INT_VALUE -> "int";
+            case FLOAT_VALUE -> "float";
+            case STR_VALUE -> "string";
+            case CHAR_VALUE -> "char";
+            case BOOL_VALUE -> "bool";
+            default -> type.getName().toLowerCase();
+        };
+    }
+
     public static TokenType getType(String name) {
         return types.get(name);
     }
