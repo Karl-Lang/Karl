@@ -48,7 +48,7 @@ public class FuncCallExpression extends Expression {
 
         if (function.getType() == TokenType.VOID) {
             function.eval(args, fileName, line, pos);
-            return new NullValue("null");
+            return new NullValue("null_void");
         } else return function.eval(args, fileName, line, pos);
     }
 }

@@ -319,21 +319,27 @@ public final class Parser {
         }
 
         assert expression != null;
-        if (type.getType() == TokenType.FLOAT && expression.eval().getType() == TokenType.INT_VALUE) {
-            expression = new ValueExpression(expression.eval().toFloat(), TokenType.FLOAT_VALUE);
+        Value value = expression.eval();
+        if (type.getType() == TokenType.FLOAT && value.getType() == TokenType.INT_VALUE) {
+            expression = new ValueExpression(value.toFloat(), TokenType.FLOAT_VALUE);
+            value = expression.eval();
         }
 
-        if (!Types.checkValueType(type.getType(), expression.eval().getType()) && expression.eval().getType() != TokenType.NULL) { // Here
-            new RuntimeError("Expected type " + type.getValue() + " but got " + expression.eval().getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
+        if (value.toString().equals("null_void")) {
+            new RuntimeError("Cannot assign void function to a variable", fileName, get(0).getLine(), get(0).getPosition());
         }
 
-        if (expression.eval().getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
+        if (!Types.checkValueType(type.getType(), value.getType()) && value.getType() != TokenType.NULL) { // Here
+            new RuntimeError("Expected type " + type.getValue() + " but got " + value.getType().toString().toLowerCase(), fileName, get(0).getLine(), get(0).getPosition() - 1);
+        }
+
+        if (value.getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
             new RuntimeError(type.getValue() + " variable cannot be null", fileName, get(0).getLine(), get(0).getPosition() - 1);
         }
 
         skip(TokenType.SEMICOLON);
-        VariableExpression expr = new VariableExpression(name.getValue(), expression.eval());
-        expr.setValue(expression.eval());
+        VariableExpression expr = new VariableExpression(name.getValue(), value);
+        expr.setValue(value);
         return new VariableDeclarationStatement(expr);
     }
 
