@@ -1,5 +1,12 @@
 ## Karl, an homemade programming language
 
+[![discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/qDU5VzfDfu)
+
+## Getting Started
+
+- Download the .jar in latest release
+- Run `java -jar karl-x.x.x.jar <file.karl>`
+
 ## Example
 
 ```js
@@ -14,30 +21,3 @@ func main::(): int -> {
 show(main() + num);
 // -> 2
 ```
-
-## How to use
-
-- Download the .jar in latest release
-- Run `java -jar karl-x.x.x.jar <file.karl>`
-
-## Todo list
-
-- [x] Print Statement
-- [x] Variable
-- [ ] Final Variable
-- [x] Comment
-- [x] Functions
-- [x] If and else conditions
-- [ ] While Statement
-- [ ] For Statement
-- [ ] Array
-- [ ] Class
-- [ ] Module
-- [ ] Import
-- [ ] Export
-- [x] Mathematical operations
-- [x] Increment and Decrement
-- [ ] Try Catch
-- [ ] Throw
-- [ ] Switch
-- [ ] Bitwise operations
