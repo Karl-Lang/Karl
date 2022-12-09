@@ -40,8 +40,8 @@ public class FuncCallExpression extends Expression {
 
         int i = 0;
         for (String arg : parameters.keySet()) {
-            if (!Types.checkValueType(parameters.get(arg), args.get(i).eval().getType())) { // parameters.get(arg) != args.get(i).eval().getType()
-                new RuntimeError("Type mismatch for argument " + arg + " of function " + name + ": Excepted type " + parameters.get(arg).getName() + ", but got type " + args.get(i).eval().getType().getName(), fileName, line, pos);
+            if (!Types.checkValueType(parameters.get(arg), args.get(i).eval().getType())) {
+                new RuntimeError("Type mismatch for argument " + arg + " of function " + name + ": Excepted type " + Types.getTypeName(parameters.get(arg)) + ", but got type " + Types.getTypeName(args.get(i).eval().getType()), fileName, line, pos);
             }
             i++;
         }

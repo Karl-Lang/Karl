@@ -27,6 +27,7 @@ public class VariableCallExpression extends Expression {
         if (VariableManager.getVariable(name) == null) {
             new RuntimeError("Variable " + name + " is not defined", fileName, line, pos);
         }
+
         return VariableManager.getVariable(name);
     }
 }

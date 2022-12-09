@@ -29,7 +29,7 @@ public class BlockStatement extends Statement {
         VariableManager.newScope();
         if (args != null) {
             for (String arg : args.keySet()) {
-                VariableManager.setVariable(arg, args.get(arg));
+                VariableManager.setVariable(arg, args.get(arg), false);
             }
         }
         for (Statement statement : statements) {

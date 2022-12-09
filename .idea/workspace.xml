@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.4.0-alpha.4">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.4.0-alpha.5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,23 +69,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/aikoo/Bureau/Karl-0.2.3&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "/home/aikoo/Bureau/Developpement/Projets/Karl",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -307,42 +309,10 @@
       <workItem from="1669820777994" duration="16600000" />
       <workItem from="1669899513007" duration="3446000" />
       <workItem from="1670261710611" duration="4060000" />
-      <workItem from="1670523063755" duration="1324000" />
-    </task>
-    <task id="LOCAL-00038" summary="New condition type : if(boolean)">
-      <created>1666969326811</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1666969326811</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Add increment and decrement for int and float variables">
-      <created>1666970942888</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1666970942888</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Fix two major bugs : Variable in if body and if statement in functions">
-      <created>1666976805485</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1666976805485</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Base of tests">
-      <created>1666981107060</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1666981107060</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Add some tests for v0.2.0 and support for float variables">
-      <created>1666992419557</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1666992419557</updated>
+      <workItem from="1670523063755" duration="6550000" />
+      <workItem from="1670585451216" duration="24000" />
+      <workItem from="1670585683845" duration="10000" />
+      <workItem from="1670609230693" duration="3698000" />
     </task>
     <task id="LOCAL-00043" summary="Bug fix #4">
       <created>1666997375422</created>
@@ -652,7 +622,42 @@
       <option name="project" value="LOCAL" />
       <updated>1670266905838</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="v0.4.0-alpha.4 Fix">
+      <created>1670524444373</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1670524444375</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Patch 024">
+      <created>1670532093859</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1670532093859</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Patch a lot of bugs &amp; make optimizations">
+      <created>1670534075139</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1670534075139</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Make optimisations">
+      <created>1670534606319</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1670534606319</updated>
+    </task>
+    <task id="LOCAL-00091" summary="v0.4.0-alpha.5">
+      <created>1670611587597</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1670611587598</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,11 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix 2 bugs linked to functions" />
-    <MESSAGE value="Add forbidden names" />
-    <MESSAGE value="Cleanup code" />
-    <MESSAGE value="Bugs fix" />
-    <MESSAGE value="Fix bugs with forbiddenNames, fix major bug with ! keyword, fix bugs in expression system and optimize it" />
     <MESSAGE value="Fix all known bugs with condition parsing" />
     <MESSAGE value="Fix last bugs, add new features for ! keyword in conditions" />
     <MESSAGE value="v4.0.0-alpha" />
@@ -695,7 +695,12 @@
     <MESSAGE value="Patch 022" />
     <MESSAGE value="First part of patch 023" />
     <MESSAGE value="Patch 023" />
-    <option name="LAST_COMMIT_MESSAGE" value="Patch 023" />
+    <MESSAGE value="v0.4.0-alpha.4 Fix" />
+    <MESSAGE value="Patch 024" />
+    <MESSAGE value="Patch a lot of bugs &amp; make optimizations" />
+    <MESSAGE value="Make optimisations" />
+    <MESSAGE value="v0.4.0-alpha.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.4.0-alpha.5" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
