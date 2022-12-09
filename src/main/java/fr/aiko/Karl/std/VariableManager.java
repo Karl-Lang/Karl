@@ -10,7 +10,9 @@ public final class VariableManager {
     private static Scope currentScope = new Scope(null);
 
     public static Value getVariable(String name) {
-        return currentScope.getVariables().get(name);
+        HashMap<String, Value> variablesMap = new HashMap<>(currentScope.getVariables());
+        variablesMap.putAll(currentScope.getFinalVariables());
+        return variablesMap.get(name);
     }
 
     public static boolean isFinal(String name) {
@@ -77,10 +79,8 @@ public final class VariableManager {
         }
 
         public HashMap<String, Value> getVariables() {
-            HashMap<String, Value> merged = new HashMap<>();
-            merged.putAll(finalVariables);
-            merged.putAll(variables);
-            return merged;
+            // return variables and finalVariables
+            return variables;
         }
 
         public HashMap<String, Value> getFinalVariables() {

@@ -7,13 +7,9 @@
     <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.4.0-alpha.5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
@@ -316,14 +312,7 @@
       <workItem from="1670523063755" duration="6550000" />
       <workItem from="1670585451216" duration="24000" />
       <workItem from="1670585683845" duration="10000" />
-      <workItem from="1670609230693" duration="2019000" />
-    </task>
-    <task id="LOCAL-00042" summary="Add some tests for v0.2.0 and support for float variables">
-      <created>1666992419557</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1666992419557</updated>
+      <workItem from="1670609230693" duration="3698000" />
     </task>
     <task id="LOCAL-00043" summary="Bug fix #4">
       <created>1666997375422</created>
@@ -661,7 +650,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670534606319</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="v0.4.0-alpha.5">
+      <created>1670611587597</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1670611587598</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

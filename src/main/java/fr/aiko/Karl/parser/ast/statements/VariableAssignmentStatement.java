@@ -36,7 +36,7 @@ public class VariableAssignmentStatement extends Statement {
         }
 
         assert var != null;
-        if (Types.checkValueType(var.getType(), value.getType()) || (var.getType() == TokenType.STRING && value.getType() == TokenType.NULL)) {
+        if (var.getType() == value.getType() || (var.getType() == TokenType.STRING && value.getType() == TokenType.NULL)) {
             VariableManager.setVariable(name, value, false);
         } else {
             new RuntimeError("Incorrect type for variable " + name + ": except " + Types.getTypeName(var.getType()) + " but got type " + Types.getTypeName(value.getType()), fileName, line, pos);
