@@ -30,6 +30,10 @@ public class IncrementDecrementStatement extends Statement {
             new RuntimeError("Variable " + name + " is not defined", fileName, line, pos);
         }
 
+        if (VariableManager.isFinal(name)) {
+            new RuntimeError("Variable " + name + " is final", fileName, line, pos);
+        }
+
         assert variable != null;
 
         if (variable.getType() != TokenType.INT_VALUE && variable.getType() != TokenType.FLOAT_VALUE) {
@@ -39,9 +43,9 @@ public class IncrementDecrementStatement extends Statement {
         boolean isFloat = variable.getType() == TokenType.FLOAT_VALUE;
 
         if (increment == TokenType.PLUS) {
-            VariableManager.setVariable(name, isFloat ? new FloatValue(variable.toFloat() + 1) : new IntValue(variable.toInt() + 1));
+            VariableManager.setVariable(name, isFloat ? new FloatValue(variable.toFloat() + 1) : new IntValue(variable.toInt() + 1), false);
         } else {
-            VariableManager.setVariable(name, isFloat ? new FloatValue(variable.toFloat() - 1) : new IntValue(variable.toInt() - 1));
+            VariableManager.setVariable(name, isFloat ? new FloatValue(variable.toFloat() - 1) : new IntValue(variable.toInt() - 1), false);
         }
     }
 }

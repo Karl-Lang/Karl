@@ -18,14 +18,16 @@ public class VariableDeclarationStatement extends Statement {
     private final int line;
     private final int pos;
     private Expression expression;
+    private boolean isFinal;
 
-    public VariableDeclarationStatement(Expression expression, String name, Token type, String fileName, int line, int pos) {
+    public VariableDeclarationStatement(Expression expression, String name, Token type, String fileName, int line, int pos, boolean isFinal) {
         this.expression = expression;
         this.name = name;
         this.type = type;
         this.fileName = fileName;
         this.line = line;
         this.pos = pos;
+        this.isFinal = isFinal;
     }
 
     @Override
@@ -56,7 +58,7 @@ public class VariableDeclarationStatement extends Statement {
             new RuntimeError(Types.getTypeName(type.getType()) + " variable cannot be null", fileName, line, pos - 1);
         }
 
-        VariableExpression expr = new VariableExpression(name, value);
+        VariableExpression expr = new VariableExpression(name, value, isFinal);
         expr.setValue(value);
         expr.eval();
     }

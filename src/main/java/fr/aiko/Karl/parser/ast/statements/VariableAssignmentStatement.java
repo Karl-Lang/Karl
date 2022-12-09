@@ -31,9 +31,13 @@ public class VariableAssignmentStatement extends Statement {
             new RuntimeError("Variable " + name + " is not declared", fileName, line, pos);
         }
 
+        if (VariableManager.isFinal(name)) {
+            new RuntimeError("Variable " + name + " is final", fileName, line, pos);
+        }
+
         assert var != null;
         if (Types.checkValueType(var.getType(), value.getType()) || (var.getType() == TokenType.STRING && value.getType() == TokenType.NULL)) {
-            VariableManager.setVariable(name, value);
+            VariableManager.setVariable(name, value, false);
         } else {
             new RuntimeError("Incorrect type for variable " + name + ": except " + Types.getTypeName(var.getType()) + " but got type " + Types.getTypeName(value.getType()), fileName, line, pos);
         }

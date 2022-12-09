@@ -1,5 +1,4 @@
-func main::(): void -> {
-    show("Hello, world!");
-}
+final string: name = "a";
+name = "c";
 
-string: str = main();
+show(name);

@@ -3,6 +3,7 @@ package fr.aiko.Karl.std;
 import fr.aiko.Karl.parser.ast.values.Value;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public final class VariableManager {
 
@@ -12,8 +13,16 @@ public final class VariableManager {
         return currentScope.getVariables().get(name);
     }
 
-    public static void setVariable(String name, Value value) {
-        currentScope.getVariables().put(name, value);
+    public static boolean isFinal(String name) {
+        return currentScope.getFinalVariables().containsKey(name);
+    }
+
+    public static void setVariable(String name, Value value, boolean isFinal) {
+        if (isFinal) {
+            currentScope.getFinalVariables().put(name, value);
+        } else {
+            currentScope.getVariables().put(name, value);
+        }
     }
 
     public static void removeVariable(String name) {
@@ -57,6 +66,7 @@ public final class VariableManager {
     public static class Scope {
         private final Scope parent;
         private final HashMap<String, Value> variables = new HashMap<>();
+        private final HashMap<String, Value> finalVariables = new HashMap<>();
 
         public Scope(Scope parent) {
             this.parent = parent;
@@ -67,7 +77,14 @@ public final class VariableManager {
         }
 
         public HashMap<String, Value> getVariables() {
-            return variables;
+            HashMap<String, Value> merged = new HashMap<>();
+            merged.putAll(finalVariables);
+            merged.putAll(variables);
+            return merged;
+        }
+
+        public HashMap<String, Value> getFinalVariables() {
+            return finalVariables;
         }
     }
 }

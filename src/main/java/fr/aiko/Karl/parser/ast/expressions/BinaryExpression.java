@@ -5,6 +5,7 @@ import fr.aiko.Karl.parser.TokenType;
 import fr.aiko.Karl.parser.ast.values.FloatValue;
 import fr.aiko.Karl.parser.ast.values.IntValue;
 import fr.aiko.Karl.parser.ast.values.Value;
+import fr.aiko.Karl.std.Types;
 
 public class BinaryExpression extends Expression {
     private final Expression left;
@@ -50,7 +51,7 @@ public class BinaryExpression extends Expression {
                 }
             };
         } else {
-            new RuntimeError("Unauthorized type for operation " + leftValue.getType().getName(), fileName, line, pos);
+            new RuntimeError("Unauthorized types for operation " + Types.getTypeName(leftValue.getType()) + " and " + Types.getTypeName(rightValue.getType()) , fileName, line, pos);
             return null;
         }
     }

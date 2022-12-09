@@ -38,8 +38,10 @@ public final class Parser {
     private Statement getStatement() {
         if (match(TokenType.SHOW)) {
             return show();
+        } if (match(TokenType.FINAL) && Types.contains(getType()) && getType() != TokenType.NULL) {
+            return variableDeclaration(true);
         } else if (Types.contains(getType()) && getType() != TokenType.NULL) {
-            return variableDeclaration();
+            return variableDeclaration(false);
         } else if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
             return variableAssignment();
         } else if (match(TokenType.IF)) {
@@ -281,7 +283,7 @@ public final class Parser {
         return new VariableAssignmentStatement(name, expr, fileName, get(0).getLine(), get(0).getPosition());
     }
 
-    private Statement variableDeclaration() {
+    private Statement variableDeclaration(boolean isFinal) {
         Token type = get(0);
         match(type.getType());
         skip(TokenType.COLON);
@@ -296,7 +298,7 @@ public final class Parser {
             new RuntimeError("Expected expression after " + name.getValue(), fileName, name.getLine(), get(0).getPosition());
         }
 
-        return new VariableDeclarationStatement(expression, name.getValue(), type, fileName, name.getLine(), name.getPosition());
+        return new VariableDeclarationStatement(expression, name.getValue(), type, fileName, name.getLine(), name.getPosition(), isFinal);
     }
 
     private ShowStatement show() {
