@@ -5,37 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Finish errors migration to Kotlin">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/file/FileError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/file/FileNotFoundError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/runtime/DivisionByZeroError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/runtime/NumberError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/runtime/RuntimeError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/syntax/SemiColonError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/syntax/SyntaxError.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/TokenType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/FileError/FileError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/FileError/FileNotFoundError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/RuntimeError/DivisionByZeroError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/RuntimeError/NumberError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/RuntimeError/RuntimeError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/RuntimeError/TypeError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/SyntaxError/SemiColonError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/SyntaxError/SyntaxError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/BinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/TokenType.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/Error.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/Error.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1670941976263</updated>
       <workItem from="1670941978280" duration="80000" />
-      <workItem from="1670942207847" duration="12654000" />
+      <workItem from="1670942207847" duration="14377000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -154,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670956501257</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finish errors migration to Kotlin">
+      <created>1670963600264</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670963600264</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

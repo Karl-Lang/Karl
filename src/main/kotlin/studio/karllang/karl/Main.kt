@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
     name = "karl",
     mixinStandardHelpOptions = true,
     version = [Constants.VERSION],
-    description = ["karl programming language"]
+    description = ["Karl programming language"]
 )
 class Main : Runnable {
     @CommandLine.Parameters(index = "0", description = ["The Karl file to run"])

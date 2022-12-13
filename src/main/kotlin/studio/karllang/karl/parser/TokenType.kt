@@ -1,6 +1,6 @@
-package studio.karllang.karl.parser;// Create enum token type
+package studio.karllang.karl.parser
 
-public enum TokenType {
+enum class TokenType(val value: String) {
     EQUALEQUAL("=="),
     NOT_EQUAL("!="),
     GREATER(">"),
@@ -57,13 +57,7 @@ public enum TokenType {
     NULL("null"),
     CHAR_VALUE("charVal");
 
-    private final String name;
-
-    TokenType(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
+    fun getName(): String {
+        return value
     }
 }
