@@ -4,7 +4,7 @@ func sayHello::(string: name): void -> {
 
 func main::(): void -> {
     show("What is your name?");
-    sayHello("Karl");
+    sayHello("karl");
 }
 
 func getStr::(): string -> {
