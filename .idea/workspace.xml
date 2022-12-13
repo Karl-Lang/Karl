@@ -64,7 +64,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Gradle.MainTest">
     <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -103,8 +103,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.MainTest" />
+        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
