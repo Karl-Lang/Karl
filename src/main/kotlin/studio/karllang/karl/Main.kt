@@ -1,8 +1,10 @@
 package studio.karllang.karl
 
 import picocli.CommandLine
+import studio.karllang.karl.errors.Error as KarlError
 import studio.karllang.karl.errors.FileError.FileError
 import studio.karllang.karl.errors.FileError.FileNotFoundError
+import studio.karllang.karl.errors.RuntimeError.RuntimeError
 import studio.karllang.karl.parser.Lexer
 import studio.karllang.karl.parser.Parser
 import studio.karllang.karl.std.FunctionManager
@@ -17,32 +19,38 @@ fun main(args: Array<String>) {
 @CommandLine.Command(
     name = "karl",
     mixinStandardHelpOptions = true,
-    version = ["karl 0.4.0-alpha.5"],
+    version = [Constants.VERSION],
     description = ["karl programming language"]
 )
 class Main : Runnable {
-    @CommandLine.Parameters(index = "0", description = ["The file to run"])
+    @CommandLine.Parameters(index = "0", description = ["The Karl file to run"])
     lateinit var path: String
 
     override fun run() {
-        if (!Files.exists(Path.of(path)) || !Files.isRegularFile(Path.of(path)) || !Files.isReadable(Path.of(path))) {
-            FileNotFoundError(path)
-            return
-        } else if (!path.endsWith(".karl")) {
-            FileError(path)
-            return
+        try {
+            val file = Path.of(path)
+            if (!Files.exists(file) || !Files.isRegularFile(file) || !Files.isReadable(file)) {
+                FileNotFoundError(path)
+                return
+            } else if (!path.endsWith(".karl")) {
+                FileError(path)
+                return
+            }
+
+            val lexer = Lexer(Files.readString(file), path)
+            val parser = Parser(lexer.tokens, path)
+            val startTime = System.currentTimeMillis()
+            val ast = parser.parse()
+            ast.forEach { it.eval() }
+            val endTime = System.currentTimeMillis()
+
+            FunctionManager.clear()
+            VariableManager.clear()
+
+            println("Execution time: ${endTime - startTime}ms")
+        } catch (e: Exception) {
+            System.err.println("Unknown error. Please report it to Karl developers: ${e.message}")
+            e.printStackTrace()
         }
-
-        val name = Path.of(path).fileName.toString()
-        val lexer = Lexer(Files.readString(Path.of(path)), name)
-        val parser = Parser(lexer.tokens, name)
-        val startTime = System.currentTimeMillis()
-        parser.parse().forEach { it.eval() }
-        val endTime = System.currentTimeMillis()
-
-        FunctionManager.clear()
-        VariableManager.clear()
-
-        println("Execution time: ${endTime - startTime}ms")
     }
 }

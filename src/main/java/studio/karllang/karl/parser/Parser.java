@@ -150,7 +150,7 @@ public final class Parser {
         return new BlockStatement(statements);
     }
 
-    private Expression getExpression() {
+    private Expression getExpression() { //TODO: ExpressionManager
         Token token = get(0);
         Expression expression = null;
         if ((getType() == TokenType.IDENTIFIER && checkType(1, TokenType.LEFT_PARENTHESIS)) || (getType() == TokenType.IDENTIFIER) || (Types.isValueType(getType())) || (getType() == TokenType.EXCLAMATION)) {
