@@ -1,7 +1,7 @@
 package studio.karllang.karl.parser;
 
 import studio.karllang.karl.errors.Error;
-import studio.karllang.karl.errors.SyntaxError.SyntaxError;
+import studio.karllang.karl.errors.syntax.SyntaxError;
 
 import java.util.ArrayList;
 import java.util.Arrays;

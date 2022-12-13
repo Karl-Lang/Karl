@@ -1,9 +1,9 @@
 package studio.karllang.karl.parser;
 
-import studio.karllang.karl.errors.RuntimeError.NumberError;
-import studio.karllang.karl.errors.RuntimeError.RuntimeError;
-import studio.karllang.karl.errors.SyntaxError.SemiColonError;
-import studio.karllang.karl.errors.SyntaxError.SyntaxError;
+import studio.karllang.karl.errors.runtime.NumberError;
+import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.errors.syntax.SemiColonError;
+import studio.karllang.karl.errors.syntax.SyntaxError;
 import studio.karllang.karl.parser.ast.expressions.*;
 import studio.karllang.karl.parser.ast.statements.*;
 import studio.karllang.karl.std.*;

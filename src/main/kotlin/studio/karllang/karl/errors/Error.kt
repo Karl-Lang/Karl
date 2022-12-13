@@ -22,7 +22,7 @@ open class Error(
     private fun printError() {
         val fileName = Path.of(path).fileName.toString()
 
-        System.err.println("${Constants.RED}-- ${fileName.uppercase(Locale.getDefault())} ------------------------------------------------ $fileName${Constants.RESET}")
+        System.err.println("${Constants.RED}-- ${name.uppercase(Locale.getDefault())} ------------------------------------------------ $fileName${Constants.RESET}")
         System.err.println(Constants.WHITE + "Description: " + "\u001B[0m" + Constants.RED + message + Constants.RESET)
         System.err.println("${Constants.WHITE}File path: ${Constants.RED}$path${Constants.RESET}\n")
         System.err.println(Constants.RED + line + " | " + getLine() + Constants.RESET)

@@ -1,6 +1,7 @@
 package studio.karllang.karl.parser.ast.expressions;
 
-import studio.karllang.karl.errors.RuntimeError.RuntimeError;
+import studio.karllang.karl.errors.runtime.DivisionByZeroError;
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
@@ -57,6 +58,11 @@ public class BinaryExpression extends Expression {
     }
 
     private Value divide(Value leftValue, Value rightValue) {
+        if (rightValue.toFloat() == 0.0) {
+            new DivisionByZeroError(fileName, line, pos);
+            return null;
+        }
+
         float result = leftValue.toFloat() / rightValue.toFloat();
         if (result % 1 == 0) {
             return new IntValue((int) result);

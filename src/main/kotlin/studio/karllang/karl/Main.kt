@@ -1,10 +1,8 @@
 package studio.karllang.karl
 
 import picocli.CommandLine
-import studio.karllang.karl.errors.Error as KarlError
-import studio.karllang.karl.errors.FileError.FileError
-import studio.karllang.karl.errors.FileError.FileNotFoundError
-import studio.karllang.karl.errors.RuntimeError.RuntimeError
+import studio.karllang.karl.errors.file.FileError
+import studio.karllang.karl.errors.file.FileNotFoundError
 import studio.karllang.karl.parser.Lexer
 import studio.karllang.karl.parser.Parser
 import studio.karllang.karl.std.FunctionManager
