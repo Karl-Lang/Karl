@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Finish errors migration to Kotlin">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/TokenType.kt" afterDir="false" />
+    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Make README.md back">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/Lexer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/TokenType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +49,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "/home/aikoo/Bureau/Developpement/Projets/KarlProjects/KarlKt/src/test/resources",
+    "last_opened_file_path": "/home/aikoo/Bureau/WalleApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -118,7 +117,8 @@
       <option name="presentableId" value="Default" />
       <updated>1670941976263</updated>
       <workItem from="1670941978280" duration="80000" />
-      <workItem from="1670942207847" duration="14377000" />
+      <workItem from="1670942207847" duration="15266000" />
+      <workItem from="1671020251589" duration="4912000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -134,7 +134,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670963600264</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Continue to migrate Karl to Kotlin">
+      <created>1670965481586</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670965481586</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Make README.md back">
+      <created>1670968835713</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670968835713</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +169,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Make optimizations, cleanup and base of error conversion to Kotlin" />
     <MESSAGE value="Finish errors migration to Kotlin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish errors migration to Kotlin" />
+    <MESSAGE value="Continue to migrate Karl to Kotlin" />
+    <MESSAGE value="Make README.md back" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make README.md back" />
   </component>
 </project>
