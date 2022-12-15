@@ -65,7 +65,7 @@ class Lexer(private val input: String, private val fileName: String) {
         lex()
     }
 
-    fun lex() {
+    private fun lex() {
         if (input.isEmpty()) {
             Error("Lexical Error", "Empty input", fileName, line, position)
             return
@@ -117,7 +117,7 @@ class Lexer(private val input: String, private val fileName: String) {
         tokens.add(Token(TokenType.CHAR_VALUE, c.toString(), position - 2, line))
     }
 
-    fun tokenizeNumber() {
+    private fun tokenizeNumber() {
         buffer.setLength(0)
         var c = input[position]
         if (position + 1 < input.length && Character.isLetter(input[position + 1])) {
@@ -142,7 +142,7 @@ class Lexer(private val input: String, private val fileName: String) {
         }
     }
 
-    fun tokenizeIdentifier() {
+    private fun tokenizeIdentifier() {
         buffer.setLength(0)
         var c = input[position]
         while (true) {
@@ -164,7 +164,7 @@ class Lexer(private val input: String, private val fileName: String) {
         }
     }
 
-    fun tokenizeString() {
+    private fun tokenizeString() {
         buffer.setLength(0)
         var c = nextChar()
         while (true) {
@@ -197,7 +197,7 @@ class Lexer(private val input: String, private val fileName: String) {
         addToken(TokenType.STR_VALUE, buffer.toString())
     }
 
-    fun tokenizeOperator() {
+    private fun tokenizeOperator() {
         buffer.setLength(0)
         var c = input[position]
         while (true) {

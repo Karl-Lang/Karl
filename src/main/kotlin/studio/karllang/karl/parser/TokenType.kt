@@ -13,7 +13,7 @@ enum class TokenType(val value: String) {
     ELSE("else"),
     WHILE("while"),
     FOR("for"),
-    SHOW("System.show"),
+    SHOW("show"),
     INT("int"),
     FLOAT("float"),
     FLOAT_VALUE("fltval"),

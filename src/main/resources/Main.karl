@@ -1,1 +1,2 @@
-show(4956/29789);
+bool: m = false;
+show(1 > 2);

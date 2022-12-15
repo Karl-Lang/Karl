@@ -48,4 +48,8 @@ public class LogicalOperators {
             default -> throw new RuntimeException("Unknown operator: " + operator);
         };
     }
+
+    public static Boolean not(boolean parseBoolean) {
+        return !parseBoolean;
+    }
 }

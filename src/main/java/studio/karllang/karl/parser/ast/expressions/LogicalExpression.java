@@ -29,18 +29,12 @@ public class LogicalExpression extends Expression {
         if (operator != null) {
             if (right != null) {
                 Value rightValue = right.eval();
-                if (leftValue.getType() == TokenType.NULL || rightValue.getType() == TokenType.NULL) {
+                final boolean isLeftNull = leftValue.getType() == TokenType.NULL;
+                final boolean isRightNull = rightValue.getType() == TokenType.NULL;
+                if (isLeftNull || isRightNull) {
                     return switch (operator) {
-                        case NOT_EQUAL -> {
-                            if (leftValue.getType() == TokenType.NULL && rightValue.getType() == TokenType.NULL)
-                                yield new BooleanValue(false);
-                            else yield new BooleanValue(true);
-                        }
-                        case EQUALEQUAL -> {
-                            if (leftValue.getType() == TokenType.NULL && rightValue.getType() == TokenType.NULL)
-                                yield new BooleanValue(true);
-                            else yield new BooleanValue(false);
-                        }
+                        case NOT_EQUAL -> new BooleanValue(isLeftNull != isRightNull);
+                        case EQUALEQUAL -> new BooleanValue(isLeftNull && isRightNull);
                         default -> {
                             new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
                             yield null;
@@ -62,20 +56,14 @@ public class LogicalExpression extends Expression {
                             yield null;
                         }
                     };
-
                 } else {
                     return new BooleanValue(LogicalOperators.compare(leftValue, rightValue, operator, fileName, line, pos));
                 }
             } else {
-                if (operator == TokenType.EXCLAMATION) {
-                    return new BooleanValue(!Boolean.parseBoolean(leftValue.toString()));
-                } else {
-                    new RuntimeError("Unknown operator: " + operator, fileName, line, pos);
-                    return null;
-                }
+                return new BooleanValue(LogicalOperators.not(Boolean.parseBoolean(leftValue.toString())));
             }
         } else {
-            return new BooleanValue(Boolean.parseBoolean(leftValue.toString()));
+            return leftValue;
         }
     }
 }
