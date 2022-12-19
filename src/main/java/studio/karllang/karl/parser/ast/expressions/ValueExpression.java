@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
-import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.*;
 
 public class ValueExpression extends Expression {

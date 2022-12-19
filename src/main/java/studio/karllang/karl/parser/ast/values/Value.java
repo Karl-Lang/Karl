@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.values;
 
-import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.lexer.TokenType;
 
 public abstract class Value {
     public abstract String toString();

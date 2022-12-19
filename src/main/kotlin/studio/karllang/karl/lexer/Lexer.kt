@@ -1,4 +1,4 @@
-package studio.karllang.karl.parser
+package studio.karllang.karl.lexer
 
 import studio.karllang.karl.errors.Error
 import studio.karllang.karl.errors.syntax.SyntaxError

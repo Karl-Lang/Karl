@@ -1,7 +1,7 @@
 package studio.karllang.karl.parser.ast.statements;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
-import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
 import studio.karllang.karl.parser.ast.values.Value;

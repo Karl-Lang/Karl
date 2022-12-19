@@ -1,7 +1,7 @@
 package studio.karllang.karl.std;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
-import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.statements.BlockStatement;
 import studio.karllang.karl.parser.ast.statements.Statement;

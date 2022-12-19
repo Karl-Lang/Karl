@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.values;
 
-import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.lexer.TokenType;
 
 public class IntValue extends Value {
     private final int value;

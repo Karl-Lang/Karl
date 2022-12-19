@@ -1,6 +1,6 @@
 package studio.karllang.karl.std;
 
-import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.lexer.TokenType;
 
 import java.util.HashMap;
 

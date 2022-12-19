@@ -1,4 +1,4 @@
-package studio.karllang.karl.parser
+package studio.karllang.karl.lexer
 
 class Token(private val type: TokenType, private var value: String, private val position: Int, private val line: Int) {
     fun getType(): TokenType {

@@ -3,7 +3,7 @@ package studio.karllang.karl
 import picocli.CommandLine
 import studio.karllang.karl.errors.file.FileError
 import studio.karllang.karl.errors.file.FileNotFoundError
-import studio.karllang.karl.parser.Lexer
+import studio.karllang.karl.lexer.Lexer
 import studio.karllang.karl.parser.Parser
 import studio.karllang.karl.std.FunctionManager
 import studio.karllang.karl.std.VariableManager

@@ -4,6 +4,8 @@ import studio.karllang.karl.errors.runtime.NumberError;
 import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.errors.syntax.SemiColonError;
 import studio.karllang.karl.errors.syntax.SyntaxError;
+import studio.karllang.karl.lexer.Token;
+import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.*;
 import studio.karllang.karl.parser.ast.statements.*;
 import studio.karllang.karl.std.*;

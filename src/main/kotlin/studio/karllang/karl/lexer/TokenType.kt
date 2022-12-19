@@ -1,4 +1,4 @@
-package studio.karllang.karl.parser
+package studio.karllang.karl.lexer
 
 enum class TokenType(val value: String) {
     EQUALEQUAL("=="),

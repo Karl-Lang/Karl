@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.values;
 
-import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.lexer.TokenType;
 
 public class BooleanValue extends Value {
     private final Boolean value;
