@@ -4,35 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Convert Lexer to Kotlin">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/BinaryExpression.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ValueExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ValueExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/BooleanValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/BooleanValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/CharValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/CharValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/FloatValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/FloatValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/IntValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/IntValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/NullValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/NullValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/StringValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/StringValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/Value.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/Value.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Operators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Types.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Types.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/Lexer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/Token.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/Token.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/TokenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/TokenType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Convert BinaryExpression to Kotlin">
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +126,7 @@
       <workItem from="1671039666276" duration="3353000" />
       <workItem from="1671104742559" duration="1226000" />
       <workItem from="1671468033449" duration="245000" />
-      <workItem from="1671484666527" duration="2931000" />
+      <workItem from="1671484666527" duration="3066000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -190,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671028077429</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Convert BinaryExpression to Kotlin">
+      <created>1671489893692</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671489893693</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +194,7 @@
     <MESSAGE value="Continue to migrate Karl to Kotlin" />
     <MESSAGE value="Make README.md back" />
     <MESSAGE value="Convert Lexer to Kotlin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Convert Lexer to Kotlin" />
+    <MESSAGE value="Convert BinaryExpression to Kotlin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Convert BinaryExpression to Kotlin" />
   </component>
 </project>

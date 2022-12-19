@@ -27,7 +27,12 @@ class BinaryExpression(
                 TokenType.PLUS -> getIntOrFloatValue(leftValue.toFloat() + rightValue.toFloat())
                 TokenType.MINUS -> getIntOrFloatValue(leftValue.toFloat() - rightValue.toFloat())
                 TokenType.MULTIPLY ->getIntOrFloatValue(leftValue.toFloat() * rightValue.toFloat())
-                TokenType.DIVIDE -> getIntOrFloatValue(leftValue.toFloat() / rightValue.toFloat())
+                TokenType.DIVIDE -> {
+                    if (rightValue.toFloat() == 0f) {
+                        DivisionByZeroError(fileName, line, pos)
+                    }
+                    getIntOrFloatValue(leftValue.toFloat() / rightValue.toFloat())
+                }
                 TokenType.MODULO -> getIntOrFloatValue(leftValue.toFloat() % rightValue.toFloat())
                 else -> {
                     RuntimeError("Bad operator: ${operator.name}", fileName, line, pos)
