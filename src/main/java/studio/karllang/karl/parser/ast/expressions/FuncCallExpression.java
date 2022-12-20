@@ -36,13 +36,13 @@ public class FuncCallExpression extends Expression {
         Function function = FunctionManager.getFunction(name);
         LinkedHashMap<String, TokenType> parameters = function.getArgs();
         if (args.size() != parameters.size()) {
-            new RuntimeOldError("Function " + name + " takes " + parameters.size() + " arguments, " + args.size() + " given", fileName, line, pos);
+            throw new RuntimeError("Function " + name + " takes " + parameters.size() + " arguments, " + args.size() + " given", pos, line, printString());
         }
 
         int i = 0;
         for (String arg : parameters.keySet()) {
             if (!Types.checkValueType(parameters.get(arg), args.get(i).eval().getType())) {
-                new RuntimeOldError("Type mismatch for argument " + arg + " of function " + name + ": Excepted type " + Types.getTypeName(parameters.get(arg)) + ", but got type " + Types.getTypeName(args.get(i).eval().getType()), fileName, line, pos);
+                throw new RuntimeError("Type mismatch for argument " + arg + " of function " + name + ": Excepted type " + Types.getTypeName(parameters.get(arg)) + ", but got type " + Types.getTypeName(args.get(i).eval().getType()), pos, line, printString());
             }
             i++;
         }
@@ -54,9 +54,9 @@ public class FuncCallExpression extends Expression {
     }
 
     public String printString() throws RuntimeError {
-        String optionString = "";
+        StringBuilder optionString = new StringBuilder();
         for (Expression arg : args) {
-            optionString += optionString.isEmpty() ? arg.eval().toString() : arg.eval().toString() + ", " ;
+            optionString.append((optionString.length() == 0) ? arg.eval().toString() : arg.eval().toString() + ", ");
         }
         return name + "(" + optionString + ");";
     }

@@ -36,7 +36,7 @@ public class Function {
         body.eval();
         if (body.getResult() != null) {
             if (type == TokenType.VOID) {
-                new RuntimeOldError("Function " + name + " is void, but return a value", fileName, line, pos);
+                throw new RuntimeError("Function " + name + " is void, but return a value", pos, line, printString());
             }
             if (Types.checkValueType(type, body.getResult().getType()) || (type == TokenType.STRING && body.getResult().getType() == TokenType.NULL)) {
                 return body.getResult();
@@ -64,5 +64,14 @@ public class Function {
 
     public TokenType getType() {
         return type;
+    }
+
+    public String printString() throws RuntimeError {
+        StringBuilder optionString = new StringBuilder();
+        // For each key in args, add them to optionString
+        for (String key : args.keySet()) {
+            optionString.append((optionString.length() == 0) ? key : key + ", ");
+        }
+        return name + "(" + optionString + ");";
     }
 }
