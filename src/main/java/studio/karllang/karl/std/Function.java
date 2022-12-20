@@ -1,5 +1,6 @@
 package studio.karllang.karl.std;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
@@ -24,7 +25,7 @@ public class Function {
         this.type = returnType;
     }
 
-    public Value eval(ArrayList<Expression> values, String fileName, int line, int pos) {
+    public Value eval(ArrayList<Expression> values, String fileName, int line, int pos) throws RuntimeError {
         HashMap<String, Value> arguments = new HashMap<>();
         int i = 0;
         for (String arg : args.keySet()) {

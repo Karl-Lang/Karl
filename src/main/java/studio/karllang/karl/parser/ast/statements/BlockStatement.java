@@ -1,5 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.std.VariableManager;
 
@@ -24,7 +25,7 @@ public class BlockStatement extends Statement {
     }
 
     @Override
-    public void eval() {
+    public void eval() throws RuntimeError {
         VariableManager.Scope scope = VariableManager.getScope();
         VariableManager.newScope();
         if (args != null) {

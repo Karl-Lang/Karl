@@ -1,5 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.Token;
 import studio.karllang.karl.lexer.TokenType;
@@ -31,7 +32,7 @@ public class VariableDeclarationStatement extends Statement {
     }
 
     @Override
-    public void eval() {
+    public void eval() throws RuntimeError {
         if (ForbiddenNames.isForbiddenName(name)) {
             new RuntimeOldError("Variable name " + name + " is forbidden", fileName, line, pos);
         }

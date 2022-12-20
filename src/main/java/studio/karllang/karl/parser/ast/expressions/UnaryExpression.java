@@ -1,5 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.BooleanValue;
@@ -22,7 +23,7 @@ public class UnaryExpression extends Expression {
     }
 
     @Override
-    public Value eval() {
+    public Value eval() throws RuntimeError {
         Value value = expression.eval();
         return switch (operator) {
             case EXCLAMATION -> new BooleanValue(!Boolean.parseBoolean(value.toString()));

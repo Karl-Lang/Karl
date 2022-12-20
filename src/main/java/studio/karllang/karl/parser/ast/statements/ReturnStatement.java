@@ -1,5 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
 
@@ -12,7 +13,7 @@ public class ReturnStatement extends Statement {
     }
 
     @Override
-    public void eval() {
+    public void eval() throws RuntimeError {
         result = expr.eval();
     }
 

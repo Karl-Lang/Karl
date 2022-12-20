@@ -1,5 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class ShowStatement extends Statement {
     }
 
     @Override
-    public void eval() {
+    public void eval() throws RuntimeError {
         StringBuilder str = new StringBuilder();
         for (Expression e : expr) {
             str.append(e.eval().toString());

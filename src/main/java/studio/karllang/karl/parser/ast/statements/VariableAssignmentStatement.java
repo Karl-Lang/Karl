@@ -1,5 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
@@ -23,7 +24,7 @@ public class VariableAssignmentStatement extends Statement {
     }
 
     @Override
-    public void eval() {
+    public void eval() throws RuntimeError {
         Value value = expression.eval();
         Value var = VariableManager.getVariable(name);
 

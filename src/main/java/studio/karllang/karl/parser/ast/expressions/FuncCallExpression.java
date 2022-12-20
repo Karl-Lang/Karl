@@ -1,5 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.NullValue;
@@ -27,9 +28,9 @@ public class FuncCallExpression extends Expression {
     }
 
     @Override
-    public Value eval() {
+    public Value eval() throws RuntimeError {
         if (!FunctionManager.isFunction(name)) {
-            new RuntimeOldError("Unknown function: " + name, fileName, line, pos);
+            throw new RuntimeError("Unknown function: " + name, pos, line, printString());
         }
 
         Function function = FunctionManager.getFunction(name);
@@ -50,5 +51,13 @@ public class FuncCallExpression extends Expression {
             function.eval(args, fileName, line, pos);
             return new NullValue("null_void");
         } else return function.eval(args, fileName, line, pos);
+    }
+
+    public String printString() throws RuntimeError {
+        String optionString = "";
+        for (Expression arg : args) {
+            optionString += optionString.isEmpty() ? arg.eval().toString() : arg.eval().toString() + ", " ;
+        }
+        return name + "(" + optionString + ");";
     }
 }
