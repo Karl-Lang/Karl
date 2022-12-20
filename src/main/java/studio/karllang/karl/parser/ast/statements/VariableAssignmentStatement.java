@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
-import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
@@ -28,18 +28,18 @@ public class VariableAssignmentStatement extends Statement {
         Value var = VariableManager.getVariable(name);
 
         if (var == null) {
-            new RuntimeError("Variable " + name + " is not declared", fileName, line, pos);
+            new RuntimeOldError("Variable " + name + " is not declared", fileName, line, pos);
         }
 
         if (VariableManager.isFinal(name)) {
-            new RuntimeError("Variable " + name + " is final", fileName, line, pos);
+            new RuntimeOldError("Variable " + name + " is final", fileName, line, pos);
         }
 
         assert var != null;
         if (var.getType() == value.getType() || (var.getType() == TokenType.STRING && value.getType() == TokenType.NULL)) {
             VariableManager.setVariable(name, value, false);
         } else {
-            new RuntimeError("Incorrect type for variable " + name + ": except " + Types.getTypeName(var.getType()) + " but got type " + Types.getTypeName(value.getType()), fileName, line, pos);
+            new RuntimeOldError("Incorrect type for variable " + name + ": except " + Types.getTypeName(var.getType()) + " but got type " + Types.getTypeName(value.getType()), fileName, line, pos);
         }
     }
 }

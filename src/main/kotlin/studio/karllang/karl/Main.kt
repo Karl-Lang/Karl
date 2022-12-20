@@ -1,14 +1,18 @@
 package studio.karllang.karl
 
 import picocli.CommandLine
+import studio.karllang.karl.errors.Error
+import studio.karllang.karl.errors.LexicalError
 import studio.karllang.karl.errors.file.FileError
 import studio.karllang.karl.errors.file.FileNotFoundError
+import studio.karllang.karl.errors.syntax.SyntaxError
 import studio.karllang.karl.lexer.Lexer
 import studio.karllang.karl.parser.Parser
 import studio.karllang.karl.std.FunctionManager
 import studio.karllang.karl.std.VariableManager
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     CommandLine(Main()).execute(*args)
@@ -35,7 +39,7 @@ class Main : Runnable {
                 return
             }
 
-            val lexer = Lexer(Files.readString(file), path)
+            val lexer = Lexer(Files.readString(file))
             val parser = Parser(lexer.tokens, path)
             val startTime = System.currentTimeMillis()
             val ast = parser.parse()
@@ -46,9 +50,12 @@ class Main : Runnable {
             VariableManager.clear()
 
             println("Execution time: ${endTime - startTime}ms")
-        } catch (e: Exception) {
-            System.err.println("Unknown error. Please report it to Karl developers: ${e.message}")
-            e.printStackTrace()
+        } catch (e: LexicalError) {
+            e.setPath(path).printError()
+            exitProcess(1)
+        } catch (e: SyntaxError) {
+            Error("Syntax Error", e.getMsg(), path, e.getPosition(), e.getLine(), e.getLineString()).printError()
+            exitProcess(1)
         }
     }
 }

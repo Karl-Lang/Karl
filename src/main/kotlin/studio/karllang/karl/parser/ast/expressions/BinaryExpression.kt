@@ -1,7 +1,7 @@
 package studio.karllang.karl.parser.ast.expressions
 
-import studio.karllang.karl.errors.runtime.DivisionByZeroError
-import studio.karllang.karl.errors.runtime.RuntimeError
+import studio.karllang.karl.olderrors.runtime.DivisionByZeroOldError
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError
 import studio.karllang.karl.lexer.TokenType
 import studio.karllang.karl.parser.ast.values.FloatValue
 import studio.karllang.karl.parser.ast.values.IntValue
@@ -26,28 +26,29 @@ class BinaryExpression(
             (leftValue.type == TokenType.INT_VALUE || leftValue.type == TokenType.FLOAT_VALUE) && (rightValue.type == TokenType.INT_VALUE || rightValue.type == TokenType.FLOAT_VALUE) -> when (operator) {
                 TokenType.PLUS -> getIntOrFloatValue(leftValue.toFloat() + rightValue.toFloat())
                 TokenType.MINUS -> getIntOrFloatValue(leftValue.toFloat() - rightValue.toFloat())
-                TokenType.MULTIPLY ->getIntOrFloatValue(leftValue.toFloat() * rightValue.toFloat())
+                TokenType.MULTIPLY -> getIntOrFloatValue(leftValue.toFloat() * rightValue.toFloat())
                 TokenType.DIVIDE -> {
                     if (rightValue.toFloat() == 0f) {
-                        DivisionByZeroError(fileName, line, pos)
+                        DivisionByZeroOldError(fileName, line, pos)
                     }
                     getIntOrFloatValue(leftValue.toFloat() / rightValue.toFloat())
                 }
                 TokenType.MODULO -> getIntOrFloatValue(leftValue.toFloat() % rightValue.toFloat())
                 else -> {
-                    RuntimeError("Bad operator: ${operator.name}", fileName, line, pos)
+                    RuntimeOldError("Bad operator: ${operator.name}", fileName, line, pos)
                     null!!
                 }
             }
-            leftValue.type == TokenType.STR_VALUE || rightValue.type == TokenType.STR_VALUE -> when (operator) {
-                TokenType.PLUS -> StringValue(leftValue.toString() + rightValue.toString())
-                else -> {
-                    RuntimeError("Bad operator: ${operator.name}", fileName, line, pos)
+            leftValue.type == TokenType.STR_VALUE || rightValue.type == TokenType.STR_VALUE -> {
+                if (operator == TokenType.PLUS) {
+                    StringValue(leftValue.toString() + rightValue.toString())
+                } else {
+                    RuntimeOldError("Bad operator: ${operator.name}", fileName, line, pos)
                     null!!
                 }
             }
             else -> {
-                RuntimeError("Unauthorized types for operation ${Types.getTypeName(leftValue.type)} and ${Types.getTypeName(rightValue.type)}", fileName, line, pos)
+                RuntimeOldError("Unauthorized types for operation ${Types.getTypeName(leftValue.type)} and ${Types.getTypeName(rightValue.type)}", fileName, line, pos)
                 null!!
             }
         }

@@ -1,6 +1,6 @@
 package studio.karllang.karl.std;
 
-import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.statements.BlockStatement;
@@ -35,15 +35,15 @@ public class Function {
         body.eval();
         if (body.getResult() != null) {
             if (type == TokenType.VOID) {
-                new RuntimeError("Function " + name + " is void, but return a value", fileName, line, pos);
+                new RuntimeOldError("Function " + name + " is void, but return a value", fileName, line, pos);
             }
             if (Types.checkValueType(type, body.getResult().getType()) || (type == TokenType.STRING && body.getResult().getType() == TokenType.NULL)) {
                 return body.getResult();
             } else {
-                new RuntimeError("Incorrect return type for function " + name + ": except " + type.getName() + " but got type " + body.getResult().getType().getName(), fileName, line, pos);
+                new RuntimeOldError("Incorrect return type for function " + name + ": except " + type.getName() + " but got type " + body.getResult().getType().getName(), fileName, line, pos);
             }
         } else if (body.getResult() == null && type != TokenType.VOID) {
-            new RuntimeError("Missing return statement in function: " + name, fileName, line, pos);
+            new RuntimeOldError("Missing return statement in function: " + name, fileName, line, pos);
         }
 
         return null;

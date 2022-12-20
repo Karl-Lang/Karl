@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
-import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.std.VariableManager;
 
@@ -25,7 +25,7 @@ public class VariableCallExpression extends Expression {
     @Override
     public Value eval() {
         if (VariableManager.getVariable(name) == null) {
-            new RuntimeError("Variable " + name + " is not defined", fileName, line, pos);
+            new RuntimeOldError("Variable " + name + " is not defined", fileName, line, pos);
         }
 
         return VariableManager.getVariable(name);

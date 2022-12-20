@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
-import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
@@ -27,17 +27,17 @@ public class IncrementDecrementStatement extends Statement {
         Value variable = VariableManager.getVariable(name);
 
         if (variable == null) {
-            new RuntimeError("Variable " + name + " is not defined", fileName, line, pos);
+            new RuntimeOldError("Variable " + name + " is not defined", fileName, line, pos);
         }
 
         if (VariableManager.isFinal(name)) {
-            new RuntimeError("Variable " + name + " is final", fileName, line, pos);
+            new RuntimeOldError("Variable " + name + " is final", fileName, line, pos);
         }
 
         assert variable != null;
 
         if (variable.getType() != TokenType.INT_VALUE && variable.getType() != TokenType.FLOAT_VALUE) {
-            new RuntimeError("Variable " + name + " is not a number", fileName, line, pos);
+            new RuntimeOldError("Variable " + name + " is not a number", fileName, line, pos);
         }
 
         boolean isFloat = variable.getType() == TokenType.FLOAT_VALUE;

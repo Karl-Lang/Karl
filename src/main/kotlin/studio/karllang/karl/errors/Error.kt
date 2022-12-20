@@ -1,71 +1,43 @@
 package studio.karllang.karl.errors
 
 import studio.karllang.karl.Constants
-import java.io.IOException
-import java.nio.file.Files
+import studio.karllang.karl.lexer.Lexer
 import java.nio.file.Path
-import java.util.*
 import kotlin.system.exitProcess
 
-open class Error(
-    private val name: String,
-    private val message: String,
+class Error(
+    private val type: String,
+    private val msg: String,
     private val path: String,
+    private val pos: Int,
     private val line: Int,
-    private var position: Int
+    private val toStr: String
 ) {
-    init {
-        position = getPosition(position)
-        printError()
-    }
+    private var fileName: String = Path.of(path).fileName.toString()
+    private var lexer: Lexer? = null
 
-    private fun printError() {
-        val fileName = Path.of(path).fileName.toString()
-
-        System.err.println("${Constants.RED}-- ${name.uppercase(Locale.getDefault())} ------------------------------------------------ $fileName${Constants.RESET}")
-        System.err.println(Constants.WHITE + "Description: " + "\u001B[0m" + Constants.RED + message + Constants.RESET)
+    fun printError() {
+        val indicator = printIndicator()
+        System.err.println("${Constants.RED}-- ${type.uppercase()} ------------------------------------------------ $fileName${Constants.RESET}")
+        System.err.println(Constants.WHITE + "Description: " + "\u001B[0m" + Constants.RED + msg + Constants.RESET)
         System.err.println("${Constants.WHITE}File path: ${Constants.RED}$path${Constants.RESET}\n")
-        System.err.println(Constants.RED + line + " | " + getLine() + Constants.RESET)
-        System.err.println(Constants.RED + "   " + printIndicator() + Constants.RESET)
+        System.err.println(Constants.RED + line + " | " + toStr + Constants.RESET)
+        System.err.println(Constants.RED + "   $indicator" + Constants.RESET)
         System.err.println("${Constants.RED}--------------------------------------------------------------------------${Constants.RESET}")
-
-        exitProcess(0)
-    }
-
-    private fun getLine(): String? {
-        try {
-            return Files.readAllLines(Path.of(path))[line - 1]
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return null
     }
 
     private fun printIndicator(): String {
-        val line = getLine()
-        return if (line != null) {
-            val array = line.split("".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        try {
+            val str = Lexer(toStr).tokens
             val indicator = StringBuilder()
-            for (i in array.indices) {
-                indicator.append(if (i == position) "^" else " ")
+            for (i in 0 until pos) {
+                indicator.append(" ".repeat(str[i].getValue().length))
             }
-
-            if (!indicator.toString().endsWith("^") && !indicator.toString().contains("^")) {
-                indicator.append("^")
-            }
-            indicator.toString()
-        } else {
-            "^"
-        }
-    }
-
-    private fun getPosition(givePos: Int): Int {
-        return try {
-            val lines = Files.readAllLines(Path.of(path)).subList(0, line - 1).toTypedArray()
-            val pos = Arrays.stream(lines).mapToInt { obj: String -> obj.length }.sum()
-            givePos - pos
-        } catch (ignored: IOException) {
-            givePos
+            indicator.append("^")
+            return indicator.toString()
+        } catch (e: LexicalError) {
+            e.setPath(path).printError()
+            exitProcess(1)
         }
     }
 }

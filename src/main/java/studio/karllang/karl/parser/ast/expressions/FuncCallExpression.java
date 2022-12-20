@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
-import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.NullValue;
 import studio.karllang.karl.parser.ast.values.Value;
@@ -29,19 +29,19 @@ public class FuncCallExpression extends Expression {
     @Override
     public Value eval() {
         if (!FunctionManager.isFunction(name)) {
-            new RuntimeError("Unknown function: " + name, fileName, line, pos);
+            new RuntimeOldError("Unknown function: " + name, fileName, line, pos);
         }
 
         Function function = FunctionManager.getFunction(name);
         LinkedHashMap<String, TokenType> parameters = function.getArgs();
         if (args.size() != parameters.size()) {
-            new RuntimeError("Function " + name + " takes " + parameters.size() + " arguments, " + args.size() + " given", fileName, line, pos);
+            new RuntimeOldError("Function " + name + " takes " + parameters.size() + " arguments, " + args.size() + " given", fileName, line, pos);
         }
 
         int i = 0;
         for (String arg : parameters.keySet()) {
             if (!Types.checkValueType(parameters.get(arg), args.get(i).eval().getType())) {
-                new RuntimeError("Type mismatch for argument " + arg + " of function " + name + ": Excepted type " + Types.getTypeName(parameters.get(arg)) + ", but got type " + Types.getTypeName(args.get(i).eval().getType()), fileName, line, pos);
+                new RuntimeOldError("Type mismatch for argument " + arg + " of function " + name + ": Excepted type " + Types.getTypeName(parameters.get(arg)) + ", but got type " + Types.getTypeName(args.get(i).eval().getType()), fileName, line, pos);
             }
             i++;
         }

@@ -1,16 +1,15 @@
 package studio.karllang.karl.lexer
 
-import studio.karllang.karl.errors.Error
-import studio.karllang.karl.errors.syntax.SyntaxError
+import studio.karllang.karl.errors.LexicalError
 
-class Lexer(private val input: String, private val fileName: String) {
+class Lexer(private val input: String) {
     val tokens = ArrayList<Token>()
     private val buffer: StringBuilder = StringBuilder()
     private val chars = "()[]{}^*=<>,!~&:+|./%?;-"
     private val operators: HashMap<String, TokenType> = HashMap()
     private val keywords: HashMap<String, TokenType> = HashMap()
     private var position = 0
-    private var line = 0
+    private var line = 1
 
     init {
         operators["+"] = TokenType.PLUS
@@ -66,11 +65,6 @@ class Lexer(private val input: String, private val fileName: String) {
     }
 
     private fun lex() {
-        if (input.isEmpty()) {
-            Error("Lexical Error", "Empty input", fileName, line, position)
-            return
-        }
-
         while (position < input.length) {
             val c = input[position]
             if (c == '/' && position + 1 < input.length && input[position + 1] == '/') tokenizeComment() else if (c == '/' && position + 1 < input.length && input[position + 1] == '*') tokenizeMultiLineComment() else if (c == '\n' || c == '\r') {
@@ -83,7 +77,7 @@ class Lexer(private val input: String, private val fileName: String) {
             else if (c == '\'') tokenizeChar()
             else if (chars.indexOf(c) != -1) tokenizeOperator()
             else if (Character.isWhitespace(c)) nextChar()
-            else SyntaxError("Unexpected character: $c", fileName, line, position)
+            throw LexicalError("Syntax Error", "Unexpected character: $c", line, getLine())
         }
 
         tokens.add(Token(TokenType.EOF, "EOF", input.length, line))
@@ -108,9 +102,9 @@ class Lexer(private val input: String, private val fileName: String) {
         nextChar()
         if (input[position] != '\'') {
             if (input[position] != '\'') {
-                SyntaxError("Character type can only contain one character", fileName, line, position)
+                throw LexicalError("Syntax Error", "Character type can only contain one character", line, getLine())
             } else {
-                SyntaxError("Expected ' at end of char value", fileName, line, position)
+                throw LexicalError("Syntax Error", "Excepted ' at end of character", line, getLine())
             }
         }
         nextChar()
@@ -121,14 +115,14 @@ class Lexer(private val input: String, private val fileName: String) {
         buffer.setLength(0)
         var c = input[position]
         if (position + 1 < input.length && Character.isLetter(input[position + 1])) {
-            SyntaxError("Unexpected character: " + input[position], fileName, line, position)
+            throw LexicalError("Syntax Error", "Unexpected character: $c", line, getLine())
         }
         while (true) {
             if (c == '\u0000') {
                 break
             }
             if (c == '.' && buffer.indexOf(".") != -1 || c == '-' && buffer.indexOf("-") != -1) {
-                SyntaxError("Invalid number", fileName, line, position)
+                throw LexicalError("Syntax Error", "Invalid number : $buffer", line, getLine())
             } else if (!Character.isDigit(c) && c != '.' && c != '-') {
                 break
             }
@@ -180,12 +174,12 @@ class Lexer(private val input: String, private val fileName: String) {
                     '"' -> buffer.append('\"')
                     '\\' -> buffer.append('\\')
                     '0' -> buffer.append('\u0000')
-                    else -> SyntaxError("Invalid escape character: $c", fileName, line, position)
+                    else -> throw LexicalError("Syntax Error", "Invalid escape character: $c", line, getLine())
                 }
                 c = nextChar()
             }
             if (c == '\u0000') {
-                SyntaxError("Unterminated string", fileName, line, position)
+                throw LexicalError("Syntax Error", "Unterminated string", line, getLine())
             }
             if (c == '"') {
                 nextChar()
@@ -234,5 +228,10 @@ class Lexer(private val input: String, private val fileName: String) {
 
     private fun addToken(type: TokenType, value: String) {
         tokens.add(Token(type, value, position, line))
+    }
+
+    private fun getLine(): String {
+        val lines = input.split("\n", "\r")
+        return if (lines.isNotEmpty()) lines[line - 1] else ""
     }
 }

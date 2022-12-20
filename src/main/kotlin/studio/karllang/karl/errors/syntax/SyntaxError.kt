@@ -1,5 +1,24 @@
 package studio.karllang.karl.errors.syntax
 
-import studio.karllang.karl.errors.Error
+class SyntaxError(
+    private val msg: String,
+    private val pos: Int,
+    private val line: Int,
+    private val lineString: String
+) : Throwable() {
+    fun getMsg(): String {
+        return msg
+    }
 
-open class SyntaxError(filename: String, message: String, line: Int, pos: Int) : Error("Syntax Error", message, filename, line, pos)
+    fun getPosition(): Int {
+        return pos
+    }
+
+    fun getLine(): Int {
+        return line
+    }
+
+    fun getLineString(): String {
+        return lineString
+    }
+}

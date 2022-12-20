@@ -1,6 +1,6 @@
 package studio.karllang.karl.std;
 
-import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.Value;
 
@@ -34,7 +34,7 @@ public class LogicalOperators {
 
     public static Boolean compare(Value firstNumber, Value secondNumber, TokenType operator, String fileName, int line, int pos) {
         if (firstNumber.getType() != TokenType.INT_VALUE && firstNumber.getType() != TokenType.FLOAT_VALUE && secondNumber.getType() != TokenType.INT_VALUE && secondNumber.getType() != TokenType.FLOAT_VALUE) {
-            new RuntimeError("Type mismatch : " + firstNumber.getType().toString().toLowerCase() + " and " + secondNumber.getType().toString().toLowerCase(), fileName, line, pos);
+            new RuntimeOldError("Type mismatch : " + firstNumber.getType().toString().toLowerCase() + " and " + secondNumber.getType().toString().toLowerCase(), fileName, line, pos);
             return null;
         }
         return switch (operator) {

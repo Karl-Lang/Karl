@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
-import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.BooleanValue;
 import studio.karllang.karl.parser.ast.values.Value;
@@ -36,7 +36,7 @@ public class LogicalExpression extends Expression {
                         case NOT_EQUAL -> new BooleanValue(isLeftNull != isRightNull);
                         case EQUALEQUAL -> new BooleanValue(isLeftNull && isRightNull);
                         default -> {
-                            new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                            new RuntimeOldError("Bad operator: " + operator.getName(), fileName, line, pos);
                             yield null;
                         }
                     };
@@ -52,7 +52,7 @@ public class LogicalExpression extends Expression {
                         case EQUALEQUAL -> new BooleanValue(equals);
                         case NOT_EQUAL -> new BooleanValue(!equals);
                         default -> {
-                            new RuntimeError("Unknown operator: " + operator, fileName, line, pos);
+                            new RuntimeOldError("Unknown operator: " + operator, fileName, line, pos);
                             yield null;
                         }
                     };

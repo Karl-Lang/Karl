@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
-import studio.karllang.karl.errors.runtime.RuntimeError;
+import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.Token;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
@@ -33,11 +33,11 @@ public class VariableDeclarationStatement extends Statement {
     @Override
     public void eval() {
         if (ForbiddenNames.isForbiddenName(name)) {
-            new RuntimeError("Variable name " + name + " is forbidden", fileName, line, pos);
+            new RuntimeOldError("Variable name " + name + " is forbidden", fileName, line, pos);
         }
 
         if (VariableManager.getVariable(name) != null) {
-            new RuntimeError("Variable " + name + " is already declared", fileName, line, pos);
+            new RuntimeOldError("Variable " + name + " is already declared", fileName, line, pos);
         }
 
         Value value = expression.eval();
@@ -47,15 +47,15 @@ public class VariableDeclarationStatement extends Statement {
         }
 
         if (value.toString().equals("null_void")) {
-            new RuntimeError("Cannot assign void function to a variable", fileName, line, pos);
+            new RuntimeOldError("Cannot assign void function to a variable", fileName, line, pos);
         }
 
         if (!Types.checkValueType(type.getType(), value.getType()) && value.getType() != TokenType.NULL) {
-            new RuntimeError("Expected type " + Types.getTypeName(type.getType()) + " but got " + Types.getTypeName(value.getType()), fileName, line, pos - 1);
+            new RuntimeOldError("Expected type " + Types.getTypeName(type.getType()) + " but got " + Types.getTypeName(value.getType()), fileName, line, pos - 1);
         }
 
         if (value.getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
-            new RuntimeError(Types.getTypeName(type.getType()) + " variable cannot be null", fileName, line, pos - 1);
+            new RuntimeOldError(Types.getTypeName(type.getType()) + " variable cannot be null", fileName, line, pos - 1);
         }
 
         VariableExpression expr = new VariableExpression(name, value, isFinal);
