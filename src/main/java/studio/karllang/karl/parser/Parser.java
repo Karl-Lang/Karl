@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser;
 
-import studio.karllang.karl.olderrors.runtime.NumberOldError;
+import studio.karllang.karl.errors.runtime.NumberError;
 import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.olderrors.syntax.SemiColonOldError;
 import studio.karllang.karl.olderrors.syntax.SyntaxOldError;
@@ -27,7 +27,7 @@ public final class Parser {
         this.size = tokens.size();
     }
 
-    public ArrayList<Statement> parse() {
+    public ArrayList<Statement> parse() throws NumberError {
         while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
             Statement statement = getStatement();
             if (statement != null) {
@@ -37,7 +37,7 @@ public final class Parser {
         return statements;
     }
 
-    private Statement getStatement() {
+    private Statement getStatement() throws NumberError {
         if (match(TokenType.SHOW)) {
             return show();
         } if (match(TokenType.FINAL) && Types.contains(getType()) && getType() != TokenType.NULL) {
@@ -60,7 +60,7 @@ public final class Parser {
         }
     }
 
-    private Statement funcCall() {
+    private Statement funcCall() throws NumberError {
         String name = get(-2).getValue();
         ArrayList<Expression> args = new ArrayList<>();
         while (!match(TokenType.RIGHT_PARENTHESIS) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
@@ -73,7 +73,7 @@ public final class Parser {
         return new FuncCallStatement(new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition()));
     }
 
-    private Statement funcDeclaration() {
+    private Statement funcDeclaration() throws NumberError {
         String name = get(0).getValue();
         if (ForbiddenNames.isForbiddenName(name)) {
             new RuntimeOldError("Function name " + name + " is forbidden", fileName, get(-1).getLine(), get(-1).getPosition());
@@ -130,7 +130,7 @@ public final class Parser {
         }
     }
 
-    private BlockStatement getBlock() {
+    private BlockStatement getBlock() throws NumberError {
         skip(TokenType.MINUS);
         skip(TokenType.GREATER);
         ArrayList<Statement> statements = new ArrayList<>();
@@ -152,7 +152,7 @@ public final class Parser {
         return new BlockStatement(statements);
     }
 
-    private Expression getExpression() { //TODO: ExpressionManager
+    private Expression getExpression() throws NumberError { //TODO: ExpressionManager
         Token token = get(0);
         Expression expression = null;
         if ((getType() == TokenType.IDENTIFIER && checkType(1, TokenType.LEFT_PARENTHESIS)) || (getType() == TokenType.IDENTIFIER) || (Types.isValueType(getType())) || (getType() == TokenType.EXCLAMATION)) {
@@ -196,7 +196,7 @@ public final class Parser {
         return expression;
     }
 
-    private Expression getValue() {
+    private Expression getValue() throws NumberError {
         if (getType() == TokenType.IDENTIFIER && get(1).getType() == TokenType.LEFT_PARENTHESIS) {
             Token nameToken = get(0);
             String name = nameToken.getValue();
@@ -228,8 +228,7 @@ public final class Parser {
                     try {
                         yield new ValueExpression(Integer.parseInt(token.getValue()), token.getType());
                     } catch (NumberFormatException e) {
-                        new NumberOldError("Invalid number: " + token.getValue(), fileName, token.getLine(), token.getPosition());
-                        yield null;
+                        throw new NumberError(token.getPosition(), token.getLine(), token.getValue());
                     }
                 }
                 case BOOL_VALUE -> new ValueExpression(Boolean.parseBoolean(token.getValue()), token.getType());
@@ -237,8 +236,7 @@ public final class Parser {
                     try {
                         yield new ValueExpression(Float.parseFloat(token.getValue()), token.getType());
                     } catch (NumberFormatException e) {
-                        new NumberOldError("Invalid number: " + token.getValue(), fileName, token.getLine(), token.getPosition());
-                        yield null;
+                        throw new NumberError(token.getPosition(), token.getLine(), token.getValue());
                     }
                 }
                 case CHAR_VALUE -> new ValueExpression(token.getValue().charAt(0), token.getType());
@@ -253,7 +251,7 @@ public final class Parser {
         }
     }
 
-    private Statement ifElse() {
+    private Statement ifElse() throws NumberError {
         skip(TokenType.LEFT_PARENTHESIS);
         Expression condition = getExpression();
         skip(TokenType.RIGHT_PARENTHESIS);
@@ -269,7 +267,7 @@ public final class Parser {
         } else return new IfElseStatement(condition, ifBlock, null);
     }
 
-    private Statement variableAssignment() {
+    private Statement variableAssignment() throws NumberError {
         String name = get(0).getValue();
         match(TokenType.IDENTIFIER);
         skip(TokenType.EQUAL);
@@ -286,7 +284,7 @@ public final class Parser {
         return new VariableAssignmentStatement(name, expr, fileName, get(0).getLine(), get(0).getPosition());
     }
 
-    private Statement variableDeclaration(boolean isFinal) {
+    private Statement variableDeclaration(boolean isFinal) throws NumberError {
         Token type = get(0);
         match(type.getType());
         skip(TokenType.COLON);
@@ -304,7 +302,7 @@ public final class Parser {
         return new VariableDeclarationStatement(expression, name.getValue(), type, fileName, name.getLine(), name.getPosition(), isFinal);
     }
 
-    private ShowStatement show() {
+    private ShowStatement show() throws NumberError {
         skip(TokenType.LEFT_PARENTHESIS);
         ArrayList<Expression> expressions = new ArrayList<>();
         while (!match(TokenType.RIGHT_PARENTHESIS)) {
