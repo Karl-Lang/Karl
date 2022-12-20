@@ -37,8 +37,7 @@ public class LogicalExpression extends Expression {
                         case NOT_EQUAL -> new BooleanValue(isLeftNull != isRightNull);
                         case EQUALEQUAL -> new BooleanValue(isLeftNull && isRightNull);
                         default -> {
-                            new RuntimeOldError("Bad operator: " + operator.getName(), fileName, line, pos);
-                            yield null;
+                            throw new RuntimeError("Bad operator: " + operator.getName(), pos, line, printString());
                         }
                     };
 
@@ -53,8 +52,7 @@ public class LogicalExpression extends Expression {
                         case EQUALEQUAL -> new BooleanValue(equals);
                         case NOT_EQUAL -> new BooleanValue(!equals);
                         default -> {
-                            new RuntimeOldError("Unknown operator: " + operator, fileName, line, pos);
-                            yield null;
+                            throw new RuntimeError("Unknown operator: " + operator.getValue(), pos, line, printString());
                         }
                     };
                 } else {
@@ -66,5 +64,9 @@ public class LogicalExpression extends Expression {
         } else {
             return leftValue;
         }
+    }
+
+    private String printString() throws RuntimeError {
+        return left.eval().toString() + " " + operator.getValue() + " " + right.eval().toString();
     }
 }

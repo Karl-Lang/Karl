@@ -68,7 +68,6 @@ public class Function {
 
     public String printString() throws RuntimeError {
         StringBuilder optionString = new StringBuilder();
-        // For each key in args, add them to optionString
         for (String key : args.keySet()) {
             optionString.append((optionString.length() == 0) ? key : key + ", ");
         }

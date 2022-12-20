@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue conversion to new error handler by switch some errors and make some changes">
+    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue conversion to new error handler by switch some errors and make some changes in Karl's core">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +134,7 @@
       <workItem from="1671484666527" duration="5995000" />
       <workItem from="1671540241759" duration="250000" />
       <workItem from="1671540532277" duration="9311000" />
-      <workItem from="1671561772098" duration="5092000" />
+      <workItem from="1671561772098" duration="6108000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -217,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671566528361</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Continue conversion to new error handler by switch some errors and make some changes in Karl's core">
+      <created>1671570181295</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1671570181295</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,7 +257,8 @@
     <MESSAGE value="Apply new error handler to BinaryExpression" />
     <MESSAGE value="Convert NumberError to new Error Handler and apply it to parser" />
     <MESSAGE value="Continue conversion to new error handler by switch some errors and make some changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Continue conversion to new error handler by switch some errors and make some changes" />
+    <MESSAGE value="Continue conversion to new error handler by switch some errors and make some changes in Karl's core" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continue conversion to new error handler by switch some errors and make some changes in Karl's core" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
