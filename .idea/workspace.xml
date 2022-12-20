@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue conversion to new error handler by switch some errors and make some changes in Karl's core">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +72,7 @@
       <recent name="studio.karllang.karl.lexer" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Gradle.MainTest">
     <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -111,8 +111,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.MainTest" />
+        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
@@ -134,7 +134,7 @@
       <workItem from="1671484666527" duration="5995000" />
       <workItem from="1671540241759" duration="250000" />
       <workItem from="1671540532277" duration="9311000" />
-      <workItem from="1671561772098" duration="6108000" />
+      <workItem from="1671561772098" duration="7346000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -227,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671570181295</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Continue conversion to new error handler by switch some errors and make some changes in Karl's core">
+      <created>1671570946821</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1671570946821</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,5 +1,6 @@
 package studio.karllang.karl.std;
 
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.Value;
@@ -32,10 +33,9 @@ public class LogicalOperators {
         return operators.containsValue(type);
     }
 
-    public static Boolean compare(Value firstNumber, Value secondNumber, TokenType operator, String fileName, int line, int pos) {
+    public static Boolean compare(Value firstNumber, Value secondNumber, TokenType operator, int line, int pos) throws RuntimeError {
         if (firstNumber.getType() != TokenType.INT_VALUE && firstNumber.getType() != TokenType.FLOAT_VALUE && secondNumber.getType() != TokenType.INT_VALUE && secondNumber.getType() != TokenType.FLOAT_VALUE) {
-            new RuntimeOldError("Type mismatch : " + firstNumber.getType().toString().toLowerCase() + " and " + secondNumber.getType().toString().toLowerCase(), fileName, line, pos);
-            return null;
+            throw new RuntimeError("Type mismatch : " + firstNumber.getType().toString().toLowerCase() + " and " + secondNumber.getType().toString().toLowerCase(), pos, line, printString(firstNumber, secondNumber, operator));
         }
         return switch (operator) {
             case LESS -> firstNumber.toFloat() < secondNumber.toFloat();
@@ -45,11 +45,15 @@ public class LogicalOperators {
             case EQUALEQUAL -> firstNumber.toFloat() == secondNumber.toFloat();
             case NOT_EQUAL -> firstNumber.toFloat() != secondNumber.toFloat();
             case OR, AND -> true;
-            default -> throw new RuntimeException("Unknown operator: " + operator);
+            default -> throw new RuntimeError("Unknown operator: " + operator, pos, line, printString(firstNumber, secondNumber, operator));
         };
     }
 
     public static Boolean not(boolean parseBoolean) {
         return !parseBoolean;
+    }
+
+    private static String printString(Value first, Value second, TokenType operator) {
+        return first.toString() + " " + operator.getValue().toLowerCase() + " " + second.toString();
     }
 }

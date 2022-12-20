@@ -1,7 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
-import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.BooleanValue;
 import studio.karllang.karl.parser.ast.values.Value;
@@ -11,15 +10,13 @@ public class LogicalExpression extends Expression {
     private final Expression left;
     private final Expression right;
     private final TokenType operator;
-    private final String fileName;
     private final int line;
     private final int pos;
 
-    public LogicalExpression(TokenType operator, Expression left, Expression right, String fileName, int line, int pos) {
+    public LogicalExpression(TokenType operator, Expression left, Expression right, int line, int pos) {
         this.left = left;
         this.right = right;
         this.operator = operator;
-        this.fileName = fileName;
         this.line = line;
         this.pos = pos;
     }
@@ -45,10 +42,8 @@ public class LogicalExpression extends Expression {
                     final boolean equals = leftValue.toString().equals(rightValue.toString());
 
                     return switch (operator) {
-                        case AND ->
-                                new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
-                        case OR ->
-                                new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case AND -> new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case OR -> new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
                         case EQUALEQUAL -> new BooleanValue(equals);
                         case NOT_EQUAL -> new BooleanValue(!equals);
                         default -> {
@@ -56,7 +51,7 @@ public class LogicalExpression extends Expression {
                         }
                     };
                 } else {
-                    return new BooleanValue(LogicalOperators.compare(leftValue, rightValue, operator, fileName, line, pos));
+                    return new BooleanValue(LogicalOperators.compare(leftValue, rightValue, operator, line, pos));
                 }
             } else {
                 return new BooleanValue(LogicalOperators.not(Boolean.parseBoolean(leftValue.toString())));

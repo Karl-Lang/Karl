@@ -189,7 +189,7 @@ public final class Parser {
                 } else {
                     right = getValue();
                 }
-                expression = new LogicalExpression(operator, expression, right, fileName, token.getLine(), token.getPosition());
+                expression = new LogicalExpression(operator, expression, right, token.getLine(), token.getPosition());
             }
         }
 
