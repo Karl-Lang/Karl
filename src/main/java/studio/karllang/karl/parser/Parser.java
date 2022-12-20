@@ -174,7 +174,7 @@ public final class Parser {
                     pos = position;
                     right = getValue();
                 }
-                expression = new BinaryExpression(expression, right, operator, fileName, token.getLine(), token.getPosition());
+                expression = new BinaryExpression(expression, right, operator, token.getLine(), token.getPosition());
             }
         }
 

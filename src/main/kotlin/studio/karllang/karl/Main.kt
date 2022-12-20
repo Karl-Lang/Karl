@@ -5,6 +5,7 @@ import studio.karllang.karl.errors.Error
 import studio.karllang.karl.errors.LexicalError
 import studio.karllang.karl.errors.file.FileError
 import studio.karllang.karl.errors.file.FileNotFoundError
+import studio.karllang.karl.errors.runtime.RuntimeError
 import studio.karllang.karl.errors.syntax.SyntaxError
 import studio.karllang.karl.lexer.Lexer
 import studio.karllang.karl.parser.Parser
@@ -55,6 +56,9 @@ class Main : Runnable {
             exitProcess(1)
         } catch (e: SyntaxError) {
             Error("Syntax Error", e.getMsg(), path, e.getPosition(), e.getLine(), e.getLineString()).printError()
+            exitProcess(1)
+        } catch (e: RuntimeError) {
+            Error("Runtime Error", e.getMsg(), path, e.getPosition(), e.getLine(), e.getLineString()).printError()
             exitProcess(1)
         }
     }

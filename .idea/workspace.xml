@@ -4,32 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Fix tiny bug DivisionBuZero, forgot">
-      <change afterPath="$PROJECT_DIR$/.attach_pid17375" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/LexicalError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/olderrors/OldError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/olderrors/runtime/DivisionByZeroOldError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/olderrors/runtime/RuntimeOldError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/olderrors/syntax/SemiColonOldError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/olderrors/syntax/SyntaxOldError.kt" afterDir="false" />
+    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue to rewrite error system and convert Karl to Kotlin">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/runtime/DivisionByZeroError.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/Error.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/Error.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/runtime/DivisionByZeroError.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/runtime/NumberError.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/olderrors/runtime/NumberOldError.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/runtime/RuntimeError.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/runtime/RuntimeError.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/syntax/SemiColonError.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/syntax/SyntaxError.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/syntax/SyntaxError.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/Lexer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
@@ -95,7 +76,7 @@
       <recent name="studio.karllang.karl.lexer" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Gradle.MainTest">
     <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -134,8 +115,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.MainTest" />
+        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
@@ -156,7 +137,7 @@
       <workItem from="1671468033449" duration="245000" />
       <workItem from="1671484666527" duration="5995000" />
       <workItem from="1671540241759" duration="250000" />
-      <workItem from="1671540532277" duration="5809000" />
+      <workItem from="1671540532277" duration="8803000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -207,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671489962755</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Continue to rewrite error system and convert Karl to Kotlin">
+      <created>1671546700287</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671546700287</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +221,7 @@
     <MESSAGE value="Convert Lexer to Kotlin" />
     <MESSAGE value="Convert BinaryExpression to Kotlin" />
     <MESSAGE value="Fix tiny bug DivisionBuZero, forgot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix tiny bug DivisionBuZero, forgot" />
+    <MESSAGE value="Continue to rewrite error system and convert Karl to Kotlin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continue to rewrite error system and convert Karl to Kotlin" />
   </component>
 </project>

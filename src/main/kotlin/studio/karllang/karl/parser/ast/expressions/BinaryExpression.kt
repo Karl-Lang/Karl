@@ -1,7 +1,7 @@
 package studio.karllang.karl.parser.ast.expressions
 
-import studio.karllang.karl.olderrors.runtime.DivisionByZeroOldError
-import studio.karllang.karl.olderrors.runtime.RuntimeOldError
+import studio.karllang.karl.errors.runtime.DivisionByZeroError
+import studio.karllang.karl.errors.runtime.RuntimeError
 import studio.karllang.karl.lexer.TokenType
 import studio.karllang.karl.parser.ast.values.FloatValue
 import studio.karllang.karl.parser.ast.values.IntValue
@@ -13,7 +13,6 @@ class BinaryExpression(
     private val left: Expression,
     private val right: Expression,
     private val operator: TokenType,
-    private val fileName: String,
     private val line: Int,
     private val pos: Int
 ) : Expression() {
@@ -29,32 +28,27 @@ class BinaryExpression(
                 TokenType.MULTIPLY -> getIntOrFloatValue(leftValue.toFloat() * rightValue.toFloat())
                 TokenType.DIVIDE -> {
                     if (rightValue.toFloat() == 0f) {
-                        DivisionByZeroOldError(fileName, line, pos)
+                        throw DivisionByZeroError(pos, line, toString())
                     }
                     getIntOrFloatValue(leftValue.toFloat() / rightValue.toFloat())
                 }
                 TokenType.MODULO -> getIntOrFloatValue(leftValue.toFloat() % rightValue.toFloat())
-                else -> {
-                    RuntimeOldError("Bad operator: ${operator.name}", fileName, line, pos)
-                    null!!
-                }
+                else -> throw RuntimeError("Bad operator: ${operator.value}", pos, line, toString())
             }
             leftValue.type == TokenType.STR_VALUE || rightValue.type == TokenType.STR_VALUE -> {
                 if (operator == TokenType.PLUS) {
                     StringValue(leftValue.toString() + rightValue.toString())
-                } else {
-                    RuntimeOldError("Bad operator: ${operator.name}", fileName, line, pos)
-                    null!!
-                }
+                } else throw RuntimeError("Bad operator: ${operator.value}", pos, line, toString())
             }
-            else -> {
-                RuntimeOldError("Unauthorized types for operation ${Types.getTypeName(leftValue.type)} and ${Types.getTypeName(rightValue.type)}", fileName, line, pos)
-                null!!
-            }
+            else -> throw RuntimeError("Unauthorized types for operation ${Types.getTypeName(leftValue.type)} and ${Types.getTypeName(rightValue.type)}", pos, line, toString())
         }
     }
 
     private fun getIntOrFloatValue(result: Float): Value {
-        return if (result % 1 == (0).toFloat()) IntValue(result.toInt()) else FloatValue(result)
+        return if (result % 1 == 0f) IntValue(result.toInt()) else FloatValue(result)
+    }
+
+    override fun toString(): String {
+        return left.eval().toString() + " " + operator.value + " " + right.eval().toString()
     }
 }

@@ -77,7 +77,7 @@ class Lexer(private val input: String) {
             else if (c == '\'') tokenizeChar()
             else if (chars.indexOf(c) != -1) tokenizeOperator()
             else if (Character.isWhitespace(c)) nextChar()
-            throw LexicalError("Syntax Error", "Unexpected character: $c", line, getLine())
+            else throw LexicalError("Syntax Error", "Unexpected character: $c", line, getLine())
         }
 
         tokens.add(Token(TokenType.EOF, "EOF", input.length, line))

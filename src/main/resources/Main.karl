@@ -1,1 +1,1 @@
-show(!!true);
+show(8/0);
