@@ -210,7 +210,7 @@ public final class Parser {
 
             return new FuncCallExpression(name, args, fileName, nameToken.getLine(), nameToken.getPosition());
         } else if (match(TokenType.EXCLAMATION)) {
-            if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL_VALUE && getType() != TokenType.LEFT_PARENTHESIS)
+            if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL_VALUE && getType() != TokenType.LEFT_PARENTHESIS && getType() != TokenType.EXCLAMATION)
                 new RuntimeOldError("Unexpected token " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
 
             Expression expr;
