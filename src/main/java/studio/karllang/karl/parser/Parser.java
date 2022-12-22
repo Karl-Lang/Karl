@@ -244,7 +244,7 @@ public final class Parser {
                 default -> null;
             };
         } else if (match(TokenType.IDENTIFIER)) {
-            return new VariableCallExpression(get(-1).getValue(), fileName, get(0).getLine(), get(0).getPosition());
+            return new VariableCallExpression(get(-1).getValue(), get(0).getLine(), get(0).getPosition());
         } else {
             new RuntimeOldError("Unknown expression : " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
             return null;
