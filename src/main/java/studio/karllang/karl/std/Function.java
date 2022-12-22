@@ -25,7 +25,7 @@ public class Function {
         this.type = returnType;
     }
 
-    public Value eval(ArrayList<Expression> values, String fileName, int line, int pos) throws RuntimeError {
+    public Value eval(ArrayList<Expression> values, int line, int pos) throws RuntimeError {
         HashMap<String, Value> arguments = new HashMap<>();
         int i = 0;
         for (String arg : args.keySet()) {

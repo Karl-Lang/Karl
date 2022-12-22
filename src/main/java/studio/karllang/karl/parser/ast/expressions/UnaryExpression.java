@@ -10,14 +10,12 @@ import studio.karllang.karl.parser.ast.values.Value;
 public class UnaryExpression extends Expression {
     private final Expression expression;
     private final TokenType operator;
-    private final String fileName;
     private final int line;
     private final int pos;
 
-    public UnaryExpression(TokenType operator, Expression expression, String fileName, int line, int pos) {
+    public UnaryExpression(TokenType operator, Expression expression, int line, int pos) {
         this.expression = expression;
         this.operator = operator;
-        this.fileName = fileName;
         this.line = line;
         this.pos = pos;
     }
@@ -29,9 +27,12 @@ public class UnaryExpression extends Expression {
             case EXCLAMATION -> new BooleanValue(!Boolean.parseBoolean(value.toString()));
             case MINUS -> new IntValue(-value.toInt());
             default -> {
-                new RuntimeOldError("Unknown operator: " + operator, fileName, line, pos);
-                yield null;
+                throw new RuntimeError("Unknown operator: " + operator, pos, line, printString());
             }
         };
+    }
+
+    private String printString() throws RuntimeError {
+        return operator.getValue().toLowerCase() + expression.eval().toString();
     }
 }

@@ -70,7 +70,7 @@ public final class Parser {
         }
         skip(TokenType.SEMICOLON);
 
-        return new FuncCallStatement(new FuncCallExpression(name, args, fileName, get(-2).getLine(), get(-2).getPosition()));
+        return new FuncCallStatement(new FuncCallExpression(name, args, get(-2).getLine(), get(-2).getPosition()));
     }
 
     private Statement funcDeclaration() throws NumberError {
@@ -208,7 +208,7 @@ public final class Parser {
                 match(TokenType.COMMA);
             }
 
-            return new FuncCallExpression(name, args, fileName, nameToken.getLine(), nameToken.getPosition());
+            return new FuncCallExpression(name, args, nameToken.getLine(), nameToken.getPosition());
         } else if (match(TokenType.EXCLAMATION)) {
             if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL_VALUE && getType() != TokenType.LEFT_PARENTHESIS && getType() != TokenType.EXCLAMATION)
                 new RuntimeOldError("Unexpected token " + get(-1).getValue(), fileName, get(-1).getLine(), get(-1).getPosition());
@@ -219,7 +219,7 @@ public final class Parser {
                 skip(TokenType.RIGHT_PARENTHESIS);
             } else expr = getValue();
 
-            return new UnaryExpression(TokenType.EXCLAMATION, expr, fileName, get(-1).getLine(), get(-1).getPosition());
+            return new UnaryExpression(TokenType.EXCLAMATION, expr, get(-1).getLine(), get(-1).getPosition());
         } else if (match(TokenType.STR_VALUE) || match(TokenType.INT_VALUE) || match(TokenType.BOOL_VALUE) || match(TokenType.FLOAT_VALUE) || match(TokenType.CHAR_VALUE) || match(TokenType.NULL)) {
             Token token = get(-1);
             return switch (token.getType()) {

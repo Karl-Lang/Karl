@@ -1,7 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
-import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.NullValue;
 import studio.karllang.karl.parser.ast.values.Value;
@@ -15,14 +14,12 @@ import java.util.LinkedHashMap;
 public class FuncCallExpression extends Expression {
     private final String name;
     private final ArrayList<Expression> args;
-    private final String fileName;
     private final int line;
     private final int pos;
 
-    public FuncCallExpression(String name, ArrayList<Expression> args, String fileName, int line, int pos) {
+    public FuncCallExpression(String name, ArrayList<Expression> args, int line, int pos) {
         this.name = name;
         this.args = args;
-        this.fileName = fileName;
         this.line = line;
         this.pos = pos;
     }
@@ -48,9 +45,9 @@ public class FuncCallExpression extends Expression {
         }
 
         if (function.getType() == TokenType.VOID) {
-            function.eval(args, fileName, line, pos);
+            function.eval(args, line, pos);
             return new NullValue("null_void");
-        } else return function.eval(args, fileName, line, pos);
+        } else return function.eval(args, line, pos);
     }
 
     public String printString() throws RuntimeError {

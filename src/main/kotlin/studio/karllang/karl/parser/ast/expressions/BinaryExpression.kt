@@ -22,20 +22,18 @@ class BinaryExpression(
         val rightValue = right.eval()
 
         return when {
-            (leftValue.type == TokenType.INT_VALUE || leftValue.type == TokenType.FLOAT_VALUE) && (rightValue.type == TokenType.INT_VALUE || rightValue.type == TokenType.FLOAT_VALUE) -> when (operator) {
+            leftValue.type in listOf(TokenType.INT_VALUE, TokenType.FLOAT_VALUE) && rightValue.type in listOf(TokenType.INT_VALUE, TokenType.FLOAT_VALUE) -> when (operator) {
                 TokenType.PLUS -> getIntOrFloatValue(leftValue.toFloat() + rightValue.toFloat())
                 TokenType.MINUS -> getIntOrFloatValue(leftValue.toFloat() - rightValue.toFloat())
                 TokenType.MULTIPLY -> getIntOrFloatValue(leftValue.toFloat() * rightValue.toFloat())
                 TokenType.DIVIDE -> {
-                    if (rightValue.toFloat() == 0f) {
-                        throw DivisionByZeroError(pos, line, toString())
-                    }
+                    if (rightValue.toFloat() == 0f) throw DivisionByZeroError(pos, line, toString())
                     getIntOrFloatValue(leftValue.toFloat() / rightValue.toFloat())
                 }
                 TokenType.MODULO -> getIntOrFloatValue(leftValue.toFloat() % rightValue.toFloat())
                 else -> throw RuntimeError("Bad operator: ${operator.value}", pos, line, toString())
             }
-            leftValue.type == TokenType.STR_VALUE || rightValue.type == TokenType.STR_VALUE -> {
+            listOf(leftValue.type, rightValue.type).any { it == TokenType.STR_VALUE } -> {
                 if (operator == TokenType.PLUS) {
                     StringValue(leftValue.toString() + rightValue.toString())
                 } else throw RuntimeError("Bad operator: ${operator.value}", pos, line, toString())

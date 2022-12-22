@@ -1,1 +1,1 @@
-show(!!true);
+show(6 + "a" + 1);
