@@ -1,7 +1,6 @@
 package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
-import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.BooleanValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
@@ -26,9 +25,7 @@ public class UnaryExpression extends Expression {
         return switch (operator) {
             case EXCLAMATION -> new BooleanValue(!Boolean.parseBoolean(value.toString()));
             case MINUS -> new IntValue(-value.toInt());
-            default -> {
-                throw new RuntimeError("Unknown operator: " + operator, pos, line, printString());
-            }
+            default -> throw new RuntimeError("Unknown operator: " + operator, pos, line, printString());
         };
     }
 

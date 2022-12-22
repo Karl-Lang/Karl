@@ -1,7 +1,6 @@
 package studio.karllang.karl.std;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
-import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.statements.BlockStatement;
@@ -66,7 +65,7 @@ public class Function {
         return type;
     }
 
-    public String printString() throws RuntimeError {
+    public String printString() {
         StringBuilder optionString = new StringBuilder();
         for (String key : args.keySet()) {
             optionString.append((optionString.length() == 0) ? key : key + ", ");

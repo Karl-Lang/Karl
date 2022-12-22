@@ -1,6 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
-import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
+import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
@@ -9,35 +9,31 @@ import studio.karllang.karl.std.VariableManager;
 
 public class IncrementDecrementStatement extends Statement {
     private final String name;
-    private final String fileName;
     private final int line;
     private final int pos;
     private final TokenType increment;
 
-    public IncrementDecrementStatement(String name, TokenType increment, String fileName, int line, int pos) {
+    public IncrementDecrementStatement(String name, TokenType increment, int line, int pos) {
         this.name = name;
-        this.fileName = fileName;
         this.line = line;
         this.pos = pos;
         this.increment = increment;
     }
 
     @Override
-    public void eval() {
+    public void eval() throws RuntimeError {
         Value variable = VariableManager.getVariable(name);
 
         if (variable == null) {
-            new RuntimeOldError("Variable " + name + " is not defined", fileName, line, pos);
+            throw new RuntimeError("Variable " + name + " is not defined", pos, line, printString());
         }
 
         if (VariableManager.isFinal(name)) {
-            new RuntimeOldError("Variable " + name + " is final", fileName, line, pos);
+            throw new RuntimeError("Variable " + name + " is final", pos, line, printString());
         }
 
-        assert variable != null;
-
         if (variable.getType() != TokenType.INT_VALUE && variable.getType() != TokenType.FLOAT_VALUE) {
-            new RuntimeOldError("Variable " + name + " is not a number", fileName, line, pos);
+            throw new RuntimeError("Variable " + name + " is not a number", pos, line, printString());
         }
 
         boolean isFloat = variable.getType() == TokenType.FLOAT_VALUE;
@@ -47,5 +43,9 @@ public class IncrementDecrementStatement extends Statement {
         } else {
             VariableManager.setVariable(name, isFloat ? new FloatValue(variable.toFloat() - 1) : new IntValue(variable.toInt() - 1), false);
         }
+    }
+
+    private String printString() {
+        return name + increment.getValue() + increment.getValue() + ";";
     }
 }

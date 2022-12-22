@@ -1,7 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
-import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.Token;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
@@ -15,17 +14,15 @@ import studio.karllang.karl.std.VariableManager;
 public class VariableDeclarationStatement extends Statement {
     private final String name;
     private final Token type;
-    private final String fileName;
     private final int line;
     private final int pos;
+    private final boolean isFinal;
     private Expression expression;
-    private boolean isFinal;
 
-    public VariableDeclarationStatement(Expression expression, String name, Token type, String fileName, int line, int pos, boolean isFinal) {
+    public VariableDeclarationStatement(Expression expression, String name, Token type, int line, int pos, boolean isFinal) {
         this.expression = expression;
         this.name = name;
         this.type = type;
-        this.fileName = fileName;
         this.line = line;
         this.pos = pos;
         this.isFinal = isFinal;
@@ -34,11 +31,11 @@ public class VariableDeclarationStatement extends Statement {
     @Override
     public void eval() throws RuntimeError {
         if (ForbiddenNames.isForbiddenName(name)) {
-            new RuntimeOldError("Variable name " + name + " is forbidden", fileName, line, pos);
+            throw new RuntimeError("Variable name " + name + " is forbidden", pos, line, printString());
         }
 
         if (VariableManager.getVariable(name) != null) {
-            new RuntimeOldError("Variable " + name + " is already declared", fileName, line, pos);
+            throw new RuntimeError("Variable " + name + " is already declared", pos, line, printString());
         }
 
         Value value = expression.eval();
@@ -48,19 +45,23 @@ public class VariableDeclarationStatement extends Statement {
         }
 
         if (value.toString().equals("null_void")) {
-            new RuntimeOldError("Cannot assign void function to a variable", fileName, line, pos);
+            throw new RuntimeError("Cannot assign void function to a variable", pos, line, printString());
         }
 
         if (!Types.checkValueType(type.getType(), value.getType()) && value.getType() != TokenType.NULL) {
-            new RuntimeOldError("Expected type " + Types.getTypeName(type.getType()) + " but got " + Types.getTypeName(value.getType()), fileName, line, pos - 1);
+            throw new RuntimeError("Expected type " + Types.getTypeName(type.getType()) + " but got " + Types.getTypeName(value.getType()), pos - 1, line, printString());
         }
 
         if (value.getType() == TokenType.NULL && type.getType() != TokenType.STRING && type.getType() != TokenType.CHAR) {
-            new RuntimeOldError(Types.getTypeName(type.getType()) + " variable cannot be null", fileName, line, pos - 1);
+            throw new RuntimeError(Types.getTypeName(type.getType()) + " variable cannot be null", pos - 1, line, printString());
         }
 
         VariableExpression expr = new VariableExpression(name, value, isFinal);
         expr.setValue(value);
         expr.eval();
+    }
+
+    private String printString() throws RuntimeError {
+        return type.getValue() + ":" + name + " = " + expression.eval().toString();
     }
 }

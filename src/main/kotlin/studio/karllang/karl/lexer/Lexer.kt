@@ -70,8 +70,7 @@ class Lexer(private val input: String) {
             if (c == '/' && position + 1 < input.length && input[position + 1] == '/') tokenizeComment() else if (c == '/' && position + 1 < input.length && input[position + 1] == '*') tokenizeMultiLineComment() else if (c == '\n' || c == '\r') {
                 line++
                 position++
-            }
-            else if (Character.isDigit(c) || c == '-' && position + 1 < input.length && Character.isDigit(input[position + 1])) tokenizeNumber()
+            } else if (Character.isDigit(c) || c == '-' && position + 1 < input.length && Character.isDigit(input[position + 1])) tokenizeNumber()
             else if (c.toString().matches("^[a-zA-Z_$][a-zA-Z_$0-9]*$".toRegex())) tokenizeIdentifier()
             else if (c == '"') tokenizeString()
             else if (c == '\'') tokenizeChar()

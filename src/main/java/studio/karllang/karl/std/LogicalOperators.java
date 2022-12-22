@@ -1,7 +1,6 @@
 package studio.karllang.karl.std;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
-import studio.karllang.karl.olderrors.runtime.RuntimeOldError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.Value;
 
@@ -45,7 +44,8 @@ public class LogicalOperators {
             case EQUALEQUAL -> firstNumber.toFloat() == secondNumber.toFloat();
             case NOT_EQUAL -> firstNumber.toFloat() != secondNumber.toFloat();
             case OR, AND -> true;
-            default -> throw new RuntimeError("Unknown operator: " + operator, pos, line, printString(firstNumber, secondNumber, operator));
+            default ->
+                    throw new RuntimeError("Unknown operator: " + operator, pos, line, printString(firstNumber, secondNumber, operator));
         };
     }
 

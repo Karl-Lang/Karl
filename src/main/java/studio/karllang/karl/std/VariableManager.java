@@ -3,7 +3,6 @@ package studio.karllang.karl.std;
 import studio.karllang.karl.parser.ast.values.Value;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public final class VariableManager {
 

@@ -33,22 +33,20 @@ public class LogicalExpression extends Expression {
                     return switch (operator) {
                         case NOT_EQUAL -> new BooleanValue(isLeftNull != isRightNull);
                         case EQUALEQUAL -> new BooleanValue(isLeftNull && isRightNull);
-                        default -> {
-                            throw new RuntimeError("Bad operator: " + operator.getName(), pos, line, printString());
-                        }
+                        default -> throw new RuntimeError("Bad operator: " + operator.getName(), pos, line, printString());
                     };
 
                 } else if ((leftValue.getType() != TokenType.INT_VALUE && leftValue.getType() != TokenType.FLOAT_VALUE) || (rightValue.getType() != TokenType.INT_VALUE && rightValue.getType() != TokenType.FLOAT_VALUE)) {
                     final boolean equals = leftValue.toString().equals(rightValue.toString());
 
                     return switch (operator) {
-                        case AND -> new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
-                        case OR -> new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case AND ->
+                                new BooleanValue(LogicalOperators.and(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
+                        case OR ->
+                                new BooleanValue(LogicalOperators.or(Boolean.parseBoolean(leftValue.toString()), Boolean.parseBoolean(rightValue.toString())));
                         case EQUALEQUAL -> new BooleanValue(equals);
                         case NOT_EQUAL -> new BooleanValue(!equals);
-                        default -> {
-                            throw new RuntimeError("Unknown operator: " + operator.getValue(), pos, line, printString());
-                        }
+                        default -> throw new RuntimeError("Unknown operator: " + operator.getValue(), pos, line, printString());
                     };
                 } else {
                     return new BooleanValue(LogicalOperators.compare(leftValue, rightValue, operator, line, pos));
