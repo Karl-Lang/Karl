@@ -5,7 +5,7 @@ import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.VariableManager;
+import studio.karllang.karl.lib.VariableManager;
 
 public class IncrementDecrementStatement extends Statement {
     private final String name;

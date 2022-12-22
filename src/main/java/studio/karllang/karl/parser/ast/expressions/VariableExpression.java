@@ -1,7 +1,7 @@
 package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.VariableManager;
+import studio.karllang.karl.lib.VariableManager;
 
 public class VariableExpression extends Expression {
     public final Value value;

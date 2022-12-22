@@ -4,8 +4,8 @@ import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.Types;
-import studio.karllang.karl.std.VariableManager;
+import studio.karllang.karl.lib.Types;
+import studio.karllang.karl.lib.VariableManager;
 
 public class VariableAssignmentStatement extends Statement {
     private final Expression expression;

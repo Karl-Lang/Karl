@@ -2,7 +2,7 @@ package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.VariableManager;
+import studio.karllang.karl.lib.VariableManager;
 
 public class VariableCallExpression extends Expression {
     private final String name;

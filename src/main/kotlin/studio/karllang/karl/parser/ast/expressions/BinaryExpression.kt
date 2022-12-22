@@ -7,7 +7,7 @@ import studio.karllang.karl.parser.ast.values.FloatValue
 import studio.karllang.karl.parser.ast.values.IntValue
 import studio.karllang.karl.parser.ast.values.StringValue
 import studio.karllang.karl.parser.ast.values.Value
-import studio.karllang.karl.std.Types
+import studio.karllang.karl.lib.Types
 
 class BinaryExpression(
     private val left: Expression,

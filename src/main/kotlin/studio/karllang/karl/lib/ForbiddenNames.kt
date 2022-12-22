@@ -1,9 +1,8 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.lib
 
-import java.util.Arrays;
-
-public final class ForbiddenNames {
-    private static final String[] FORBIDDEN_VARIABLE_NAMES = {
+class ForbiddenNames {
+    companion object {
+        private val FORBIDDEN_VARIABLE_NAMES = arrayOf(
             "string",
             "int",
             "float",
@@ -63,15 +62,17 @@ public final class ForbiddenNames {
             "null",
             "void",
             "eval"
-    };
+        )
 
-    private static final String[] FORBIDDEN_FUNCTION_NAMES = {
+        private val FORBIDDEN_FUNCTION_NAMES = arrayOf(
             "show",
             "eval"
-    };
+        )
 
-    public static boolean isForbiddenName(String name) {
-        if (Arrays.asList(FORBIDDEN_VARIABLE_NAMES).contains(name)) return true;
-        return Arrays.asList(FORBIDDEN_FUNCTION_NAMES).contains(name);
+        @JvmStatic
+        fun isForbiddenName(name: String): Boolean {
+            if (FORBIDDEN_VARIABLE_NAMES.contains(name)) return true
+            return FORBIDDEN_FUNCTION_NAMES.contains(name)
+        }
     }
 }

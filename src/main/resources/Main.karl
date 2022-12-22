@@ -1,1 +1,5 @@
-final int: b = 3
+func main::(): void -> {
+    show("Hello, world!");
+}
+
+main();

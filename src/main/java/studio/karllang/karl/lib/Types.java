@@ -1,4 +1,4 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.lib;
 
 import studio.karllang.karl.lexer.TokenType;
 
@@ -57,15 +57,8 @@ public final class Types {
         return types.containsValue(type);
     }
 
-    public static TokenType getValueType(String name) {
-        return values_types.get(name);
-    }
-
     public static boolean isValueType(TokenType type) {
         return values_types.containsValue(type);
     }
 
-    public static boolean containsValue(TokenType type) {
-        return values_types.containsValue(type);
-    }
 }

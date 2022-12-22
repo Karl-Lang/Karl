@@ -1,4 +1,4 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.lib;
 
 import studio.karllang.karl.parser.ast.values.Value;
 
@@ -26,30 +26,12 @@ public final class VariableManager {
         }
     }
 
-    public static void removeVariable(String name) {
-        currentScope.getVariables().remove(name);
-    }
-
-    public static boolean containsVariable(String name) {
-        return currentScope.getVariables().containsKey(name);
-    }
-
-    public static void clearVariables() {
-        currentScope.getVariables().clear();
-    }
-
     public static void newScope() {
         Scope newScope = new Scope(currentScope);
         for (String key : currentScope.getVariables().keySet()) {
             newScope.getVariables().put(key, currentScope.getVariables().get(key));
         }
         currentScope = newScope;
-    }
-
-    public static void exitScope() {
-        if (currentScope.getParent() != null) {
-            currentScope = currentScope.getParent();
-        }
     }
 
     public static Scope getScope() {
@@ -71,10 +53,6 @@ public final class VariableManager {
 
         public Scope(Scope parent) {
             this.parent = parent;
-        }
-
-        public Scope getParent() {
-            return parent;
         }
 
         public HashMap<String, Value> getVariables() {

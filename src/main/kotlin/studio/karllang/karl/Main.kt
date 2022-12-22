@@ -9,8 +9,8 @@ import studio.karllang.karl.errors.runtime.RuntimeError
 import studio.karllang.karl.errors.syntax.SyntaxError
 import studio.karllang.karl.lexer.Lexer
 import studio.karllang.karl.parser.Parser
-import studio.karllang.karl.std.FunctionManager
-import studio.karllang.karl.std.VariableManager
+import studio.karllang.karl.lib.FunctionManager
+import studio.karllang.karl.lib.VariableManager
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.system.exitProcess

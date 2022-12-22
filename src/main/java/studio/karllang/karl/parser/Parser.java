@@ -7,7 +7,7 @@ import studio.karllang.karl.lexer.Token;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.expressions.*;
 import studio.karllang.karl.parser.ast.statements.*;
-import studio.karllang.karl.std.*;
+import studio.karllang.karl.lib.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -242,8 +242,7 @@ public final class Parser {
             };
         } else if (match(TokenType.IDENTIFIER)) {
             return new VariableCallExpression(get(-1).getValue(), get(0).getLine(), get(0).getPosition());
-        } else
-            throw new RuntimeError("Unknown expression : " + get(-1).getValue(), get(-1).getPosition(), get(-1).getLine(), get(-1).getValue());
+        } else throw new RuntimeError("Unknown expression : " + get(-1).getValue(), get(-1).getPosition(), get(-1).getLine(), get(-1).getValue());
     }
 
     private Statement ifElse() throws RuntimeError, SyntaxError {

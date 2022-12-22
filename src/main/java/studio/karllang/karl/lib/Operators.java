@@ -1,4 +1,4 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.lib;
 
 import studio.karllang.karl.lexer.TokenType;
 
@@ -13,10 +13,6 @@ public class Operators {
         operators.put("*", TokenType.MULTIPLY);
         operators.put("/", TokenType.DIVIDE);
         operators.put("%", TokenType.MODULO);
-    }
-
-    public static TokenType getOperator(String name) {
-        return operators.get(name);
     }
 
     public static boolean isOperator(TokenType type) {

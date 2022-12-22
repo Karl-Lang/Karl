@@ -4,9 +4,9 @@ import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.lexer.TokenType;
 import studio.karllang.karl.parser.ast.values.NullValue;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.Function;
-import studio.karllang.karl.std.FunctionManager;
-import studio.karllang.karl.std.Types;
+import studio.karllang.karl.lib.Function;
+import studio.karllang.karl.lib.FunctionManager;
+import studio.karllang.karl.lib.Types;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

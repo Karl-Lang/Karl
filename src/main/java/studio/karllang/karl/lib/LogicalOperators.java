@@ -1,4 +1,4 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.lib;
 
 import studio.karllang.karl.errors.runtime.RuntimeError;
 import studio.karllang.karl.lexer.TokenType;

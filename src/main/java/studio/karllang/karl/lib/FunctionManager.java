@@ -1,4 +1,4 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.lib;
 
 import java.util.HashMap;
 
@@ -17,15 +17,8 @@ public final class FunctionManager {
         return functions.containsKey(name);
     }
 
-    public static HashMap<String, Function> getFunctions() {
-        return functions;
-    }
-
     public static void clear() {
         functions.clear();
     }
 
-    public static void removeFunction(String name) {
-        functions.remove(name);
-    }
 }
