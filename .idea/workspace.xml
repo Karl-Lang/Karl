@@ -4,29 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Finish conversion to new Error Handler">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/ForbiddenNames.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/NewFunction.kt" afterDir="false" />
+    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue conversion to Kotlin by making some changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/ForbiddenNames.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/FunctionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/FunctionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/LogicalOperators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Operators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Types.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Types.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/VariableManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/file/FileError.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/errors/file/FileError.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/Function.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/Function.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +72,7 @@
       <recent name="studio.karllang.karl.lexer" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest">
+  <component name="RunManager" selected="Kotlin.MainKt">
     <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -156,7 +138,7 @@
       <workItem from="1671644953246" duration="545000" />
       <workItem from="1671715757019" duration="7000" />
       <workItem from="1671715921744" duration="2133000" />
-      <workItem from="1671719195853" duration="7945000" />
+      <workItem from="1671719195853" duration="11620000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -291,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671722752164</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Continue conversion to Kotlin by making some changes">
+      <created>1671728451147</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1671728451148</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +316,8 @@
     <MESSAGE value="Continue convertion to new Error Handler by making some changes" />
     <MESSAGE value="Continue conversion to new Error Handler by making some changes" />
     <MESSAGE value="Finish conversion to new Error Handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish conversion to new Error Handler" />
+    <MESSAGE value="Continue conversion to Kotlin by making some changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continue conversion to Kotlin by making some changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

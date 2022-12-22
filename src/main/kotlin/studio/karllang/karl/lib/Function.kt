@@ -19,20 +19,17 @@ class Function(
         body.eval()
 
         val result = body.result
-        if (result != null) {
-            if (type == TokenType.VOID) {
-                throw RuntimeError("Function $name is void, but return a value", pos, line, printString())
-            }
-            if (Types.checkValueType(type, result.type) || (type == TokenType.STRING && result.type == TokenType.NULL)) {
-                return result
-            } else {
-                throw RuntimeError("Incorrect return type for function $name: except ${type.name} but got type ${result.type.name}", pos, line, printString())
-            }
-        } else if (type != TokenType.VOID) {
-            throw RuntimeError("Missing return statement in function: $name", pos, line, printString())
-        }
+        return if (result != null) {
+            if (type == TokenType.VOID) throw RuntimeError("Function $name's return type is void, but return a ${Types.getTypeName(result.type)} value", pos, line, printString())
 
-        return null
+            if (Types.checkValueType(type, result.type) || (type == TokenType.STRING && result.type == TokenType.NULL)) {
+                result
+            } else throw RuntimeError(
+                "Incorrect return type for function $name: except ${type.name} but got type ${Types.getTypeName(result.type)}", pos, line, printString()
+            )
+        }
+        else if (type != TokenType.VOID) throw RuntimeError("Missing return statement in function: $name", pos, line, printString())
+        else null
     }
 
     fun getName(): String {

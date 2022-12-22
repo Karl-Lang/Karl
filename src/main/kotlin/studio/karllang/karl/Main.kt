@@ -33,10 +33,10 @@ class Main : Runnable {
         try {
             val file = Path.of(path)
             if (!Files.exists(file) || !Files.isRegularFile(file) || !Files.isReadable(file)) {
-                FileNotFoundError(path)
+                FileError("File not found: ${file.fileName}", path)
                 return
             } else if (!path.endsWith(".karl")) {
-                FileError(path)
+                FileError("The file " + file.fileName + " doesn't exist", path)
                 return
             }
 
