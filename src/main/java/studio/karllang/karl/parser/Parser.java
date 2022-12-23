@@ -48,7 +48,7 @@ public final class Parser {
             return variableAssignment();
         } else if (match(TokenType.IF)) {
             return ifElse();
-        } else if (checkType(0, TokenType.IDENTIFIER) && (checkType(1, TokenType.PLUSPLUS) || checkType(1, TokenType.MINUSMINUS))) {
+        } else if (checkType(0, TokenType.IDENTIFIER) && (checkType(1, TokenType.PLUSPLUS, TokenType.MINUSMINUS))) {
             return incrementDecrement();
         } else if (match(TokenType.FUNC)) {
             return funcDeclaration();
@@ -199,7 +199,7 @@ public final class Parser {
 
             return new FuncCallExpression(name, args, nameToken.getLine(), nameToken.getPosition());
         } else if (match(TokenType.EXCLAMATION)) {
-            if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL_VALUE && getType() != TokenType.LEFT_PARENTHESIS && getType() != TokenType.EXCLAMATION)
+            if (!checkType(0, TokenType.IDENTIFIER, TokenType.BOOL_VALUE, TokenType.LEFT_PARENTHESIS, TokenType.EXCLAMATION))
                 throw new RuntimeError("Unexpected token " + get(-1).getValue(), get(-1).getPosition(), get(-1).getLine(), "!" + get(-1).getValue());
 
             Expression expr;
@@ -275,8 +275,7 @@ public final class Parser {
         Expression expression = getExpression();
         skip(TokenType.SEMICOLON);
 
-        if (expression == null)
-            throw new RuntimeError("Expected expression after " + name.getValue(), get(0).getPosition(), name.getLine(), type + ": " + name.getValue() + " = " + get(0).getValue());
+        if (expression == null) throw new RuntimeError("Expected expression after " + name.getValue(), get(0).getPosition(), name.getLine(), type + ": " + name.getValue() + " = " + get(0).getValue());
 
         return new VariableDeclarationStatement(expression, name.getValue(), type, name.getLine(), name.getPosition(), isFinal);
     }
