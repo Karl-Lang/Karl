@@ -75,15 +75,13 @@ public final class Parser {
         String name = get(0).getValue();
         if (ForbiddenNames.isForbiddenName(name)) {
             throw new RuntimeError("Function name " + name + " is forbidden", get(-1).getPosition(), get(-1).getLine(), "func " + name);
-        }
-        skip(TokenType.IDENTIFIER);
-        if (FunctionManager.isFunction(name)) {
+        } else if (FunctionManager.isFunction(name)) {
             throw new RuntimeError("Function " + name + " already exists", get(-1).getPosition(), get(-1).getLine(), "func " + name);
         }
 
-        skip(TokenType.COLON, TokenType.COLON, TokenType.LEFT_PARENTHESIS);
+        skip(TokenType.IDENTIFIER, TokenType.COLON, TokenType.COLON, TokenType.LEFT_PARENTHESIS);
         LinkedHashMap<String, TokenType> args = new LinkedHashMap<>();
-        while (!match(TokenType.RIGHT_PARENTHESIS) && !checkType(0, TokenType.EOF)) {
+        while (!match(TokenType.RIGHT_PARENTHESIS) && !checkType(0, TokenType.EOF, TokenType.RIGHT_PARENTHESIS)) {
             if (match(TokenType.STRING, TokenType.INT, TokenType.BOOL, TokenType.FLOAT, TokenType.CHAR)) {
                 TokenType type = get(-1).getType();
                 skip(TokenType.COLON, TokenType.IDENTIFIER);
@@ -108,6 +106,7 @@ public final class Parser {
 
         return new FunctionDeclarationStatement(name, args, returnType, block);
     }
+
 
     private Statement incrementDecrement() throws SyntaxError {
         Token nameToken = get(0);
