@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue parser optimization">
+    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue to work on Parser">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/VariableManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/VariableManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +142,7 @@
       <workItem from="1671715921744" duration="2133000" />
       <workItem from="1671719195853" duration="17273000" />
       <workItem from="1671804532027" duration="840000" />
-      <workItem from="1671813972810" duration="6505000" />
+      <workItem from="1671813972810" duration="7368000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -325,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671820069183</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Continue to work on Parser">
+      <created>1671820601236</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1671820601236</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +372,8 @@
     <MESSAGE value="Continue conversion to Kotlin by making some changes" />
     <MESSAGE value="Making a lot of optimizations in parser" />
     <MESSAGE value="Continue parser optimization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Continue parser optimization" />
+    <MESSAGE value="Continue to work on Parser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continue to work on Parser" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
