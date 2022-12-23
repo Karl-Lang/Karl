@@ -31,6 +31,7 @@ public class FuncCallExpression extends Expression {
         }
 
         Function function = FunctionManager.getFunction(name);
+        assert function != null;
         LinkedHashMap<String, TokenType> parameters = function.getArgs();
         if (args.size() != parameters.size()) {
             throw new RuntimeError("Function " + name + " takes " + parameters.size() + " arguments, " + args.size() + " given", pos, line, printString());

@@ -59,7 +59,7 @@ class LogicalOperators {
 
         @JvmStatic
         private fun printString(first: Value, second: Value, operator: TokenType): String {
-            return first.toString() + " " + operator.value.lowercase(Locale.getDefault()) + " " + second.toString()
+            return first.toString() + " " + operator.value.lowercase() + " " + second.toString()
         }
     }
 }

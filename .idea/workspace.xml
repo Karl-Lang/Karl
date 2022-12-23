@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue conversion to Kotlin by making some changes">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/LogicalOperators.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/Lexer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/Function.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/Function.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/LogicalOperators.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/LogicalOperators.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/BinaryExpression.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +35,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2Ira5m2TIV5z6hvHvXjw48Q22Ke" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -140,7 +146,7 @@
       <workItem from="1671715921744" duration="2133000" />
       <workItem from="1671719195853" duration="17273000" />
       <workItem from="1671804532027" duration="840000" />
-      <workItem from="1671813972810" duration="718000" />
+      <workItem from="1671813972810" duration="5201000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -303,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671755948793</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Continue conversion to Kotlin by making some changes">
+      <created>1671815026623</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1671815026623</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

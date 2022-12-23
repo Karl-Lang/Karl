@@ -22,10 +22,7 @@ class BinaryExpression(
         val rightValue = right.eval()
 
         return when {
-            leftValue.type in listOf(
-                TokenType.INT_VALUE,
-                TokenType.FLOAT_VALUE
-            ) && rightValue.type in listOf(TokenType.INT_VALUE, TokenType.FLOAT_VALUE) -> when (operator) {
+            leftValue.type in listOf(TokenType.INT_VALUE, TokenType.FLOAT_VALUE) && rightValue.type in listOf(TokenType.INT_VALUE, TokenType.FLOAT_VALUE) -> when (operator) {
                 TokenType.PLUS -> getIntOrFloatValue(leftValue.toFloat() + rightValue.toFloat())
                 TokenType.MINUS -> getIntOrFloatValue(leftValue.toFloat() - rightValue.toFloat())
                 TokenType.MULTIPLY -> getIntOrFloatValue(leftValue.toFloat() * rightValue.toFloat())
@@ -44,13 +41,7 @@ class BinaryExpression(
                 } else throw RuntimeError("Bad operator: ${operator.value}", pos, line, toString())
             }
 
-            else -> throw RuntimeError(
-                "Unauthorized types for operation ${Types.getTypeName(leftValue.type)} and ${
-                    Types.getTypeName(
-                        rightValue.type
-                    )
-                }", pos, line, toString()
-            )
+            else -> throw RuntimeError("Unauthorized types for operation ${Types.getTypeName(leftValue.type)} and ${Types.getTypeName(rightValue.type)}", pos, line, toString())
         }
     }
 

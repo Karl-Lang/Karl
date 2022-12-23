@@ -81,15 +81,12 @@ public final class Parser {
             throw new RuntimeError("Function " + name + " already exists", get(-1).getPosition(), get(-1).getLine(), "func " + name);
         }
 
-        skip(TokenType.COLON);
-        skip(TokenType.COLON);
-        skip(TokenType.LEFT_PARENTHESIS);
+        skip(TokenType.COLON, TokenType.COLON, TokenType.LEFT_PARENTHESIS);
         LinkedHashMap<String, TokenType> args = new LinkedHashMap<>();
         while (!match(TokenType.RIGHT_PARENTHESIS) && !checkType(0, TokenType.EOF)) {
-            if (match(TokenType.STRING) || match(TokenType.INT) || match(TokenType.BOOL) || match(TokenType.FLOAT) || match(TokenType.CHAR)) {
+            if (match(TokenType.STRING, TokenType.INT, TokenType.BOOL, TokenType.FLOAT, TokenType.CHAR)) {
                 TokenType type = get(-1).getType();
-                skip(TokenType.COLON);
-                skip(TokenType.IDENTIFIER);
+                skip(TokenType.COLON, TokenType.IDENTIFIER);
                 String paramName = get(-1).getValue();
                 if (args.containsKey(paramName)) {
                     throw new RuntimeError("Parameter " + paramName + " already exists", get(-1).getPosition(), get(-1).getLine(), "func " + name + "::(" + type + ": " + paramName);
@@ -119,20 +116,17 @@ public final class Parser {
 
         Token operator = get(0);
         match(getType());
+        skip(TokenType.SEMICOLON);
         if (operator.getType() == TokenType.PLUSPLUS) {
-            skip(TokenType.SEMICOLON);
             return new IncrementDecrementStatement(name, TokenType.PLUS, nameToken.getLine(), nameToken.getPosition());
         } else {
-            skip(TokenType.SEMICOLON);
             return new IncrementDecrementStatement(name, TokenType.MINUS, nameToken.getLine(), nameToken.getPosition());
         }
     }
 
     private BlockStatement getBlock() throws RuntimeError, SyntaxError {
-        skip(TokenType.MINUS);
-        skip(TokenType.GREATER);
+        skip(TokenType.MINUS, TokenType.GREATER, TokenType.LEFT_BRACE);
         ArrayList<Statement> statements = new ArrayList<>();
-        skip(TokenType.LEFT_BRACE);
         while (!checkType(0, TokenType.RIGHT_BRACE) && !checkType(0, TokenType.EOF) && pos < size - 1) {
             if (match(TokenType.RETURN)) {
                 Expression expr = getExpression();
@@ -145,21 +139,19 @@ public final class Parser {
                 }
             }
         }
-        if (!match(TokenType.RIGHT_BRACE))
-            throw new RuntimeError("Missing }", get(-1).getPosition(), get(-1).getLine(), get(-1).getValue());
+        if (!match(TokenType.RIGHT_BRACE)) throw new RuntimeError("Missing }", get(-1).getPosition(), get(-1).getLine(), get(-1).getValue());
         return new BlockStatement(statements);
     }
 
     private Expression getExpression() throws RuntimeError, SyntaxError {
         Token token = get(0);
         Expression expression;
-        if ((getType() == TokenType.IDENTIFIER && checkType(1, TokenType.LEFT_PARENTHESIS)) || (getType() == TokenType.IDENTIFIER) || (Types.isValueType(getType())) || (getType() == TokenType.EXCLAMATION)) {
+        if ((checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.LEFT_PARENTHESIS)) || checkType(0, TokenType.IDENTIFIER) || Types.isValueType(getType()) || checkType(0, TokenType.EXCLAMATION)) {
             expression = getValue();
         } else if (match(TokenType.LEFT_PARENTHESIS)) {
             expression = getExpression();
             skip(TokenType.RIGHT_PARENTHESIS);
-        } else
-            throw new RuntimeError("Unknown expression : " + token.getValue(), token.getPosition(), token.getLine(), token.getValue());
+        } else throw new RuntimeError("Unknown expression : " + token.getValue(), token.getPosition(), token.getLine(), token.getValue());
 
         if (Operators.isOperator(getType())) {
             while (Operators.isOperator(getType())) {
@@ -217,7 +209,7 @@ public final class Parser {
             } else expr = getValue();
 
             return new UnaryExpression(TokenType.EXCLAMATION, expr, get(-1).getLine(), get(-1).getPosition());
-        } else if (match(TokenType.STR_VALUE) || match(TokenType.INT_VALUE) || match(TokenType.BOOL_VALUE) || match(TokenType.FLOAT_VALUE) || match(TokenType.CHAR_VALUE) || match(TokenType.NULL)) {
+        } else if (match(TokenType.STR_VALUE, TokenType.INT_VALUE, TokenType.BOOL_VALUE, TokenType.FLOAT_VALUE, TokenType.CHAR_VALUE, TokenType.NULL)) {
             Token token = get(-1);
             return switch (token.getType()) {
                 case STR_VALUE -> new ValueExpression(token.getValue(), token.getType());
@@ -263,13 +255,11 @@ public final class Parser {
 
     private Statement variableAssignment() throws RuntimeError, SyntaxError {
         String name = get(0).getValue();
-        match(TokenType.IDENTIFIER);
-        skip(TokenType.EQUAL);
+        match(TokenType.IDENTIFIER, TokenType.EQUAL);
 
         Expression expr = getExpression();
 
-        if (expr == null)
-            throw new RuntimeError("Unknown expression : " + get(0).getValue(), get(0).getPosition(), get(0).getLine(), get(0).getValue());
+        if (expr == null) throw new RuntimeError("Unknown expression : " + get(0).getValue(), get(0).getPosition(), get(0).getLine(), get(0).getValue());
         skip(TokenType.SEMICOLON);
 
         return new VariableAssignmentStatement(name, expr, get(0).getLine(), get(0).getPosition());
@@ -281,8 +271,7 @@ public final class Parser {
         skip(TokenType.COLON);
         Token name = get(0);
 
-        skip(TokenType.IDENTIFIER);
-        skip(TokenType.EQUAL);
+        skip(TokenType.IDENTIFIER, TokenType.EQUAL);
         Expression expression = getExpression();
         skip(TokenType.SEMICOLON);
 
@@ -308,14 +297,15 @@ public final class Parser {
         return new ShowStatement(expressions);
     }
 
-    private void skip(TokenType type) throws SyntaxError {
-        if (get(0).getType() != type) {
-            if (type == TokenType.SEMICOLON) {
-                throw new SyntaxError("Missing semicolon", get(-1).getPosition(), get(-1).getLine(), get(-1).getValue());
-            } else
-                throw new SyntaxError("Excepted " + Types.getTypeName(type) + " but got " + Types.getTypeName(get(0).getType()), get(0).getPosition(), get(0).getLine(), get(0).getValue());
+    private void skip(TokenType ...types) throws SyntaxError {
+        for (TokenType type : types) {
+            if (getType() != type) {
+                if (type == TokenType.SEMICOLON) {
+                    throw new SyntaxError("Missing semicolon", get(-1).getPosition(), get(-1).getLine(), get(-1).getValue());
+                } else throw new SyntaxError("Excepted " + Types.getTypeName(type) + " but got " + Types.getTypeName(get(0).getType()), get(0).getPosition(), get(0).getLine(), get(0).getValue());
+            }
+            pos++;
         }
-        pos++;
     }
 
     private Token get(int relativePosition) {
@@ -330,15 +320,21 @@ public final class Parser {
         return get(0).getType();
     }
 
-    private boolean checkType(int pos, TokenType type) {
-        return get(pos).getType() == type;
-    }
-
-    private boolean match(TokenType type) {
-        if (checkType(0, type)) {
-            pos++;
-            return true;
+    private boolean checkType(int pos, TokenType ...types) {
+        for (TokenType type : types) {
+            if (get(pos).getType() == type) return true;
         }
         return false;
+    }
+
+    private boolean match(TokenType ...types) {
+        boolean isMatched = false;
+        for (TokenType type : types) {
+            if (checkType(0, type)) {
+                pos++;
+                isMatched = true;
+            }
+        }
+        return isMatched;
     }
 }

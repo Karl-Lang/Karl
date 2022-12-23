@@ -24,9 +24,7 @@ class Function(
 
             if (Types.checkValueType(type, result.type) || (type == TokenType.STRING && result.type == TokenType.NULL)) {
                 result
-            } else throw RuntimeError(
-                "Incorrect return type for function $name: except ${type.name} but got type ${Types.getTypeName(result.type)}", pos, line, printString()
-            )
+            } else throw RuntimeError("Incorrect return type for function $name: except ${type.name} but got type ${Types.getTypeName(result.type)}", pos, line, printString())
         }
         else if (type != TokenType.VOID) throw RuntimeError("Missing return statement in function: $name", pos, line, printString())
         else null
