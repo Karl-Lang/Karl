@@ -1,5 +1,5 @@
 func main::(): void -> {
-    show("Hey");
+    show(5*(3*5));
 }
 
 main();

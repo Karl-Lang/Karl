@@ -39,10 +39,9 @@ public final class Parser {
     private Statement getStatement() throws RuntimeError, SyntaxError {
         if (match(TokenType.SHOW)) {
             return show();
-        }
-        if (match(TokenType.FINAL) && Types.contains(getType()) && getType() != TokenType.NULL) {
+        } else if (match(TokenType.FINAL) && Types.contains(getType()) && !checkType(0, TokenType.NULL)) {
             return variableDeclaration(true);
-        } else if (Types.contains(getType()) && getType() != TokenType.NULL) {
+        } else if (Types.contains(getType()) && !checkType(0, TokenType.NULL)) {
             return variableDeclaration(false);
         } else if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
             return variableAssignment();
@@ -152,6 +151,7 @@ public final class Parser {
             skip(TokenType.RIGHT_PARENTHESIS);
         } else throw new RuntimeError("Unknown expression : " + token.getValue(), token.getPosition(), token.getLine(), token.getValue());
 
+        // Binary operations
         if (Operators.isOperator(getType())) {
             while (Operators.isOperator(getType())) {
                 TokenType operator = getType();
