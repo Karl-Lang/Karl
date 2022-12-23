@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue conversion to Kotlin by making some changes">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/FunctionManager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/Operators.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lib/LogicalOperators.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/FunctionManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/lexer/Lexer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +138,9 @@
       <workItem from="1671644953246" duration="545000" />
       <workItem from="1671715757019" duration="7000" />
       <workItem from="1671715921744" duration="2133000" />
-      <workItem from="1671719195853" duration="15704000" />
+      <workItem from="1671719195853" duration="17273000" />
+      <workItem from="1671804532027" duration="840000" />
+      <workItem from="1671813972810" duration="718000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -294,7 +296,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671755168512</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Continue conversion to Kotlin by making some changes">
+      <created>1671755948793</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1671755948793</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

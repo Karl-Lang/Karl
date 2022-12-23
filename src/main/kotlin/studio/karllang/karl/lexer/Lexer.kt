@@ -201,8 +201,10 @@ class Lexer(private val input: String) {
             if (chars.indexOf(c) == -1) {
                 break
             }
+
             buffer.append(c)
             c = nextChar()
+            
             if (operators.containsKey(buffer.toString())) {
                 if (c.toString() == buffer.toString() && listOf('|', '&', '=', '+', '-', '/').contains(c)) {
                     addToken(operators[buffer.toString() + c]!!, buffer.toString() + c)
