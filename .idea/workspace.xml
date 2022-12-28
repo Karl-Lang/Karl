@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue migration to Kotlin by fully migrate libs files to Kotlin">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/values/BooleanValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/values/CharValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/values/FloatValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/values/IntValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/values/NullValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/values/StringValue.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/values/Value.kt" afterDir="false" />
+    <list default="true" id="4d72fe6a-84ab-4a34-9924-b33c89b6726d" name="Changes" comment="Continue migration to Kotlin by fully migrate values files to Kotlin">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/studio/karllang/karl/parser/ast/expressions/Expression.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/BooleanValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/CharValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/IntValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/NullValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/StringValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/Value.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/Expression.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +144,9 @@
       <workItem from="1671719195853" duration="17273000" />
       <workItem from="1671804532027" duration="840000" />
       <workItem from="1671813972810" duration="9005000" />
-      <workItem from="1671836278321" duration="1040000" />
+      <workItem from="1671836278321" duration="1990000" />
+      <workItem from="1672228752762" duration="1664000" />
+      <workItem from="1672247534842" duration="160000" />
     </task>
     <task id="LOCAL-00001" summary="Make optimizations, cleanup and base of error conversion to Kotlin">
       <created>1670956501257</created>
@@ -354,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671821423805</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Continue migration to Kotlin by fully migrate values files to Kotlin">
+      <created>1671837428354</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1671837428354</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +392,8 @@
     <MESSAGE value="Continue parser optimization" />
     <MESSAGE value="Continue to work on Parser" />
     <MESSAGE value="Continue migration to Kotlin by fully migrate libs files to Kotlin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Continue migration to Kotlin by fully migrate libs files to Kotlin" />
+    <MESSAGE value="Continue migration to Kotlin by fully migrate values files to Kotlin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continue migration to Kotlin by fully migrate values files to Kotlin" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

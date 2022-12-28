@@ -151,7 +151,6 @@ public final class Parser {
             skip(TokenType.RIGHT_PARENTHESIS);
         } else throw new RuntimeError("Unknown expression : " + token.getValue(), token.getPosition(), token.getLine(), token.getValue());
 
-        // Binary operations
         if (Operators.isOperator(getType())) {
             while (Operators.isOperator(getType())) {
                 TokenType operator = getType();
@@ -166,7 +165,6 @@ public final class Parser {
             }
         }
 
-        // Logical operations
         if (LogicalOperators.isOperator(getType())) {
             while (LogicalOperators.isOperator(getType())) {
                 TokenType operator = getType();
@@ -296,11 +294,12 @@ public final class Parser {
     }
 
     private void skip(TokenType ...types) throws SyntaxError {
+        TokenType expectedType = getType();
         for (TokenType type : types) {
-            if (getType() != type) {
+            if (expectedType != type) {
                 if (type == TokenType.SEMICOLON) {
                     throw new SyntaxError("Missing semicolon", get(-1).getPosition(), get(-1).getLine(), get(-1).getValue());
-                } else throw new SyntaxError("Excepted " + Types.getTypeName(type) + " but got " + Types.getTypeName(get(0).getType()), get(0).getPosition(), get(0).getLine(), get(0).getValue());
+                } else throw new SyntaxError("Excepted " + Types.getTypeName(type) + " but got " + Types.getTypeName(expectedType), get(0).getPosition(), get(0).getLine(), get(0).getValue());
             }
             pos++;
         }
