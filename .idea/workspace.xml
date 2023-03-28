@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.4.0-alpha.5">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Update version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/ConditionalExpression.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,23 +66,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "extract.method.default.visibility": "private",
-    "last_opened_file_path": "/home/aikoo/Bureau/Developpement/Projets/Karl",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/aikoo/Bureau/Developpement/Projets/Karl&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -101,7 +98,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.MainTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -312,21 +309,10 @@
       <workItem from="1670523063755" duration="6550000" />
       <workItem from="1670585451216" duration="24000" />
       <workItem from="1670585683845" duration="10000" />
-      <workItem from="1670609230693" duration="3698000" />
-    </task>
-    <task id="LOCAL-00043" summary="Bug fix #4">
-      <created>1666997375422</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1666997375422</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Infinite operator ! (`if(!!false)`)">
-      <created>1667060488252</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1667060488252</updated>
+      <workItem from="1670609230693" duration="5279000" />
+      <workItem from="1670618891983" duration="2540000" />
+      <workItem from="1670714520532" duration="647000" />
+      <workItem from="1670776141202" duration="15000" />
     </task>
     <task id="LOCAL-00045" summary="Add Else if">
       <created>1667067149927</created>
@@ -657,7 +643,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670611587598</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Update to publish release">
+      <created>1670614550177</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1670614550177</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Update version">
+      <created>1670614715647</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1670614715647</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -675,9 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix all known bugs with condition parsing" />
-    <MESSAGE value="Fix last bugs, add new features for ! keyword in conditions" />
-    <MESSAGE value="v4.0.0-alpha" />
     <MESSAGE value="v0.4.0-alpha - Edit README.md" />
     <MESSAGE value="Fix bug with multi-line comment &amp; optimize code" />
     <MESSAGE value="Patch 004" />
@@ -700,7 +697,10 @@
     <MESSAGE value="Patch a lot of bugs &amp; make optimizations" />
     <MESSAGE value="Make optimisations" />
     <MESSAGE value="v0.4.0-alpha.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.4.0-alpha.5" />
+    <MESSAGE value="v0.4.0-alpha.5-fix1" />
+    <MESSAGE value="Update to publish release" />
+    <MESSAGE value="Update version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update version" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

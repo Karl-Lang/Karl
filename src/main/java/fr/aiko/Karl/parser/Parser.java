@@ -256,6 +256,7 @@ public final class Parser {
         Expression condition = getExpression();
         skip(TokenType.RIGHT_PARENTHESIS);
         BlockStatement ifBlock = getBlock();
+
         if (match(TokenType.ELSE)) {
             if (match(TokenType.IF)) {
                 return new IfElseStatement(condition, ifBlock, ifElse());
