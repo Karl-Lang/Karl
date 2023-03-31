@@ -4,11 +4,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Update version">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream">
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/ShowStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/ShowStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/FileError/FileError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/FileError/FileError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/FileError/FileNotFoundError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/FileError/FileNotFoundError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/RuntimeError/DivisionByZeroError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/RuntimeError/DivisionByZeroError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/RuntimeError/NumberError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/RuntimeError/NumberError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/RuntimeError/RuntimeError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/RuntimeError/RuntimeError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/RuntimeError/TypeError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/RuntimeError/TypeError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/SyntaxError/SemiColonError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/SyntaxError/SemiColonError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/SyntaxError/SyntaxError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/errors/SyntaxError/SyntaxError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/BinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/expressions/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/UnaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/expressions/UnaryExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/ValueExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/expressions/ValueExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FuncCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/FuncCallStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/FunctionDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/IfElseStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/IfElseStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/ReturnStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/ReturnStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/ShowStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/ShowStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/Statement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/values/BooleanValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/values/BooleanValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/values/CharValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/values/CharValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/values/FloatValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/values/FloatValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/values/IntValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/values/IntValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/values/NullValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/values/NullValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/values/StringValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/values/StringValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/values/Value.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/parser/ast/values/Value.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Colors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/Colors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/ForbiddenNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/ForbiddenNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/FunctionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/FunctionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/LogicalOperators.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/Operators.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Types.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/Types.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/VariableManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fr/aiko/Karl/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/me/aikoo/Karl/MainTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +147,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest">
+  <component name="RunManager" selected="Gradle.MainTest (1)">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -128,6 +174,53 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="me.aikoo.Karl.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.aikoo.Karl.Main" />
+      <module name="Karl.main" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/main/resources/Main.karl --exec false" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.aikoo.Karl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;me.aikoo.Karl.MainTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -142,52 +235,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;fr.aiko.Karl.MainTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainTest.testElse" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;fr.aiko.Karl.MainTest.testElse&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainTest.testFunctions" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;fr.aiko.Karl.MainTest.testFunctions&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -221,19 +268,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.me.aikoo.Karl.Main" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.MainTest.testFunctions" />
+      <item itemvalue="Gradle.MainTest (1)" />
       <item itemvalue="Gradle.MainTest.testIf" />
-      <item itemvalue="Gradle.MainTest.testElse" />
       <item itemvalue="Gradle.MainTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MainTest (1)" />
         <item itemvalue="Gradle.MainTest" />
+        <item itemvalue="Application.me.aikoo.Karl.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.MainTest.testIf" />
-        <item itemvalue="Gradle.MainTest.testFunctions" />
-        <item itemvalue="Gradle.MainTest.testElse" />
       </list>
     </recent_temporary>
   </component>
@@ -328,14 +375,7 @@
       <workItem from="1670776141202" duration="15000" />
       <workItem from="1680015761889" duration="5776000" />
       <workItem from="1680079031110" duration="360000" />
-      <workItem from="1680274824556" duration="2684000" />
-    </task>
-    <task id="LOCAL-00045" summary="Add Else if">
-      <created>1667067149927</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1667067149927</updated>
+      <workItem from="1680274824556" duration="7375000" />
     </task>
     <task id="LOCAL-00046" summary="v0.2.0">
       <created>1667073751950</created>
@@ -673,7 +713,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670614715647</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream">
+      <created>1680279184640</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1680279184641</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,7 +738,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.4.0-alpha - Edit README.md" />
     <MESSAGE value="Fix bug with multi-line comment &amp; optimize code" />
     <MESSAGE value="Patch 004" />
     <MESSAGE value="Patch 005 &amp; 010" />
@@ -716,7 +762,8 @@
     <MESSAGE value="v0.4.0-alpha.5-fix1" />
     <MESSAGE value="Update to publish release" />
     <MESSAGE value="Update version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update version" />
+    <MESSAGE value="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
