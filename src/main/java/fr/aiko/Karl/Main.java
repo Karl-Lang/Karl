@@ -21,6 +21,9 @@ public class Main implements Runnable {
     @CommandLine.Parameters(index = "0", description = "The file to run")
     private String path;
 
+    @CommandLine.Option(names = {"-e", "--exec", "--execution"}, description = "Execution time")
+    private String isEnabled;
+
     public static void main(String[] args) {
         new CommandLine(new Main()).execute(args);
     }
@@ -46,7 +49,10 @@ public class Main implements Runnable {
             Long end = System.currentTimeMillis();
             VariableManager.clear();
             FunctionManager.clear();
-            System.out.println("Execution time: " + (end - start) + "ms");
+
+            if (Boolean.parseBoolean(isEnabled)) {
+                System.out.println("Execution time: " + (end - start) + "ms");
+            }
         } catch (IOException e) {
             new FileError(path);
         }

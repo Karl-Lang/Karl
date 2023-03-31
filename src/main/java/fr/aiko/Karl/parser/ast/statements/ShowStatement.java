@@ -15,7 +15,8 @@ public class ShowStatement extends Statement {
     public void eval() {
         StringBuilder str = new StringBuilder();
         for (Expression e : expr) {
-            str.append(e.eval().toString());
+            String string = e.eval().toString();
+            str.append(string);
         }
         System.out.println(str);
     }
