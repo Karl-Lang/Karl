@@ -1,31 +1,65 @@
 package me.aikoo.Karl.std;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.Optional;
 
 public final class FunctionManager {
-    private static final HashMap<String, Function> functions = new HashMap<>();
+    private static File currentFile;
+    private final static ArrayList<File> files = new ArrayList<>();
 
-    public static void addFunction(Function function) {
-        functions.put(function.getName(), function);
+    public static void addFile(String name) {
+        currentFile = new File(name);
+        files.add(currentFile);
     }
 
-    public static Function getFunction(String name) {
-        return functions.get(name);
+    public static File getCurrentFile() {
+        return currentFile;
     }
 
-    public static boolean isFunction(String name) {
-        return functions.containsKey(name);
-    }
-
-    public static HashMap<String, Function> getFunctions() {
-        return functions;
+    public static Optional<File> getFile(String name) {
+        return files.stream().filter(file -> Objects.equals(file.name, name)).findFirst(); // orElse error
     }
 
     public static void clear() {
-        functions.clear();
+        files.clear();
     }
 
-    public static void removeFunction(String name) {
-        functions.remove(name);
+    public static class File {
+        private final HashMap<String, Function> functions = new HashMap<>();
+        private final String name;
+
+        public File(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void addFunction(Function function) {
+            functions.put(function.getName(), function);
+        }
+
+        public Function getFunction(String name) {
+            return functions.get(name);
+        }
+
+        public boolean isFunction(String name) {
+            return functions.containsKey(name);
+        }
+
+        public HashMap<String, Function> getFunctions() {
+            return functions;
+        }
+
+        public void clear() {
+            functions.clear();
+        }
+
+        public void removeFunction(String name) {
+            functions.remove(name);
+        }
     }
 }

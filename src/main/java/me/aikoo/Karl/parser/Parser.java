@@ -77,7 +77,7 @@ public final class Parser {
             new RuntimeError("Function name " + name + " is forbidden", fileName, get(-1).getLine(), get(-1).getPosition());
         }
         skip(TokenType.IDENTIFIER);
-        if (FunctionManager.isFunction(name)) {
+        if (FunctionManager.getCurrentFile().isFunction(name)) {
             new RuntimeError("Function " + name + " already exists", fileName, get(-1).getLine(), get(-1).getPosition());
         }
 
@@ -107,7 +107,7 @@ public final class Parser {
         TokenType returnType = getType();
         match(returnType);
         BlockStatement block = getBlock();
-        FunctionManager.addFunction(new Function(name, args, returnType, block));
+        FunctionManager.getCurrentFile().addFunction(new Function(name, args, returnType, block));
 
         return new FunctionDeclarationStatement(name, args, returnType, block);
     }

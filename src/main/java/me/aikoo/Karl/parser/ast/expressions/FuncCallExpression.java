@@ -28,11 +28,11 @@ public class FuncCallExpression extends Expression {
 
     @Override
     public Value eval() {
-        if (!FunctionManager.isFunction(name)) {
+        if (!FunctionManager.getCurrentFile().isFunction(name)) {
             new RuntimeError("Unknown function: " + name, fileName, line, pos);
         }
 
-        Function function = FunctionManager.getFunction(name);
+        Function function = FunctionManager.getCurrentFile().getFunction(name);
         LinkedHashMap<String, TokenType> parameters = function.getArgs();
         if (args.size() != parameters.size()) {
             new RuntimeError("Function " + name + " takes " + parameters.size() + " arguments, " + args.size() + " given", fileName, line, pos);

@@ -24,6 +24,10 @@ public final class VariableManager {
         return files.stream().filter(file -> Objects.equals(file.name, name)).findFirst(); // orElse error
     }
 
+    public static void clear() {
+        files.clear();
+    }
+
     public static class File {
         private Scope currentScope = new Scope(null);
         private final String name;

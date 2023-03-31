@@ -44,11 +44,12 @@ public class Main implements Runnable {
             ArrayList<Token> tokens = lexer.tokens;
             Parser parser = new Parser(tokens, path);
             VariableManager.addFile(fileName);
+            FunctionManager.addFile(fileName);
             ArrayList<Statement> statements = parser.parse();
             Long start = System.currentTimeMillis();
             statements.forEach(Statement::eval);
             Long end = System.currentTimeMillis();
-            VariableManager.getCurrentFile().clear();
+            VariableManager.clear();
             FunctionManager.clear();
 
             if (Boolean.parseBoolean(isEnabled)) {
