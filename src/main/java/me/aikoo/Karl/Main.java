@@ -40,20 +40,22 @@ public class Main implements Runnable {
         }
 
         try {
-            Lexer lexer = new Lexer(Files.readString(Path.of(path)), path);
-            ArrayList<Token> tokens = lexer.tokens;
-            Parser parser = new Parser(tokens, path);
             VariableManager.addFile(fileName);
             FunctionManager.addFile(fileName);
-            ArrayList<Statement> statements = parser.parse();
+
+            ArrayList<Token> tokens = new Lexer(Files.readString(Path.of(path)), path).tokens;
+            ArrayList<Statement> statements = new Parser(tokens, path).parse();
+
             Long start = System.currentTimeMillis();
             statements.forEach(Statement::eval);
             Long end = System.currentTimeMillis();
+
             VariableManager.clear();
             FunctionManager.clear();
 
             if (Boolean.parseBoolean(isEnabled)) {
-                System.out.println("Execution time: " + (end - start) + "ms");
+                long elapsedTime = end - start;
+                System.out.println("Execution time: " + elapsedTime + "ms");
             }
         } catch (IOException e) {
             new FileError(path);

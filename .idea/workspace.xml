@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Add File dimension in variable manager to prepare multi-files implementation">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Add File dimension in function manager to prepare multi-files implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/FunctionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/FunctionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/std/VariableManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,32 +100,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.MainTest (1)">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="fr.aiko.Karl.Main" />
-      <module name="Karl.main" />
-      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/main/resources/Main.karl --exec false" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="fr.aiko.Karl.parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="me.aikoo.Karl.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="me.aikoo.Karl.Main" />
       <module name="Karl.main" />
@@ -172,69 +144,29 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;fr.aiko.Karl.MainTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainTest.testIf" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;fr.aiko.Karl.MainTest.testIf&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.intellij.execution.ExternalSystemRunConfigurationJavaExtension">
+        <extension name="net.ashald.envfile">
+          <option name="IS_ENABLED" value="false" />
+          <option name="IS_SUBST" value="false" />
+          <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+          <option name="IS_IGNORE_MISSING_FILES" value="false" />
+          <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+          <ENTRIES>
+            <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          </ENTRIES>
+        </extension>
+      </EXTENSION>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.me.aikoo.Karl.Main" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="Gradle.MainTest (1)" />
-      <item itemvalue="Gradle.MainTest.testIf" />
-      <item itemvalue="Gradle.MainTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.MainTest (1)" />
-        <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Application.me.aikoo.Karl.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.MainTest.testIf" />
       </list>
     </recent_temporary>
   </component>
@@ -329,14 +261,7 @@
       <workItem from="1670776141202" duration="15000" />
       <workItem from="1680015761889" duration="5776000" />
       <workItem from="1680079031110" duration="360000" />
-      <workItem from="1680274824556" duration="8499000" />
-    </task>
-    <task id="LOCAL-00047" summary="v0.2.0">
-      <created>1667075312632</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1667075312632</updated>
+      <workItem from="1680274824556" duration="9063000" />
     </task>
     <task id="LOCAL-00048" summary="v0.2.2">
       <created>1667229740434</created>
@@ -674,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680287498425</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Add File dimension in function manager to prepare multi-files implementation">
+      <created>1680288357859</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1680288357859</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,7 +624,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Patch 004" />
     <MESSAGE value="Patch 005 &amp; 010" />
     <MESSAGE value="Patch 007" />
     <MESSAGE value="Patch 009" />
@@ -717,7 +648,8 @@
     <MESSAGE value="Update version" />
     <MESSAGE value="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream" />
     <MESSAGE value="Add File dimension in variable manager to prepare multi-files implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add File dimension in variable manager to prepare multi-files implementation" />
+    <MESSAGE value="Add File dimension in function manager to prepare multi-files implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add File dimension in function manager to prepare multi-files implementation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
