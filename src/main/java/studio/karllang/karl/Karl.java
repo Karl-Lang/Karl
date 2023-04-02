@@ -1,7 +1,6 @@
 package studio.karllang.karl;
 
-import picocli.CommandLine;
-import picocli.CommandLine.Command;
+import studio.karllang.cli.Option;
 import studio.karllang.karl.errors.FileError.FileError;
 import studio.karllang.karl.errors.FileError.FileNotFoundError;
 import studio.karllang.karl.parser.Lexer;
@@ -16,20 +15,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-@Command(name = "karl", mixinStandardHelpOptions = true, version = "karl 0.4.0-alpha.5", description = "Karl programming language")
-public class Main implements Runnable {
-    @CommandLine.Parameters(index = "0", description = "The file to run")
-    private String path;
+public class Karl {
 
-    @CommandLine.Option(names = {"-e", "--exec", "--execution"}, description = "Execution time")
-    private String isEnabled;
-
-    public static void main(String[] args) {
-        new CommandLine(new Main()).execute(args);
-    }
-
-    @Override
-    public void run() {
+    public void run(String path, ArrayList<Option> options) {
+        String isEnabled = "false";
         if (!Files.exists(Path.of(path))) {
             new FileNotFoundError(path);
         }
