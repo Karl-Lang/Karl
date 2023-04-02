@@ -13,16 +13,15 @@ public class RunCommand extends Command {
         super("run", "Execute a Karl file");
 
         this.getAllowedOptions().add(Options.PATH);
+        this.getAllowedOptions().add(Options.EXEC_TIME);
     }
 
     @Override
     public void run(ArrayList<Option> options) throws Exception {
         Optional<Option> path = options.stream().filter(opt -> opt.getType() == Options.PATH).findFirst();
 
-        System.out.println("UwU " + path.isPresent());
         if (path.isPresent()) {
             options.remove(path.get());
-            System.out.println("Running Karl...");
 
             new Karl().run(path.get().getValue(), options);
         } else throw new Exception("No any path");

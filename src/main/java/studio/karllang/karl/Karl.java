@@ -1,6 +1,7 @@
 package studio.karllang.karl;
 
 import studio.karllang.cli.Option;
+import studio.karllang.cli.Options;
 import studio.karllang.karl.errors.FileError.FileError;
 import studio.karllang.karl.errors.FileError.FileNotFoundError;
 import studio.karllang.karl.parser.Lexer;
@@ -14,26 +15,28 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Karl {
 
-    public void run(String path, ArrayList<Option> options) {
-        String isEnabled = "false";
-        if (!Files.exists(Path.of(path))) {
-            new FileNotFoundError(path);
+    public void run(String pathStr, ArrayList<Option> options) {
+        Optional<Option> isEnabled = options.stream().filter(opt -> opt.getType() == Options.EXEC_TIME).findFirst();
+        final Path path = Path.of(pathStr);
+        if (!Files.exists(path)) {
+            new FileNotFoundError(pathStr);
         }
-        String fileName = path.substring(path.lastIndexOf("/") + 1);
+        String fileName = pathStr.substring(pathStr.lastIndexOf("/") + 1);
 
         if (!fileName.endsWith(".karl")) {
-            new FileError(path);
+            new FileError(pathStr);
         }
 
         try {
             VariableManager.addFile(fileName);
             FunctionManager.addFile(fileName);
 
-            ArrayList<Token> tokens = new Lexer(Files.readString(Path.of(path)), path).tokens;
-            ArrayList<Statement> statements = new Parser(tokens, path).parse();
+            ArrayList<Token> tokens = new Lexer(Files.readString(path), pathStr).tokens;
+            ArrayList<Statement> statements = new Parser(tokens, pathStr).parse();
 
             Long start = System.currentTimeMillis();
             statements.forEach(Statement::eval);
@@ -42,12 +45,12 @@ public class Karl {
             VariableManager.clear();
             FunctionManager.clear();
 
-            if (Boolean.parseBoolean(isEnabled)) {
+            if (isEnabled.isPresent() && Boolean.parseBoolean(isEnabled.get().getValue())) {
                 long elapsedTime = end - start;
                 System.out.println("Execution time: " + elapsedTime + "ms");
             }
         } catch (IOException e) {
-            new FileError(path);
+            new FileError(pathStr);
         }
 
         /*try {

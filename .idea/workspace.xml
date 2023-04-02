@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="edit: Remove PicoCLI">
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/Constants.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Add base text for CLI when no command is given">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/CommandManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Options.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Options.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/RunCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/RunCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/VersionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +102,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.No command">
+  <component name="RunManager" selected="Application.Run">
     <configuration name="No command" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
@@ -131,7 +129,7 @@
     <configuration name="Run" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
-      <option name="PROGRAM_PARAMETERS" value="run --path &quot;$PROJECT_DIR$/src/main/resources/Main.karl&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="run --path &quot;$PROJECT_DIR$/src/main/resources/Main.karl&quot; --exec-time true" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="studio.karllang.cli.*" />
@@ -380,14 +378,7 @@
       <workItem from="1680274824556" duration="14163000" />
       <workItem from="1680347395033" duration="8248000" />
       <workItem from="1680381453358" duration="2316000" />
-      <workItem from="1680442125747" duration="10885000" />
-    </task>
-    <task id="LOCAL-00055" summary="Fix bugs and add new error messages design">
-      <created>1668358502524</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1668358502524</updated>
+      <workItem from="1680442125747" duration="12180000" />
     </task>
     <task id="LOCAL-00056" summary="Fix bugs and add negative numbers support">
       <created>1668360720421</created>
@@ -725,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680455068535</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="feat: Add base text for CLI when no command is given">
+      <created>1680458932613</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1680458932613</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -743,7 +741,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Patch 016 &amp; 017" />
     <MESSAGE value="Patch 018, 019 &amp; 020" />
     <MESSAGE value="Patch 021" />
     <MESSAGE value="Fix bug in lexer" />
@@ -768,7 +765,8 @@
     <MESSAGE value="feat: Change packages names" />
     <MESSAGE value="feat: Finish base of run CLI command" />
     <MESSAGE value="edit: Remove PicoCLI" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit: Remove PicoCLI" />
+    <MESSAGE value="feat: Add base text for CLI when no command is given" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Add base text for CLI when no command is given" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -2,7 +2,6 @@ package studio.karllang.cli;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class Main {
     private static final ArrayList<Option> options = new ArrayList<>();
