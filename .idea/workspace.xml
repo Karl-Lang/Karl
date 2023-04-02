@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="Edit project dir tree">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/CommandManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Option.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Options.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/commands/RunCommand.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Create base of command line tool">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/commands/RunCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/commands/RunCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,14 +292,7 @@
       <workItem from="1680274824556" duration="14163000" />
       <workItem from="1680347395033" duration="8248000" />
       <workItem from="1680381453358" duration="2316000" />
-      <workItem from="1680442125747" duration="1023000" />
-    </task>
-    <task id="LOCAL-00050" summary="Add VariableAssignmentStatement.java">
-      <created>1667646863845</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1667646863846</updated>
+      <workItem from="1680442125747" duration="1835000" />
     </task>
     <task id="LOCAL-00051" summary="Switch increment and decrement to VariableAssignmentStatement">
       <created>1667647333508</created>
@@ -640,7 +630,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680295166654</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="feat: Create base of command line tool">
+      <created>1680443247953</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1680443247954</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,7 +655,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Patch 009" />
     <MESSAGE value="Patch 013" />
     <MESSAGE value="Patch 008" />
     <MESSAGE value="Patch 014 &amp; v0.4.0-alpha.3" />
@@ -683,7 +679,8 @@
     <MESSAGE value="Add File dimension in function manager to prepare multi-files implementation" />
     <MESSAGE value="Cleanup Main" />
     <MESSAGE value="Edit project dir tree" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit project dir tree" />
+    <MESSAGE value="feat: Create base of command line tool" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Create base of command line tool" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

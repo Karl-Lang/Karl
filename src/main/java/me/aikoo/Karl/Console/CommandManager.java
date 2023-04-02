@@ -18,7 +18,7 @@ public class CommandManager {
 
         for (Class<? extends Command> c : classes) {
             try {
-                Command command = c.getConstructor(ArrayList.class).newInstance(new ArrayList<>());
+                Command command = c.getConstructor().newInstance();
                 commands.put(command.getName(), command);
             } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
                 throw new RuntimeException(e);

@@ -6,20 +6,14 @@ import me.aikoo.Karl.Console.Options;
 import java.util.ArrayList;
 
 public abstract class Command {
-    final ArrayList<Option> options;
     final ArrayList<Options> allowedOptions = new ArrayList<>();
     final String name;
 
-    public Command(String name, ArrayList<Option> options) {
+    public Command(String name) {
         this.name = name;
-        this.options = options;
     }
 
-    public abstract void run();
-
-    public ArrayList<Option> getOptions() {
-        return options;
-    }
+    public abstract void run(ArrayList<Option> options);
 
     public String getName() {
         return name;

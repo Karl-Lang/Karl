@@ -7,14 +7,14 @@ import me.aikoo.Karl.Console.Options;
 import java.util.ArrayList;
 
 public class RunCommand extends Command {
-    public RunCommand(ArrayList<Option> options) {
-        super("run", options);
+    public RunCommand() {
+        super("run");
 
         this.getAllowedOptions().add(Options.PATH);
     }
 
     @Override
-    public void run() {
+    public void run(ArrayList<Option> options) {
         System.out.println("Heyyyyy");
     }
 }

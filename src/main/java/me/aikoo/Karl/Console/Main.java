@@ -21,6 +21,8 @@ public class Main {
                 throw new Exception("Unexpected option for " + cmd.getName() + " command: " + opt.getType().name().toLowerCase());
             }
         }
+
+        cmd.run(options);
     }
 
     private static void lex(String[] arguments) throws Exception {
