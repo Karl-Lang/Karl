@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Finish base of run CLI command">
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/VersionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/RunCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/RunCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/studio/karllang/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/studio/karllang/KarlTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,31 +98,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.studio.karllang.cli.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="me.aikoo.Karl.Interpreter.Main" />
-      <module name="Karl.main" />
-      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/main/resources/Main.karl --exec false" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="me.aikoo.Karl.Interpreter.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.KarlTest">
     <configuration name="me.aikoo.Karl.Console.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="me.aikoo.Karl.Console.Main" />
       <module name="Karl.main" />
@@ -175,6 +146,29 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="KarlTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;studio.karllang.KarlTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="MainTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -236,13 +230,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.studio.karllang.cli.Main" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.me.aikoo.Karl.Console.Main" />
+      <item itemvalue="Gradle.KarlTest" />
       <item itemvalue="Gradle.MainTest" />
       <item itemvalue="Gradle.MainTest (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.KarlTest" />
         <item itemvalue="Application.studio.karllang.cli.Main" />
         <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Gradle.MainTest (1)" />
@@ -344,14 +339,7 @@
       <workItem from="1680274824556" duration="14163000" />
       <workItem from="1680347395033" duration="8248000" />
       <workItem from="1680381453358" duration="2316000" />
-      <workItem from="1680442125747" duration="7439000" />
-    </task>
-    <task id="LOCAL-00053" summary="Support for char, base of conditions">
-      <created>1668271164134</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1668271164135</updated>
+      <workItem from="1680442125747" duration="7522000" />
     </task>
     <task id="LOCAL-00054" summary="Fix bugs in variable assignment, add base of if statement">
       <created>1668344183582</created>
@@ -689,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680446936795</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="feat: Finish base of run CLI command">
+      <created>1680454929970</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1680454929970</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

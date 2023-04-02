@@ -27,7 +27,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 
-    implementation 'info.picocli:picocli:4.6.3'
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.7'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.6'
@@ -35,7 +34,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'fr.aiko.Karl.Main'
+        attributes 'Main-Class': 'studio.karllang.cli.Main'
     }
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
