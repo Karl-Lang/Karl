@@ -35,4 +35,8 @@ public class CommandManager {
     public Command getCommand(String name) {
         return commands.get(name);
     }
+
+    public HashMap<String, Command> getCommands() {
+        return this.commands;
+    }
 }

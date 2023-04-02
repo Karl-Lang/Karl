@@ -2,6 +2,7 @@ package studio.karllang.cli;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Main {
     private static final ArrayList<Option> options = new ArrayList<>();
@@ -10,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         if (args.length == 0) {
-            System.out.println("Hello World!");
+            printBaseText();
             return;
         }
 
@@ -28,6 +29,24 @@ public class Main {
         }
 
         cmd.run(options);
+    }
+
+    private static void printBaseText() {
+        System.out.println("KARL - PROGRAMMING LANGUAGE");
+        System.out.println("Syntax: karl {command} [-options]");
+        System.out.println("Commands:");
+
+        manager.getCommands().forEach((name, command) -> {
+            StringBuilder optionString = new StringBuilder().append("[");
+
+            for (Options opt : command.getAllowedOptions()) {
+                optionString.append(Arrays.toString(opt.name));
+            }
+
+            optionString.append("]");
+
+            System.out.println("    " + name + " " + optionString + " - " + command.getDescription());
+        });
     }
 
     private static void lex(String[] arguments) throws Exception {

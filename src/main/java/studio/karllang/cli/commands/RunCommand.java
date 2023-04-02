@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class RunCommand extends Command {
     public RunCommand() {
-        super("run");
+        super("run", "Execute a Karl file");
 
         this.getAllowedOptions().add(Options.PATH);
     }

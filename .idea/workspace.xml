@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Finish base of run CLI command">
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="edit: Remove PicoCLI">
+      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/RunCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/RunCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/VersionCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,14 +104,13 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.KarlTest">
-    <configuration name="me.aikoo.Karl.Console.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="me.aikoo.Karl.Console.Main" />
+  <component name="RunManager" selected="Application.No command">
+    <configuration name="No command" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
-      <option name="PROGRAM_PARAMETERS" value="run --path &quot;$PROJECT_DIR$/../../../../../../..//&quot;" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="me.aikoo.Karl.Console.*" />
+          <option name="PATTERN" value="studio.karllang.cli.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -123,10 +128,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="studio.karllang.cli.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Run" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
       <option name="PROGRAM_PARAMETERS" value="run --path &quot;$PROJECT_DIR$/src/main/resources/Main.karl&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="studio.karllang.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Version" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
+      <module name="Karl.main" />
+      <option name="PROGRAM_PARAMETERS" value="version" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="studio.karllang.cli.*" />
@@ -167,6 +196,18 @@
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.intellij.execution.ExternalSystemRunConfigurationJavaExtension">
+        <extension name="net.ashald.envfile">
+          <option name="IS_ENABLED" value="false" />
+          <option name="IS_SUBST" value="false" />
+          <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+          <option name="IS_IGNORE_MISSING_FILES" value="false" />
+          <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+          <ENTRIES>
+            <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          </ENTRIES>
+        </extension>
+      </EXTENSION>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
@@ -229,8 +270,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.studio.karllang.cli.Main" />
-      <item itemvalue="Application.me.aikoo.Karl.Console.Main" />
+      <item itemvalue="Application.Version" />
+      <item itemvalue="Application.No command" />
+      <item itemvalue="Application.Run" />
       <item itemvalue="Gradle.KarlTest" />
       <item itemvalue="Gradle.MainTest" />
       <item itemvalue="Gradle.MainTest (1)" />
@@ -238,10 +280,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.KarlTest" />
-        <item itemvalue="Application.studio.karllang.cli.Main" />
+        <item itemvalue="Application.Run" />
         <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Gradle.MainTest (1)" />
-        <item itemvalue="Application.me.aikoo.Karl.Console.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -339,14 +380,7 @@
       <workItem from="1680274824556" duration="14163000" />
       <workItem from="1680347395033" duration="8248000" />
       <workItem from="1680381453358" duration="2316000" />
-      <workItem from="1680442125747" duration="7522000" />
-    </task>
-    <task id="LOCAL-00054" summary="Fix bugs in variable assignment, add base of if statement">
-      <created>1668344183582</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1668344183585</updated>
+      <workItem from="1680442125747" duration="10885000" />
     </task>
     <task id="LOCAL-00055" summary="Fix bugs and add new error messages design">
       <created>1668358502524</created>
@@ -684,7 +718,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680454929970</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="edit: Remove PicoCLI">
+      <created>1680455068535</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1680455068535</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +743,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Patch 015" />
     <MESSAGE value="Patch 016 &amp; 017" />
     <MESSAGE value="Patch 018, 019 &amp; 020" />
     <MESSAGE value="Patch 021" />
@@ -727,7 +767,8 @@
     <MESSAGE value="[CLI] Making some changes to run command" />
     <MESSAGE value="feat: Change packages names" />
     <MESSAGE value="feat: Finish base of run CLI command" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Finish base of run CLI command" />
+    <MESSAGE value="edit: Remove PicoCLI" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit: Remove PicoCLI" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
