@@ -20,6 +20,7 @@ import java.util.Optional;
 public class Karl {
 
     public void run(String pathStr, ArrayList<Option> options) {
+        if (options == null) options = new ArrayList<>();
         Optional<Option> isEnabled = options.stream().filter(opt -> opt.getType() == Options.EXEC_TIME).findFirst();
         final Path path = Path.of(pathStr);
         if (!Files.exists(path)) {
