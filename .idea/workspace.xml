@@ -4,12 +4,64 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Create base of command line tool">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="[CLI] Making some changes to run command">
+      <change afterPath="$PROJECT_DIR$/src/test/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/CommandManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/commands/RunCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/commands/RunCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Option.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/Options.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Options.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Console/commands/RunCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/RunCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/FileError/FileError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/FileError/FileError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/FileError/FileNotFoundError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/FileError/FileNotFoundError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/RuntimeError/DivisionByZeroError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/RuntimeError/DivisionByZeroError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/RuntimeError/NumberError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/RuntimeError/NumberError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/RuntimeError/RuntimeError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/RuntimeError/RuntimeError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/RuntimeError/TypeError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/RuntimeError/TypeError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/SyntaxError/SemiColonError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/SyntaxError/SemiColonError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/errors/SyntaxError/SyntaxError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/SyntaxError/SyntaxError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/expressions/BinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/expressions/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/expressions/UnaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/expressions/ValueExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ValueExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/FuncCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FuncCallStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/FunctionDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/IfElseStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IfElseStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/ReturnStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/ReturnStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/ShowStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/ShowStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/Statement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/values/BooleanValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/BooleanValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/values/CharValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/CharValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/values/FloatValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/FloatValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/values/IntValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/IntValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/values/NullValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/NullValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/values/StringValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/StringValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/parser/ast/values/Value.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/values/Value.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/std/Colors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Colors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/std/ForbiddenNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/ForbiddenNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/std/FunctionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/FunctionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/std/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Operators.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/std/Types.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Types.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/aikoo/Karl/Interpreter/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/VariableManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/me/aikoo/Karl/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/studio/karllang/MainTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +154,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.me.aikoo.Karl.Console.Main">
+  <component name="RunManager" selected="Application.studio.karllang.cli.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="me.aikoo.Karl.Interpreter.Main" />
       <module name="Karl.main" />
@@ -151,6 +203,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="studio.karllang.cli.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
+      <module name="Karl.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="studio.karllang.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -186,13 +251,40 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;studio.karllang.MainTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Application.studio.karllang.cli.Main" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.me.aikoo.Karl.Console.Main" />
+      <item itemvalue="Gradle.MainTest" />
       <item itemvalue="Gradle.MainTest (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.studio.karllang.cli.Main" />
+        <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Gradle.MainTest (1)" />
         <item itemvalue="Application.me.aikoo.Karl.Console.Main" />
       </list>
@@ -292,14 +384,7 @@
       <workItem from="1680274824556" duration="14163000" />
       <workItem from="1680347395033" duration="8248000" />
       <workItem from="1680381453358" duration="2316000" />
-      <workItem from="1680442125747" duration="1835000" />
-    </task>
-    <task id="LOCAL-00051" summary="Switch increment and decrement to VariableAssignmentStatement">
-      <created>1667647333508</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1667647333508</updated>
+      <workItem from="1680442125747" duration="3900000" />
     </task>
     <task id="LOCAL-00052" summary="Support for float, fix bugs">
       <created>1668206212951</created>
@@ -637,7 +722,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680443247954</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="[CLI] Making some changes to run command">
+      <created>1680444390235</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1680444390235</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,7 +747,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Patch 013" />
     <MESSAGE value="Patch 008" />
     <MESSAGE value="Patch 014 &amp; v0.4.0-alpha.3" />
     <MESSAGE value="Patch 015" />
@@ -680,7 +771,8 @@
     <MESSAGE value="Cleanup Main" />
     <MESSAGE value="Edit project dir tree" />
     <MESSAGE value="feat: Create base of command line tool" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Create base of command line tool" />
+    <MESSAGE value="[CLI] Making some changes to run command" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CLI] Making some changes to run command" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
