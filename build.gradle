@@ -28,6 +28,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 
     implementation 'info.picocli:picocli:4.6.3'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
 }
 
 jar {
