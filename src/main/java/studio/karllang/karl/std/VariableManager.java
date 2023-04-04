@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class VariableManager {
     private static File currentFile;
@@ -21,7 +22,7 @@ public final class VariableManager {
     }
 
     public static Optional<File> getFile(String name) {
-        return files.stream().filter(file -> Objects.equals(file.name, name)).findFirst(); // orElse error
+        return files.stream().filter(file -> Objects.equals(file.name, name)).findFirst();
     }
 
     public static void clear() {
@@ -36,22 +37,16 @@ public final class VariableManager {
             this.name = name;
         }
 
-        public Value getVariable(String name) {
-            HashMap<String, Value> variablesMap = new HashMap<>(currentScope.getVariables());
-            variablesMap.putAll(currentScope.getFinalVariables());
-            return variablesMap.get(name);
+        public Variable getVariable(String name) {
+            return currentScope.getVariables().get(name);
         }
 
         public boolean isFinal(String name) {
-            return currentScope.getFinalVariables().containsKey(name);
+            return currentScope.getVariables().containsKey(name) && currentScope.getVariables().get(name).isFinal();
         }
 
         public void setVariable(String name, Value value, boolean isFinal) {
-            if (isFinal) {
-                currentScope.getFinalVariables().put(name, value);
-            } else {
-                currentScope.getVariables().put(name, value);
-            }
+            currentScope.getVariables().put(name, new Variable(value.getType(), name, value, isFinal));
         }
 
         public void removeVariable(String name) {
@@ -95,8 +90,7 @@ public final class VariableManager {
 
     public static class Scope {
         private final Scope parent;
-        private final HashMap<String, Value> variables = new HashMap<>();
-        private final HashMap<String, Value> finalVariables = new HashMap<>();
+        private final HashMap<String, Variable> variables = new HashMap<>();
 
         public Scope(Scope parent) {
             this.parent = parent;
@@ -106,13 +100,8 @@ public final class VariableManager {
             return parent;
         }
 
-        public HashMap<String, Value> getVariables() {
-            // return variables and finalVariables
+        public HashMap<String, Variable> getVariables() {
             return variables;
-        }
-
-        public HashMap<String, Value> getFinalVariables() {
-            return finalVariables;
         }
     }
 }

@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="bug: Fix bug with option list verification">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Making some edits">
+      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Variable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Options.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Options.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/VersionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/commands/VersionCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/VariableManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,14 +385,7 @@
       <workItem from="1680381453358" duration="2316000" />
       <workItem from="1680442125747" duration="13019000" />
       <workItem from="1680506071466" duration="2377000" />
-      <workItem from="1680635667148" duration="856000" />
-    </task>
-    <task id="LOCAL-00058" summary="Fix bugs with variable scope">
-      <created>1668888186822</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1668888186829</updated>
+      <workItem from="1680635667148" duration="2789000" />
     </task>
     <task id="LOCAL-00059" summary="Make functions usable before initialization">
       <created>1668889391483</created>
@@ -725,7 +723,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680460516628</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="feat: Making some edits">
+      <created>1680636592782</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1680636592783</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -743,7 +748,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix bug in lexer" />
     <MESSAGE value="Patch 022" />
     <MESSAGE value="First part of patch 023" />
     <MESSAGE value="Patch 023" />
@@ -768,7 +772,8 @@
     <MESSAGE value="feat: Add base text for CLI when no command is given" />
     <MESSAGE value="feat: Add --exec-time option for run command and some other things" />
     <MESSAGE value="bug: Fix bug with option list verification" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug: Fix bug with option list verification" />
+    <MESSAGE value="feat: Making some edits" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Making some edits" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

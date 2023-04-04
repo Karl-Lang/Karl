@@ -5,6 +5,7 @@ import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.std.Types;
+import studio.karllang.karl.std.Variable;
 import studio.karllang.karl.std.VariableManager;
 
 public class VariableAssignmentStatement extends Statement {
@@ -25,21 +26,23 @@ public class VariableAssignmentStatement extends Statement {
     @Override
     public void eval() {
         Value value = expression.eval();
-        Value var = VariableManager.getCurrentFile().getVariable(name);
+        Variable var = VariableManager.getCurrentFile().getVariable(name);
 
         if (var == null) {
             new RuntimeError("Variable " + name + " is not declared", fileName, line, pos);
         }
 
+        assert var != null;
+        Value val = var.getValue();
+
         if (VariableManager.getCurrentFile().isFinal(name)) {
             new RuntimeError("Variable " + name + " is final", fileName, line, pos);
         }
 
-        assert var != null;
-        if (var.getType() == value.getType() || (var.getType() == TokenType.STRING && value.getType() == TokenType.NULL)) {
+        if (val.getType() == value.getType() || (val.getType() == TokenType.STRING && value.getType() == TokenType.NULL)) {
             VariableManager.getCurrentFile().setVariable(name, value, false);
         } else {
-            new RuntimeError("Incorrect type for variable " + name + ": except " + Types.getTypeName(var.getType()) + " but got type " + Types.getTypeName(value.getType()), fileName, line, pos);
+            new RuntimeError("Incorrect type for variable " + name + ": except " + Types.getTypeName(val.getType()) + " but got type " + Types.getTypeName(value.getType()), fileName, line, pos);
         }
     }
 }

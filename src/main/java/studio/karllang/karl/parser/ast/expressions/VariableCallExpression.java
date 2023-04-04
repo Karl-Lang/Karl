@@ -28,6 +28,6 @@ public class VariableCallExpression extends Expression {
             new RuntimeError("Variable " + name + " is not defined", fileName, line, pos);
         }
 
-        return VariableManager.getCurrentFile().getVariable(name);
+        return VariableManager.getCurrentFile().getVariable(name).getValue();
     }
 }
