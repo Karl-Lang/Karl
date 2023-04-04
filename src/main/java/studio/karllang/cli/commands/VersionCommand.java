@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class VersionCommand extends Command {
 
     public VersionCommand() {
-        super("version", "Show Karl's tools versions");
+        super("version", "Show Karl's versions");
     }
 
     @Override

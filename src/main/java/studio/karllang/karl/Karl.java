@@ -46,7 +46,7 @@ public class Karl {
             VariableManager.clear();
             FunctionManager.clear();
 
-            if (isEnabled.isPresent() && Boolean.parseBoolean(isEnabled.get().getValue())) {
+            if (isEnabled.isPresent() && (Boolean.parseBoolean(isEnabled.get().getValue()) || isEnabled.get().getValue() == null)) {
                 long elapsedTime = end - start;
                 System.out.println("Execution time: " + elapsedTime + "ms");
             }

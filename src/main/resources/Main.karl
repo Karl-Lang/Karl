@@ -1,10 +1,8 @@
-int: number = 150; // this is a comment
-bool: boolean = true;
-int: num = 1;
+final string: name = "Mayo";
 
-func main::(): int -> {
+func Show::(): int -> {
+   show(name);
   return 1;
-}
+ }
 
-show(main() + num);
-// -> 2
+ Show();
