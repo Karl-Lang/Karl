@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="v0.4.0-alpha.5">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="major: Rewrite Variable system to fix major part of bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/errors/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/aiko/Karl/std/VariableManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +66,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
@@ -83,7 +80,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -101,22 +99,147 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="fr.aiko.Karl.Main" />
+  <component name="RunManager" selected="Application.Run">
+    <configuration name="No command" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
-      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/main/resources/Main.karl" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="fr.aiko.Karl.parser.*" />
+          <option name="PATTERN" value="studio.karllang.cli.*" />
           <option name="ENABLED" value="true" />
         </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="Run" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
+      <module name="Karl.main" />
+      <option name="PROGRAM_PARAMETERS" value="run --path &quot;$PROJECT_DIR$/src/main/resources/Main.karl&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="studio.karllang.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Version" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
+      <module name="Karl.main" />
+      <option name="PROGRAM_PARAMETERS" value="version" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="studio.karllang.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KarlTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;studio.karllang.KarlTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.intellij.execution.ExternalSystemRunConfigurationJavaExtension">
+        <extension name="net.ashald.envfile">
+          <option name="IS_ENABLED" value="false" />
+          <option name="IS_SUBST" value="false" />
+          <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+          <option name="IS_IGNORE_MISSING_FILES" value="false" />
+          <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+          <ENTRIES>
+            <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          </ENTRIES>
+        </extension>
+      </EXTENSION>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MainTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;me.aikoo.Karl.MainTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <EXTENSION ID="com.intellij.execution.ExternalSystemRunConfigurationJavaExtension">
+        <extension name="net.ashald.envfile">
+          <option name="IS_ENABLED" value="false" />
+          <option name="IS_SUBST" value="false" />
+          <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+          <option name="IS_IGNORE_MISSING_FILES" value="false" />
+          <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+          <ENTRIES>
+            <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          </ENTRIES>
+        </extension>
+      </EXTENSION>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -131,76 +254,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;fr.aiko.Karl.MainTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainTest.testElse" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;fr.aiko.Karl.MainTest.testElse&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainTest.testFunctions" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;fr.aiko.Karl.MainTest.testFunctions&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MainTest.testIf" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;fr.aiko.Karl.MainTest.testIf&quot;" />
+            <option value="&quot;studio.karllang.MainTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -211,19 +265,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.MainTest.testFunctions" />
-      <item itemvalue="Gradle.MainTest.testIf" />
-      <item itemvalue="Gradle.MainTest.testElse" />
+      <item itemvalue="Application.Version" />
+      <item itemvalue="Application.No command" />
+      <item itemvalue="Application.Run" />
+      <item itemvalue="Gradle.KarlTest" />
       <item itemvalue="Gradle.MainTest" />
+      <item itemvalue="Gradle.MainTest (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.KarlTest" />
+        <item itemvalue="Application.Run" />
         <item itemvalue="Gradle.MainTest" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.MainTest.testIf" />
-        <item itemvalue="Gradle.MainTest.testFunctions" />
-        <item itemvalue="Gradle.MainTest.testElse" />
+        <item itemvalue="Gradle.MainTest (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -312,126 +366,18 @@
       <workItem from="1670523063755" duration="6550000" />
       <workItem from="1670585451216" duration="24000" />
       <workItem from="1670585683845" duration="10000" />
-      <workItem from="1670609230693" duration="3698000" />
-    </task>
-    <task id="LOCAL-00043" summary="Bug fix #4">
-      <created>1666997375422</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1666997375422</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Infinite operator ! (`if(!!false)`)">
-      <created>1667060488252</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1667060488252</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Add Else if">
-      <created>1667067149927</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1667067149927</updated>
-    </task>
-    <task id="LOCAL-00046" summary="v0.2.0">
-      <created>1667073751950</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1667073751950</updated>
-    </task>
-    <task id="LOCAL-00047" summary="v0.2.0">
-      <created>1667075312632</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1667075312632</updated>
-    </task>
-    <task id="LOCAL-00048" summary="v0.2.2">
-      <created>1667229740434</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1667229740434</updated>
-    </task>
-    <task id="LOCAL-00049" summary="v0.2.2">
-      <created>1667229999948</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1667229999948</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Add VariableAssignmentStatement.java">
-      <created>1667646863845</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1667646863846</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Switch increment and decrement to VariableAssignmentStatement">
-      <created>1667647333508</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1667647333508</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Support for float, fix bugs">
-      <created>1668206212951</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1668206212951</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Support for char, base of conditions">
-      <created>1668271164134</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1668271164135</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Fix bugs in variable assignment, add base of if statement">
-      <created>1668344183582</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1668344183585</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Fix bugs and add new error messages design">
-      <created>1668358502524</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1668358502524</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Fix bugs and add negative numbers support">
-      <created>1668360720421</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1668360720421</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Increment/Decrement, Comments &amp; Multi-line comments">
-      <created>1668370217825</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1668370217825</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Fix bugs with variable scope">
-      <created>1668888186822</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1668888186829</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Make functions usable before initialization">
-      <created>1668889391483</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1668889391483</updated>
+      <workItem from="1670609230693" duration="5279000" />
+      <workItem from="1670618891983" duration="2540000" />
+      <workItem from="1670714520532" duration="647000" />
+      <workItem from="1670776141202" duration="15000" />
+      <workItem from="1680015761889" duration="5776000" />
+      <workItem from="1680079031110" duration="360000" />
+      <workItem from="1680274824556" duration="14163000" />
+      <workItem from="1680347395033" duration="8248000" />
+      <workItem from="1680381453358" duration="2316000" />
+      <workItem from="1680442125747" duration="13019000" />
+      <workItem from="1680506071466" duration="2377000" />
+      <workItem from="1680635667148" duration="5076000" />
     </task>
     <task id="LOCAL-00060" summary="Base of parameters, need tests">
       <created>1668890277451</created>
@@ -657,7 +603,126 @@
       <option name="project" value="LOCAL" />
       <updated>1670611587598</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Update to publish release">
+      <created>1670614550177</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1670614550177</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Update version">
+      <created>1670614715647</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1670614715647</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream">
+      <created>1680279184640</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1680279184641</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Add File dimension in variable manager to prepare multi-files implementation">
+      <created>1680287498425</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1680287498425</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Add File dimension in function manager to prepare multi-files implementation">
+      <created>1680288357859</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1680288357859</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Cleanup Main">
+      <created>1680288822322</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1680288822322</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Edit project dir tree">
+      <created>1680295166654</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1680295166654</updated>
+    </task>
+    <task id="LOCAL-00099" summary="feat: Create base of command line tool">
+      <created>1680443247953</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1680443247954</updated>
+    </task>
+    <task id="LOCAL-00100" summary="[CLI] Making some changes to run command">
+      <created>1680444390235</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1680444390235</updated>
+    </task>
+    <task id="LOCAL-00101" summary="feat: Change packages names">
+      <created>1680446936795</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1680446936795</updated>
+    </task>
+    <task id="LOCAL-00102" summary="feat: Finish base of run CLI command">
+      <created>1680454929970</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1680454929970</updated>
+    </task>
+    <task id="LOCAL-00103" summary="edit: Remove PicoCLI">
+      <created>1680455068535</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1680455068535</updated>
+    </task>
+    <task id="LOCAL-00104" summary="feat: Add base text for CLI when no command is given">
+      <created>1680458932613</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1680458932613</updated>
+    </task>
+    <task id="LOCAL-00105" summary="feat: Add --exec-time option for run command and some other things">
+      <created>1680460353369</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1680460353369</updated>
+    </task>
+    <task id="LOCAL-00106" summary="bug: Fix bug with option list verification">
+      <created>1680460516628</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1680460516628</updated>
+    </task>
+    <task id="LOCAL-00107" summary="feat: Making some edits">
+      <created>1680636592782</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1680636592783</updated>
+    </task>
+    <task id="LOCAL-00108" summary="major: Rewrite Variable system to fix major part of bugs">
+      <created>1680638803238</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1680638803239</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -675,24 +740,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix all known bugs with condition parsing" />
-    <MESSAGE value="Fix last bugs, add new features for ! keyword in conditions" />
-    <MESSAGE value="v4.0.0-alpha" />
-    <MESSAGE value="v0.4.0-alpha - Edit README.md" />
-    <MESSAGE value="Fix bug with multi-line comment &amp; optimize code" />
-    <MESSAGE value="Patch 004" />
-    <MESSAGE value="Patch 005 &amp; 010" />
-    <MESSAGE value="Patch 007" />
-    <MESSAGE value="Patch 009" />
-    <MESSAGE value="Patch 013" />
-    <MESSAGE value="Patch 008" />
-    <MESSAGE value="Patch 014 &amp; v0.4.0-alpha.3" />
-    <MESSAGE value="Patch 015" />
-    <MESSAGE value="Patch 016 &amp; 017" />
-    <MESSAGE value="Patch 018, 019 &amp; 020" />
-    <MESSAGE value="Patch 021" />
-    <MESSAGE value="Fix bug in lexer" />
-    <MESSAGE value="Patch 022" />
     <MESSAGE value="First part of patch 023" />
     <MESSAGE value="Patch 023" />
     <MESSAGE value="v0.4.0-alpha.4 Fix" />
@@ -700,7 +747,25 @@
     <MESSAGE value="Patch a lot of bugs &amp; make optimizations" />
     <MESSAGE value="Make optimisations" />
     <MESSAGE value="v0.4.0-alpha.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="v0.4.0-alpha.5" />
+    <MESSAGE value="v0.4.0-alpha.5-fix1" />
+    <MESSAGE value="Update to publish release" />
+    <MESSAGE value="Update version" />
+    <MESSAGE value="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream" />
+    <MESSAGE value="Add File dimension in variable manager to prepare multi-files implementation" />
+    <MESSAGE value="Add File dimension in function manager to prepare multi-files implementation" />
+    <MESSAGE value="Cleanup Main" />
+    <MESSAGE value="Edit project dir tree" />
+    <MESSAGE value="feat: Create base of command line tool" />
+    <MESSAGE value="[CLI] Making some changes to run command" />
+    <MESSAGE value="feat: Change packages names" />
+    <MESSAGE value="feat: Finish base of run CLI command" />
+    <MESSAGE value="edit: Remove PicoCLI" />
+    <MESSAGE value="feat: Add base text for CLI when no command is given" />
+    <MESSAGE value="feat: Add --exec-time option for run command and some other things" />
+    <MESSAGE value="bug: Fix bug with option list verification" />
+    <MESSAGE value="feat: Making some edits" />
+    <MESSAGE value="major: Rewrite Variable system to fix major part of bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="major: Rewrite Variable system to fix major part of bugs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
