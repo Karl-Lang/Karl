@@ -37,7 +37,7 @@ public class Karl {
             FunctionManager.addFile(fileName);
 
             ArrayList<Token> tokens = new Lexer(Files.readString(path), pathStr).tokens;
-            ArrayList<Statement> statements = new Parser(tokens, pathStr).parse();
+            ArrayList<Statement> statements = new Parser(tokens, pathStr, path.getParent()).parse();
 
             Long start = System.currentTimeMillis();
             statements.forEach(Statement::eval);
@@ -53,11 +53,5 @@ public class Karl {
         } catch (IOException e) {
             new FileError(pathStr);
         }
-
-        /*try {
-            String[] array = new String[100000 * 100000];
-        } catch (OutOfMemoryError e) {
-            System.out.println("Out of memory uwu baka");
-        }*/
     }
 }

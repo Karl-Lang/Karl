@@ -6,23 +6,28 @@ import studio.karllang.karl.errors.SyntaxError.SemiColonError;
 import studio.karllang.karl.errors.SyntaxError.SyntaxError;
 import studio.karllang.karl.parser.ast.expressions.*;
 import studio.karllang.karl.parser.ast.statements.*;
+import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.std.*;
 
+import javax.swing.plaf.nimbus.State;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public final class Parser {
     public final String fileName;
+    private final Path basePath;
     private final int size;
     private final ArrayList<Token> tokens;
     private final ArrayList<Statement> statements = new ArrayList<>();
     private int pos;
 
-    public Parser(ArrayList<Token> tokens, String fileName) {
+    public Parser(ArrayList<Token> tokens, String fileName, Path basePath) {
         this.tokens = tokens;
         this.fileName = fileName;
         this.pos = 0;
         this.size = tokens.size();
+        this.basePath = basePath;
     }
 
     public ArrayList<Statement> parse() {
@@ -52,10 +57,18 @@ public final class Parser {
             return funcDeclaration();
         } else if (match(TokenType.IDENTIFIER) && match(TokenType.LEFT_PARENTHESIS)) {
             return funcCall();
+        } else if (match(TokenType.USE)) {
+            return use();
         } else {
             new RuntimeError("Unexpected token: " + get(0).getValue(), fileName, get(0).getLine(), get(0).getPosition());
             return null;
         }
+    }
+
+    private Statement use() {
+        Expression value = getValue();
+        skip(TokenType.SEMICOLON);
+        return new UseStatement(value, this.basePath);
     }
 
     private Statement funcCall() {

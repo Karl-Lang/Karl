@@ -1,8 +1,11 @@
+use "Util.karl";
+
 final string: name = "Mayo";
 
 func Show::(): int -> {
-   show(name);
-  return 1;
- }
+    show(name);
+    return 1;
+}
 
- Show();
+ int: a = Show();
+ show(a);

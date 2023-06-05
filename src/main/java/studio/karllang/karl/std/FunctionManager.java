@@ -18,10 +18,6 @@ public final class FunctionManager {
         return currentFile;
     }
 
-    public static Optional<File> getFile(String name) {
-        return files.stream().filter(file -> Objects.equals(file.name, name)).findFirst(); // orElse error
-    }
-
     public static void clear() {
         files.clear();
     }
