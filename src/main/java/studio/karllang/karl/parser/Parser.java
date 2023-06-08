@@ -66,9 +66,14 @@ public final class Parser {
     }
 
     private Statement use() {
-        Expression value = getValue();
+        skip(TokenType.STR_VALUE);
+        Token token = get(-1);
+        Expression fileName = new ValueExpression(token.getValue(), token.getType());
+        skip(TokenType.AS);
+        skip(TokenType.IDENTIFIER);
+        Token asIdentifier = get(-1);
         skip(TokenType.SEMICOLON);
-        return new UseStatement(value, this.basePath);
+        return new UseStatement(fileName, this.basePath, asIdentifier);
     }
 
     private Statement funcCall() {

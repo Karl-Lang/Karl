@@ -56,7 +56,8 @@ public enum TokenType {
     VOID("void"),
     NULL("null"),
     CHAR_VALUE("charVal"),
-    USE("use");
+    USE("use"),
+    AS("as");
 
     private final String name;
 

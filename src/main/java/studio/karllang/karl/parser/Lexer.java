@@ -77,6 +77,7 @@ public class Lexer {
         KEYWORDS.put("void", TokenType.VOID);
         KEYWORDS.put("null", TokenType.NULL);
         KEYWORDS.put("use", TokenType.USE);
+        KEYWORDS.put("as", TokenType.AS);
 
         tokenize();
     }
