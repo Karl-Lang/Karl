@@ -1,10 +1,8 @@
 package studio.karllang.karl.parser.ast.statements;
 
-import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.FunctionExpression;
 import studio.karllang.karl.std.File;
-import studio.karllang.karl.std.ForbiddenNames;
 
 import java.util.LinkedHashMap;
 

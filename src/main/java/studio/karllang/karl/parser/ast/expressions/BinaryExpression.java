@@ -53,7 +53,7 @@ public class BinaryExpression extends Expression {
                 }
             };
         } else {
-            new RuntimeError("Unauthorized types for operation " + Types.getTypeName(leftValue.getType()) + " and " + Types.getTypeName(rightValue.getType()) , file.getStringPath(), line, pos);
+            new RuntimeError("Unauthorized types for operation " + Types.getTypeName(leftValue.getType()) + " and " + Types.getTypeName(rightValue.getType()), file.getStringPath(), line, pos);
             return null;
         }
     }

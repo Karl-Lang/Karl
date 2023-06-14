@@ -22,7 +22,8 @@ public class CommandManager {
             try {
                 Command command = c.getConstructor().newInstance();
                 commands.put(command.getName(), command);
-            } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
+                     NoSuchMethodException e) {
                 throw new RuntimeException(e);
             }
         }

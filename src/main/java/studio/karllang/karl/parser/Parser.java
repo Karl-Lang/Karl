@@ -6,10 +6,8 @@ import studio.karllang.karl.errors.SyntaxError.SemiColonError;
 import studio.karllang.karl.errors.SyntaxError.SyntaxError;
 import studio.karllang.karl.parser.ast.expressions.*;
 import studio.karllang.karl.parser.ast.statements.*;
-import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.std.*;
 
-import javax.swing.plaf.nimbus.State;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -45,7 +43,8 @@ public final class Parser {
     private Statement getStatement() {
         if (match(TokenType.SHOW)) {
             return show();
-        } if (match(TokenType.FINAL) && Types.contains(getType()) && getType() != TokenType.NULL) {
+        }
+        if (match(TokenType.FINAL) && Types.contains(getType()) && getType() != TokenType.NULL) {
             return variableDeclaration(true);
         } else if (Types.contains(getType()) && getType() != TokenType.NULL) {
             return variableDeclaration(false);

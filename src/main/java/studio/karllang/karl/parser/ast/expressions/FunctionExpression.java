@@ -4,8 +4,6 @@ import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.statements.BlockStatement;
 import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.std.File;
-import studio.karllang.karl.std.Function;
-import studio.karllang.karl.std.FunctionManager;
 
 import java.util.LinkedHashMap;
 
