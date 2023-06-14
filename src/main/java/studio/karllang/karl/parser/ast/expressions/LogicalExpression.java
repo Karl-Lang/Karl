@@ -4,21 +4,22 @@ import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.values.BooleanValue;
 import studio.karllang.karl.parser.ast.values.Value;
+import studio.karllang.karl.std.File;
 import studio.karllang.karl.std.LogicalOperators;
 
 public class LogicalExpression extends Expression {
     private final Expression left;
     private final Expression right;
     private final TokenType operator;
-    private final String fileName;
+    private final File file;
     private final int line;
     private final int pos;
 
-    public LogicalExpression(TokenType operator, Expression left, Expression right, String fileName, int line, int pos) {
+    public LogicalExpression(TokenType operator, Expression left, Expression right, File file, int line, int pos) {
         this.left = left;
         this.right = right;
         this.operator = operator;
-        this.fileName = fileName;
+        this.file = file;
         this.line = line;
         this.pos = pos;
     }
@@ -42,7 +43,7 @@ public class LogicalExpression extends Expression {
                             else yield new BooleanValue(false);
                         }
                         default -> {
-                            new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                            new RuntimeError("Bad operator: " + operator.getName(), file.getStringPath(), line, pos);
                             yield null;
                         }
                     };
@@ -58,19 +59,19 @@ public class LogicalExpression extends Expression {
                         case EQUALEQUAL -> new BooleanValue(equals);
                         case NOT_EQUAL -> new BooleanValue(!equals);
                         default -> {
-                            new RuntimeError("Unknown operator: " + operator, fileName, line, pos);
+                            new RuntimeError("Unknown operator: " + operator, file.getStringPath(), line, pos);
                             yield null;
                         }
                     };
 
                 } else {
-                    return new BooleanValue(LogicalOperators.compare(leftValue, rightValue, operator, fileName, line, pos));
+                    return new BooleanValue(LogicalOperators.compare(leftValue, rightValue, operator, file, line, pos));
                 }
             } else {
                 if (operator == TokenType.EXCLAMATION) {
                     return new BooleanValue(!Boolean.parseBoolean(leftValue.toString()));
                 } else {
-                    new RuntimeError("Unknown operator: " + operator, fileName, line, pos);
+                    new RuntimeError("Unknown operator: " + operator, file.getStringPath(), line, pos);
                     return null;
                 }
             }

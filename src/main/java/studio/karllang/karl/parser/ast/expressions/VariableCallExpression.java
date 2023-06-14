@@ -2,17 +2,19 @@ package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.VariableManager;
+import studio.karllang.karl.std.File;
 
 public class VariableCallExpression extends Expression {
     private final String name;
     private final String fileName;
+    private final File file;
     private final int line;
     private final int pos;
 
-    public VariableCallExpression(String name, String fileName, int line, int pos) {
+    public VariableCallExpression(String name, File file, int line, int pos) {
         this.name = name;
-        this.fileName = fileName;
+        this.file = file;
+        this.fileName = file.getName();
         this.line = line;
         this.pos = pos;
     }
@@ -24,10 +26,10 @@ public class VariableCallExpression extends Expression {
 
     @Override
     public Value eval() {
-        if (VariableManager.getCurrentFile().getVariable(name) == null) {
-            new RuntimeError("Variable " + name + " is not defined", fileName, line, pos);
+        if (this.file.getVariableManager().getVariable(name) == null) {
+            new RuntimeError("Variable " + name + " is not defined", file.getStringPath(), line, pos);
         }
 
-        return VariableManager.getCurrentFile().getVariable(name).getValue();
+        return this.file.getVariableManager().getVariable(name).getValue();
     }
 }

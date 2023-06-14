@@ -24,7 +24,7 @@ public class Function {
         this.type = returnType;
     }
 
-    public Value eval(ArrayList<Expression> values, String fileName, int line, int pos) {
+    public Value eval(ArrayList<Expression> values, File file, int line, int pos) {
         HashMap<String, Value> arguments = new HashMap<>();
         int i = 0;
         for (String arg : args.keySet()) {
@@ -35,15 +35,15 @@ public class Function {
         body.eval();
         if (body.getResult() != null) {
             if (type == TokenType.VOID) {
-                new RuntimeError("Function " + name + " is void, but return a value", fileName, line, pos);
+                new RuntimeError("Function " + name + " is void, but return a value", file.getStringPath(), line, pos);
             }
             if (Types.checkValueType(type, body.getResult().getType()) || (type == TokenType.STRING && body.getResult().getType() == TokenType.NULL)) {
                 return body.getResult();
             } else {
-                new RuntimeError("Incorrect return type for function " + name + ": except " + type.getName() + " but got type " + body.getResult().getType().getName(), fileName, line, pos);
+                new RuntimeError("Incorrect return type for function " + name + ": except " + type.getName() + " but got type " + body.getResult().getType().getName(), file.getStringPath(), line, pos);
             }
         } else if (body.getResult() == null && type != TokenType.VOID) {
-            new RuntimeError("Missing return statement in function: " + name, fileName, line, pos);
+            new RuntimeError("Missing return statement in function: " + name, file.getStringPath(), line, pos);
         }
 
         return null;

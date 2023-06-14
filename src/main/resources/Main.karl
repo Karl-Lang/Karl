@@ -1,10 +1,9 @@
 use "Util.karl" as util;
 final string: name = "Mayo";
 
-func Show::(): int -> {
-    show(name);
+func namep::(): int -> {
+    show(name + "aaaa");
     return 1;
 }
 
-int: a = Show();
-show(a);
+namep();

@@ -32,9 +32,9 @@ public class LogicalOperators {
         return operators.containsValue(type);
     }
 
-    public static Boolean compare(Value firstNumber, Value secondNumber, TokenType operator, String fileName, int line, int pos) {
+    public static Boolean compare(Value firstNumber, Value secondNumber, TokenType operator, File file, int line, int pos) {
         if (firstNumber.getType() != TokenType.INT_VALUE && firstNumber.getType() != TokenType.FLOAT_VALUE && secondNumber.getType() != TokenType.INT_VALUE && secondNumber.getType() != TokenType.FLOAT_VALUE) {
-            new RuntimeError("Type mismatch : " + firstNumber.getType().toString().toLowerCase() + " and " + secondNumber.getType().toString().toLowerCase(), fileName, line, pos);
+            new RuntimeError("Type mismatch : " + firstNumber.getType().toString().toLowerCase() + " and " + secondNumber.getType().toString().toLowerCase(), file.getStringPath(), line, pos);
             return null;
         }
         return switch (operator) {

@@ -1,61 +1,41 @@
 package studio.karllang.karl.std;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.LinkedHashMap;
 
-public final class FunctionManager {
-    private static File currentFile;
-    private final static ArrayList<File> files = new ArrayList<>();
+public class FunctionManager {
+    private final File file;
+    private final LinkedHashMap<String, Function> functions = new LinkedHashMap<>();
 
-    public static void addFile(String name) {
-        currentFile = new File(name);
-        files.add(currentFile);
+    public FunctionManager(File file) {
+        this.file = file;
     }
 
-    public static File getCurrentFile() {
-        return currentFile;
+    public void addFunction(Function function) {
+        functions.put(function.getName(), function);
     }
 
-    public static void clear() {
-        files.clear();
+    public Function getFunction(String name) {
+        return functions.get(name);
     }
 
-    public static class File {
-        private final HashMap<String, Function> functions = new HashMap<>();
-        private final String name;
+    public boolean isFunction(String name) {
+        return functions.containsKey(name);
+    }
 
-        public File(String name) {
-            this.name = name;
-        }
+    public HashMap<String, Function> getFunctions() {
+        return functions;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public void clear() {
+        functions.clear();
+    }
 
-        public void addFunction(Function function) {
-            functions.put(function.getName(), function);
-        }
+    public void removeFunction(String name) {
+        functions.remove(name);
+    }
 
-        public Function getFunction(String name) {
-            return functions.get(name);
-        }
-
-        public boolean isFunction(String name) {
-            return functions.containsKey(name);
-        }
-
-        public HashMap<String, Function> getFunctions() {
-            return functions;
-        }
-
-        public void clear() {
-            functions.clear();
-        }
-
-        public void removeFunction(String name) {
-            functions.remove(name);
-        }
+    public File getFile() {
+        return file;
     }
 }

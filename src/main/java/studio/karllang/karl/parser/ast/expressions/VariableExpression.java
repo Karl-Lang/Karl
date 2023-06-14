@@ -1,17 +1,19 @@
 package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.VariableManager;
+import studio.karllang.karl.std.File;
 
 public class VariableExpression extends Expression {
     public final Value value;
     private final String name;
     private final boolean isFinal;
+    private final File file;
 
-    public VariableExpression(String name, Value value, boolean isFinal) {
+    public VariableExpression(String name, Value value, boolean isFinal, File file) {
         this.name = name;
         this.value = value;
         this.isFinal = isFinal;
+        this.file = file;
     }
 
     @Override
@@ -21,10 +23,10 @@ public class VariableExpression extends Expression {
     }
 
     public synchronized Value getValue() {
-        return VariableManager.getCurrentFile().getVariable(name).getValue();
+        return this.file.getVariableManager().getVariable(name).getValue();
     }
 
     public synchronized void setValue(Value value) {
-        VariableManager.getCurrentFile().setVariable(name, value, isFinal);
+        this.file.getVariableManager().setVariable(name, value, isFinal);
     }
 }

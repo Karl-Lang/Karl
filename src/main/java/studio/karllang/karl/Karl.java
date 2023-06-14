@@ -8,8 +8,7 @@ import studio.karllang.karl.parser.Lexer;
 import studio.karllang.karl.parser.Parser;
 import studio.karllang.karl.parser.Token;
 import studio.karllang.karl.parser.ast.statements.Statement;
-import studio.karllang.karl.std.FunctionManager;
-import studio.karllang.karl.std.VariableManager;
+import studio.karllang.karl.std.File;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,23 +27,29 @@ public class Karl {
         }
         String fileName = pathStr.substring(pathStr.lastIndexOf("/") + 1);
 
-        if (!fileName.endsWith(".karl")) {
+
+        String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1);
+        if (!fileExtension.equals("karl")) {
             new FileError(pathStr);
         }
 
-        try {
-            VariableManager.addFile(fileName);
-            FunctionManager.addFile(fileName);
+        File file = new File(fileName, fileExtension, pathStr);
 
-            ArrayList<Token> tokens = new Lexer(Files.readString(path), pathStr).tokens;
-            ArrayList<Statement> statements = new Parser(tokens, pathStr, path.getParent()).parse();
+        try {
+            // VariableManager.addFile(fileName);
+            // this.file.getFunctionManager().addFile(fileName);
+
+            ArrayList<Token> tokens = new Lexer(Files.readString(path), file).tokens;
+            ArrayList<Statement> statements = new Parser(tokens, file).parse();
 
             Long start = System.currentTimeMillis();
             statements.forEach(Statement::eval);
             Long end = System.currentTimeMillis();
+            file.getFunctionManager().clear();
+            file.getVariableManager().clear();
 
-            VariableManager.clear();
-            FunctionManager.clear();
+            // VariableManager.clear();
+            // this.file.getFunctionManager().clear();
 
             if (isEnabled.isPresent() && (Boolean.parseBoolean(isEnabled.get().getValue()) || isEnabled.get().getValue() == null)) {
                 long elapsedTime = end - start;

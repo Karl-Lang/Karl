@@ -6,21 +6,22 @@ import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
 import studio.karllang.karl.parser.ast.values.StringValue;
 import studio.karllang.karl.parser.ast.values.Value;
+import studio.karllang.karl.std.File;
 import studio.karllang.karl.std.Types;
 
 public class BinaryExpression extends Expression {
     private final Expression left;
     private final Expression right;
     private final TokenType operator;
-    private final String fileName;
+    private final File file;
     private final int line;
     private final int pos;
 
-    public BinaryExpression(Expression left, Expression right, TokenType operator, String fileName, int line, int pos) {
+    public BinaryExpression(Expression left, Expression right, TokenType operator, File file, int line, int pos) {
         this.left = left;
         this.right = right;
         this.operator = operator;
-        this.fileName = fileName;
+        this.file = file;
         this.line = line;
         this.pos = pos;
     }
@@ -39,7 +40,7 @@ public class BinaryExpression extends Expression {
                 case DIVIDE -> divide(leftValue, rightValue);
                 case MODULO -> modulo(leftValue, rightValue);
                 default -> {
-                    new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                    new RuntimeError("Bad operator: " + operator.getName(), file.getStringPath(), line, pos);
                     yield null;
                 }
             };
@@ -47,12 +48,12 @@ public class BinaryExpression extends Expression {
             return switch (operator) {
                 case PLUS -> new StringValue(leftValue + rightValue.toString());
                 default -> {
-                    new RuntimeError("Bad operator: " + operator.getName(), fileName, line, pos);
+                    new RuntimeError("Bad operator: " + operator.getName(), file.getStringPath(), line, pos);
                     yield null;
                 }
             };
         } else {
-            new RuntimeError("Unauthorized types for operation " + Types.getTypeName(leftValue.getType()) + " and " + Types.getTypeName(rightValue.getType()) , fileName, line, pos);
+            new RuntimeError("Unauthorized types for operation " + Types.getTypeName(leftValue.getType()) + " and " + Types.getTypeName(rightValue.getType()) , file.getStringPath(), line, pos);
             return null;
         }
     }

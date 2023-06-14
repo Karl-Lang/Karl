@@ -2,6 +2,7 @@ package studio.karllang.karl.parser;
 
 import studio.karllang.karl.errors.Error;
 import studio.karllang.karl.errors.SyntaxError.SyntaxError;
+import studio.karllang.karl.std.File;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,13 +16,13 @@ public class Lexer {
     private final String OPERATOR_CHARS = "()[]{}^*=<>,!~&:+|./%?;-";
     private final Map<String, TokenType> OPERATORS = new HashMap<>();
     private final Map<String, TokenType> KEYWORDS = new HashMap<>();
-    private final String fileName;
+    private final File file;
     public String input;
     private int position;
     private int line;
 
-    public Lexer(String input, String fileName) {
-        this.fileName = fileName;
+    public Lexer(String input, File file) {
+        this.file = file;
         buffer = new StringBuilder(input);
         this.input = input;
         position = 0;
@@ -78,13 +79,14 @@ public class Lexer {
         KEYWORDS.put("null", TokenType.NULL);
         KEYWORDS.put("use", TokenType.USE);
         KEYWORDS.put("as", TokenType.AS);
+        KEYWORDS.put("export", TokenType.EXPORT);
 
         tokenize();
     }
 
     public void tokenize() {
         if (input.length() == 0) {
-            new Error("RetardError :)", "Empty file", fileName, line, 0);
+            new Error("RetardError :)", "Empty file", file.getStringPath(), line, 0);
         }
 
         while (position < input.length()) {
@@ -102,7 +104,7 @@ public class Lexer {
             else if (c == '\'') tokenizeChar();
             else if (OPERATOR_CHARS.indexOf(c) != -1) tokenizeOperator();
             else if (Character.isWhitespace(c)) nextChar();
-            else new SyntaxError("Unexpected character: " + c, fileName, line, position);
+            else new SyntaxError("Unexpected character: " + c, file.getStringPath(), line, position);
         }
 
         tokens.add(new Token(TokenType.EOF, "EOF", input.length(), line));
@@ -127,9 +129,9 @@ public class Lexer {
         nextChar();
         if (input.charAt(position) != '\'') {
             if (input.charAt(position) != '\'') {
-                new SyntaxError("Character type can only contain one character", fileName, line, position);
+                new SyntaxError("Character type can only contain one character", file.getStringPath(), line, position);
             } else {
-                new SyntaxError("Expected ' at end of char value", fileName, line, position);
+                new SyntaxError("Expected ' at end of char value", file.getStringPath(), line, position);
             }
         }
         nextChar();
@@ -140,7 +142,7 @@ public class Lexer {
         buffer.setLength(0);
         char c = input.charAt(position);
         if (position + 1 < input.length() && Character.isLetter(input.charAt(position + 1))) {
-            new SyntaxError("Unexpected character: " + input.charAt(position), fileName, line, position);
+            new SyntaxError("Unexpected character: " + input.charAt(position), file.getStringPath(), line, position);
         }
 
         while (true) {
@@ -149,7 +151,7 @@ public class Lexer {
             }
 
             if ((c == '.' && buffer.indexOf(".") != -1) || (c == '-' && buffer.indexOf("-") != -1)) {
-                new SyntaxError("Invalid number", fileName, line, position);
+                new SyntaxError("Invalid number", file.getStringPath(), line, position);
             } else if (!Character.isDigit(c) && (c != '.' && c != '-')) {
                 break;
             }
@@ -205,13 +207,13 @@ public class Lexer {
                     case '"' -> buffer.append('\"');
                     case '\\' -> buffer.append('\\');
                     case '0' -> buffer.append('\0');
-                    default -> new SyntaxError("Invalid escape character: " + c, fileName, line, position);
+                    default -> new SyntaxError("Invalid escape character: " + c, file.getStringPath(), line, position);
                 }
                 c = nextChar();
             }
 
             if (c == '\0') {
-                new SyntaxError("Unterminated string", fileName, line, position);
+                new SyntaxError("Unterminated string", file.getStringPath(), line, position);
             }
 
             if (c == '"') {

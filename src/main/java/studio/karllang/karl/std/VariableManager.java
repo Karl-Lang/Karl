@@ -2,86 +2,69 @@ package studio.karllang.karl.std;
 
 import studio.karllang.karl.parser.ast.values.Value;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
-public final class VariableManager {
-    private static File currentFile;
-    private final static ArrayList<File> files = new ArrayList<>();
+public class VariableManager {
 
-    public static void addFile(String name) {
-        currentFile = new File(name);
-        files.add(currentFile);
+    private final File file;
+    private Scope currentScope = new Scope(null);
+
+    public VariableManager(File file) {
+        this.file = file;
     }
 
-    public static File getCurrentFile() {
-        return currentFile;
+    public Variable getVariable(String name) {
+        return currentScope.getVariables().get(name);
     }
 
-    public static void clear() {
-        files.clear();
+    public boolean isFinal(String name) {
+        return currentScope.getVariables().containsKey(name) && currentScope.getVariables().get(name).isFinal();
     }
 
-    public static class File {
-        private Scope currentScope = new Scope(null);
-        private final String name;
+    public void setVariable(String name, Value value, boolean isFinal) {
+        currentScope.getVariables().put(name, new Variable(value.getType(), name, value, isFinal));
+    }
 
-        public File(String name) {
-            this.name = name;
-        }
+    public void removeVariable(String name) {
+        currentScope.getVariables().remove(name);
+    }
 
-        public Variable getVariable(String name) {
-            return currentScope.getVariables().get(name);
-        }
+    public boolean containsVariable(String name) {
+        return currentScope.getVariables().containsKey(name);
+    }
 
-        public boolean isFinal(String name) {
-            return currentScope.getVariables().containsKey(name) && currentScope.getVariables().get(name).isFinal();
-        }
+    public void clearVariables() {
+        currentScope.getVariables().clear();
+    }
 
-        public void setVariable(String name, Value value, boolean isFinal) {
-            currentScope.getVariables().put(name, new Variable(value.getType(), name, value, isFinal));
+    public void newScope() {
+        Scope newScope = new Scope(currentScope);
+        for (String key : currentScope.getVariables().keySet()) {
+            newScope.getVariables().put(key, currentScope.getVariables().get(key));
         }
+        currentScope = newScope;
+    }
 
-        public void removeVariable(String name) {
-            currentScope.getVariables().remove(name);
+    public void exitScope() {
+        if (currentScope.getParent() != null) {
+            currentScope = currentScope.getParent();
         }
+    }
 
-        public boolean containsVariable(String name) {
-            return currentScope.getVariables().containsKey(name);
-        }
+    public Scope getScope() {
+        return currentScope;
+    }
 
-        public void clearVariables() {
-            currentScope.getVariables().clear();
-        }
+    public void setScope(Scope scope) {
+        currentScope = scope;
+    }
 
-        public void newScope() {
-            Scope newScope = new Scope(currentScope);
-            for (String key : currentScope.getVariables().keySet()) {
-                newScope.getVariables().put(key, currentScope.getVariables().get(key));
-            }
-            currentScope = newScope;
-        }
+    public void clear() {
+        currentScope = new Scope(null);
+    }
 
-        public void exitScope() {
-            if (currentScope.getParent() != null) {
-                currentScope = currentScope.getParent();
-            }
-        }
-
-        public Scope getScope() {
-            return currentScope;
-        }
-
-        public void setScope(Scope scope) {
-            currentScope = scope;
-        }
-
-        public void clear() {
-            currentScope = new Scope(null);
-        }
+    public File getFile() {
+        return this.file;
     }
 
     public static class Scope {
