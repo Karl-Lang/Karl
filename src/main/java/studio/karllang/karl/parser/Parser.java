@@ -139,6 +139,10 @@ public final class Parser {
             new RuntimeError("Function/Variable " + name + " already exists", file.getStringPath(), line, pos);
         }
 
+        if (block.getStatements().stream().anyMatch(a -> a instanceof FunctionDeclarationStatement)) {
+            new RuntimeError("Function declaration inside function is not allowed", file.getStringPath(), line, pos);
+        }
+
         this.file.getFunctionManager().addFunction(new Function(name, args, returnType, block));
 
         return new FunctionDeclarationStatement(name, args, returnType, block, file, line, pos);

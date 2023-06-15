@@ -6,4 +6,9 @@ func namep::(): int -> {
     return 1;
 }
 
+    func a::(): int -> {
+        show("aaaa");
+        return 1;
+    }
+
 namep();
