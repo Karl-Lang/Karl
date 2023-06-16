@@ -2,6 +2,8 @@ package studio.karllang.karl.lib;
 
 import org.reflections.Reflections;
 import org.slf4j.LoggerFactory;
+import studio.karllang.karl.errors.RuntimeError.RuntimeError;
+import studio.karllang.karl.modules.File;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
@@ -10,9 +12,24 @@ import java.util.Set;
 
 public final class LibraryManager {
     private static final ArrayList<Library> libraries = new ArrayList<>();
+    private static final ArrayList<Library> importedLibrairies = new ArrayList<>();
 
     static {
         updateLibraries();
+    }
+
+    public static void importLibrary(String name, File file, int line, int pos) {
+        if (!isLibrary(name)) {
+            new RuntimeError("Unknown library: " + name, file.getStringPath(), line, pos);
+            return;
+        }
+
+        Library library = getLibrary(name);
+        importedLibrairies.add(library);
+    }
+
+    public static void addImportedLibrary(Library library) {
+        importedLibrairies.add(library);
     }
 
     public static void updateLibraries() {
@@ -30,7 +47,6 @@ public final class LibraryManager {
 
                 Library library = c.getConstructor().newInstance();
                 libraries.add(library);
-                System.out.println("Loaded library: " + library.getName());
             } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                      NoSuchMethodException e) {
                 throw new RuntimeException(e);
@@ -42,7 +58,11 @@ public final class LibraryManager {
         return libraries.stream().filter(n -> n.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public ArrayList<Library> getLibraries() {
+    public static ArrayList<Library> getImportedLibrairies() {
+        return importedLibrairies;
+    }
+
+    public static ArrayList<Library> getLibraries() {
         return libraries;
     }
 

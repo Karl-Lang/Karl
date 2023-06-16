@@ -1,16 +1,11 @@
-use std;
-declare final string: name = "Mayo";
+use std::io;
 
-declare func namep::(): int -> {
-    show(name + "aaaa");
-    return 1;
+declare int: number = 150; // this is a comment
+declare bool: boolean = true;
+declare int: num = 1;
+
+declare func main::(): int -> {
+  return 1;
 }
 
-   declare func a::(): int -> {
-        show("aaaa");
-        namep();
-        return 1;
-    }
-
-
-export int: result = namep();
+Show(main() + num);

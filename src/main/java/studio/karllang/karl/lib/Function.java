@@ -1,5 +1,9 @@
 package studio.karllang.karl.lib;
 
+import studio.karllang.karl.parser.ast.expressions.Expression;
+
+import java.util.ArrayList;
+
 public abstract class Function {
     private final String name;
     private final Library library;
@@ -9,5 +13,6 @@ public abstract class Function {
         this.library = library;
     }
 
-    public abstract void eval();
+    public abstract void eval(ArrayList<Expression> expressions);
+
 }

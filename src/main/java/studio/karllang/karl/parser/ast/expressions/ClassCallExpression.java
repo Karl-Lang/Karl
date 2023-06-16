@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ClassCallExpression extends Expression {
     private final String name;
     private final File file;
-    private final ArrayList<ClassCallExpression> childs = new ArrayList<>();
+    private ClassCallExpression child;
     private final int line;
     private final int pos;
 
@@ -23,7 +23,11 @@ public class ClassCallExpression extends Expression {
     }
 
     public void addChild(ClassCallExpression child) {
-        childs.add(child);
+        this.child = child;
+    }
+
+    public ClassCallExpression getChild() {
+        return child;
     }
 
     public String getName() {
@@ -32,13 +36,26 @@ public class ClassCallExpression extends Expression {
 
     @Override
     public Value eval() {
-        if (!LibraryManager.isLibrary(name)) {
-            new RuntimeError("Unknown library: " + name, file.getStringPath(), line, pos);
+        if (child == null) {
+            LibraryManager.importLibrary(name, file, line, pos);
+        } else {
+            Library library = LibraryManager.getLibrary(name);
+            Library importedLib = library;
+            ClassCallExpression childClass = child;
+            while (childClass != null) {
+                ClassCallExpression finalChildClass = childClass;
+                Library subLib = library.getSubLibraries().stream().filter(n -> n.getName().equals(finalChildClass.getName())).findAny().orElse(null);
+                if (subLib == null) {
+                    new RuntimeError("Unknown library: " + childClass.getName(), file.getStringPath(), line, pos);
+                    return null;
+                }
+                importedLib = subLib;
+                childClass = childClass.getChild();
+            }
+
+            LibraryManager.addImportedLibrary(importedLib);
         }
 
-        Library library = LibraryManager.getLibrary(name);
-
-        library.run("show");
         return null;
     }
 }

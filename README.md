@@ -11,7 +11,9 @@
 
 ## Example
 
-```js
+```js   
+use std::io;
+
 declare int: number = 150; // this is a comment
 declare bool: boolean = true;
 declare int: num = 1;
@@ -20,6 +22,6 @@ declare func main::(): int -> {
   return 1;
 }
 
-show(main() + num);
+Show(main() + num);
 // -> 2
 ```

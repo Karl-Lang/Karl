@@ -41,9 +41,7 @@ public final class Parser {
     }
 
     private Statement getStatement() {
-        if (match(TokenType.SHOW)) {
-            return show();
-        } else if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
+        if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
             return variableAssignment();
         } else if (match(TokenType.IF)) {
             return ifElse();
@@ -99,7 +97,7 @@ public final class Parser {
         ClassCallExpression expression = new ClassCallExpression(classImport.getValue(), file, classImport.getLine(), classImport.getPosition());
         ArrayList<String> childs = new ArrayList<>();
 
-        while (match(TokenType.DOT)) {
+        while (match(TokenType.COLON) && match(TokenType.COLON)) {
             skip(TokenType.IDENTIFIER);
             childs.add(get(-1).getValue());
         }
@@ -369,28 +367,10 @@ public final class Parser {
         return new VariableDeclarationStatement(expression, name.getValue(), type, file, name.getLine(), name.getPosition(), isFinal, isDeclaration);
     }
 
-    private ShowStatement show() {
-        skip(TokenType.LEFT_PARENTHESIS);
-        ArrayList<Expression> expressions = new ArrayList<>();
-        while (!match(TokenType.RIGHT_PARENTHESIS)) {
-            Expression expr = getExpression();
-            if (expr == null) {
-                new RuntimeError("Unknown expression: " + get(0).getValue(), file.getStringPath(), get(0).getLine(), get(0).getPosition());
-            }
-            expressions.add(expr);
-            if (!match(TokenType.COMMA) && !checkType(0, TokenType.RIGHT_PARENTHESIS) && !checkType(1, TokenType.RIGHT_PARENTHESIS)) {
-                new SyntaxError("Excepted ',' for separate parameters", file.getStringPath(), get(0).getLine(), get(0).getPosition());
-            }
-        }
-        skip(TokenType.SEMICOLON);
-
-        return new ShowStatement(expressions);
-    }
-
     private void skip(TokenType type) {
         if (get(0).getType() != type) {
             if (type == TokenType.SEMICOLON) {
-                new SemiColonError(fileName, get(-1).getLine(), get(-1).getPosition());
+                new SemiColonError(file.getStringPath(), get(-1).getLine(), get(-1).getPosition());
             } else
                 new SyntaxError("Excepted " + Types.getTypeName(type) + " but got " + Types.getTypeName(get(0).getType()), file.getStringPath(), get(0).getLine(), get(0).getPosition());
         }
