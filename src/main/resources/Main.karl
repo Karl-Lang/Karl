@@ -6,10 +6,11 @@ declare func namep::(): int -> {
     return 1;
 }
 
-   export func a::(): int -> {
+   declare func a::(): int -> {
         show("aaaa");
         namep();
         return 1;
     }
 
-namep();
+
+export int: result = namep();

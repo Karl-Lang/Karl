@@ -63,7 +63,7 @@ public class VariableDeclarationStatement extends Statement {
         }
 
         VariableExpression expr = new VariableExpression(name, value, isFinal, file, isDeclaration, line, pos);
-        expr.setValue(value);
+        // expr.setValue(value);
         expr.eval();
     }
 }

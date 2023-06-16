@@ -33,6 +33,7 @@ public class VariableManager {
             }
 
             exportedVariables.put(name, new Variable(value.getType(), name, value, isFinal, false));
+            System.out.println("Exported variable: " + name);
         }
     }
 
