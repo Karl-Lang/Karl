@@ -80,6 +80,7 @@ public class Lexer {
         KEYWORDS.put("use", TokenType.USE);
         KEYWORDS.put("as", TokenType.AS);
         KEYWORDS.put("export", TokenType.EXPORT);
+        KEYWORDS.put("declare", TokenType.DECLARE);
 
         tokenize();
     }

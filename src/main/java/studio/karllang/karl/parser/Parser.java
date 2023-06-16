@@ -54,16 +54,26 @@ public final class Parser {
             return ifElse();
         } else if (checkType(0, TokenType.IDENTIFIER) && (checkType(1, TokenType.PLUSPLUS) || checkType(1, TokenType.MINUSMINUS))) {
             return incrementDecrement();
-        } else if (match(TokenType.FUNC)) {
-            return funcDeclaration();
+        } else if (match(TokenType.EXPORT) || match(TokenType.DECLARE)) {
+            return declareOrExport();
         } else if (match(TokenType.IDENTIFIER) && match(TokenType.LEFT_PARENTHESIS)) {
             return funcCall();
         } else if (match(TokenType.USE)) {
             return use();
-        } else if (match(TokenType.EXPORT)) {
-            return export();
         } else {
             new RuntimeError("Unexpected token: " + get(0).getValue(), file.getStringPath(), get(0).getLine(), get(0).getPosition());
+            return null;
+        }
+    }
+
+    private Statement declareOrExport() {
+        Token token = get(-1);
+        boolean isDeclaration = token.getType() == TokenType.DECLARE;
+
+        if (match(TokenType.FUNC)) {
+            return funcDeclaration(isDeclaration);
+        } else {
+            new SyntaxError("Unexpected token: " + get(0).getValue(), file.getStringPath(), get(0).getLine(), get(0).getPosition());
             return null;
         }
     }
@@ -79,13 +89,6 @@ public final class Parser {
         return new UseStatement(fileName, this.basePath, asIdentifier);
     }
 
-    private Statement export() {
-        skip(TokenType.IDENTIFIER);
-        Token token = get(-1);
-        skip(TokenType.SEMICOLON);
-        return new ExportStatement(token);
-    }
-
     private Statement funcCall() {
         String name = get(-2).getValue();
         ArrayList<Expression> args = new ArrayList<>();
@@ -99,7 +102,7 @@ public final class Parser {
         return new FuncCallStatement(new FuncCallExpression(name, args, file, get(-2).getLine(), get(-2).getPosition()));
     }
 
-    private Statement funcDeclaration() {
+    private Statement funcDeclaration(boolean isDeclaration) {
         String name = get(0).getValue();
         int line = get(0).getLine();
         int pos = get(0).getPosition();
@@ -143,7 +146,7 @@ public final class Parser {
             new RuntimeError("Function declaration inside function is not allowed", file.getStringPath(), line, pos);
         }
 
-        this.file.getFunctionManager().addFunction(new Function(name, args, returnType, block));
+        this.file.getFunctionManager().addFunction(new Function(name, args, returnType, block), isDeclaration);
 
         return new FunctionDeclarationStatement(name, args, returnType, block, file, line, pos);
     }

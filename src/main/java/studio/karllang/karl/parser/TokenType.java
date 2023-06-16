@@ -58,7 +58,8 @@ public enum TokenType {
     CHAR_VALUE("charVal"),
     USE("use"),
     AS("as"),
-    EXPORT("export");
+    EXPORT("export"),
+    DECLARE("declare");
 
     private final String name;
 

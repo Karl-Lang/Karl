@@ -1,13 +1,14 @@
 use "Util.karl" as util;
 final string: name = "Mayo";
 
-func namep::(): int -> {
+declare func namep::(): int -> {
     show(name + "aaaa");
     return 1;
 }
 
-    func a::(): int -> {
+   export func a::(): int -> {
         show("aaaa");
+        namep();
         return 1;
     }
 

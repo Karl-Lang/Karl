@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="code: Clean up code">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Fix bug with function in function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/ExportStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/FunctionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/FunctionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +105,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.KarlTest">
+  <component name="RunManager" selected="Application.Run">
     <configuration name="No command" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
@@ -395,14 +401,8 @@
       <workItem from="1686223469920" duration="100000" />
       <workItem from="1686248682978" duration="11904000" />
       <workItem from="1686489098655" duration="7391000" />
-      <workItem from="1686843568641" duration="1225000" />
-    </task>
-    <task id="LOCAL-00063" summary="Add forbidden names">
-      <created>1668950216404</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1668950216404</updated>
+      <workItem from="1686843568641" duration="3576000" />
+      <workItem from="1686921893013" duration="3650000" />
     </task>
     <task id="LOCAL-00064" summary="Cleanup code">
       <created>1668950590691</created>
@@ -740,7 +740,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686255272819</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="feat: Fix bug with function in function">
+      <created>1686845748884</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1686845748885</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -759,7 +766,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Patch 024" />
     <MESSAGE value="Patch a lot of bugs &amp; make optimizations" />
     <MESSAGE value="Make optimisations" />
     <MESSAGE value="v0.4.0-alpha.5" />
@@ -784,7 +790,8 @@
     <MESSAGE value="update: Version 0.4.0-alpha.6" />
     <MESSAGE value="feat: Add base of use statement to import files" />
     <MESSAGE value="feat: Add &quot;as&quot; keyword to import statement" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Add &quot;as&quot; keyword to import statement" />
+    <MESSAGE value="feat: Fix bug with function in function" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Fix bug with function in function" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
