@@ -1,13 +1,16 @@
 package studio.karllang.karl.std;
 
+import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.ast.values.Value;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class VariableManager {
 
     private final File file;
     private Scope currentScope = new Scope(null);
+    private final LinkedHashMap<String, Variable> exportedVariables = new LinkedHashMap<>();
 
     public VariableManager(File file) {
         this.file = file;
@@ -21,8 +24,20 @@ public class VariableManager {
         return currentScope.getVariables().containsKey(name) && currentScope.getVariables().get(name).isFinal();
     }
 
-    public void setVariable(String name, Value value, boolean isFinal) {
-        currentScope.getVariables().put(name, new Variable(value.getType(), name, value, isFinal));
+    public void setVariable(String name, Value value, boolean isFinal, boolean isDeclaration, int line, int pos) {
+        currentScope.getVariables().put(name, new Variable(value.getType(), name, value, isFinal, isDeclaration));
+
+        if (!isDeclaration) {
+            if (currentScope.getParent() != null) {
+                new RuntimeError("Can't export a variable which is inside a block", file.getStringPath(), line, pos);
+            }
+
+            exportedVariables.put(name, new Variable(value.getType(), name, value, isFinal, false));
+        }
+    }
+
+    public LinkedHashMap<String, Variable> getExportedVariables() {
+        return exportedVariables;
     }
 
     public void removeVariable(String name) {
@@ -70,6 +85,7 @@ public class VariableManager {
     public static class Scope {
         private final Scope parent;
         private final HashMap<String, Variable> variables = new HashMap<>();
+        private final HashMap<String, Variable> exportedVariables = new HashMap<>();
 
         public Scope(Scope parent) {
             this.parent = parent;

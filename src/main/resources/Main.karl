@@ -1,5 +1,5 @@
 use "Util.karl" as util;
-final string: name = "Mayo";
+declare final string: name = "Mayo";
 
 declare func namep::(): int -> {
     show(name + "aaaa");

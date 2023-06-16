@@ -1,25 +1,25 @@
-func sayHello::(string: name): void -> {
+declare func sayHello::(string: name): void -> {
     show("Hello, ", name, "!");
 }
 
-func main::(): void -> {
+declare func main::(): void -> {
     show("What is your name?");
     sayHello("Karl");
 }
 
-func getStr::(): string -> {
+declare func getStr::(): string -> {
     return "Hello, World!";
 }
 main();
 show(getStr());
 show(getInt(9) + 1);
 
-func getInt::(int: num): int -> {
+declare func getInt::(int: num): int -> {
     return num + 1;
 }
 show(getInt(6) + 1);
 
-func getIfInt::(int: number): int -> {
+declare func getIfInt::(int: number): int -> {
   if (number == 14) -> {
     return 1;
   } else -> {

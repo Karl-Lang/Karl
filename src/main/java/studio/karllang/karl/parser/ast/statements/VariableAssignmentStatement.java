@@ -42,7 +42,7 @@ public class VariableAssignmentStatement extends Statement {
         }
 
         if (val.getType() == value.getType() || (val.getType() == TokenType.STRING && value.getType() == TokenType.NULL)) {
-            this.file.getVariableManager().setVariable(name, value, false);
+            this.file.getVariableManager().setVariable(name, value, false, var.isDeclaration(), line, pos);
         } else {
             new RuntimeError("Incorrect type for variable " + name + ": except " + Types.getTypeName(val.getType()) + " but got type " + Types.getTypeName(value.getType()), file.getStringPath(), line, pos);
         }

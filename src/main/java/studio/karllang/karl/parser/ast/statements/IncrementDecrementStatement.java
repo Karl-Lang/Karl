@@ -47,9 +47,9 @@ public class IncrementDecrementStatement extends Statement {
         boolean isFloat = value.getType() == TokenType.FLOAT_VALUE;
 
         if (increment == TokenType.PLUS) {
-            this.file.getVariableManager().setVariable(name, isFloat ? new FloatValue(value.toFloat() + 1) : new IntValue(value.toInt() + 1), false);
+            this.file.getVariableManager().setVariable(name, isFloat ? new FloatValue(value.toFloat() + 1) : new IntValue(value.toInt() + 1), false, variable.isDeclaration(), line, pos);
         } else {
-            this.file.getVariableManager().setVariable(name, isFloat ? new FloatValue(value.toFloat() - 1) : new IntValue(value.toInt() - 1), false);
+            this.file.getVariableManager().setVariable(name, isFloat ? new FloatValue(value.toFloat() - 1) : new IntValue(value.toInt() - 1), false, variable.isDeclaration(), line, pos);
         }
     }
 }

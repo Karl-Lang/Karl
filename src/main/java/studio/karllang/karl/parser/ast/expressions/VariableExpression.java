@@ -8,12 +8,18 @@ public class VariableExpression extends Expression {
     private final String name;
     private final boolean isFinal;
     private final File file;
+    private final boolean isDeclaration;
+    private final int line;
+    private final int pos;
 
-    public VariableExpression(String name, Value value, boolean isFinal, File file) {
+    public VariableExpression(String name, Value value, boolean isFinal, File file, boolean isDeclaration, int line, int pos) {
         this.name = name;
         this.value = value;
         this.isFinal = isFinal;
         this.file = file;
+        this.isDeclaration = isDeclaration;
+        this.line = line;
+        this.pos = pos;
     }
 
     @Override
@@ -27,6 +33,6 @@ public class VariableExpression extends Expression {
     }
 
     public synchronized void setValue(Value value) {
-        this.file.getVariableManager().setVariable(name, value, isFinal);
+        this.file.getVariableManager().setVariable(name, value, isFinal, isDeclaration, line, pos);
     }
 }

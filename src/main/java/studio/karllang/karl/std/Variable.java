@@ -7,13 +7,15 @@ public class Variable {
     private final TokenType type;
     private final String name;
     private final boolean isFinal;
+    private final boolean isDeclaration;
     private Value value;
 
-    public Variable(TokenType type, String name, Value value, boolean isFinal) {
+    public Variable(TokenType type, String name, Value value, boolean isFinal, boolean isDeclaration) {
         this.type = type;
         this.name = name;
         this.value = value;
         this.isFinal = isFinal;
+        this.isDeclaration = isDeclaration;
     }
 
     public TokenType getType() {
@@ -26,6 +28,10 @@ public class Variable {
 
     public Value getValue() {
         return value;
+    }
+
+    public boolean isDeclaration() {
+        return isDeclaration;
     }
 
     public void setValue(Value value) {

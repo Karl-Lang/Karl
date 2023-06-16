@@ -10,6 +10,7 @@ import studio.karllang.karl.std.*;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public final class Parser {
@@ -43,35 +44,33 @@ public final class Parser {
     private Statement getStatement() {
         if (match(TokenType.SHOW)) {
             return show();
-        }
-        if (match(TokenType.FINAL) && Types.contains(getType()) && getType() != TokenType.NULL) {
-            return variableDeclaration(true);
-        } else if (Types.contains(getType()) && getType() != TokenType.NULL) {
-            return variableDeclaration(false);
         } else if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
             return variableAssignment();
         } else if (match(TokenType.IF)) {
             return ifElse();
         } else if (checkType(0, TokenType.IDENTIFIER) && (checkType(1, TokenType.PLUSPLUS) || checkType(1, TokenType.MINUSMINUS))) {
             return incrementDecrement();
-        } else if (match(TokenType.EXPORT) || match(TokenType.DECLARE)) {
-            return declareOrExport();
         } else if (match(TokenType.IDENTIFIER) && match(TokenType.LEFT_PARENTHESIS)) {
             return funcCall();
         } else if (match(TokenType.USE)) {
             return use();
-        } else {
-            new RuntimeError("Unexpected token: " + get(0).getValue(), file.getStringPath(), get(0).getLine(), get(0).getPosition());
-            return null;
-        }
+        } else return declareOrExport();
     }
 
     private Statement declareOrExport() {
-        Token token = get(-1);
+        Token token = get(0);
+        if (!match(TokenType.DECLARE) && !match(TokenType.EXPORT)) {
+            new SyntaxError("Unexpected token: " + token.getValue(), file.getStringPath(), token.getLine(), token.getPosition());
+        }
+
         boolean isDeclaration = token.getType() == TokenType.DECLARE;
 
         if (match(TokenType.FUNC)) {
             return funcDeclaration(isDeclaration);
+        } else if (match(TokenType.FINAL) && Types.contains(getType()) && getType() != TokenType.NULL) {
+            return variableDeclaration(true, isDeclaration);
+        } else if (Types.contains(getType()) && getType() != TokenType.NULL) {
+            return variableDeclaration(false, isDeclaration);
         } else {
             new SyntaxError("Unexpected token: " + get(0).getValue(), file.getStringPath(), get(0).getLine(), get(0).getPosition());
             return null;
@@ -186,7 +185,7 @@ public final class Parser {
         }
         if (!match(TokenType.RIGHT_BRACE))
             new RuntimeError("Missing }", file.getStringPath(), get(-1).getLine(), get(-1).getPosition());
-        return new BlockStatement(statements, file);
+        return new BlockStatement(statements, file, get(-1).getLine(), get(-1).getPosition());
     }
 
     private Expression getExpression() {
@@ -323,7 +322,7 @@ public final class Parser {
         return new VariableAssignmentStatement(name, expr, file, get(0).getLine(), get(0).getPosition());
     }
 
-    private Statement variableDeclaration(boolean isFinal) {
+    private Statement variableDeclaration(boolean isFinal, boolean isDeclaration) {
         Token type = get(0);
         match(type.getType());
         skip(TokenType.COLON);
@@ -338,7 +337,7 @@ public final class Parser {
             new RuntimeError("Expected expression after " + name.getValue(), file.getStringPath(), name.getLine(), get(0).getPosition());
         }
 
-        return new VariableDeclarationStatement(expression, name.getValue(), type, file, name.getLine(), name.getPosition(), isFinal);
+        return new VariableDeclarationStatement(expression, name.getValue(), type, file, name.getLine(), name.getPosition(), isFinal, isDeclaration);
     }
 
     private ShowStatement show() {

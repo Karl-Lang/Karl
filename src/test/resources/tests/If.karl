@@ -1,8 +1,8 @@
-string: name = "Karl";
-int: number = 230;
-float: price = 2.30;
-bool: boolean = false;
-bool: trueValue = true;
+declare string: name = "Karl";
+declare int: number = 230;
+declare float: price = 2.30;
+declare bool: boolean = false;
+declare bool: trueValue = true;
 
 if (name == "Karl" && true == true) -> {
     show("Test #1 success");
@@ -32,7 +32,7 @@ if (number == 230 && price == 2.30 || !boolean) -> {
     show("Test #7 success");
 }
 
-func getBool::(): bool -> {
+declare func getBool::(): bool -> {
     return false;
 }
 
@@ -57,8 +57,8 @@ if ((name == "karl" || name == "Karl") && (number == 230 || number == 231)) -> {
     show("Test #10 success");
 }
 
-int: lol = 42;
-string: mdr = "El psy kongroo";
+declare int: lol = 42;
+declare string: mdr = "El psy kongroo";
 if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4)) || !false) -> {
       show("Test réussit !! ^U^");
 } else -> {

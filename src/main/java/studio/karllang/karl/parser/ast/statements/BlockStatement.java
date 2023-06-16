@@ -12,10 +12,14 @@ public class BlockStatement extends Statement {
     private Value result;
     private HashMap<String, Value> args;
     private final File file;
+    private final int line;
+    private final int pos;
 
-    public BlockStatement(ArrayList<Statement> statements, File file) {
+    public BlockStatement(ArrayList<Statement> statements, File file, int line, int pos) {
         this.statements = statements;
         this.file = file;
+        this.line = line;
+        this.pos = pos;
     }
 
     public void setArgs(HashMap<String, Value> args) {
@@ -32,7 +36,7 @@ public class BlockStatement extends Statement {
         this.file.getVariableManager().newScope();
         if (args != null) {
             for (String arg : args.keySet()) {
-                this.file.getVariableManager().setVariable(arg, args.get(arg), false);
+                this.file.getVariableManager().setVariable(arg, args.get(arg), false, true, line, pos);
             }
         }
         for (Statement statement : statements) {

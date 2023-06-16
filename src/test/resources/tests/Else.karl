@@ -1,4 +1,4 @@
-int: number = 10;
+declare int: number = 10;
 if (number == 11) -> {
     show("No");
 } else if (number == 10) -> {
@@ -11,7 +11,7 @@ if (number < 10) -> {
     show("Test #2 success");
 }
 
-func main::(): void -> {
+declare func main::(): void -> {
     if (!true) -> {
         show("No");
     } else -> {
@@ -21,7 +21,7 @@ func main::(): void -> {
 
 main();
 
-bool: testPassed = false;
+declare bool: testPassed = false;
 if (testPassed) -> {
     show("No");
 } else -> {
