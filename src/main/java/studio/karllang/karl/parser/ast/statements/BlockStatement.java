@@ -1,5 +1,6 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.std.File;
 import studio.karllang.karl.std.VariableManager;
@@ -49,6 +50,10 @@ public class BlockStatement extends Statement {
                 }
             } else if (statement instanceof ReturnStatement) {
                 result = ((ReturnStatement) statement).getResult();
+
+                if (statements.indexOf(statement) != statements.size() - 1) {
+                    new RuntimeError("Unreachable code after return statement", file.getStringPath(), line, pos);
+                }
                 break;
             }
         }
