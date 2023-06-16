@@ -1,6 +1,7 @@
 package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
+import studio.karllang.karl.lib.Library;
 import studio.karllang.karl.lib.LibraryManager;
 import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.modules.File;
@@ -34,6 +35,10 @@ public class ClassCallExpression extends Expression {
         if (!LibraryManager.isLibrary(name)) {
             new RuntimeError("Unknown library: " + name, file.getStringPath(), line, pos);
         }
+
+        Library library = LibraryManager.getLibrary(name);
+
+        library.run("show");
         return null;
     }
 }

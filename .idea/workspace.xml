@@ -4,43 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Add base of lib import parsing">
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Function.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Library.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/LibraryManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/Std.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/std_Show.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/FileError/FileError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/FileError/FileError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/FileError/FileNotFoundError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/errors/FileError/FileNotFoundError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/BinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/BinaryExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ClassCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ClassCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FunctionExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FunctionExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LogicalExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/UnaryExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/VariableExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/IncrementDecrementStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableAssignmentStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Colors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/Colors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/File.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/ForbiddenNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/ForbiddenNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/Function.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/FunctionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/FunctionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/LogicalOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/LogicalOperators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/Operators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Types.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/Types.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/Variable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/std/VariableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/modules/VariableManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Make library recognition">
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/Std.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/Std.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -431,14 +396,7 @@
       <workItem from="1686248682978" duration="11904000" />
       <workItem from="1686489098655" duration="7391000" />
       <workItem from="1686843568641" duration="3576000" />
-      <workItem from="1686921893013" duration="18316000" />
-    </task>
-    <task id="LOCAL-00070" summary="v0.4.0-alpha - Edit README.md">
-      <created>1669225889838</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1669225889838</updated>
+      <workItem from="1686921893013" duration="18915000" />
     </task>
     <task id="LOCAL-00071" summary="Fix bug with multi-line comment &amp; optimize code">
       <created>1669233742340</created>
@@ -776,7 +734,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686944172227</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="feat: Make library recognition">
+      <created>1686946751367</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1686946751367</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -795,7 +760,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream" />
     <MESSAGE value="Add File dimension in variable manager to prepare multi-files implementation" />
     <MESSAGE value="Add File dimension in function manager to prepare multi-files implementation" />
     <MESSAGE value="Cleanup Main" />
@@ -820,7 +784,8 @@
     <MESSAGE value="docs: Update README.md" />
     <MESSAGE value="fix: Unreachable code after return statement in function block" />
     <MESSAGE value="feat: Add base of lib import parsing" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Add base of lib import parsing" />
+    <MESSAGE value="feat: Make library recognition" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Make library recognition" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

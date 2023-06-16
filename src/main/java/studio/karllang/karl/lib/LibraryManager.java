@@ -38,6 +38,10 @@ public final class LibraryManager {
         }
     }
 
+    public static Library getLibrary(String name) {
+        return libraries.stream().filter(n -> n.getName().equals(name)).findFirst().orElse(null);
+    }
+
     public ArrayList<Library> getLibraries() {
         return libraries;
     }

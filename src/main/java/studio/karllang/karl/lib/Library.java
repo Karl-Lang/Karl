@@ -12,6 +12,8 @@ public abstract class Library {
         this.name = name;
     }
 
+    public abstract void run(String function);
+
     public void addSubLibrary(Library library) {
         subLibraries.add(library);
     }
