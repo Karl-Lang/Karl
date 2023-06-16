@@ -12,11 +12,11 @@
 ## Example
 
 ```js
-int: number = 150; // this is a comment
-bool: boolean = true;
-int: num = 1;
+declare int: number = 150; // this is a comment
+declare bool: boolean = true;
+declare int: num = 1;
 
-func main::(): int -> {
+declare func main::(): int -> {
   return 1;
 }
 
