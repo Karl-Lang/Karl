@@ -6,11 +6,10 @@ import studio.karllang.karl.errors.SyntaxError.SemiColonError;
 import studio.karllang.karl.errors.SyntaxError.SyntaxError;
 import studio.karllang.karl.parser.ast.expressions.*;
 import studio.karllang.karl.parser.ast.statements.*;
-import studio.karllang.karl.std.*;
+import studio.karllang.karl.modules.*;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public final class Parser {
@@ -97,7 +96,6 @@ public final class Parser {
 
     private Expression getClassCall() {
         Token classImport = get(-1);
-        System.out.println("CLASS " + classImport.getValue());
         ClassCallExpression expression = new ClassCallExpression(classImport.getValue(), file, classImport.getLine(), classImport.getPosition());
         ArrayList<String> childs = new ArrayList<>();
 

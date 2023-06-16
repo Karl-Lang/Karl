@@ -2,7 +2,7 @@ package studio.karllang.karl.parser.ast.statements;
 
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.FunctionExpression;
-import studio.karllang.karl.std.File;
+import studio.karllang.karl.modules.File;
 
 import java.util.LinkedHashMap;
 

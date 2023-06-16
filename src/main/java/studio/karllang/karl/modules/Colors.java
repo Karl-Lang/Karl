@@ -1,4 +1,4 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.modules;
 
 public final class Colors {
     public static final String RESET = "\u001B[0m";

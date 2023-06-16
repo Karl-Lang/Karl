@@ -7,9 +7,9 @@ import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.expressions.ValueExpression;
 import studio.karllang.karl.parser.ast.expressions.VariableExpression;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.File;
-import studio.karllang.karl.std.ForbiddenNames;
-import studio.karllang.karl.std.Types;
+import studio.karllang.karl.modules.File;
+import studio.karllang.karl.modules.ForbiddenNames;
+import studio.karllang.karl.modules.Types;
 
 public class VariableDeclarationStatement extends Statement {
     private final String name;

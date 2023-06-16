@@ -1,4 +1,4 @@
-use a.b.c;
+use std;
 declare final string: name = "Mayo";
 
 declare func namep::(): int -> {

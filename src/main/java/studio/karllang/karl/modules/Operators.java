@@ -1,4 +1,4 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.modules;
 
 import studio.karllang.karl.parser.TokenType;
 

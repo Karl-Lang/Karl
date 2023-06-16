@@ -1,4 +1,4 @@
-package studio.karllang.karl.std;
+package studio.karllang.karl.modules;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.ast.values.Value;
@@ -33,7 +33,6 @@ public class VariableManager {
             }
 
             exportedVariables.put(name, new Variable(value.getType(), name, value, isFinal, false));
-            System.out.println("Exported variable: " + name);
         }
     }
 

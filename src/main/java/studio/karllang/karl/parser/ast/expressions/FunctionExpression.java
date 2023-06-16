@@ -3,7 +3,7 @@ package studio.karllang.karl.parser.ast.expressions;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.statements.BlockStatement;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.File;
+import studio.karllang.karl.modules.File;
 
 import java.util.LinkedHashMap;
 

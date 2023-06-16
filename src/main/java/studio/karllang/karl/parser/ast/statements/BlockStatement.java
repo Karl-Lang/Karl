@@ -2,8 +2,8 @@ package studio.karllang.karl.parser.ast.statements;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.File;
-import studio.karllang.karl.std.VariableManager;
+import studio.karllang.karl.modules.File;
+import studio.karllang.karl.modules.VariableManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

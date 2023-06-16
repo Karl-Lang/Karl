@@ -6,8 +6,8 @@ import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
 import studio.karllang.karl.parser.ast.values.StringValue;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.File;
-import studio.karllang.karl.std.Types;
+import studio.karllang.karl.modules.File;
+import studio.karllang.karl.modules.Types;
 
 public class BinaryExpression extends Expression {
     private final Expression left;

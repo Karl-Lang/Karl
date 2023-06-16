@@ -1,6 +1,6 @@
 package studio.karllang.karl.errors;
 
-import studio.karllang.karl.std.Colors;
+import studio.karllang.karl.modules.Colors;
 
 import java.io.IOException;
 import java.nio.file.Files;

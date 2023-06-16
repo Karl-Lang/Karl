@@ -4,11 +4,12 @@ import studio.karllang.cli.Option;
 import studio.karllang.cli.Options;
 import studio.karllang.karl.errors.FileError.FileError;
 import studio.karllang.karl.errors.FileError.FileNotFoundError;
+import studio.karllang.karl.lib.LibraryManager;
 import studio.karllang.karl.parser.Lexer;
 import studio.karllang.karl.parser.Parser;
 import studio.karllang.karl.parser.Token;
 import studio.karllang.karl.parser.ast.statements.Statement;
-import studio.karllang.karl.std.File;
+import studio.karllang.karl.modules.File;
 
 import java.io.IOException;
 import java.nio.file.Files;

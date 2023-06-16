@@ -5,7 +5,7 @@ import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.values.BooleanValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.std.File;
+import studio.karllang.karl.modules.File;
 
 public class UnaryExpression extends Expression {
     private final Expression expression;

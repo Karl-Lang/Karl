@@ -1,6 +1,6 @@
 package studio.karllang.karl.errors.FileError;
 
-import studio.karllang.karl.std.Colors;
+import studio.karllang.karl.modules.Colors;
 
 public class FileError {
     private final String path;
