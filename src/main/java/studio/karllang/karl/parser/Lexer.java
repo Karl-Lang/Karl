@@ -54,7 +54,7 @@ public class Lexer {
         OPERATORS.put(":", TokenType.COLON);
         OPERATORS.put("&", TokenType.AMP);
         OPERATORS.put("|", TokenType.BAR);
-        OPERATORS.put(".", TokenType.POINT);
+        OPERATORS.put(".", TokenType.DOT);
         OPERATORS.put("^", TokenType.POW);
         OPERATORS.put("~", TokenType.TILDE);
         OPERATORS.put("?", TokenType.QUESTION);

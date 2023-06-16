@@ -1,4 +1,4 @@
-use "Util.karl" as util;
+use a.b.c;
 declare final string: name = "Mayo";
 
 declare func namep::(): int -> {

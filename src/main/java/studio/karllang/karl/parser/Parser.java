@@ -78,14 +78,45 @@ public final class Parser {
     }
 
     private Statement use() {
-        skip(TokenType.STR_VALUE);
-        Token token = get(-1);
-        Expression fileName = new ValueExpression(token.getValue(), token.getType());
-        skip(TokenType.AS);
-        skip(TokenType.IDENTIFIER);
-        Token asIdentifier = get(-1);
+        if (match(TokenType.STR_VALUE)) {
+            Token token = get(-1);
+            Expression fileName = new ValueExpression(token.getValue(), token.getType());
+            skip(TokenType.AS);
+            skip(TokenType.IDENTIFIER);
+            Token asIdentifier = get(-1);
+            skip(TokenType.SEMICOLON);
+            return new UseStatement(fileName, this.basePath, asIdentifier, false);
+
+        } else if (match(TokenType.IDENTIFIER)) {
+            return new UseStatement(getClassCall(), this.basePath, null, true);
+        } else {
+            new SyntaxError("Unexpected token: " + get(0).getValue(), file.getStringPath(), get(0).getLine(), get(0).getPosition());
+            return null;
+        }
+    }
+
+    private Expression getClassCall() {
+        Token classImport = get(-1);
+        System.out.println("CLASS " + classImport.getValue());
+        ClassCallExpression expression = new ClassCallExpression(classImport.getValue(), file, classImport.getLine(), classImport.getPosition());
+        ArrayList<String> childs = new ArrayList<>();
+
+        while (match(TokenType.DOT)) {
+            skip(TokenType.IDENTIFIER);
+            childs.add(get(-1).getValue());
+        }
+
+
+        ClassCallExpression current = expression;
+        for (String child : childs) {
+            ClassCallExpression childExpression = new ClassCallExpression(child, file, classImport.getLine(), classImport.getPosition());
+            current.addChild(childExpression);
+            current = childExpression;
+        }
+
         skip(TokenType.SEMICOLON);
-        return new UseStatement(fileName, this.basePath, asIdentifier);
+
+        return expression;
     }
 
     private Statement funcCall() {

@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="docs: Update README.md">
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/BlockStatement.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="fix: Unreachable code after return statement in function block">
+      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ClassCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/UseStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/UseStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,14 +402,7 @@
       <workItem from="1686248682978" duration="11904000" />
       <workItem from="1686489098655" duration="7391000" />
       <workItem from="1686843568641" duration="3576000" />
-      <workItem from="1686921893013" duration="8885000" />
-    </task>
-    <task id="LOCAL-00068" summary="Fix last bugs, add new features for ! keyword in conditions">
-      <created>1669060897709</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1669060897709</updated>
+      <workItem from="1686921893013" duration="15628000" />
     </task>
     <task id="LOCAL-00069" summary="v4.0.0-alpha">
       <created>1669225360842</created>
@@ -741,7 +740,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686932715668</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="fix: Unreachable code after return statement in function block">
+      <created>1686933127236</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1686933127237</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -760,7 +766,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update to publish release" />
     <MESSAGE value="Update version" />
     <MESSAGE value="Fix tests in order to work on Windows, MacOS &amp; Linux. Fix encoding error in print stream" />
     <MESSAGE value="Add File dimension in variable manager to prepare multi-files implementation" />
@@ -785,7 +790,8 @@
     <MESSAGE value="feat: Change variable declaration by two possibilities: declare or export" />
     <MESSAGE value="fix: Duplicate variable declaration" />
     <MESSAGE value="docs: Update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="docs: Update README.md" />
+    <MESSAGE value="fix: Unreachable code after return statement in function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Unreachable code after return statement in function block" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

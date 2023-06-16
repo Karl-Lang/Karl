@@ -15,18 +15,25 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class UseStatement extends Statement {
-    public final Expression expr;
-    public final Path basePath;
-    public final Token as;
+    private final Expression expr;
+    private final Path basePath;
+    private final Token as;
+    private final boolean lib;
 
-    public UseStatement(Expression expr, Path basePath, Token as) {
+    public UseStatement(Expression expr, Path basePath, Token as, boolean lib) {
         this.expr = expr;
         this.basePath = basePath;
         this.as = as;
+        this.lib = lib;
     }
 
     @Override
     public void eval() {
+        if (lib) evalLib();
+        else evalAs();
+    }
+
+    private void evalAs() {
         System.out.println(this.as.getValue());
         Value value = expr.eval();
         File dir = new File(this.basePath.toUri());
@@ -43,5 +50,9 @@ public class UseStatement extends Statement {
         } else {
             new FileNotFoundError(value.toString()); // TODO: Make better error message
         }
+    }
+
+    private void evalLib() {
+        expr.eval();
     }
 }

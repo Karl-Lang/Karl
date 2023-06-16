@@ -59,7 +59,8 @@ public enum TokenType {
     USE("use"),
     AS("as"),
     EXPORT("export"),
-    DECLARE("declare");
+    DECLARE("declare"),
+    DOT(".");
 
     private final String name;
 
