@@ -1,5 +1,8 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import studio.karllang.karl.errors.RuntimeError.RuntimeError;
+import studio.karllang.karl.lib.LibraryManager;
+import studio.karllang.karl.modules.ForbiddenNames;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.FunctionExpression;
 import studio.karllang.karl.modules.File;
@@ -29,7 +32,16 @@ public class FunctionDeclarationStatement extends Statement {
 
     @Override
     public void eval() {
+        checkName(name, file, line, pos);
         FunctionExpression expr = new FunctionExpression(name, args, type, body, file);
         expr.eval();
+    }
+
+    private void checkName(String name, File file, int line, int pos) {
+        if (ForbiddenNames.isForbiddenName(name)) {
+            new RuntimeError("Function name " + name + " is forbidden", file.getStringPath(), line, pos);
+        } else if (LibraryManager.getImportedLibrairies().stream().anyMatch(n -> n.getName().equals(name))) {
+            new RuntimeError("Cannot set a function name that is the same than a library: " + name, file.getStringPath(), line, pos);
+        }
     }
 }

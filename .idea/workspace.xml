@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Change Show function to Write">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="fix: Fix some issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/LibraryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/LibraryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ClassCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ClassCallExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/VariableDeclarationStatement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -415,14 +414,7 @@
       <workItem from="1686489098655" duration="7391000" />
       <workItem from="1686843568641" duration="3576000" />
       <workItem from="1686921893013" duration="26149000" />
-      <workItem from="1686989094107" duration="13598000" />
-    </task>
-    <task id="LOCAL-00078" summary="Patch 014 &amp; v0.4.0-alpha.3">
-      <created>1669829978808</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1669829978808</updated>
+      <workItem from="1686989094107" duration="13941000" />
     </task>
     <task id="LOCAL-00079" summary="Patch 015">
       <created>1669832203702</created>
@@ -760,7 +752,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687000926045</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="fix: Fix some issues">
+      <created>1687020367000</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1687020367000</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -779,7 +778,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="feat: Change packages names" />
     <MESSAGE value="feat: Finish base of run CLI command" />
     <MESSAGE value="edit: Remove PicoCLI" />
     <MESSAGE value="feat: Add base text for CLI when no command is given" />
@@ -804,7 +802,8 @@
     <MESSAGE value="tests: Update test with new function call" />
     <MESSAGE value="docs: Update README.md" />
     <MESSAGE value="feat: Change Show function to Write" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Change Show function to Write" />
+    <MESSAGE value="fix: Fix some issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Fix some issues" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

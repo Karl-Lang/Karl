@@ -1,6 +1,7 @@
 package studio.karllang.karl.parser.ast.statements;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
+import studio.karllang.karl.lib.LibraryManager;
 import studio.karllang.karl.parser.Token;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
@@ -62,8 +63,18 @@ public class VariableDeclarationStatement extends Statement {
             new RuntimeError(Types.getTypeName(type.getType()) + " variable cannot be null", file.getStringPath(), line, pos - 1);
         }
 
+        checkName(name, file, line, pos);
+
         VariableExpression expr = new VariableExpression(name, value, isFinal, file, isDeclaration, line, pos);
         // expr.setValue(value);
         expr.eval();
+    }
+
+    private void checkName(String name, File file, int line, int pos) {
+        if (ForbiddenNames.isForbiddenName(name)) {
+            new RuntimeError("Variable name " + name + " is forbidden", file.getStringPath(), line, pos);
+        } else if (LibraryManager.getImportedLibrairies().stream().anyMatch(n -> n.getName().equals(name))) {
+            new RuntimeError("Cannot set a variable name that is the same than a library: " + name, file.getStringPath(), line, pos);
+        }
     }
 }

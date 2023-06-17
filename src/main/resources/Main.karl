@@ -1,6 +1,7 @@
 use std::io;
 
-declare func main::(): void -> {
+declare string: iop = "io";
+declare func io::(): void -> {
     declare int: number = 10;
 }
 
