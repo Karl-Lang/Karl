@@ -1,5 +1,6 @@
 package studio.karllang.karl;
 
+import org.slf4j.LoggerFactory;
 import studio.karllang.cli.Option;
 import studio.karllang.cli.Options;
 import studio.karllang.karl.errors.FileError.FileError;
@@ -20,6 +21,10 @@ import java.util.Optional;
 public class Karl {
 
     public void run(String pathStr, ArrayList<Option> options) {
+        ch.qos.logback.classic.Logger root;
+        root = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("org.reflections");
+        root.setLevel(ch.qos.logback.classic.Level.OFF);
+
         if (options == null) options = new ArrayList<>();
         Optional<Option> isEnabled = options.stream().filter(opt -> opt.getType() == Options.EXEC_TIME).findFirst();
         final Path path = Path.of(pathStr);
@@ -48,6 +53,7 @@ public class Karl {
             Long end = System.currentTimeMillis();
             file.getFunctionManager().clear();
             file.getVariableManager().clear();
+            LibraryManager.clearImportedLibraries();
 
             // VariableManager.clear();
             // this.file.getFunctionManager().clear();

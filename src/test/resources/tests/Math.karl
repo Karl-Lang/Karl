@@ -1,3 +1,5 @@
+use std::io;
+
 // Make a lot of mathematical operations with the result
 declare int: one = 5 + (3+3) * 2; // 17
 declare int: two = 5 + 3 + 3 * 2; // 14
@@ -11,13 +13,13 @@ declare int: nine = (4 + 5) * 2 / 3; // 6
 declare float: ten = 4 + 5 * (2 / 3); // 7.333
 
 // Print the results
-show(one);
-show(two);
-show(three);
-show(four);
-show(five);
-show(six);
-show(seven);
-show(eight);
-show(nine);
-show(ten);
+Show(one);
+Show(two);
+Show(three);
+Show(four);
+Show(five);
+Show(six);
+Show(seven);
+Show(eight);
+Show(nine);
+Show(ten);

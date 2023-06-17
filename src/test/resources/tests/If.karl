@@ -1,3 +1,5 @@
+use std::io;
+
 declare string: name = "Karl";
 declare int: number = 230;
 declare float: price = 2.30;
@@ -5,31 +7,31 @@ declare bool: boolean = false;
 declare bool: trueValue = true;
 
 if (name == "Karl" && true == true) -> {
-    show("Test #1 success");
+    Show("Test #1 success");
 }
 
 if (number == 230 || !boolean) -> {
-    show("Test #2 success");
+    Show("Test #2 success");
 }
 
 if (price == 2.30 && (!boolean || number > 1300)) -> {
-    show("Test #3 success");
+    Show("Test #3 success");
 }
 
 if (number == 230 && price == 2.30) -> {
-    show("Test #4 success");
+    Show("Test #4 success");
 }
 
 if (trueValue) -> {
-    show("Test #5 success");
+    Show("Test #5 success");
 }
 
 if (number == 230 && price == 2.30 && trueValue) -> {
-    show("Test #6 success");
+    Show("Test #6 success");
 }
 
 if (number == 230 && price == 2.30 || !boolean) -> {
-    show("Test #7 success");
+    Show("Test #7 success");
 }
 
 declare func getBool::(): bool -> {
@@ -37,7 +39,7 @@ declare func getBool::(): bool -> {
 }
 
 if (!getBool() || boolean) -> {
-    show("Test #8 success");
+    Show("Test #8 success");
     /*
 
     hnpmhdalk
@@ -47,22 +49,22 @@ if (!getBool() || boolean) -> {
 
 if (price == 2.30 && (!boolean || (number > 1300 || 1 == 1))) -> {
 /* Hhm*/
-    show("Test #9 success");
+    Show("Test #9 success");
 } else -> {
 // Ç aussi
-    show("Test #9 failed"); // Ça c'est un comment
+    Show("Test #9 failed"); // Ça c'est un comment
 }
 
 if ((name == "karl" || name == "Karl") && (number == 230 || number == 231)) -> {
-    show("Test #10 success");
+    Show("Test #10 success");
 }
 
 declare int: lol = 42;
 declare string: mdr = "El psy kongroo";
 if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4)) || !false) -> {
-      show("Test réussit !! ^U^");
+      Show("Test réussit !! ^U^");
 } else -> {
-      show("Test échoué !! >_<");
+      Show("Test échoué !! >_<");
 }
 
 /*
@@ -70,23 +72,23 @@ if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4))
     */
 //
 
-show(true || "Yoo" == "Yoo");
+Show(true || "Yoo" == "Yoo");
 if (true || "Yoo" == "Yoo") -> {
-    show("Yay!");
+    Show("Yay!");
 }
 
-show(42 || true);
+Show(42 || true);
 if (42 || true) -> {
-    show("Yay!2");
+    Show("Yay!2");
 } else -> {
-    show("No");
+    Show("No");
 }
 
-show("Yoo" == "Yoo" || true);
+Show("Yoo" == "Yoo" || true);
 if ("Yoo" == "Yoo" || true) -> {
-    show("Yay!3");
+    Show("Yay!3");
 }
 
 if (42 == 42 || true) -> {
-  show("Yay!4");
+  Show("Yay!4");
 }

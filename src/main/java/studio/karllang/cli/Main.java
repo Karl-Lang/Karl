@@ -1,5 +1,7 @@
 package studio.karllang.cli;
 
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,6 +11,10 @@ public class Main {
     private static String command = "";
 
     public static void main(String[] args) throws Exception {
+        ch.qos.logback.classic.Logger root;
+        root = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("org.reflections");
+        root.setLevel(ch.qos.logback.classic.Level.OFF);
+
         if (args.length == 0) {
             printBaseText();
             return;

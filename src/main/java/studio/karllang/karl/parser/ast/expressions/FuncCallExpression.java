@@ -60,7 +60,6 @@ public class FuncCallExpression extends Expression {
                     isFound = true;
                     function.eval(args);
                 } else if (library.getLoadedSubLibraries().size() > 0) {
-                    System.out.println("called");
                     library.getLoadedSubLibraries().forEach((name, subLibrary) -> {
                         if (subLibrary.getFunctions().containsKey(name)) {
                             studio.karllang.karl.lib.Function function = subLibrary.getFunctions().get(name);

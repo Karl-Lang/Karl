@@ -69,4 +69,8 @@ public final class LibraryManager {
     public static boolean isLibrary(String name) {
         return libraries.stream().anyMatch(n -> n.getName().equals(name));
     }
+
+    public static void clearImportedLibraries() {
+        importedLibrairies.clear();
+    }
 }

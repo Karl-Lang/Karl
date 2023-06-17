@@ -1,9 +1,11 @@
+use std::io;
+
 declare func sayHello::(string: name): void -> {
-    show("Hello, ", name, "!");
+    Show("Hello, ", name, "!");
 }
 
 declare func main::(): void -> {
-    show("What is your name?");
+    Show("What is your name?");
     sayHello("Karl");
 }
 
@@ -11,13 +13,13 @@ declare func getStr::(): string -> {
     return "Hello, World!";
 }
 main();
-show(getStr());
-show(getInt(9) + 1);
+Show(getStr());
+Show(getInt(9) + 1);
 
 declare func getInt::(int: num): int -> {
     return num + 1;
 }
-show(getInt(6) + 1);
+Show(getInt(6) + 1);
 
 declare func getIfInt::(int: number): int -> {
   if (number == 14) -> {
@@ -27,4 +29,4 @@ declare func getIfInt::(int: number): int -> {
   }
 }
 
-show(getIfInt(14));
+Show(getIfInt(14));

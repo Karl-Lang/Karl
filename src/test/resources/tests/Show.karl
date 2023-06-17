@@ -1,1 +1,3 @@
-show("Hello World!");
+use std::io;
+
+Show("Hello, World!");
