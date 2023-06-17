@@ -47,7 +47,7 @@ public final class Parser {
             return ifElse();
         } else if (checkType(0, TokenType.IDENTIFIER) && (checkType(1, TokenType.PLUSPLUS) || checkType(1, TokenType.MINUSMINUS))) {
             return incrementDecrement();
-        } else if (match(TokenType.IDENTIFIER) && match(TokenType.LEFT_PARENTHESIS)) {
+        } else if (match(TokenType.IDENTIFIER) && (match(TokenType.LEFT_PARENTHESIS) || match(TokenType.COLON))) {
             return funcCall();
         } else if (match(TokenType.USE)) {
             return use();
@@ -116,7 +116,22 @@ public final class Parser {
     }
 
     private Statement funcCall() {
-        String name = get(-2).getValue();
+        if (get(-1).getType() == TokenType.LEFT_PARENTHESIS) {
+            String name = get(-2).getValue();
+            ArrayList<Expression> args = getFuncArgs();
+            return new FuncCallStatement(new FuncCallExpression(name, args, false, null, file, get(-2).getLine(), get(-2).getPosition()));
+        } else {
+            // io:Show("Hello World");
+            String libName = get(-2).getValue();
+            skip(TokenType.IDENTIFIER);
+            String name = get(-1).getValue();
+            skip(TokenType.LEFT_PARENTHESIS);
+            ArrayList<Expression> args = getFuncArgs();
+            return new FuncCallStatement(new FuncCallExpression(name, args, true, libName, file, get(-2).getLine(), get(-2).getPosition()));
+        }
+    }
+
+    private ArrayList<Expression> getFuncArgs() {
         ArrayList<Expression> args = new ArrayList<>();
         while (!match(TokenType.RIGHT_PARENTHESIS) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
             if (match(TokenType.COMMA)) continue;
@@ -124,8 +139,7 @@ public final class Parser {
             args.add(expression);
         }
         skip(TokenType.SEMICOLON);
-
-        return new FuncCallStatement(new FuncCallExpression(name, args, file, get(-2).getLine(), get(-2).getPosition()));
+        return args;
     }
 
     private Statement funcDeclaration(boolean isDeclaration) {
@@ -271,7 +285,7 @@ public final class Parser {
                 match(TokenType.COMMA);
             }
 
-            return new FuncCallExpression(name, args, file, nameToken.getLine(), nameToken.getPosition());
+            return new FuncCallExpression(name, args, false, null, file, nameToken.getLine(), nameToken.getPosition());
         } else if (match(TokenType.EXCLAMATION)) {
             if (getType() != TokenType.IDENTIFIER && getType() != TokenType.BOOL_VALUE && getType() != TokenType.LEFT_PARENTHESIS)
                 new RuntimeError("Unexpected token " + get(-1).getValue(), file.getStringPath(), get(-1).getLine(), get(-1).getPosition());

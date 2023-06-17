@@ -27,6 +27,8 @@ public abstract class Library {
         subLibraries.add(library);
     }
 
+    public abstract Function getFunction(String name);
+
     public HashMap<String, Library> getLoadedSubLibraries() {
         return loadedSubLibraries;
     }

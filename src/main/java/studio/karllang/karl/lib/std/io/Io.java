@@ -31,6 +31,11 @@ public class Io extends Library {
     }
 
     @Override
+    public Function getFunction(String name) {
+        return functions.get(name);
+    }
+
+    @Override
     public void loadSubLibrary(String name, File file, int line, int pos) {
 
     }

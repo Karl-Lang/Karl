@@ -30,6 +30,11 @@ public class Std extends Library {
         loadedSubLibraries.put(name, subLibraries.get(name));
     }
 
+    @Override
+    public Function getFunction(String name) {
+        return functions.get(name);
+    }
+
     public void run(String function, ArrayList<Expression> expressions) {
         if (!functions.containsKey(function)) {
             System.out.println("Unknown function: " + function);

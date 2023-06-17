@@ -4,22 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Remove old show function, remplaced by Show function of std::io lib">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="fix: Imported librairies aren't reset after execution">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/cli/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/LibraryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/LibraryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Show.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/Std.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/Std.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/ShowStatement.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/studio/karllang/KarlTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/studio/karllang/KarlTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Else.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Else.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/If.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/If.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Math.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Math.karl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +106,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.KarlTest">
+  <component name="RunManager" selected="Application.Run">
     <configuration name="No command" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
@@ -426,14 +418,7 @@
       <workItem from="1686489098655" duration="7391000" />
       <workItem from="1686843568641" duration="3576000" />
       <workItem from="1686921893013" duration="26149000" />
-      <workItem from="1686989094107" duration="3858000" />
-    </task>
-    <task id="LOCAL-00073" summary="Patch 005 &amp; 010">
-      <created>1669731980112</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1669731980113</updated>
+      <workItem from="1686989094107" duration="7627000" />
     </task>
     <task id="LOCAL-00074" summary="Patch 007">
       <created>1669732965898</created>
@@ -771,7 +756,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686954780322</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="fix: Imported librairies aren't reset after execution">
+      <created>1686993718525</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1686993718526</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -790,7 +782,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Cleanup Main" />
     <MESSAGE value="Edit project dir tree" />
     <MESSAGE value="feat: Create base of command line tool" />
     <MESSAGE value="[CLI] Making some changes to run command" />
@@ -815,7 +806,8 @@
     <MESSAGE value="feat: Make library recognition" />
     <MESSAGE value="feat: Can run a library function" />
     <MESSAGE value="feat: Remove old show function, remplaced by Show function of std::io lib" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Remove old show function, remplaced by Show function of std::io lib" />
+    <MESSAGE value="fix: Imported librairies aren't reset after execution" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Imported librairies aren't reset after execution" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
