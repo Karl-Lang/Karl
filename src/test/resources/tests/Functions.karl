@@ -1,11 +1,11 @@
 use std::io;
 
 declare func sayHello::(string: name): void -> {
-    Show("Hello, ", name, "!");
+    io:Show("Hello, ", name, "!");
 }
 
 declare func main::(): void -> {
-    Show("What is your name?");
+    io:Show("What is your name?");
     sayHello("Karl");
 }
 
@@ -13,13 +13,13 @@ declare func getStr::(): string -> {
     return "Hello, World!";
 }
 main();
-Show(getStr());
-Show(getInt(9) + 1);
+io:Show(getStr());
+io:Show(getInt(9) + 1);
 
 declare func getInt::(int: num): int -> {
     return num + 1;
 }
-Show(getInt(6) + 1);
+io:Show(getInt(6) + 1);
 
 declare func getIfInt::(int: number): int -> {
   if (number == 14) -> {
@@ -29,4 +29,4 @@ declare func getIfInt::(int: number): int -> {
   }
 }
 
-Show(getIfInt(14));
+io:Show(getIfInt(14));

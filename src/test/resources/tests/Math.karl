@@ -13,13 +13,13 @@ declare int: nine = (4 + 5) * 2 / 3; // 6
 declare float: ten = 4 + 5 * (2 / 3); // 7.333
 
 // Print the results
-Show(one);
-Show(two);
-Show(three);
-Show(four);
-Show(five);
-Show(six);
-Show(seven);
-Show(eight);
-Show(nine);
-Show(ten);
+io:Show(one);
+io:Show(two);
+io:Show(three);
+io:Show(four);
+io:Show(five);
+io:Show(six);
+io:Show(seven);
+io:Show(eight);
+io:Show(nine);
+io:Show(ten);
