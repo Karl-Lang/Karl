@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="docs: Update README.md">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Change Show function to Write">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Write.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/LibraryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/LibraryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ClassCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ClassCallExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Else.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Else.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/If.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/If.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Math.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Math.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +103,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.KarlTest">
+  <component name="RunManager" selected="Application.Run">
     <configuration name="No command" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
@@ -420,14 +415,7 @@
       <workItem from="1686489098655" duration="7391000" />
       <workItem from="1686843568641" duration="3576000" />
       <workItem from="1686921893013" duration="26149000" />
-      <workItem from="1686989094107" duration="11220000" />
-    </task>
-    <task id="LOCAL-00077" summary="Patch 008">
-      <created>1669828340049</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1669828340049</updated>
+      <workItem from="1686989094107" duration="13598000" />
     </task>
     <task id="LOCAL-00078" summary="Patch 014 &amp; v0.4.0-alpha.3">
       <created>1669829978808</created>
@@ -765,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686997930406</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="feat: Change Show function to Write">
+      <created>1687000926045</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1687000926045</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -784,7 +779,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="[CLI] Making some changes to run command" />
     <MESSAGE value="feat: Change packages names" />
     <MESSAGE value="feat: Finish base of run CLI command" />
     <MESSAGE value="edit: Remove PicoCLI" />
@@ -809,7 +803,8 @@
     <MESSAGE value="feat: Add specific lib function call" />
     <MESSAGE value="tests: Update test with new function call" />
     <MESSAGE value="docs: Update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="docs: Update README.md" />
+    <MESSAGE value="feat: Change Show function to Write" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Change Show function to Write" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

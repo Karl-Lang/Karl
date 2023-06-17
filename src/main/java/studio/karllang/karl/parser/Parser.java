@@ -97,7 +97,8 @@ public final class Parser {
         ClassCallExpression expression = new ClassCallExpression(classImport.getValue(), file, classImport.getLine(), classImport.getPosition());
         ArrayList<String> childs = new ArrayList<>();
 
-        while (match(TokenType.COLON) && match(TokenType.COLON)) {
+        while (match(TokenType.COLON)) {
+            skip(TokenType.COLON);
             skip(TokenType.IDENTIFIER);
             childs.add(get(-1).getValue());
         }

@@ -1,11 +1,8 @@
 use std::io;
 
-declare int: number = 150; // this is a comment
-declare bool: boolean = true;
-declare int: num = 1;
-
-declare func main::(): int -> {
-  return 1;
+declare func main::(): void -> {
+    declare int: number = 10;
 }
 
-io:Write(main() + num);
+io:Write("test"); // La variable "number" n'est pas accessible en dehors de la fonction main
+

@@ -25,10 +25,21 @@ public final class LibraryManager {
         }
 
         Library library = getLibrary(name);
+
+        if (importedLibrairies.contains(library)) {
+            new RuntimeError("Library already imported: " + name, file.getStringPath(), line, pos);
+            return;
+        }
+
         importedLibrairies.add(library);
     }
 
-    public static void addImportedLibrary(Library library) {
+    public static void addImportedLibrary(Library library, File file, int line, int pos) {
+        if (importedLibrairies.contains(library)) {
+            new RuntimeError("Library already imported: " + library.getName(), file.getStringPath(), line, pos);
+            return;
+        }
+
         importedLibrairies.add(library);
     }
 

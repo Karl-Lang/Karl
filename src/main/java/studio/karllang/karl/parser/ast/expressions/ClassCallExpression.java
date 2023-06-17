@@ -53,7 +53,7 @@ public class ClassCallExpression extends Expression {
                 childClass = childClass.getChild();
             }
 
-            LibraryManager.addImportedLibrary(importedLib);
+            LibraryManager.addImportedLibrary(importedLib, file, line, pos);
         }
 
         return null;
