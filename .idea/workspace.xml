@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="fix: Imported librairies aren't reset after execution">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/Std.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/Std.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/FuncCallExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" afterDir="false" />
-    </list>
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="tests: Update test with new function call" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,7 +97,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run">
+  <component name="RunManager" selected="Gradle.KarlTest">
     <configuration name="No command" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
@@ -418,21 +409,7 @@
       <workItem from="1686489098655" duration="7391000" />
       <workItem from="1686843568641" duration="3576000" />
       <workItem from="1686921893013" duration="26149000" />
-      <workItem from="1686989094107" duration="7627000" />
-    </task>
-    <task id="LOCAL-00074" summary="Patch 007">
-      <created>1669732965898</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1669732965898</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Patch 009">
-      <created>1669751785932</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1669751785933</updated>
+      <workItem from="1686989094107" duration="8214000" />
     </task>
     <task id="LOCAL-00076" summary="Patch 013">
       <created>1669825811241</created>
@@ -763,7 +740,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686993718526</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="feat: Add specific lib function call">
+      <created>1686997146140</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1686997146140</updated>
+    </task>
+    <task id="LOCAL-00124" summary="tests: Update test with new function call">
+      <created>1686997323323</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1686997323323</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,8 +773,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Edit project dir tree" />
-    <MESSAGE value="feat: Create base of command line tool" />
     <MESSAGE value="[CLI] Making some changes to run command" />
     <MESSAGE value="feat: Change packages names" />
     <MESSAGE value="feat: Finish base of run CLI command" />
@@ -807,7 +796,9 @@
     <MESSAGE value="feat: Can run a library function" />
     <MESSAGE value="feat: Remove old show function, remplaced by Show function of std::io lib" />
     <MESSAGE value="fix: Imported librairies aren't reset after execution" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Imported librairies aren't reset after execution" />
+    <MESSAGE value="feat: Add specific lib function call" />
+    <MESSAGE value="tests: Update test with new function call" />
+    <option name="LAST_COMMIT_MESSAGE" value="tests: Update test with new function call" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

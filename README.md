@@ -22,6 +22,6 @@ declare func main::(): int -> {
   return 1;
 }
 
-Show(main() + num);
+io:Show(main() + num);
 // -> 2
 ```
