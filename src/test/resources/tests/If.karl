@@ -7,31 +7,31 @@ declare bool: boolean = false;
 declare bool: trueValue = true;
 
 if (name == "Karl" && true == true) -> {
-    io:Show("Test #1 success");
+    io:Write("Test #1 success");
 }
 
 if (number == 230 || !boolean) -> {
-    io:Show("Test #2 success");
+    io:Write("Test #2 success");
 }
 
 if (price == 2.30 && (!boolean || number > 1300)) -> {
-    io:Show("Test #3 success");
+    io:Write("Test #3 success");
 }
 
 if (number == 230 && price == 2.30) -> {
-    io:Show("Test #4 success");
+    io:Write("Test #4 success");
 }
 
 if (trueValue) -> {
-    io:Show("Test #5 success");
+    io:Write("Test #5 success");
 }
 
 if (number == 230 && price == 2.30 && trueValue) -> {
-    io:Show("Test #6 success");
+    io:Write("Test #6 success");
 }
 
 if (number == 230 && price == 2.30 || !boolean) -> {
-    io:Show("Test #7 success");
+    io:Write("Test #7 success");
 }
 
 declare func getBool::(): bool -> {
@@ -39,7 +39,7 @@ declare func getBool::(): bool -> {
 }
 
 if (!getBool() || boolean) -> {
-    io:Show("Test #8 success");
+    io:Write("Test #8 success");
     /*
 
     hnpmhdalk
@@ -49,22 +49,22 @@ if (!getBool() || boolean) -> {
 
 if (price == 2.30 && (!boolean || (number > 1300 || 1 == 1))) -> {
 /* Hhm*/
-    io:Show("Test #9 success");
+    io:Write("Test #9 success");
 } else -> {
 // Ç aussi
-    io:Show("Test #9 failed"); // Ça c'est un comment
+    io:Write("Test #9 failed"); // Ça c'est un comment
 }
 
 if ((name == "karl" || name == "Karl") && (number == 230 || number == 231)) -> {
-    io:Show("Test #10 success");
+    io:Write("Test #10 success");
 }
 
 declare int: lol = 42;
 declare string: mdr = "El psy kongroo";
 if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4)) || !false) -> {
-      io:Show("Test réussit !! ^U^");
+      io:Write("Test réussit !! ^U^");
 } else -> {
-      io:Show("Test échoué !! >_<");
+      io:Write("Test échoué !! >_<");
 }
 
 /*
@@ -72,23 +72,23 @@ if (!(lol <= 32 || ((mdr != "Comment ?" && 56 == 56) || lol == mdr) && (2+2==4))
     */
 //
 
-io:Show(true || "Yoo" == "Yoo");
+io:Write(true || "Yoo" == "Yoo");
 if (true || "Yoo" == "Yoo") -> {
-    io:Show("Yay!");
+    io:Write("Yay!");
 }
 
-io:Show(42 || true);
+io:Write(42 || true);
 if (42 || true) -> {
-    io:Show("Yay!2");
+    io:Write("Yay!2");
 } else -> {
-    io:Show("No");
+    io:Write("No");
 }
 
-io:Show("Yoo" == "Yoo" || true);
+io:Write("Yoo" == "Yoo" || true);
 if ("Yoo" == "Yoo" || true) -> {
-    io:Show("Yay!3");
+    io:Write("Yay!3");
 }
 
 if (42 == 42 || true) -> {
-  io:Show("Yay!4");
+  io:Write("Yay!4");
 }

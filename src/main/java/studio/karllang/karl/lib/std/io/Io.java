@@ -14,7 +14,7 @@ public class Io extends Library {
     public Io() {
         super("io");
 
-        functions.put("Show", new io_Show(this));
+        functions.put("Write", new io_Write(this));
     }
 
     @Override

@@ -6,9 +6,9 @@ import studio.karllang.karl.parser.ast.expressions.Expression;
 
 import java.util.ArrayList;
 
-public class io_Show extends Function {
-    public io_Show(Library io) {
-        super("Show", io);
+public class io_Write extends Function {
+    public io_Write(Library io) {
+        super("Write", io);
     }
 
     @Override

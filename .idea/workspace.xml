@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="tests: Update test with new function call" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="docs: Update README.md">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Write.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Else.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Else.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Functions.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/If.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/If.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Math.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Math.karl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/tests/Show.karl" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -409,14 +420,7 @@
       <workItem from="1686489098655" duration="7391000" />
       <workItem from="1686843568641" duration="3576000" />
       <workItem from="1686921893013" duration="26149000" />
-      <workItem from="1686989094107" duration="8214000" />
-    </task>
-    <task id="LOCAL-00076" summary="Patch 013">
-      <created>1669825811241</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1669825811241</updated>
+      <workItem from="1686989094107" duration="11220000" />
     </task>
     <task id="LOCAL-00077" summary="Patch 008">
       <created>1669828340049</created>
@@ -754,7 +758,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686997323323</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="docs: Update README.md">
+      <created>1686997930406</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1686997930406</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -789,7 +800,6 @@
     <MESSAGE value="feat: Change function declaration by two possibilities: declare or export" />
     <MESSAGE value="feat: Change variable declaration by two possibilities: declare or export" />
     <MESSAGE value="fix: Duplicate variable declaration" />
-    <MESSAGE value="docs: Update README.md" />
     <MESSAGE value="fix: Unreachable code after return statement in function block" />
     <MESSAGE value="feat: Add base of lib import parsing" />
     <MESSAGE value="feat: Make library recognition" />
@@ -798,7 +808,8 @@
     <MESSAGE value="fix: Imported librairies aren't reset after execution" />
     <MESSAGE value="feat: Add specific lib function call" />
     <MESSAGE value="tests: Update test with new function call" />
-    <option name="LAST_COMMIT_MESSAGE" value="tests: Update test with new function call" />
+    <MESSAGE value="docs: Update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs: Update README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
