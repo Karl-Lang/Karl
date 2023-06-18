@@ -1,7 +1,7 @@
 use std::io;
 
-declare string: iop = "io";
-declare func io::(): void -> {
+export string: iop = "io";
+export func iop::(): void -> {
     declare int: number = 10;
 }
 

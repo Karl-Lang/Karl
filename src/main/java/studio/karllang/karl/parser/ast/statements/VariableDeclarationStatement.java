@@ -73,6 +73,10 @@ public class VariableDeclarationStatement extends Statement {
     private void checkName(String name, File file, int line, int pos) {
         if (ForbiddenNames.isForbiddenName(name)) {
             new RuntimeError("Variable name " + name + " is forbidden", file.getStringPath(), line, pos);
+        } else if (file.getFunctionManager().isFunction(name)) {
+            new RuntimeError("Variable name " + name + " is already declared as a function", file.getStringPath(), line, pos);
+        } else if (file.getVariableManager().containsVariable(name)) {
+            new RuntimeError("Variable name " + name + " is already declared", file.getStringPath(), line, pos);
         } else if (LibraryManager.getImportedLibrairies().stream().anyMatch(n -> n.getName().equals(name))) {
             new RuntimeError("Cannot set a variable name that is the same than a library: " + name, file.getStringPath(), line, pos);
         }
