@@ -40,8 +40,6 @@ public class FunctionDeclarationStatement extends Statement {
     private void checkName(String name, File file, int line, int pos) {
         if (ForbiddenNames.isForbiddenName(name)) {
             new RuntimeError("Function name " + name + " is forbidden", file.getStringPath(), line, pos);
-        } else if (file.getFunctionManager().isFunction(name)) {
-            new RuntimeError("Function name " + name + " is already declared", file.getStringPath(), line, pos);
         } else if (file.getVariableManager().containsVariable(name)) {
             new RuntimeError("Function name " + name + " is already declared as a variable", file.getStringPath(), line, pos);
         } else if (LibraryManager.getImportedLibrairies().stream().anyMatch(n -> n.getName().equals(name))) {

@@ -1,9 +1,35 @@
 use std::io;
 
-export string: iop = "io";
-export func iop::(): void -> {
-    declare int: number = 10;
+declare int: number = 10;
+if (number == 11) -> {
+    io:Write("No");
+} else if (number == 10) -> {
+    io:Write("Test #1 success");
 }
 
-io:Write("test"); // La variable "number" n'est pas accessible en dehors de la fonction main
+if (number < 10) -> {
+    io:Write("No");
+} else -> {
+    io:Write("Test #2 success");
+}
 
+declare func main::(): void -> {
+    if (!true) -> {
+        io:Write("No");
+    } else -> {
+        io:Write("Test #3 success");
+    }
+}
+
+main();
+
+declare bool: testPassed = false;
+if (testPassed) -> {
+    io:Write("No");
+} else -> {
+     testPassed = true;
+}
+
+if (testPassed) -> {
+    io:Write("Test #4 success");
+}
