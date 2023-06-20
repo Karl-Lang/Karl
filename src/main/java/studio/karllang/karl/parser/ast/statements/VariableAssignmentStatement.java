@@ -17,6 +17,7 @@ public class VariableAssignmentStatement extends Statement {
     private final int pos;
 
     public VariableAssignmentStatement(String name, Expression expression, File file, int line, int pos) {
+        super(line, pos);
         this.expression = expression;
         this.name = name;
         this.file = file;

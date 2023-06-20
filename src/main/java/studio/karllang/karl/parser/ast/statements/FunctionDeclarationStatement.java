@@ -20,6 +20,7 @@ public class FunctionDeclarationStatement extends Statement {
     private final int pos;
 
     public FunctionDeclarationStatement(String name, LinkedHashMap<String, TokenType> args, TokenType returnType, BlockStatement block, File file, int line, int pos) {
+        super(line, pos);
         this.name = name;
         this.args = args;
         this.body = block;

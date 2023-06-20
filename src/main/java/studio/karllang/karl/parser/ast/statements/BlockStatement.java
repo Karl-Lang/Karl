@@ -17,6 +17,7 @@ public class BlockStatement extends Statement {
     private HashMap<String, Value> args;
 
     public BlockStatement(ArrayList<Statement> statements, File file, int line, int pos) {
+        super(line, pos);
         this.statements = statements;
         this.file = file;
         this.line = line;

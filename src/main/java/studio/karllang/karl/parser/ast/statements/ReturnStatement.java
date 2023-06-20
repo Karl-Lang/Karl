@@ -7,7 +7,8 @@ public class ReturnStatement extends Statement {
     private final Expression expr;
     private Value result;
 
-    public ReturnStatement(Expression expr) {
+    public ReturnStatement(Expression expr, int line, int pos) {
+        super(line, pos);
         this.expr = expr;
     }
 

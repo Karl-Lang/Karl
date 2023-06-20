@@ -1,32 +1,12 @@
 use std::io;
 
-declare func sayHello::(string: name): void -> {
-    io:Write("Hello, ", name, "!");
-}
-
 declare func main::(): void -> {
-    io:Write("What is your name?");
-    sayHello("Karl");
+    io:Write("Hey");
+    un();
 }
 
-declare func getStr::(): string -> {
-    return "Hello, World!";
+declare func un::(): void -> {
+    main();
 }
+
 main();
-io:Write(getStr());
-io:Write(getInt(9) + 1);
-
-declare func getInt::(int: num): int -> {
-    return num + 1;
-}
-io:Write(getInt(6) + 1);
-
-declare func getIfInt::(int: number): int -> {
-  if (number == 14) -> {
-    return 1;
-  } else -> {
-    return 0;
-  }
-}
-
-io:Write(getIfInt(14));

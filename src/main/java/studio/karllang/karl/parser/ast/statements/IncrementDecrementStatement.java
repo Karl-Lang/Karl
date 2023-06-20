@@ -17,6 +17,7 @@ public class IncrementDecrementStatement extends Statement {
     private final TokenType increment;
 
     public IncrementDecrementStatement(String name, TokenType increment, File file, int line, int pos) {
+        super(line, pos);
         this.name = name;
         this.file = file;
         this.fileName = file.getName();

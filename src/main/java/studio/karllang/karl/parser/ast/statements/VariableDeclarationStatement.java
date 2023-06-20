@@ -24,6 +24,7 @@ public class VariableDeclarationStatement extends Statement {
     private Expression expression;
 
     public VariableDeclarationStatement(Expression expression, String name, Token type, File file, int line, int pos, boolean isFinal, boolean isDeclaration) {
+        super(line, pos);
         this.expression = expression;
         this.name = name;
         this.type = type;

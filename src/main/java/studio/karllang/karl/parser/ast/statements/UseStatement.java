@@ -20,7 +20,8 @@ public class UseStatement extends Statement {
     private final Token as;
     private final boolean lib;
 
-    public UseStatement(Expression expr, Path basePath, Token as, boolean lib) {
+    public UseStatement(Expression expr, Path basePath, Token as, boolean lib, int line, int pos) {
+        super(line, pos);
         this.expr = expr;
         this.basePath = basePath;
         this.as = as;

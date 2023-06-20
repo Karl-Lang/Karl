@@ -82,10 +82,10 @@ public final class Parser {
             skip(TokenType.IDENTIFIER);
             Token asIdentifier = get(-1);
             skip(TokenType.SEMICOLON);
-            return new UseStatement(fileName, this.basePath, asIdentifier, false);
+            return new UseStatement(fileName, this.basePath, asIdentifier, false, get(0).getLine(), get(0).getPosition());
 
         } else if (match(TokenType.IDENTIFIER)) {
-            return new UseStatement(getLibraryCall(), this.basePath, null, true);
+            return new UseStatement(getLibraryCall(), this.basePath, null, true, get(0).getLine(), get(0).getPosition());
         } else {
             new SyntaxError("Unexpected token: " + get(0).getValue(), file.getStringPath(), get(0).getLine(), get(0).getPosition());
             return null;
@@ -120,7 +120,7 @@ public final class Parser {
         if (get(-1).getType() == TokenType.LEFT_PARENTHESIS) {
             String name = get(-2).getValue();
             ArrayList<Expression> args = getFuncArgs();
-            return new FuncCallStatement(new FuncCallExpression(name, args, false, null, file, get(-2).getLine(), get(-2).getPosition()));
+            return new FuncCallStatement(new FuncCallExpression(name, args, false, null, file, get(-2).getLine(), get(-2).getPosition()), get(-2).getLine(), get(-2).getPosition());
         } else {
             // io:Show("Hello World");
             String libName = get(-2).getValue();
@@ -128,7 +128,7 @@ public final class Parser {
             String name = get(-1).getValue();
             skip(TokenType.LEFT_PARENTHESIS);
             ArrayList<Expression> args = getFuncArgs();
-            return new FuncCallStatement(new FuncCallExpression(name, args, true, libName, file, get(-2).getLine(), get(-2).getPosition()));
+            return new FuncCallStatement(new FuncCallExpression(name, args, true, libName, file, get(-2).getLine(), get(-2).getPosition()), get(-2).getLine(), get(-2).getPosition());
         }
     }
 
@@ -215,9 +215,11 @@ public final class Parser {
         skip(TokenType.LEFT_BRACE);
         while (!checkType(0, TokenType.RIGHT_BRACE) && !checkType(0, TokenType.EOF) && pos < size - 1) {
             if (match(TokenType.RETURN)) {
+                int line = get(-1).getLine();
+                int pos = get(-1).getPosition();
                 Expression expr = getExpression();
                 skip(TokenType.SEMICOLON);
-                statements.add(new ReturnStatement(expr));
+                statements.add(new ReturnStatement(expr, line, pos));
             } else {
                 Statement statement = getStatement();
                 if (statement != null) {
@@ -332,6 +334,8 @@ public final class Parser {
     }
 
     private Statement ifElse() {
+        int line = get(0).getLine();
+        int pos = get(0).getPosition();
         skip(TokenType.LEFT_PARENTHESIS);
         Expression condition = getExpression();
         skip(TokenType.RIGHT_PARENTHESIS);
@@ -339,12 +343,12 @@ public final class Parser {
 
         if (match(TokenType.ELSE)) {
             if (match(TokenType.IF)) {
-                return new IfElseStatement(condition, ifBlock, ifElse());
+                return new IfElseStatement(condition, ifBlock, ifElse(), line, pos);
             } else {
                 BlockStatement elseBlock = getBlock();
-                return new IfElseStatement(condition, ifBlock, elseBlock);
+                return new IfElseStatement(condition, ifBlock, elseBlock, line, pos);
             }
-        } else return new IfElseStatement(condition, ifBlock, null);
+        } else return new IfElseStatement(condition, ifBlock, null, line, pos);
     }
 
     private Statement variableAssignment() {

@@ -9,7 +9,8 @@ public class IfElseStatement extends Statement {
     private final Statement elseStatement;
     private Value returnValue = null;
 
-    public IfElseStatement(Expression condition, BlockStatement ifStatement, Statement elseStatement) {
+    public IfElseStatement(Expression condition, BlockStatement ifStatement, Statement elseStatement, int line, int pos) {
+        super(line, pos);
         this.condition = condition;
         this.ifStatement = ifStatement;
         this.elseStatement = elseStatement;

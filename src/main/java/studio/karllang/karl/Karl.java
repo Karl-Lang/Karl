@@ -5,6 +5,7 @@ import studio.karllang.cli.Option;
 import studio.karllang.cli.Options;
 import studio.karllang.karl.errors.FileError.FileError;
 import studio.karllang.karl.errors.FileError.FileNotFoundError;
+import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.lib.LibraryManager;
 import studio.karllang.karl.modules.File;
 import studio.karllang.karl.parser.Lexer;
@@ -49,7 +50,15 @@ public class Karl {
             ArrayList<Statement> statements = new Parser(tokens, file).parse();
 
             Long start = System.currentTimeMillis();
-            statements.forEach(Statement::eval);
+            Statement currentStatement = null;
+            try {
+                for (Statement statement : statements) {
+                    currentStatement = statement;
+                    statement.eval();
+                }
+            } catch (StackOverflowError e) {
+                new RuntimeError("Fatal: Stack overflow", file.getStringPath(), currentStatement.getLine(), currentStatement.getPos());
+            }
             Long end = System.currentTimeMillis();
             file.getFunctionManager().clear();
             file.getVariableManager().clear();
