@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="fix: Same name of variable/function than library">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="fix: Little issue with name verification">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/statements/FunctionDeclarationStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/ClassCallExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/ast/expressions/LibCallExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -413,21 +414,8 @@
       <workItem from="1686489098655" duration="7391000" />
       <workItem from="1686843568641" duration="3576000" />
       <workItem from="1686921893013" duration="26149000" />
-      <workItem from="1686989094107" duration="15706000" />
-    </task>
-    <task id="LOCAL-00080" summary="Patch 016 &amp; 017">
-      <created>1669836653860</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1669836653860</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Patch 018, 019 &amp; 020">
-      <created>1669839154269</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1669839154269</updated>
+      <workItem from="1686989094107" duration="22832000" />
+      <workItem from="1687269342802" duration="1370000" />
     </task>
     <task id="LOCAL-00082" summary="Patch 021">
       <created>1669841123201</created>
@@ -758,7 +746,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687020689583</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="fix: Some verifications of function/variable declaration name">
+      <created>1687094669025</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1687094669025</updated>
+    </task>
+    <task id="LOCAL-00130" summary="fix: Little issue with name verification">
+      <created>1687094898877</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1687094898877</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -777,8 +779,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="edit: Remove PicoCLI" />
-    <MESSAGE value="feat: Add base text for CLI when no command is given" />
     <MESSAGE value="feat: Add --exec-time option for run command and some other things" />
     <MESSAGE value="bug: Fix bug with option list verification" />
     <MESSAGE value="feat: Making some edits" />
@@ -802,7 +802,9 @@
     <MESSAGE value="feat: Change Show function to Write" />
     <MESSAGE value="fix: Fix some issues" />
     <MESSAGE value="fix: Same name of variable/function than library" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Same name of variable/function than library" />
+    <MESSAGE value="fix: Some verifications of function/variable declaration name" />
+    <MESSAGE value="fix: Little issue with name verification" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Little issue with name verification" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

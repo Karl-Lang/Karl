@@ -1,8 +1,8 @@
 package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
-import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.modules.File;
+import studio.karllang.karl.parser.ast.values.Value;
 
 public class VariableCallExpression extends Expression {
     private final String name;

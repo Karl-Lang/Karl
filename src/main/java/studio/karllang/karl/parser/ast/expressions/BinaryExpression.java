@@ -1,13 +1,13 @@
 package studio.karllang.karl.parser.ast.expressions;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
+import studio.karllang.karl.modules.File;
+import studio.karllang.karl.modules.Types;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
 import studio.karllang.karl.parser.ast.values.StringValue;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.modules.File;
-import studio.karllang.karl.modules.Types;
 
 public class BinaryExpression extends Expression {
     private final Expression left;

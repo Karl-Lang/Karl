@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class Io extends Library {
 
     private final HashMap<String, Function> functions = new HashMap<>();
+
     public Io() {
         super("io");
 

@@ -9,8 +9,8 @@ import java.util.LinkedHashMap;
 public class VariableManager {
 
     private final File file;
-    private Scope currentScope = new Scope(null);
     private final LinkedHashMap<String, Variable> exportedVariables = new LinkedHashMap<>();
+    private Scope currentScope = new Scope(null);
 
     public VariableManager(File file) {
         this.file = file;

@@ -2,15 +2,15 @@ package studio.karllang.karl.parser.ast.statements;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.lib.LibraryManager;
+import studio.karllang.karl.modules.File;
+import studio.karllang.karl.modules.ForbiddenNames;
+import studio.karllang.karl.modules.Types;
 import studio.karllang.karl.parser.Token;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.expressions.ValueExpression;
 import studio.karllang.karl.parser.ast.expressions.VariableExpression;
 import studio.karllang.karl.parser.ast.values.Value;
-import studio.karllang.karl.modules.File;
-import studio.karllang.karl.modules.ForbiddenNames;
-import studio.karllang.karl.modules.Types;
 
 public class VariableDeclarationStatement extends Statement {
     private final String name;
@@ -19,9 +19,9 @@ public class VariableDeclarationStatement extends Statement {
     private final String fileName;
     private final int line;
     private final int pos;
-    private Expression expression;
     private final boolean isFinal;
     private final boolean isDeclaration;
+    private Expression expression;
 
     public VariableDeclarationStatement(Expression expression, String name, Token type, File file, int line, int pos, boolean isFinal, boolean isDeclaration) {
         this.expression = expression;

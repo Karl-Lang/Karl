@@ -1,12 +1,12 @@
 package studio.karllang.karl.parser.ast.statements;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
-import studio.karllang.karl.parser.TokenType;
-import studio.karllang.karl.parser.ast.expressions.Expression;
-import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.modules.File;
 import studio.karllang.karl.modules.Types;
 import studio.karllang.karl.modules.Variable;
+import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.parser.ast.expressions.Expression;
+import studio.karllang.karl.parser.ast.values.Value;
 
 public class VariableAssignmentStatement extends Statement {
     private final Expression expression;

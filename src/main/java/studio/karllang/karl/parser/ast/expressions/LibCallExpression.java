@@ -3,30 +3,28 @@ package studio.karllang.karl.parser.ast.expressions;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.lib.Library;
 import studio.karllang.karl.lib.LibraryManager;
-import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.modules.File;
+import studio.karllang.karl.parser.ast.values.Value;
 
-import java.util.ArrayList;
-
-public class ClassCallExpression extends Expression {
+public class LibCallExpression extends Expression {
     private final String name;
     private final File file;
-    private ClassCallExpression child;
     private final int line;
     private final int pos;
+    private LibCallExpression child;
 
-    public ClassCallExpression(String name, File file, int line, int pos) {
+    public LibCallExpression(String name, File file, int line, int pos) {
         this.name = name;
         this.file = file;
         this.line = line;
         this.pos = pos;
     }
 
-    public void addChild(ClassCallExpression child) {
+    public void addChild(LibCallExpression child) {
         this.child = child;
     }
 
-    public ClassCallExpression getChild() {
+    public LibCallExpression getChild() {
         return child;
     }
 
@@ -41,9 +39,9 @@ public class ClassCallExpression extends Expression {
         } else {
             Library library = LibraryManager.getLibrary(name);
             Library importedLib = library;
-            ClassCallExpression childClass = child;
+            LibCallExpression childClass = child;
             while (childClass != null) {
-                ClassCallExpression finalChildClass = childClass;
+                LibCallExpression finalChildClass = childClass;
                 Library subLib = library.getSubLibraries().stream().filter(n -> n.getName().equals(finalChildClass.getName())).findAny().orElse(null);
                 if (subLib == null) {
                     new RuntimeError("Unknown library: " + childClass.getName(), file.getStringPath(), line, pos);

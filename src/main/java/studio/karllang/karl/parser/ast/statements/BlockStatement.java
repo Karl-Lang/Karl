@@ -1,20 +1,20 @@
 package studio.karllang.karl.parser.ast.statements;
 
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
-import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.modules.File;
 import studio.karllang.karl.modules.VariableManager;
+import studio.karllang.karl.parser.ast.values.Value;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BlockStatement extends Statement {
     private final ArrayList<Statement> statements;
-    private Value result;
-    private HashMap<String, Value> args;
     private final File file;
     private final int line;
     private final int pos;
+    private Value result;
+    private HashMap<String, Value> args;
 
     public BlockStatement(ArrayList<Statement> statements, File file, int line, int pos) {
         this.statements = statements;

@@ -30,12 +30,12 @@ public class Variable {
         return value;
     }
 
-    public boolean isDeclaration() {
-        return isDeclaration;
-    }
-
     public void setValue(Value value) {
         this.value = value;
+    }
+
+    public boolean isDeclaration() {
+        return isDeclaration;
     }
 
     public boolean isFinal() {

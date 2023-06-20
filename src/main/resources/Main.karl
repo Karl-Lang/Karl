@@ -1,35 +1,32 @@
 use std::io;
 
-declare int: number = 10;
-if (number == 11) -> {
-    io:Write("No");
-} else if (number == 10) -> {
-    io:Write("Test #1 success");
-}
-
-if (number < 10) -> {
-    io:Write("No");
-} else -> {
-    io:Write("Test #2 success");
+declare func sayHello::(string: name): void -> {
+    io:Write("Hello, ", name, "!");
 }
 
 declare func main::(): void -> {
-    if (!true) -> {
-        io:Write("No");
-    } else -> {
-        io:Write("Test #3 success");
-    }
+    io:Write("What is your name?");
+    sayHello("Karl");
 }
 
+declare func getStr::(): string -> {
+    return "Hello, World!";
+}
 main();
+io:Write(getStr());
+io:Write(getInt(9) + 1);
 
-declare bool: testPassed = false;
-if (testPassed) -> {
-    io:Write("No");
-} else -> {
-     testPassed = true;
+declare func getInt::(int: num): int -> {
+    return num + 1;
+}
+io:Write(getInt(6) + 1);
+
+declare func getIfInt::(int: number): int -> {
+  if (number == 14) -> {
+    return 1;
+  } else -> {
+    return 0;
+  }
 }
 
-if (testPassed) -> {
-    io:Write("Test #4 success");
-}
+io:Write(getIfInt(14));

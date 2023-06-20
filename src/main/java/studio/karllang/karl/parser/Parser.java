@@ -4,9 +4,9 @@ import studio.karllang.karl.errors.RuntimeError.NumberError;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.errors.SyntaxError.SemiColonError;
 import studio.karllang.karl.errors.SyntaxError.SyntaxError;
+import studio.karllang.karl.modules.*;
 import studio.karllang.karl.parser.ast.expressions.*;
 import studio.karllang.karl.parser.ast.statements.*;
-import studio.karllang.karl.modules.*;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -85,28 +85,28 @@ public final class Parser {
             return new UseStatement(fileName, this.basePath, asIdentifier, false);
 
         } else if (match(TokenType.IDENTIFIER)) {
-            return new UseStatement(getClassCall(), this.basePath, null, true);
+            return new UseStatement(getLibraryCall(), this.basePath, null, true);
         } else {
             new SyntaxError("Unexpected token: " + get(0).getValue(), file.getStringPath(), get(0).getLine(), get(0).getPosition());
             return null;
         }
     }
 
-    private Expression getClassCall() {
+    private Expression getLibraryCall() {
         Token classImport = get(-1);
-        ClassCallExpression expression = new ClassCallExpression(classImport.getValue(), file, classImport.getLine(), classImport.getPosition());
-        ArrayList<String> childs = new ArrayList<>();
+        LibCallExpression expression = new LibCallExpression(classImport.getValue(), file, classImport.getLine(), classImport.getPosition());
+        ArrayList<String> children = new ArrayList<>();
 
         while (match(TokenType.COLON)) {
             skip(TokenType.COLON);
             skip(TokenType.IDENTIFIER);
-            childs.add(get(-1).getValue());
+            children.add(get(-1).getValue());
         }
 
 
-        ClassCallExpression current = expression;
-        for (String child : childs) {
-            ClassCallExpression childExpression = new ClassCallExpression(child, file, classImport.getLine(), classImport.getPosition());
+        LibCallExpression current = expression;
+        for (String child : children) {
+            LibCallExpression childExpression = new LibCallExpression(child, file, classImport.getLine(), classImport.getPosition());
             current.addChild(childExpression);
             current = childExpression;
         }

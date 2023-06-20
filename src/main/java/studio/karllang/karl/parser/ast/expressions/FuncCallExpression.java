@@ -3,12 +3,12 @@ package studio.karllang.karl.parser.ast.expressions;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.lib.Library;
 import studio.karllang.karl.lib.LibraryManager;
-import studio.karllang.karl.parser.TokenType;
-import studio.karllang.karl.parser.ast.values.NullValue;
-import studio.karllang.karl.parser.ast.values.Value;
 import studio.karllang.karl.modules.File;
 import studio.karllang.karl.modules.Function;
 import studio.karllang.karl.modules.Types;
+import studio.karllang.karl.parser.TokenType;
+import studio.karllang.karl.parser.ast.values.NullValue;
+import studio.karllang.karl.parser.ast.values.Value;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -23,7 +23,7 @@ public class FuncCallExpression extends Expression {
     private final boolean lib;
     private final int line;
     private final int pos;
-    private boolean isFound = false;
+    private final boolean isFound = false;
 
     public FuncCallExpression(String name, ArrayList<Expression> args, boolean lib, String libName, File file, int line, int pos) {
         this.name = name;

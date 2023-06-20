@@ -245,7 +245,7 @@ public class Lexer {
             c = nextChar();
 
             if (OPERATORS.containsKey(buffer.toString())) {
-                if (Character.toString(c).equals(buffer.toString()) && Arrays.asList(new Character[]{'|', '&', '=', '+', '-', '/'}).contains(c)) {
+                if (Character.toString(c).contentEquals(buffer) && Arrays.asList(new Character[]{'|', '&', '=', '+', '-', '/'}).contains(c)) {
                     addToken(OPERATORS.get(buffer.toString() + c), buffer.toString() + c);
                     nextChar();
                 } else if (Arrays.asList(new String[]{">", "<", "!"}).contains(buffer.toString()) && c == '=') {
