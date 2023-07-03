@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="fix: StackOverflow Error">
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_WriteLn.java" afterDir="false" />
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Add WriteLn function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/Io.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Write.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Write.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_WriteLn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_WriteLn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +102,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run">
+  <component name="RunManager" selected="Gradle.KarlTest">
     <configuration name="No command" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
@@ -294,8 +293,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.KarlTest.testMain" />
         <item itemvalue="Gradle.KarlTest" />
+        <item itemvalue="Gradle.KarlTest.testMain" />
         <item itemvalue="Gradle.KarlTest.testIf" />
         <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Application.Run" />
@@ -422,13 +421,6 @@
       <workItem from="1688045168283" duration="288000" />
       <workItem from="1688045479293" duration="712000" />
       <workItem from="1688396484829" duration="2998000" />
-    </task>
-    <task id="LOCAL-00083" summary="Fix bug in lexer">
-      <created>1669845188341</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1669845188341</updated>
     </task>
     <task id="LOCAL-00084" summary="Patch 022">
       <created>1669901439074</created>
@@ -766,7 +758,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687273218288</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="feat: Add WriteLn function">
+      <created>1688404099802</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1688404099802</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -785,7 +784,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="bug: Fix bug with option list verification" />
     <MESSAGE value="feat: Making some edits" />
     <MESSAGE value="major: Rewrite Variable system to fix major part of bugs" />
     <MESSAGE value="update: Version 0.4.0-alpha.6" />
@@ -810,7 +808,8 @@
     <MESSAGE value="fix: Some verifications of function/variable declaration name" />
     <MESSAGE value="fix: Little issue with name verification" />
     <MESSAGE value="code: Clean code" />
-    <option name="LAST_COMMIT_MESSAGE" value="code: Clean code" />
+    <MESSAGE value="feat: Add WriteLn function" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Add WriteLn function" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

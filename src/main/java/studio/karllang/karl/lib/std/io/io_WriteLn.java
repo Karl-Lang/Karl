@@ -4,6 +4,7 @@ import studio.karllang.karl.lib.Function;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class io_WriteLn extends Function {
 
@@ -12,11 +13,12 @@ public class io_WriteLn extends Function {
     }
     @Override
     public void eval(ArrayList<Expression> expressions) {
-        StringBuilder str = new StringBuilder();
-        for (Expression e : expressions) {
-            String string = e.eval().toString();
-            str.append(string);
-        }
-        System.out.println(str);
+        String result = expressions.stream()
+                .map(Expression::eval)
+                .map(Object::toString)
+                .collect(Collectors.joining());
+
+        System.out.println(result);
+
     }
 }
