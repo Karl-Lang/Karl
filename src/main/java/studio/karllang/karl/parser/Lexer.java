@@ -41,6 +41,7 @@ public class Lexer {
         OPERATORS.put("<=", TokenType.LESS_EQUAL);
         OPERATORS.put("-", TokenType.MINUS);
         OPERATORS.put("*", TokenType.MULTIPLY);
+        OPERATORS.put("**", TokenType.POWER);
         OPERATORS.put("/", TokenType.DIVIDE);
         OPERATORS.put("%", TokenType.MODULO);
         OPERATORS.put("=", TokenType.EQUAL);
@@ -245,7 +246,7 @@ public class Lexer {
             c = nextChar();
 
             if (OPERATORS.containsKey(buffer.toString())) {
-                if (Character.toString(c).contentEquals(buffer) && Arrays.asList(new Character[]{'|', '&', '=', '+', '-', '/'}).contains(c)) {
+                if (Character.toString(c).contentEquals(buffer) && Arrays.asList(new Character[]{'|', '&', '=', '+', '-', '/', '*'}).contains(c)) {
                     addToken(OPERATORS.get(buffer.toString() + c), buffer.toString() + c);
                     nextChar();
                 } else if (Arrays.asList(new String[]{">", "<", "!"}).contains(buffer.toString()) && c == '=') {

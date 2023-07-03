@@ -39,6 +39,7 @@ public class BinaryExpression extends Expression {
                 case MULTIPLY -> multiply(leftValue, rightValue);
                 case DIVIDE -> divide(leftValue, rightValue);
                 case MODULO -> modulo(leftValue, rightValue);
+                case POWER -> pow(leftValue, rightValue);
                 default -> {
                     new RuntimeError("Bad operator: " + operator.getName(), file.getStringPath(), line, pos);
                     yield null;
@@ -96,6 +97,15 @@ public class BinaryExpression extends Expression {
 
     private Value add(Value leftValue, Value rightValue) {
         float result = leftValue.toFloat() + rightValue.toFloat();
+        if (result % 1 == 0) {
+            return new IntValue((int) result);
+        } else {
+            return new FloatValue(result);
+        }
+    }
+
+    private Value pow(Value leftValue, Value rightValue) {
+        float result = (float) Math.pow(leftValue.toFloat(), rightValue.toFloat());
         if (result % 1 == 0) {
             return new IntValue((int) result);
         } else {

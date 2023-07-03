@@ -11,6 +11,8 @@ declare int: seven = 8 * (9 / 2); // 36
 declare float: eight = 4 + 5 * 2 / 3; // 7.3333..
 declare int: nine = (4 + 5) * 2 / 3; // 6
 declare float: ten = 4 + 5 * (2 / 3); // 7.333
+declare int: eleven = 5 **2; // 25
+declare int: twelve = (5 ** 2) * 5; // 125
 
 // Print the results
 io:Write(one);
@@ -23,3 +25,4 @@ io:Write(seven);
 io:Write(eight);
 io:Write(nine);
 io:Write(ten);
+io:Write(eleven);

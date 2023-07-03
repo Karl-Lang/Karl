@@ -27,6 +27,7 @@ public enum TokenType {
     MULTIPLY("*"),
     DIVIDE("/"),
     MODULO("%"),
+    POWER("**"),
     EQUAL("="),
     LEFT_PARENTHESIS("("),
     RIGHT_PARENTHESIS(")"),

@@ -13,6 +13,7 @@ public class Operators {
         operators.put("*", TokenType.MULTIPLY);
         operators.put("/", TokenType.DIVIDE);
         operators.put("%", TokenType.MODULO);
+        operators.put("**", TokenType.POWER);
     }
 
     public static TokenType getOperator(String name) {
