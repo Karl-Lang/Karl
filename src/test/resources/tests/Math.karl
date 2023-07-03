@@ -15,14 +15,14 @@ declare int: eleven = 5 **2; // 25
 declare int: twelve = (5 ** 2) * 5; // 125
 
 // Print the results
-io:Write(one);
-io:Write(two);
-io:Write(three);
-io:Write(four);
-io:Write(five);
-io:Write(six);
-io:Write(seven);
-io:Write(eight);
-io:Write(nine);
-io:Write(ten);
-io:Write(eleven);
+io:WriteLn(one);
+io:WriteLn(two);
+io:WriteLn(three);
+io:WriteLn(four);
+io:WriteLn(five);
+io:WriteLn(six);
+io:WriteLn(seven);
+io:WriteLn(eight);
+io:WriteLn(nine);
+io:WriteLn(ten);
+io:WriteLn(eleven);

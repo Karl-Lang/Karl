@@ -1,16 +1,15 @@
 package studio.karllang.karl.lib.std.io;
 
 import studio.karllang.karl.lib.Function;
-import studio.karllang.karl.lib.Library;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 
 import java.util.ArrayList;
 
-public class io_Write extends Function {
-    public io_Write(Library io) {
-        super("Write", io);
-    }
+public class io_WriteLn extends Function {
 
+    public io_WriteLn(Io io) {
+        super("WriteLn", io);
+    }
     @Override
     public void eval(ArrayList<Expression> expressions) {
         StringBuilder str = new StringBuilder();
@@ -18,6 +17,6 @@ public class io_Write extends Function {
             String string = e.eval().toString();
             str.append(string);
         }
-        System.out.print(str);
+        System.out.println(str);
     }
 }

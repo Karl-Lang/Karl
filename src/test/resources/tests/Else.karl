@@ -2,22 +2,22 @@ use std::io;
 
 declare int: number = 10;
 if (number == 11) -> {
-    io:Write("No");
+    io:WriteLn("No");
 } else if (number == 10) -> {
-    io:Write("Test #1 success");
+    io:WriteLn("Test #1 success");
 }
 
 if (number < 10) -> {
-    io:Write("No");
+    io:WriteLn("No");
 } else -> {
-    io:Write("Test #2 success");
+    io:WriteLn("Test #2 success");
 }
 
 declare func main::(): void -> {
     if (!true) -> {
-        io:Write("No");
+        io:WriteLn("No");
     } else -> {
-        io:Write("Test #3 success");
+        io:WriteLn("Test #3 success");
     }
 }
 
@@ -25,11 +25,11 @@ main();
 
 declare bool: testPassed = false;
 if (testPassed) -> {
-    io:Write("No");
+    io:WriteLn("No");
 } else -> {
      testPassed = true;
 }
 
 if (testPassed) -> {
-    io:Write("Test #4 success");
+    io:WriteLn("Test #4 success");
 }
