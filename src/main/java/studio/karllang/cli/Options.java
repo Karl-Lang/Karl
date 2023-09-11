@@ -1,13 +1,13 @@
 package studio.karllang.cli;
 
 public enum Options {
-    PATH(new String[]{"--path", "-p"}),
-    DEBUG(new String[]{"--debug"}),
-    EXEC_TIME(new String[]{"--exec-time", "-e"});
+  PATH(new String[] {"--path", "-p"}),
+  DEBUG(new String[] {"--debug"}),
+  EXEC_TIME(new String[] {"--exec-time", "-e"});
 
-    public final String[] name;
+  public final String[] name;
 
-    Options(String[] name) {
-        this.name = name;
-    }
+  Options(String[] name) {
+    this.name = name;
+  }
 }

@@ -1,0 +1,3 @@
+use  std::io;
+
+io::Write("Hi");

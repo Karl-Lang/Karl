@@ -1,27 +1,32 @@
 use std::io;
 
-// Make a lot of mathematical operations with the result
-declare int: one = 5 + (3+3) * 2; // 17
-declare int: two = 5 + 3 + 3 * 2; // 14
-declare int: three = (5 + 3 + 3) * 2; // 22
-declare int: four = 5 + 3 + (3 * 2); // 14
-declare int: five = (8*9) / 2; // 36
-declare int: six = 8 * 9 / 2; // 36
-declare int: seven = 8 * (9 / 2); // 36
-declare float: eight = 4 + 5 * 2 / 3; // 7.3333..
-declare int: nine = (4 + 5) * 2 / 3; // 6
-declare float: ten = 4 + 5 * (2 / 3); // 7.333
-declare int: eleven = 5 **2; // 25
+declare func sayHello::(string: name): void -> {
+    io:WriteLn("Hello, ", name, "!");
+}
 
-// Print the results
-io:WriteLn(one);
-io:WriteLn(two);
-io:WriteLn(three);
-io:WriteLn(four);
-io:WriteLn(five);
-io:WriteLn(six);
-io:WriteLn(seven);
-io:WriteLn(eight);
-io:WriteLn(nine);
-io:WriteLn(ten);
-io:WriteLn(eleven);
+declare func main::(): void -> {
+    io:WriteLn("What is your name?");
+    sayHello("Karl");
+}
+
+declare func getStr::(): string -> {
+    return "Hello, World!";
+}
+main();
+io:WriteLn(getStr());
+io:WriteLn(getInt(9) + 1);
+
+declare func getInt::(int: num): int -> {
+    return num + 1;
+}
+io:WriteLn(getInt(6) + 1);
+
+declare func getIfInt::(int: number): int -> {
+  if (number == 14) -> {
+    return 1;
+  } else -> {
+    return 0;
+  }
+}
+
+io:WriteLn(getIfInt(14));

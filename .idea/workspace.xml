@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="feat: Add WriteLn function">
+    <list default="true" id="64ff2729-6b08-4776-8bcb-bd3a435d223a" name="Changes" comment="code: Optimize code">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/Karl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/Function.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Write.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_Write.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_WriteLn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/lib/std/io/io_WriteLn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/karllang/karl/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.karl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.karl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +63,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2FDItGGI1DJeh0qKIIYXFOhIHvR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -65,28 +74,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;v0.4&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/noelle/Desktop/Developpement/Projets/KarlProjects/Karl&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "v0.4",
+    "last_opened_file_path": "/Users/noelle/Desktop/Developpement/Projets/KarlProjects/Karl",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "google-java-format.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -102,7 +114,7 @@
       <recent name="fr.aiko.Karl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.KarlTest">
+  <component name="RunManager" selected="Gradle.KarlTest.testMain">
     <configuration name="No command" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studio.karllang.cli.Main" />
       <module name="Karl.main" />
@@ -207,7 +219,7 @@
         </extension>
       </EXTENSION>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="KarlTest.testIf" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -231,7 +243,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="KarlTest.testMain" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -255,7 +267,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="MainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -279,22 +291,22 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Version" />
       <item itemvalue="Application.No command" />
+      <item itemvalue="Application.Version" />
       <item itemvalue="Application.Run" />
+      <item itemvalue="Gradle.KarlTest" />
       <item itemvalue="Gradle.KarlTest.testIf" />
       <item itemvalue="Gradle.KarlTest.testMain" />
-      <item itemvalue="Gradle.KarlTest" />
       <item itemvalue="Gradle.MainTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.KarlTest" />
         <item itemvalue="Gradle.KarlTest.testMain" />
+        <item itemvalue="Gradle.KarlTest" />
         <item itemvalue="Gradle.KarlTest.testIf" />
         <item itemvalue="Gradle.MainTest" />
         <item itemvalue="Application.Run" />
@@ -421,13 +433,29 @@
       <workItem from="1688045168283" duration="288000" />
       <workItem from="1688045479293" duration="712000" />
       <workItem from="1688396484829" duration="2998000" />
-    </task>
-    <task id="LOCAL-00084" summary="Patch 022">
-      <created>1669901439074</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1669901439075</updated>
+      <workItem from="1688469811825" duration="35000" />
+      <workItem from="1689527704922" duration="643000" />
+      <workItem from="1689967913870" duration="99000" />
+      <workItem from="1689968037995" duration="1241000" />
+      <workItem from="1690808184857" duration="597000" />
+      <workItem from="1690894425889" duration="1824000" />
+      <workItem from="1691087763510" duration="104000" />
+      <workItem from="1691087897717" duration="86000" />
+      <workItem from="1691252892744" duration="87000" />
+      <workItem from="1691349269584" duration="385000" />
+      <workItem from="1691349679366" duration="1206000" />
+      <workItem from="1693470300783" duration="1814000" />
+      <workItem from="1694017433600" duration="623000" />
+      <workItem from="1694018377139" duration="599000" />
+      <workItem from="1694020119975" duration="597000" />
+      <workItem from="1694024854232" duration="597000" />
+      <workItem from="1694119029164" duration="597000" />
+      <workItem from="1694120819694" duration="575000" />
+      <workItem from="1694121596977" duration="219000" />
+      <workItem from="1694121863164" duration="280000" />
+      <workItem from="1694122221757" duration="741000" />
+      <workItem from="1694255834734" duration="17000" />
+      <workItem from="1694417835649" duration="236000" />
     </task>
     <task id="LOCAL-00085" summary="First part of patch 023">
       <created>1670266135428</created>
@@ -765,7 +793,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688404099802</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="code: Optimize code">
+      <created>1688408128630</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1688408128630</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -784,7 +819,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="feat: Making some edits" />
     <MESSAGE value="major: Rewrite Variable system to fix major part of bugs" />
     <MESSAGE value="update: Version 0.4.0-alpha.6" />
     <MESSAGE value="feat: Add base of use statement to import files" />
@@ -809,7 +843,8 @@
     <MESSAGE value="fix: Little issue with name verification" />
     <MESSAGE value="code: Clean code" />
     <MESSAGE value="feat: Add WriteLn function" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Add WriteLn function" />
+    <MESSAGE value="code: Optimize code" />
+    <option name="LAST_COMMIT_MESSAGE" value="code: Optimize code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

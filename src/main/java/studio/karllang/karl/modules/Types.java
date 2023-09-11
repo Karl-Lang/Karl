@@ -1,8 +1,7 @@
 package studio.karllang.karl.modules;
 
-import studio.karllang.karl.parser.TokenType;
-
 import java.util.HashMap;
+import studio.karllang.karl.parser.TokenType;
 
 public final class Types {
     private static final HashMap<String, TokenType> types = new HashMap<>();

@@ -1,15 +1,14 @@
 package studio.karllang.karl.modules;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.statements.BlockStatement;
 import studio.karllang.karl.parser.ast.statements.Statement;
 import studio.karllang.karl.parser.ast.values.Value;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class Function {
     private final String name;

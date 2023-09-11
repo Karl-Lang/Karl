@@ -1,12 +1,11 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.modules.File;
 import studio.karllang.karl.modules.VariableManager;
 import studio.karllang.karl.parser.ast.values.Value;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class BlockStatement extends Statement {
     private final ArrayList<Statement> statements;

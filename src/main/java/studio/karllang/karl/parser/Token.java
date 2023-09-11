@@ -1,35 +1,35 @@
 package studio.karllang.karl.parser;
 
 public class Token {
-    private final int position;
-    private final int line;
-    private final TokenType type;
-    private String value;
+  private final int position;
+  private final int line;
+  private final TokenType type;
+  private String value;
 
-    public Token(TokenType type, String value, int position, int line) {
-        this.type = type;
-        this.value = value;
-        this.position = position;
-        this.line = line;
-    }
+  public Token(TokenType type, String value, int position, int line) {
+    this.type = type;
+    this.value = value;
+    this.position = position;
+    this.line = line;
+  }
 
-    public TokenType getType() {
-        return type;
-    }
+  public TokenType getType() {
+    return type;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    public void setValue(String s) {
-        value = s;
-    }
+  public void setValue(String s) {
+    value = s;
+  }
 
-    public int getPosition() {
-        return position;
-    }
+  public int getPosition() {
+    return position;
+  }
 
-    public int getLine() {
-        return line;
-    }
+  public int getLine() {
+    return line;
+  }
 }

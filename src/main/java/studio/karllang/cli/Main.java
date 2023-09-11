@@ -1,9 +1,8 @@
 package studio.karllang.cli;
 
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.slf4j.LoggerFactory;
 
 public class Main {
     private static final ArrayList<Option> options = new ArrayList<>();

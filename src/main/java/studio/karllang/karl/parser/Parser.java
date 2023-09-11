@@ -1,5 +1,8 @@
 package studio.karllang.karl.parser;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import studio.karllang.karl.errors.RuntimeError.NumberError;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.errors.SyntaxError.SemiColonError;
@@ -7,10 +10,6 @@ import studio.karllang.karl.errors.SyntaxError.SyntaxError;
 import studio.karllang.karl.modules.*;
 import studio.karllang.karl.parser.ast.expressions.*;
 import studio.karllang.karl.parser.ast.statements.*;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public final class Parser {
     private final File file;
@@ -30,6 +29,11 @@ public final class Parser {
         this.fileName = this.file.getName();
     }
 
+    /**
+     * Parse tokens
+     *
+     * @return ArrayList of statements
+     */
     public ArrayList<Statement> parse() {
         while (pos < size - 1 && !checkType(0, TokenType.EOF)) {
             Statement statement = getStatement();
@@ -40,6 +44,11 @@ public final class Parser {
         return statements;
     }
 
+    /**
+     * Get statement
+     *
+     * @return Statement
+     */
     private Statement getStatement() {
         if (checkType(0, TokenType.IDENTIFIER) && checkType(1, TokenType.EQUAL)) {
             return variableAssignment();
@@ -54,6 +63,11 @@ public final class Parser {
         } else return declareOrExport();
     }
 
+    /**
+     * Parse declare or export statement
+     *
+     * @return The statement
+     */
     private Statement declareOrExport() {
         Token token = get(0);
         if (!match(TokenType.DECLARE) && !match(TokenType.EXPORT)) {
@@ -74,6 +88,11 @@ public final class Parser {
         }
     }
 
+    /**
+     * Parse use statement
+     *
+     * @return The statement
+     */
     private Statement use() {
         if (match(TokenType.STR_VALUE)) {
             Token token = get(-1);
@@ -92,6 +111,11 @@ public final class Parser {
         }
     }
 
+    /**
+     * Parse library call
+     *
+     * @return The lib call expression
+     */
     private Expression getLibraryCall() {
         Token classImport = get(-1);
         LibCallExpression expression = new LibCallExpression(classImport.getValue(), file, classImport.getLine(), classImport.getPosition());
@@ -116,6 +140,11 @@ public final class Parser {
         return expression;
     }
 
+    /**
+     * Parse function call
+     *
+     * @return The function call statement
+     */
     private Statement funcCall() {
         if (get(-1).getType() == TokenType.LEFT_PARENTHESIS) {
             String name = get(-2).getValue();
@@ -132,6 +161,11 @@ public final class Parser {
         }
     }
 
+    /**
+     * Parse function arguments
+     *
+     * @return The function arguments
+     */
     private ArrayList<Expression> getFuncArgs() {
         ArrayList<Expression> args = new ArrayList<>();
         while (!match(TokenType.RIGHT_PARENTHESIS) && pos < size - 1 && !checkType(0, TokenType.EOF)) {
@@ -143,6 +177,12 @@ public final class Parser {
         return args;
     }
 
+    /**
+     * Parse function declaration
+     *
+     * @param isDeclaration Is the function a declaration or an export
+     * @return The function declaration statement
+     */
     private Statement funcDeclaration(boolean isDeclaration) {
         String name = get(0).getValue();
         int line = get(0).getLine();
@@ -192,6 +232,11 @@ public final class Parser {
         return new FunctionDeclarationStatement(name, args, returnType, block, file, line, pos);
     }
 
+    /**
+     * Parse increment or decrement statement
+     *
+     * @return The increment or decrement statement
+     */
     private Statement incrementDecrement() {
         Token nameToken = get(0);
         match(TokenType.IDENTIFIER);
@@ -208,6 +253,11 @@ public final class Parser {
         }
     }
 
+    /**
+     * Parse block statement
+     *
+     * @return The block statement
+     */
     private BlockStatement getBlock() {
         skip(TokenType.MINUS);
         skip(TokenType.GREATER);
@@ -232,6 +282,11 @@ public final class Parser {
         return new BlockStatement(statements, file, get(-1).getLine(), get(-1).getPosition());
     }
 
+    /**
+     * Parse expression
+     *
+     * @return The expression
+     */
     private Expression getExpression() {
         Token token = get(0);
         Expression expression = null;
@@ -276,6 +331,11 @@ public final class Parser {
         return expression;
     }
 
+    /**
+     * Parse value
+     *
+     * @return The value
+     */
     private Expression getValue() {
         if (getType() == TokenType.IDENTIFIER && get(1).getType() == TokenType.LEFT_PARENTHESIS) {
             Token nameToken = get(0);
@@ -333,6 +393,11 @@ public final class Parser {
         }
     }
 
+    /**
+     * Parse if else statement
+     *
+     * @return The if else statement
+     */
     private Statement ifElse() {
         int line = get(0).getLine();
         int pos = get(0).getPosition();
@@ -351,6 +416,11 @@ public final class Parser {
         } else return new IfElseStatement(condition, ifBlock, null, line, pos);
     }
 
+    /**
+     * Parse variable assignment
+     *
+     * @return The variable assignment statement
+     */
     private Statement variableAssignment() {
         String name = get(0).getValue();
         match(TokenType.IDENTIFIER);
@@ -368,6 +438,13 @@ public final class Parser {
         return new VariableAssignmentStatement(name, expr, file, get(0).getLine(), get(0).getPosition());
     }
 
+    /**
+     * Parse variable declaration
+     *
+     * @param isFinal       Is the variable final
+     * @param isDeclaration Is the variable a declaration or an export
+     * @return The variable declaration statement
+     */
     private Statement variableDeclaration(boolean isFinal, boolean isDeclaration) {
         Token type = get(0);
         match(type.getType());
@@ -396,6 +473,12 @@ public final class Parser {
         pos++;
     }
 
+    /**
+     * Get token at relative position
+     *
+     * @param relativePosition Relative position
+     * @return
+     */
     private Token get(int relativePosition) {
         int newPos = pos + relativePosition;
         if (newPos >= size || newPos < 0) {
@@ -404,14 +487,32 @@ public final class Parser {
         return tokens.get(pos + relativePosition);
     }
 
+    /**
+     * Get token type
+     *
+     * @return
+     */
     private TokenType getType() {
         return get(0).getType();
     }
 
+    /**
+     * Check token type at relative position
+     *
+     * @param pos  Relative position
+     * @param type Token type
+     * @return
+     */
     private boolean checkType(int pos, TokenType type) {
         return get(pos).getType() == type;
     }
 
+    /**
+     * Match token type
+     *
+     * @param type Token type
+     * @return
+     */
     private boolean match(TokenType type) {
         if (checkType(0, type)) {
             pos++;

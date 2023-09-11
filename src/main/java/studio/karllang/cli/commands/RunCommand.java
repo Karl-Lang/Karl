@@ -1,12 +1,11 @@
 package studio.karllang.cli.commands;
 
+import java.util.ArrayList;
+import java.util.Optional;
 import studio.karllang.cli.Command;
 import studio.karllang.cli.Option;
 import studio.karllang.cli.Options;
 import studio.karllang.karl.Karl;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 public class RunCommand extends Command {
     public RunCommand() {

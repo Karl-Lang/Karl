@@ -1,6 +1,10 @@
 package studio.karllang.karl;
 
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Optional;
 import studio.karllang.cli.Option;
 import studio.karllang.cli.Options;
 import studio.karllang.karl.errors.FileError.FileError;
@@ -13,14 +17,14 @@ import studio.karllang.karl.parser.Parser;
 import studio.karllang.karl.parser.Token;
 import studio.karllang.karl.parser.ast.statements.Statement;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Optional;
-
 public class Karl {
 
+    /**
+     * Karl runtime
+     *
+     * @param pathStr Path to file
+     * @param options CLI options
+     */
     public void run(String pathStr, ArrayList<Option> options) {
         if (options == null) options = new ArrayList<>();
 
@@ -39,6 +43,7 @@ public class Karl {
 
         File file = new File(fileName, fileExtension, pathStr);
 
+        // Run Karl
         try {
             ArrayList<Token> tokens = new Lexer(Files.readString(path), file).tokens;
             ArrayList<Statement> statements = new Parser(tokens, file).parse();
@@ -59,6 +64,7 @@ public class Karl {
             file.getVariableManager().clear();
             LibraryManager.clearImportedLibraries();
 
+            // If the option is enabled, print the execution time
             if (isEnabled.isPresent() && (Boolean.parseBoolean(isEnabled.get().getValue()) || isEnabled.get().getValue() == null)) {
                 long elapsedTime = end - start;
                 System.out.println("Execution time: " + elapsedTime + "ms");

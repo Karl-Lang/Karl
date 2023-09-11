@@ -1,5 +1,8 @@
 package studio.karllang.karl.parser.ast.expressions;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Optional;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.lib.Library;
 import studio.karllang.karl.lib.LibraryManager;
@@ -9,10 +12,6 @@ import studio.karllang.karl.modules.Types;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.values.NullValue;
 import studio.karllang.karl.parser.ast.values.Value;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Optional;
 
 public class FuncCallExpression extends Expression {
     private final String name;

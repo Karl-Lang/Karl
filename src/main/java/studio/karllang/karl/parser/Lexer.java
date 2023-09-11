@@ -1,13 +1,12 @@
 package studio.karllang.karl.parser;
 
-import studio.karllang.karl.errors.Error;
-import studio.karllang.karl.errors.SyntaxError.SyntaxError;
-import studio.karllang.karl.modules.File;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import studio.karllang.karl.errors.Error;
+import studio.karllang.karl.errors.SyntaxError.SyntaxError;
+import studio.karllang.karl.modules.File;
 
 public class Lexer {
 
@@ -260,6 +259,11 @@ public class Lexer {
         }
     }
 
+    /**
+     * Get the next character in the input
+     *
+     * @return The next character
+     */
     public char nextChar() {
         position++;
         if (position >= input.length()) {
@@ -268,6 +272,12 @@ public class Lexer {
         return input.charAt(position);
     }
 
+    /**
+     * Add a token to the tokens array
+     *
+     * @param type  The type of the token
+     * @param value The value of the token
+     */
     public void addToken(TokenType type, String value) {
         tokens.add(new Token(type, value, position, line));
     }

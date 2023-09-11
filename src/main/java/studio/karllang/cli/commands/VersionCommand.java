@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class VersionCommand extends Command {
 
-    public VersionCommand() {
-        super("version", "Show Karl's versions");
-    }
+  public VersionCommand() {
+    super("version", "Show Karl's versions");
+  }
 
-    @Override
-    public void run(ArrayList<Option> options) {
-        System.out.println("Karl CLI " + Constants.CLI_VERSION);
-        System.out.println("Karl " + Constants.KARL_VERSION);
-    }
+  @Override
+  public void run(ArrayList<Option> options) {
+    System.out.println("Karl CLI " + Constants.CLI_VERSION);
+    System.out.println("Karl " + Constants.KARL_VERSION);
+  }
 }

@@ -1,11 +1,5 @@
 package studio.karllang.karl.parser.ast.statements;
 
-import studio.karllang.karl.errors.FileError.FileError;
-import studio.karllang.karl.errors.FileError.FileNotFoundError;
-import studio.karllang.karl.parser.Token;
-import studio.karllang.karl.parser.ast.expressions.Expression;
-import studio.karllang.karl.parser.ast.values.Value;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,6 +7,11 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
+import studio.karllang.karl.errors.FileError.FileError;
+import studio.karllang.karl.errors.FileError.FileNotFoundError;
+import studio.karllang.karl.parser.Token;
+import studio.karllang.karl.parser.ast.expressions.Expression;
+import studio.karllang.karl.parser.ast.values.Value;
 
 public class UseStatement extends Statement {
     private final Expression expr;

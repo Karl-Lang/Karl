@@ -1,10 +1,9 @@
 package studio.karllang.karl.modules;
 
+import java.util.HashMap;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.values.Value;
-
-import java.util.HashMap;
 
 public class LogicalOperators {
     public static final HashMap<String, TokenType> operators = new HashMap<>();

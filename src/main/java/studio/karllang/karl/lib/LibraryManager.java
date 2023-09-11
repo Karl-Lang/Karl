@@ -1,14 +1,13 @@
 package studio.karllang.karl.lib;
 
-import org.reflections.Reflections;
-import org.slf4j.LoggerFactory;
-import studio.karllang.karl.errors.RuntimeError.RuntimeError;
-import studio.karllang.karl.modules.File;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Set;
+import org.reflections.Reflections;
+import org.slf4j.LoggerFactory;
+import studio.karllang.karl.errors.RuntimeError.RuntimeError;
+import studio.karllang.karl.modules.File;
 
 public final class LibraryManager {
     private static final ArrayList<Library> libraries = new ArrayList<>();

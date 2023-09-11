@@ -1,13 +1,12 @@
 package studio.karllang.karl.parser.ast.statements;
 
+import java.util.LinkedHashMap;
 import studio.karllang.karl.errors.RuntimeError.RuntimeError;
 import studio.karllang.karl.lib.LibraryManager;
 import studio.karllang.karl.modules.File;
 import studio.karllang.karl.modules.ForbiddenNames;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.FunctionExpression;
-
-import java.util.LinkedHashMap;
 
 public class FunctionDeclarationStatement extends Statement {
     private final String name;

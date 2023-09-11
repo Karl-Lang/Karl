@@ -1,11 +1,10 @@
 package studio.karllang.karl.errors;
 
-import studio.karllang.karl.modules.Colors;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import studio.karllang.karl.modules.Colors;
 
 public class Error {
     private final String errorName;
