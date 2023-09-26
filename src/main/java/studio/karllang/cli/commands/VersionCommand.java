@@ -1,10 +1,9 @@
 package studio.karllang.cli.commands;
 
+import java.util.ArrayList;
 import studio.karllang.Constants;
 import studio.karllang.cli.Command;
 import studio.karllang.cli.Option;
-
-import java.util.ArrayList;
 
 public class VersionCommand extends Command {
 

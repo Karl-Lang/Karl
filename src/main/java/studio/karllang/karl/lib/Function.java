@@ -1,8 +1,7 @@
 package studio.karllang.karl.lib;
 
-import studio.karllang.karl.parser.ast.expressions.Expression;
-
 import java.util.ArrayList;
+import studio.karllang.karl.parser.ast.expressions.Expression;
 
 public abstract class Function {
   private final String name;

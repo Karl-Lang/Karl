@@ -1,10 +1,9 @@
 package studio.karllang.karl.lib;
 
-import studio.karllang.karl.modules.File;
-import studio.karllang.karl.parser.ast.expressions.Expression;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import studio.karllang.karl.modules.File;
+import studio.karllang.karl.parser.ast.expressions.Expression;
 
 public abstract class Library {
   private final String name;

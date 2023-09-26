@@ -14,45 +14,48 @@ import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
 
 public class UseStatement extends Statement {
-    private final Expression expr;
-    private final Path basePath;
-    private final Token as;
-    private final boolean lib;
+  private final Expression expr;
+  private final Path basePath;
+  private final Token as;
+  private final boolean lib;
 
-    public UseStatement(Expression expr, Path basePath, Token as, boolean lib, int line, int pos) {
-        super(line, pos);
-        this.expr = expr;
-        this.basePath = basePath;
-        this.as = as;
-        this.lib = lib;
+  public UseStatement(Expression expr, Path basePath, Token as, boolean lib, int line, int pos) {
+    super(line, pos);
+    this.expr = expr;
+    this.basePath = basePath;
+    this.as = as;
+    this.lib = lib;
+  }
+
+  @Override
+  public void eval() {
+    if (lib) evalLib();
+    else evalAs();
+  }
+
+  private void evalAs() {
+    System.out.println(this.as.getValue());
+    Value value = expr.eval();
+    File dir = new File(this.basePath.toUri());
+
+    Optional<File> filePath =
+        Arrays.stream(Objects.requireNonNull(dir.listFiles()))
+            .filter(f -> f.getName().equals(value.toString()))
+            .findFirst();
+
+    if (filePath.isPresent()) {
+      try {
+        final File file = filePath.get();
+        final String content = Files.readString(file.toPath());
+      } catch (IOException e) {
+        new FileError(dir.getAbsolutePath() + value);
+      }
+    } else {
+      new FileNotFoundError(value.toString()); // TODO: Make better error message
     }
+  }
 
-    @Override
-    public void eval() {
-        if (lib) evalLib();
-        else evalAs();
-    }
-
-    private void evalAs() {
-        System.out.println(this.as.getValue());
-        Value value = expr.eval();
-        File dir = new File(this.basePath.toUri());
-
-        Optional<File> filePath = Arrays.stream(Objects.requireNonNull(dir.listFiles())).filter(f -> f.getName().equals(value.toString())).findFirst();
-
-        if (filePath.isPresent()) {
-            try {
-                final File file = filePath.get();
-                final String content = Files.readString(file.toPath());
-            } catch (IOException e) {
-                new FileError(dir.getAbsolutePath() + value);
-            }
-        } else {
-            new FileNotFoundError(value.toString()); // TODO: Make better error message
-        }
-    }
-
-    private void evalLib() {
-        expr.eval();
-    }
+  private void evalLib() {
+    expr.eval();
+  }
 }

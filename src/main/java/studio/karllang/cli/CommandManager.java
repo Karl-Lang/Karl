@@ -1,11 +1,10 @@
 package studio.karllang.cli;
 
-import org.reflections.Reflections;
-import org.slf4j.LoggerFactory;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Set;
+import org.reflections.Reflections;
+import org.slf4j.LoggerFactory;
 
 public class CommandManager {
   private final HashMap<String, Command> commands = new HashMap<>();
