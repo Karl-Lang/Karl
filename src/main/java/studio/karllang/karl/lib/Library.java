@@ -6,14 +6,17 @@ import studio.karllang.karl.modules.File;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 
 /**
- * Represents an abstract library in a programming environment.
- * Libraries are containers for functions and sub-libraries.
+ * Represents an abstract library in a programming environment. Libraries are containers for
+ * functions and sub-libraries.
  */
 public abstract class Library {
   private final String name; // The name of the library.
-  private final ArrayList<Library> subLibraries = new ArrayList<>(); // Sub-libraries contained within this library.
-  private final HashMap<String, Function> functions = new HashMap<>(); // Functions defined within this library.
-  private final HashMap<String, Library> loadedSubLibraries = new HashMap<>(); // Sub-libraries loaded into this library.
+  private final ArrayList<Library> subLibraries =
+      new ArrayList<>(); // Sub-libraries contained within this library.
+  private final HashMap<String, Function> functions =
+      new HashMap<>(); // Functions defined within this library.
+  private final HashMap<String, Library> loadedSubLibraries =
+      new HashMap<>(); // Sub-libraries loaded into this library.
 
   /**
    * Constructs a new Library object with the specified name.
@@ -27,7 +30,8 @@ public abstract class Library {
   /**
    * Retrieves the functions defined within this library.
    *
-   * @return A HashMap containing function names as keys and corresponding Function objects as values.
+   * @return A HashMap containing function names as keys and corresponding Function objects as
+   *     values.
    */
   public HashMap<String, Function> getFunctions() {
     return functions;
@@ -71,7 +75,8 @@ public abstract class Library {
   /**
    * Retrieves the sub-libraries loaded into this library.
    *
-   * @return A HashMap containing sub-library names as keys and corresponding Library objects as values.
+   * @return A HashMap containing sub-library names as keys and corresponding Library objects as
+   *     values.
    */
   public HashMap<String, Library> getLoadedSubLibraries() {
     return loadedSubLibraries;

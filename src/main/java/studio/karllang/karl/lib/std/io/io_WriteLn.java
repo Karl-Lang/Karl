@@ -1,11 +1,10 @@
 package studio.karllang.karl.lib.std.io;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 import studio.karllang.karl.lib.Function;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * Represents the 'WriteLn' function within the I/O library (Io). The 'WriteLn' function is

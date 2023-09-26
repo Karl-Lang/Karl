@@ -1,12 +1,11 @@
 package studio.karllang.karl.lib.std.io;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 import studio.karllang.karl.lib.Function;
 import studio.karllang.karl.lib.Library;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * Represents the 'Write' function within the I/O library (Io). The 'Write' function is responsible

@@ -2,9 +2,7 @@ package studio.karllang.karl.modules;
 
 import java.util.LinkedHashMap;
 
-/**
- * Represents a function manager in Karl.
- */
+/** Represents a function manager in Karl. */
 public class FunctionManager {
   private final File file;
   private final LinkedHashMap<String, Function> functions = new LinkedHashMap<>();
@@ -12,6 +10,7 @@ public class FunctionManager {
 
   /**
    * Constructs a new FunctionManager object with the specified file.
+   *
    * @param file The file.
    */
   public FunctionManager(File file) {
@@ -20,6 +19,7 @@ public class FunctionManager {
 
   /**
    * Add a function to the function manager.
+   *
    * @param function The function.
    * @param isDeclared If the function is declared.
    */
@@ -32,6 +32,7 @@ public class FunctionManager {
 
   /**
    * Returns the function with the specified name.
+   *
    * @param name The name.
    * @return The function.
    */
@@ -41,6 +42,7 @@ public class FunctionManager {
 
   /**
    * Returns the exported function with the specified name.
+   *
    * @param name The name.
    * @return The function.
    */
@@ -48,15 +50,14 @@ public class FunctionManager {
     return functions.containsKey(name);
   }
 
-  /**
-   * Returns the exported function with the specified name.
-   */
+  /** Returns the exported function with the specified name. */
   public void clear() {
     functions.clear();
   }
 
   /**
    * Returns the file.
+   *
    * @return The file.
    */
   public File getFile() {
