@@ -9,6 +9,7 @@ import studio.karllang.karl.parser.ast.values.IntValue;
 import studio.karllang.karl.parser.ast.values.StringValue;
 import studio.karllang.karl.parser.ast.values.Value;
 
+/** Represents a binary expression in Karl. */
 public class BinaryExpression extends Expression {
   private final Expression left;
   private final Expression right;
@@ -17,6 +18,17 @@ public class BinaryExpression extends Expression {
   private final int line;
   private final int pos;
 
+  /**
+   * Constructs a new BinaryExpression object with the specified left, right, operator, file, line
+   * and position.
+   *
+   * @param left The left expression.
+   * @param right The right expression.
+   * @param operator The operator.
+   * @param file The file.
+   * @param line The line number.
+   * @param pos The position.
+   */
   public BinaryExpression(
       Expression left, Expression right, TokenType operator, File file, int line, int pos) {
     this.left = left;
@@ -27,6 +39,11 @@ public class BinaryExpression extends Expression {
     this.pos = pos;
   }
 
+  /**
+   * Evaluates the binary expression.
+   *
+   * @return The result.
+   */
   @Override
   public Value eval() {
 
@@ -70,6 +87,13 @@ public class BinaryExpression extends Expression {
     }
   }
 
+  /**
+   * Returns the left expression.
+   *
+   * @param leftValue The left expression.
+   * @param rightValue The right expression.
+   * @return The result.
+   */
   private Value divide(Value leftValue, Value rightValue) {
     float result = leftValue.toFloat() / rightValue.toFloat();
     if (result % 1 == 0) {
@@ -79,6 +103,13 @@ public class BinaryExpression extends Expression {
     }
   }
 
+  /**
+   * Returns the right expression.
+   *
+   * @param leftValue The left expression.
+   * @param rightValue The right expression.
+   * @return The result.
+   */
   private Value multiply(Value leftValue, Value rightValue) {
     float result = leftValue.toFloat() * rightValue.toFloat();
     if (result % 1 == 0) {
@@ -88,6 +119,13 @@ public class BinaryExpression extends Expression {
     }
   }
 
+  /**
+   * Returns the modulo expression.
+   *
+   * @param leftValue The left expression.
+   * @param rightValue The right expression.
+   * @return The result.
+   */
   private Value modulo(Value leftValue, Value rightValue) {
     float result = leftValue.toFloat() % rightValue.toFloat();
     if (result % 1 == 0) {
@@ -97,6 +135,13 @@ public class BinaryExpression extends Expression {
     }
   }
 
+  /**
+   * Returns the subtraction expression.
+   *
+   * @param leftValue The left expression.
+   * @param rightValue The right expression.
+   * @return The result.
+   */
   private Value sub(Value leftValue, Value rightValue) {
     float result = leftValue.toFloat() - rightValue.toFloat();
     if (result % 1 == 0) {
@@ -106,6 +151,13 @@ public class BinaryExpression extends Expression {
     }
   }
 
+  /**
+   * Returns the addition expression.
+   *
+   * @param leftValue The left expression.
+   * @param rightValue The right expression.
+   * @return The result.
+   */
   private Value add(Value leftValue, Value rightValue) {
     float result = leftValue.toFloat() + rightValue.toFloat();
     if (result % 1 == 0) {
@@ -115,6 +167,13 @@ public class BinaryExpression extends Expression {
     }
   }
 
+  /**
+   * Returns the power expression.
+   *
+   * @param leftValue The left expression.
+   * @param rightValue The right expression.
+   * @return The result.
+   */
   private Value pow(Value leftValue, Value rightValue) {
     float result = (float) Math.pow(leftValue.toFloat(), rightValue.toFloat());
     if (result % 1 == 0) {

@@ -8,21 +8,22 @@ import studio.karllang.cli.Options;
 import studio.karllang.karl.Karl;
 
 public class RunCommand extends Command {
-    public RunCommand() {
-        super("run", "Execute a Karl file");
+  public RunCommand() {
+    super("run", "Execute a Karl file");
 
-        this.getAllowedOptions().add(Options.PATH);
-        this.getAllowedOptions().add(Options.EXEC_TIME);
-    }
+    this.getAllowedOptions().add(Options.PATH);
+    this.getAllowedOptions().add(Options.EXEC_TIME);
+  }
 
-    @Override
-    public void run(ArrayList<Option> options) throws Exception {
-        Optional<Option> path = options.stream().filter(opt -> opt.getType() == Options.PATH).findFirst();
+  @Override
+  public void run(ArrayList<Option> options) throws Exception {
+    Optional<Option> path =
+        options.stream().filter(opt -> opt.getType() == Options.PATH).findFirst();
 
-        if (path.isPresent()) {
-            options.remove(path.get());
+    if (path.isPresent()) {
+      options.remove(path.get());
 
-            new Karl().run(path.get().getValue(), options);
-        } else throw new Exception("No any path");
-    }
+      new Karl().run(path.get().getValue(), options);
+    } else throw new Exception("No any path");
+  }
 }

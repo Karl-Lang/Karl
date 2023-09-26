@@ -7,6 +7,7 @@ import studio.karllang.karl.parser.ast.values.Value;
 
 import java.util.LinkedHashMap;
 
+/** Represents a function expression in Karl. */
 public class FunctionExpression extends Expression {
 
   private final String name;
@@ -15,6 +16,16 @@ public class FunctionExpression extends Expression {
   private final TokenType type;
   private final File file;
 
+  /**
+   * Constructs a new FunctionExpression object with the specified name, args, returnType, block and
+   * file.
+   *
+   * @param name The name.
+   * @param args The args.
+   * @param returnType The returnType.
+   * @param block The block.
+   * @param file The file.
+   */
   public FunctionExpression(
       String name,
       LinkedHashMap<String, TokenType> args,

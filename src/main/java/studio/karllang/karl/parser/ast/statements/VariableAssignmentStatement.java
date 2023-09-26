@@ -8,6 +8,7 @@ import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
 
+/** Represents a variable assignment statement in Karl. */
 public class VariableAssignmentStatement extends Statement {
   private final Expression expression;
   private final String name;
@@ -16,6 +17,16 @@ public class VariableAssignmentStatement extends Statement {
   private final int line;
   private final int pos;
 
+  /**
+   * Constructs a new VariableAssignmentStatement object with the specified name, expression, file,
+   * line and position.
+   *
+   * @param name The name.
+   * @param expression The expression.
+   * @param file The file.
+   * @param line The line number.
+   * @param pos The position.
+   */
   public VariableAssignmentStatement(
       String name, Expression expression, File file, int line, int pos) {
     super(line, pos);
@@ -27,6 +38,7 @@ public class VariableAssignmentStatement extends Statement {
     this.pos = pos;
   }
 
+  /** Evaluates the variable assignment statement. */
   @Override
   public void eval() {
     Value value = expression.eval();

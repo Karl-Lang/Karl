@@ -12,6 +12,7 @@ import studio.karllang.karl.parser.ast.expressions.ValueExpression;
 import studio.karllang.karl.parser.ast.expressions.VariableExpression;
 import studio.karllang.karl.parser.ast.values.Value;
 
+/** Represents a variable declaration statement in Karl. */
 public class VariableDeclarationStatement extends Statement {
   private final String name;
   private final Token type;
@@ -23,6 +24,19 @@ public class VariableDeclarationStatement extends Statement {
   private final boolean isDeclaration;
   private Expression expression;
 
+  /**
+   * Constructs a new VariableDeclarationStatement object with the specified expression, name, type,
+   * file, line, position, isFinal and isDeclaration.
+   *
+   * @param expression The expression.
+   * @param name The name.
+   * @param type The type.
+   * @param file The file.
+   * @param line The line number.
+   * @param pos The position.
+   * @param isFinal The isFinal.
+   * @param isDeclaration The isDeclaration.
+   */
   public VariableDeclarationStatement(
       Expression expression,
       String name,
@@ -44,6 +58,7 @@ public class VariableDeclarationStatement extends Statement {
     this.isDeclaration = isDeclaration;
   }
 
+  /** Evaluates the variable declaration statement. */
   @Override
   public void eval() {
     if (ForbiddenNames.isForbiddenName(name)) {
@@ -96,6 +111,14 @@ public class VariableDeclarationStatement extends Statement {
     expr.eval();
   }
 
+  /**
+   * Checks if the name is valid.
+   *
+   * @param name The name.
+   * @param file The file.
+   * @param line The line number.
+   * @param pos The position.
+   */
   private void checkName(String name, File file, int line, int pos) {
     if (ForbiddenNames.isForbiddenName(name)) {
       new RuntimeError("Variable name " + name + " is forbidden", file.getStringPath(), line, pos);

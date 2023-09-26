@@ -8,6 +8,7 @@ import studio.karllang.karl.parser.ast.values.FloatValue;
 import studio.karllang.karl.parser.ast.values.IntValue;
 import studio.karllang.karl.parser.ast.values.Value;
 
+/** Represents an increment or decrement statement in Karl. */
 public class IncrementDecrementStatement extends Statement {
   private final String name;
   private final String fileName;
@@ -16,6 +17,16 @@ public class IncrementDecrementStatement extends Statement {
   private final int pos;
   private final TokenType increment;
 
+  /**
+   * Constructs a new IncrementDecrementStatement object with the specified name, increment, file,
+   * line and position.
+   *
+   * @param name The name.
+   * @param increment The increment.
+   * @param file The file.
+   * @param line The line number.
+   * @param pos The position.
+   */
   public IncrementDecrementStatement(
       String name, TokenType increment, File file, int line, int pos) {
     super(line, pos);
@@ -27,6 +38,7 @@ public class IncrementDecrementStatement extends Statement {
     this.increment = increment;
   }
 
+  /** Evaluates the increment or decrement statement. */
   @Override
   public void eval() {
     Variable variable = this.file.getVariableManager().getVariable(name);

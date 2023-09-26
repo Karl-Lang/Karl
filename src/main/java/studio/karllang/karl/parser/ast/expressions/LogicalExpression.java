@@ -7,6 +7,7 @@ import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.values.BooleanValue;
 import studio.karllang.karl.parser.ast.values.Value;
 
+/** Represents a logical expression in Karl. */
 public class LogicalExpression extends Expression {
   private final Expression left;
   private final Expression right;
@@ -15,6 +16,17 @@ public class LogicalExpression extends Expression {
   private final int line;
   private final int pos;
 
+  /**
+   * Constructs a new LogicalExpression object with the specified left, right, operator, file, line
+   * and position.
+   *
+   * @param operator The operator.
+   * @param left The left expression.
+   * @param right The right expression.
+   * @param file The file.
+   * @param line The line number.
+   * @param pos The position.
+   */
   public LogicalExpression(
       TokenType operator, Expression left, Expression right, File file, int line, int pos) {
     this.left = left;
@@ -25,6 +37,11 @@ public class LogicalExpression extends Expression {
     this.pos = pos;
   }
 
+  /**
+   * Evaluates the logical expression.
+   *
+   * @return The result.
+   */
   @Override
   public Value eval() {
     Value leftValue = left.eval();

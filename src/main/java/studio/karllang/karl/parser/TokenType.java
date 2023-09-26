@@ -65,10 +65,20 @@ public enum TokenType {
 
   private final String name;
 
+  /**
+   * Constructor for TokenType
+   *
+   * @param name Name of token type
+   */
   TokenType(String name) {
     this.name = name;
   }
 
+  /**
+   * Get name of token type
+   *
+   * @return Name of token type
+   */
   public String getName() {
     return name;
   }

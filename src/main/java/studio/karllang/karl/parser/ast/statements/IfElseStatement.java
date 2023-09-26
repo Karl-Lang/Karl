@@ -3,12 +3,23 @@ package studio.karllang.karl.parser.ast.statements;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 import studio.karllang.karl.parser.ast.values.Value;
 
+/** Represents an if-else statement in Karl. */
 public class IfElseStatement extends Statement {
   private final Expression condition;
   private final BlockStatement ifStatement;
   private final Statement elseStatement;
   private Value returnValue = null;
 
+  /**
+   * Constructs a new IfElseStatement object with the specified condition, if statement, and else
+   * statement.
+   *
+   * @param condition The condition.
+   * @param ifStatement The if statement.
+   * @param elseStatement The else statement.
+   * @param line The line number.
+   * @param pos The position.
+   */
   public IfElseStatement(
       Expression condition,
       BlockStatement ifStatement,
@@ -21,14 +32,7 @@ public class IfElseStatement extends Statement {
     this.elseStatement = elseStatement;
   }
 
-  public Statement getIfStatement() {
-    return ifStatement;
-  }
-
-  public Statement getElseStatement() {
-    return elseStatement;
-  }
-
+  /** Evaluates the if-else statement. */
   @Override
   public void eval() {
     if (Boolean.parseBoolean(condition.eval().toString())) {
@@ -52,6 +56,11 @@ public class IfElseStatement extends Statement {
     }
   }
 
+  /**
+   * Returns the result of the if-else statement.
+   *
+   * @return The result.
+   */
   public Value getResult() {
     return returnValue;
   }

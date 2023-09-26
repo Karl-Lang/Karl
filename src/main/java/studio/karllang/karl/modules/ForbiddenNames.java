@@ -67,6 +67,12 @@ public final class ForbiddenNames {
 
   private static final String[] FORBIDDEN_FUNCTION_NAMES = {"show", "eval"};
 
+  /**
+   * Checks if the name is forbidden.
+   *
+   * @param name The name.
+   * @return If the name is forbidden.
+   */
   public static boolean isForbiddenName(String name) {
     if (Arrays.asList(FORBIDDEN_VARIABLE_NAMES).contains(name)) return true;
     return Arrays.asList(FORBIDDEN_FUNCTION_NAMES).contains(name);
