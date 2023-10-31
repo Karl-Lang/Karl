@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import studio.karllang.karl.parser.ast.expressions.Expression;
 
 /**
- * Represents an abstract function within a library in a programming environment.
- * Functions are executable units of code that can take input expressions and produce output.
+ * Represents an abstract function within a library in a programming environment. Functions are
+ * executable units of code that can take input expressions and produce output.
  */
 public abstract class Function {
-  private final String name;   // The name of the function.
+  private final String name; // The name of the function.
   private final Library library; // The library to which this function belongs.
 
   /**
@@ -25,7 +25,8 @@ public abstract class Function {
   /**
    * Executes the function with the given input expressions.
    *
-   * @param expressions An ArrayList of expressions representing the input arguments to the function.
+   * @param expressions An ArrayList of expressions representing the input arguments to the
+   *     function.
    */
   public abstract void eval(ArrayList<Expression> expressions);
 

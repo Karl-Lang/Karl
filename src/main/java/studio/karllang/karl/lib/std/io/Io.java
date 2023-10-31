@@ -1,12 +1,11 @@
 package studio.karllang.karl.lib.std.io;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import studio.karllang.karl.lib.Function;
 import studio.karllang.karl.lib.Library;
 import studio.karllang.karl.modules.File;
 import studio.karllang.karl.parser.ast.expressions.Expression;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Represents an input/output (I/O) library in a programming environment. The 'Io' library provides

@@ -1,11 +1,10 @@
 package studio.karllang.karl.parser.ast.expressions;
 
+import java.util.LinkedHashMap;
 import studio.karllang.karl.modules.File;
 import studio.karllang.karl.parser.TokenType;
 import studio.karllang.karl.parser.ast.statements.BlockStatement;
 import studio.karllang.karl.parser.ast.values.Value;
-
-import java.util.LinkedHashMap;
 
 /** Represents a function expression in Karl. */
 public class FunctionExpression extends Expression {

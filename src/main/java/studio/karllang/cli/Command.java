@@ -3,7 +3,8 @@ package studio.karllang.cli;
 import java.util.ArrayList;
 
 /**
- * Represents a command in the Karl programming environment. A 'Command' object encapsulates the name and description of a command, as well as the options that it accepts.
+ * Represents a command in the Karl programming environment. A 'Command' object encapsulates the
+ * name and description of a command, as well as the options that it accepts.
  */
 public abstract class Command {
   private final ArrayList<Options> allowedOptions = new ArrayList<>();
@@ -12,6 +13,7 @@ public abstract class Command {
 
   /**
    * Constructs a new 'Command' object with the specified name and description.
+   *
    * @param name The name.
    * @param description The description.
    */
@@ -21,7 +23,8 @@ public abstract class Command {
   }
 
   /**
-   *  Runs the command with the specified options.
+   * Runs the command with the specified options.
+   *
    * @param options The options.
    * @throws Exception If an error occurs.
    */
